@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 05ae6da5820564c3ba5acc9f3282737c
+guid: cd225806c36bb4b3c8da851ceabf2d8d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3646541802198291062
-    second: WalkLR_0
+      213: 5710547782880293738
+    second: IdleLR_0
   - first:
-      213: -6164130781491357893
-    second: WalkLR_1
+      213: 1026251697901373755
+    second: IdleLR_1
   - first:
-      213: 4102699395061182766
-    second: WalkLR_2
+      213: -9115496772115220256
+    second: IdleLR_2
   - first:
-      213: -720576387190633001
-    second: WalkLR_3
+      213: -3414487683946041397
+    second: IdleLR_3
   - first:
-      213: -6747347012850941108
-    second: WalkLR_4
+      213: 2161301214075719406
+    second: IdleLR_4
   - first:
-      213: 6262863737323190345
-    second: WalkLR_5
-  - first:
-      213: 7380091396700085326
-    second: WalkLR_6
-  - first:
-      213: -8308092137983203810
-    second: WalkLR_7
+      213: -58491106758847721
+    second: IdleLR_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WalkLR_0
+      name: IdleLR_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,16 +128,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1a3220dc9ed9541e3a08af47584f2bb1
-      internalID: 3646541802198291062
+      spriteID: a637977e3f0ff3f40800000000000000
+      internalID: 5710547782880293738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkLR_1
+      name: IdleLR_1
       rect:
         serializedVersion: 2
         x: 32
@@ -156,16 +150,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f0104e91a7a53400ca46ad5c1c598b91
-      internalID: -6164130781491357893
+      spriteID: b398d8f5b7afd3e00800000000000000
+      internalID: 1026251697901373755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkLR_2
+      name: IdleLR_2
       rect:
         serializedVersion: 2
         x: 64
@@ -178,16 +172,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 504ce42ada7d4423ab0459ea335bd3ed
-      internalID: 4102699395061182766
+      spriteID: 0e83ad25bff3f7180800000000000000
+      internalID: -9115496772115220256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkLR_3
+      name: IdleLR_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,16 +194,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 627a20e2e754541a6b5562213e56e021
-      internalID: -720576387190633001
+      spriteID: bcf237cca8d4d90d0800000000000000
+      internalID: -3414487683946041397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkLR_4
+      name: IdleLR_4
       rect:
         serializedVersion: 2
         x: 128
@@ -222,16 +216,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 25a7fe0f9173b489e91ad08ec2f10414
-      internalID: -6747347012850941108
+      spriteID: eee8a9dc00c7efd10800000000000000
+      internalID: 2161301214075719406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkLR_5
+      name: IdleLR_5
       rect:
         serializedVersion: 2
         x: 160
@@ -244,54 +238,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: eb04062d7ce81400abf5cbe76dc4af41
-      internalID: 6262863737323190345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkLR_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6a2c122b73334c5497e4c4034c1647a
-      internalID: 7380091396700085326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkLR_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be95b5ddcbc194e0381f5b74b4096606
-      internalID: -8308092137983203810
+      spriteID: 7139e17f5a2303ff0800000000000000
+      internalID: -58491106758847721
       vertices: []
       indices: 
       edges: []
@@ -300,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 24ce85ae1cab442629ca4d74ac504393
+    spriteID: 40a92b68be9de4715b0f1368cdcb70d4
     internalID: 0
     vertices: []
     indices: 
@@ -312,14 +262,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      WalkLR_0: 3646541802198291062
-      WalkLR_1: -6164130781491357893
-      WalkLR_2: 4102699395061182766
-      WalkLR_3: -720576387190633001
-      WalkLR_4: -6747347012850941108
-      WalkLR_5: 6262863737323190345
-      WalkLR_6: 7380091396700085326
-      WalkLR_7: -8308092137983203810
+      IdleLR_0: 5710547782880293738
+      IdleLR_1: 1026251697901373755
+      IdleLR_2: -9115496772115220256
+      IdleLR_3: -3414487683946041397
+      IdleLR_4: 2161301214075719406
+      IdleLR_5: -58491106758847721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
