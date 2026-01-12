@@ -1,0 +1,12 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Item", menuName = "Scriptable Objects/Item")]
+public class Item : ScriptableObject
+{
+    [SerializeField] private string itemName;
+    [SerializeField] private string description;
+    [SerializeField] private Sprite icon;
+    public string ItemName { get => itemName; set => itemName = value; }
+    public string Description { get => description; set => description = value; }
+    public Sprite Icon { get => icon; set => icon = value; }
+}

@@ -3,15 +3,19 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [Header("Basics")]
+    [Header("Components")]
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator anim;
     public InputActionReference moveAction;
 
-    [Header("Basics")]
-    public float speed;
+    [Header("Player Data")]
+    [SerializeField] private PlayerData playerData;
+    [SerializeField] private Inventory inventory;
+
+    [Header("Player Data")]
     private Vector2 _moveDirection;
+    private Vector2 _mouseScrollY;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +23,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        inventory.CurrentItemIndex = 0;
     }
 
     // Update is called once per frame
@@ -38,13 +44,24 @@ public class Player : MonoBehaviour
             }
             anim.SetFloat("speed", _moveDirection.magnitude);
         }
+
+        _mouseScrollY = Mouse.current.scroll.ReadValue();
+        float _scrollDirection = _mouseScrollY.y;
+        
+        if (_scrollDirection > 0)
+        {
+            inventory.CycleItem(-1);
+        } else if (_scrollDirection < 0)
+        {
+            inventory.CycleItem(1);
+        }
     }
 
     void FixedUpdate()
     {
         if (rb)
         {
-            rb.linearVelocity = _moveDirection * speed;
+            rb.linearVelocity = _moveDirection * playerData.Speed;
         }
         
         
