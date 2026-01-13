@@ -47,5 +47,21 @@ public class Inventory : ScriptableObject
         }
     }
 
+    public void CycleTo(int index)
+    {
+        if (items.Length == 0) return;
+        if (index >= 0 && index < items.Length)
+        {
+            currentItemIndex = index;
+            equippedItem = items[currentItemIndex];
+            if (equippedItem != null)
+            {
+                Debug.Log("Cycled to Item: " + equippedItem.ItemName);
+            } else {
+                Debug.Log("No item equipped.");
+            }
+        }
+    }
+
 
 }

@@ -119,6 +119,20 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &259217103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Gameplay/Point
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: ccf45f268cde24a4bba2212da3aa1c04, type: 3}
+  m_ActionId: 544198e7-a5af-4832-a3a7-589e4837d909
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +509,7 @@ GameObject:
   - component: {fileID: 1172355957}
   - component: {fileID: 1172355961}
   - component: {fileID: 1172355963}
+  - component: {fileID: 1172355964}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -691,9 +706,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97414802e8e5e4107bdaea03835dc024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  moveAction: {fileID: 1322881080}
   playerData: {fileID: 11400000, guid: ef445100a68f3b947adc92711f4984c5, type: 2}
   inventory: {fileID: 11400000, guid: 49bad98f5eaa0594faf119d1fbba7496, type: 2}
+  moveAction: {fileID: 1322881080}
+  numberKeyAction: {fileID: 1490149409}
+  attackAction: {fileID: 259217103}
 --- !u!95 &1172355963
 Animator:
   serializedVersion: 7
@@ -716,6 +733,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1172355964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172355956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31057ef324a04478bb4f7d469b3cdc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.EnhancedTouch.TouchSimulation
 --- !u!1 &1236087067
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +803,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: ccf45f268cde24a4bba2212da3aa1c04, type: 3}
   m_ActionId: 6573939d-0bb7-433b-b474-9f5c5aed5193
+--- !u!114 &1490149409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Gameplay/NumKeys
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: ccf45f268cde24a4bba2212da3aa1c04, type: 3}
+  m_ActionId: 1c0e53e8-1d53-4b1e-a03c-5a6b0cfc8f98
 --- !u!1 &1981112241
 GameObject:
   m_ObjectHideFlags: 0

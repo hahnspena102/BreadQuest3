@@ -7,15 +7,24 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator anim;
-    public InputActionReference moveAction;
+
+
 
     [Header("Player Data")]
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Inventory inventory;
 
-    [Header("Player Data")]
+    [Header("Input")]
+    public InputActionReference moveAction;
+    public InputActionReference numberKeyAction;
+
+    public InputActionReference attackAction;
+
+
     private Vector2 _moveDirection;
-    private Vector2 _mouseScrollY;
+    private Vector2 _attackPosition;
+    private float _mouseScrollY;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,16 +54,19 @@ public class Player : MonoBehaviour
             anim.SetFloat("speed", _moveDirection.magnitude);
         }
 
-        _mouseScrollY = Mouse.current.scroll.ReadValue();
-        float _scrollDirection = _mouseScrollY.y;
+
+        //Debug.Log(numberKeyAction.action.ReadValue<float>());
+        int _numberKey = Mathf.FloorToInt(numberKeyAction.action.ReadValue<float>());
+
+    
+        inventory.CycleTo(_numberKey - 1);
+
+        Debug.Log(attackAction.action.ReadValue<float>());
         
-        if (_scrollDirection > 0)
-        {
-            inventory.CycleItem(-1);
-        } else if (_scrollDirection < 0)
-        {
-            inventory.CycleItem(1);
-        }
+  //      _attackPosition = Camera.main.ScreenToWorldPoint(attackAction.action.ReadValue<Vector2>());
+        
+//        Debug.Log("Attack Position: " + _attackPosition);
+        
     }
 
     void FixedUpdate()
