@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public class Player : MonoBehaviour
 {
@@ -18,12 +19,11 @@ public class Player : MonoBehaviour
     public InputActionReference moveAction;
     public InputActionReference numberKeyAction;
 
-    public InputActionReference attackAction;
-
 
     private Vector2 _moveDirection;
-    private Vector2 _attackPosition;
+    private Vector2 _pointPosition;
     private float _mouseScrollY;
+    
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
 
         inventory.CurrentItemIndex = 0;
+
+
     }
 
     // Update is called once per frame
@@ -61,13 +63,14 @@ public class Player : MonoBehaviour
     
         inventory.CycleTo(_numberKey - 1);
 
-        Debug.Log(attackAction.action.ReadValue<float>());
-        
-  //      _attackPosition = Camera.main.ScreenToWorldPoint(attackAction.action.ReadValue<Vector2>());
-        
-//        Debug.Log("Attack Position: " + _attackPosition);
+        _pointPosition = Input.mousePosition;
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Click at: " + _pointPosition);
+        }
         
     }
+ 
 
     void FixedUpdate()
     {

@@ -23,24 +23,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Point",
-                    "type": "PassThrough",
-                    "id": "544198e7-a5af-4832-a3a7-589e4837d909",
-                    "expectedControlType": "Vector3",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "LeftClick",
-                    "type": "PassThrough",
-                    "id": "ad6cfe08-d2e8-43c3-9356-de20f277b3b9",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -61,7 +43,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -72,7 +54,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -83,7 +65,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -94,7 +76,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -105,7 +87,7 @@
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "Scale",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "NumKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -116,7 +98,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "Scale(factor=2)",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "NumKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -127,7 +109,7 @@
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "Scale(factor=3)",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "NumKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -138,7 +120,7 @@
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "Scale(factor=4)",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "NumKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -149,7 +131,7 @@
                     "path": "<Keyboard>/5",
                     "interactions": "",
                     "processors": "Scale(factor=5)",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "NumKeys",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -160,52 +142,8 @@
                     "path": "<Keyboard>/6",
                     "interactions": "",
                     "processors": "Scale(factor=6)",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "NumKeys",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "7130664e-2374-4f83-b597-c74469c6442f",
-                    "path": "OneModifier(overrideModifiersNeedToBePressedFirst=true)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LeftClick",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "99fad212-8db5-4ef9-807f-8bf7b2b49bfe",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "LeftClick",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "a75e9d2c-9f06-474b-a77c-5591202f4025",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "LeftClick",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "d81470e7-0c1c-4996-bf66-5703290f13cd",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse;Keyboard",
-                    "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -214,11 +152,16 @@
     ],
     "controlSchemes": [
         {
-            "name": "Keyboard",
-            "bindingGroup": "Keyboard",
+            "name": "Keyboard & Mouse",
+            "bindingGroup": "Keyboard & Mouse",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }
