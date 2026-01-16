@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b89bdb87dff5ef44a27d833d534acdc, type: 3}
-  m_Name: TestBread 1
-  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_Script: {fileID: 11500000, guid: d5fece207f0a1e04695ec6a3a5019e57, type: 3}
+  m_Name: Spearmint
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Spearmint
   description: 
   icon: {fileID: 3732695439383397635, guid: 5e40fe38f9177554d9103006cb63fd8f, type: 3}
+  damage: 3
+  attackSpeed: 1
+  range: 1

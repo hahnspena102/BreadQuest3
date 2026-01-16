@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   capacity: 6
-  items:
+  itemDatas:
   - {fileID: 0}
-  - {fileID: 11400000, guid: e3a67143faa07b243bf84e8832aacbeb, type: 2}
-  - {fileID: 11400000, guid: ea784dfcd24d04740a5e0c8a4fdd0d71, type: 2}
+  - {fileID: 11400000, guid: 3b6b7d5c17869400494489f7881a353f, type: 2}
+  - {fileID: 11400000, guid: ebbc955094b774482af7d58fd4d16e06, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  currentItemIndex: 1
-  equippedItem: {fileID: 11400000, guid: e3a67143faa07b243bf84e8832aacbeb, type: 2}
+  currentItemIndex: 2
+  equippedItemData: {fileID: 11400000, guid: ebbc955094b774482af7d58fd4d16e06, type: 2}

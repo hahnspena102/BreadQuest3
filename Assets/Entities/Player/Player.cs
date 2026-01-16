@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator anim;
+    [SerializeField]private Camera mainCamera;
 
 
 
@@ -21,10 +22,14 @@ public class Player : MonoBehaviour
 
 
     private Vector2 _moveDirection;
-    private Vector2 _pointPosition;
+
     private float _mouseScrollY;
-    
-    
+    private Vector2 worldPointPosition;
+
+    public Vector2 WorldPointPosition { get => worldPointPosition; set => worldPointPosition = value; }
+    public Inventory Inventory { get => inventory; set => inventory = value; }
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,15 +65,11 @@ public class Player : MonoBehaviour
         //Debug.Log(numberKeyAction.action.ReadValue<float>());
         int _numberKey = Mathf.FloorToInt(numberKeyAction.action.ReadValue<float>());
 
+        worldPointPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
     
         inventory.CycleTo(_numberKey - 1);
 
-        _pointPosition = Input.mousePosition;
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Click at: " + _pointPosition);
-        }
-        
     }
  
 

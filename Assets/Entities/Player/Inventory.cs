@@ -4,44 +4,44 @@ using UnityEngine;
 public class Inventory : ScriptableObject
 {
     [SerializeField] private int capacity;
-    [SerializeField] private Item[] items;
+    [SerializeField] private ItemData[] itemDatas;
     [SerializeField] private int currentItemIndex = 0;
-    [SerializeField] private Item equippedItem;
+    [SerializeField] private ItemData equippedItemData;
     
    
 
     public int Capacity { get => capacity; set => capacity = value; }
-    public Item[] Items { get => items; set => items = value; }
-    public Item EquippedItem { get => equippedItem; set => equippedItem = value; }
+    public ItemData[] ItemDatas { get => itemDatas; set => itemDatas = value; }
+    public ItemData EquippedItemData { get => equippedItemData; set => equippedItemData = value; }
     public int CurrentItemIndex { get => currentItemIndex; set => currentItemIndex = value; }
-    public Item GetItemAtIndex(int index)
+    public ItemData GetItemAtIndex(int index)
     {
-        if (index >= 0 && index < items.Length)
+        if (index >= 0 && index < itemDatas.Length)
         {
-            return items[index];
+            return itemDatas[index];
         }
         return null;
     }
 
     public void CycleItem(float direction)
     {
-        if (items.Length == 0) return;
+        if (itemDatas.Length == 0) return;
 
         if (currentItemIndex == -1) currentItemIndex = 0;
 
         if (direction > 0)
         {
-            currentItemIndex = (currentItemIndex + 1) % items.Length;
+            currentItemIndex = (currentItemIndex + 1) % itemDatas.Length;
         }
         else if (direction < 0)
         {
-            currentItemIndex = (currentItemIndex - 1 + items.Length) % items.Length;
+            currentItemIndex = (currentItemIndex - 1 + itemDatas.Length) % itemDatas.Length;
         }
 
-        equippedItem = items[currentItemIndex];
-        if (equippedItem != null)
+        equippedItemData = itemDatas[currentItemIndex];
+        if (equippedItemData != null)
         {
-            Debug.Log("Cycled to Item: " + equippedItem.ItemName);
+            Debug.Log("Cycled to Item: " + equippedItemData.ItemName);
         } else {
             Debug.Log("No item equipped.");
         }
@@ -49,14 +49,14 @@ public class Inventory : ScriptableObject
 
     public void CycleTo(int index)
     {
-        if (items.Length == 0) return;
-        if (index >= 0 && index < items.Length)
+        if (itemDatas.Length == 0) return;
+        if (index >= 0 && index < itemDatas.Length)
         {
             currentItemIndex = index;
-            equippedItem = items[currentItemIndex];
-            if (equippedItem != null)
+            equippedItemData = itemDatas[currentItemIndex];
+            if (equippedItemData != null)
             {
-                Debug.Log("Cycled to Item: " + equippedItem.ItemName);
+                Debug.Log("Cycled to Item: " + equippedItemData.ItemName);
             } else {
                 Debug.Log("No item equipped.");
             }
