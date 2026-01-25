@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Melee : MonoBehaviour
+public class Magic: MonoBehaviour
 {
-    [SerializeField] private MeleeData meleeData;
+    [SerializeField] private MagicData magicData;
     private Player player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,16 +14,16 @@ public class Melee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && player.Inventory.EquippedItemData == meleeData)
+        if (Input.GetMouseButtonDown(0) && player.Inventory.EquippedItemData == magicData)
         {    
             
 
             Vector2 direction = player.WorldPointPosition - (Vector2)transform.position;
 
-            Debug.Log("Attacking with " + meleeData.name + " in direction: " + direction.normalized);
+            Debug.Log("Attacking with " + magicData.name + " in direction: " + direction.normalized);
 
 
-            player.Attack(direction.normalized, "melee");
+            player.Attack(direction.normalized, "magic");
         }
     }
 }

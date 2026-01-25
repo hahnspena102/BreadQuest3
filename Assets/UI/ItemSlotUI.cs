@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ItemSlotUI : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private Image itemIcon;
+    [SerializeField] private Image itemSprite;
     [SerializeField] private Image highlightBorder;
     [SerializeField] private ItemData itemData;
 
@@ -25,14 +25,14 @@ public class ItemSlotUI : MonoBehaviour
         itemData = newItem;
         if (itemData == null)
         {
-            itemIcon.sprite = null;
-            itemIcon.enabled = false;
+            itemSprite.sprite = null;
+            itemSprite.enabled = false;
             return;
         }
-        if (itemIcon != null && itemData != null)
+        if (itemSprite != null && itemData != null)
         {
-            itemIcon.sprite = itemData.Icon;
-            itemIcon.enabled = true;
+            itemSprite.sprite = itemData.ItemSprite;
+            itemSprite.enabled = true;
         }
     }
 
@@ -42,6 +42,6 @@ public class ItemSlotUI : MonoBehaviour
         {
             highlightBorder.enabled = highlight;
         }
-        itemIcon.rectTransform.localScale = highlight ? Vector3.one * 1.4f : Vector3.one;
+        itemSprite.rectTransform.localScale = highlight ? Vector3.one * 1.4f : Vector3.one;
     }
 }

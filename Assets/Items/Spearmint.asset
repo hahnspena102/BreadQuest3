@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Spearmint
   description: 
-  icon: {fileID: 3732695439383397635, guid: 5e40fe38f9177554d9103006cb63fd8f, type: 3}
+  itemSprite: {fileID: 3732695439383397635, guid: 5e40fe38f9177554d9103006cb63fd8f, type: 3}
   damage: 3
   attackSpeed: 1
   range: 1

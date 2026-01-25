@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358e93b5ef25ad442a4102ce9aed70c0, type: 3}
+  m_Name: HotCocoaShot
+  m_EditorClassIdentifier: Assembly-CSharp::MagicData
+  itemName: 
+  description: 
+  itemSprite: {fileID: -1381539162234565720, guid: 9ef5d7701ffe9a646be33fe270ebec28, type: 3}
+  damage: 0
+  attackSpeed: 0
+  range: 0

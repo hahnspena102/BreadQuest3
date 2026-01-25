@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Knight's Sword
   description: 
-  icon: {fileID: 6448972388924427744, guid: d9b314c25f9e9b642925d4112a8e31b7, type: 3}
+  itemSprite: {fileID: 6448972388924427744, guid: d9b314c25f9e9b642925d4112a8e31b7, type: 3}
   damage: 3
   attackSpeed: 1
   range: 1

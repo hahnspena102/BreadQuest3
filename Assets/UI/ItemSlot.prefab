@@ -201,9 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ac4b29067c3db43ad4bb3ae7f1fbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlotUI
-  itemIcon: {fileID: 6379970649242000451}
+  itemSprite: {fileID: 6379970649242000451}
   highlightBorder: {fileID: 7248597256607921434}
-  item: {fileID: 0}
+  itemData: {fileID: 0}
 --- !u!1 &6931965400882843019
 GameObject:
   m_ObjectHideFlags: 0

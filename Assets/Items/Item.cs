@@ -5,8 +5,8 @@ public class ItemData : ScriptableObject
 {
     [SerializeField] private string itemName;
     [SerializeField] private string description;
-    [SerializeField] private Sprite icon;
+    [SerializeField] private Sprite itemSprite;
     public string ItemName { get => itemName; set => itemName = value; }
     public string Description { get => description; set => description = value; }
-    public Sprite Icon { get => icon; set => icon = value; }
+    public Sprite ItemSprite { get => itemSprite; set => itemSprite = value; }
 }
