@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+   private EnemyData enemyData;
     [SerializeField] private float stoppingDistance = 0.1f;
 
     private Rigidbody2D rb;
@@ -13,6 +13,7 @@ public class Pathfinder : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemyData = GetComponent<Enemy>().EnemyData;
     }
 
     void Update()
@@ -29,11 +30,11 @@ public class Pathfinder : MonoBehaviour
         {
             if (rb != null)
             {
-                rb.linearVelocity = direction * moveSpeed;
+                rb.linearVelocity = direction * enemyData.Speed;
             }
             else
             {
-                transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+                transform.position += (Vector3)(direction * enemyData.Speed * Time.deltaTime);
             }
         }
         else

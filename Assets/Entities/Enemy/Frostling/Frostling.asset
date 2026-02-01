@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
   m_Name: Frostling
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  health: 10
+  speed: 1
   enemyName: Frostling
+  enemySprite: {fileID: 1364999022, guid: 50b78a9e6e6a440be9ccc3a84568578e, type: 3}
   description: 
+  flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   enemyBehaviors:
   - {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
-  - {fileID: 11400000, guid: c292be35f7d3048729a94a900fc13bc1, type: 2}
+  idleAnimationF: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}

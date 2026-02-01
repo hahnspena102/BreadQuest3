@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 6f0a48bf2bb3849a4a220cdacb4b1d55
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6667236413356759536
+    second: EffectivenessChart_0
+  - first:
+      213: 15925458502914350
+    second: EffectivenessChart_1
+  - first:
+      213: 3529070146174510840
+    second: EffectivenessChart_2
+  - first:
+      213: 8190091574986928829
+    second: EffectivenessChart_3
+  - first:
+      213: 487267154111843194
+    second: EffectivenessChart_4
+  - first:
+      213: 3549395151627704488
+    second: EffectivenessChart_5
+  - first:
+      213: 7594241579081135197
+    second: EffectivenessChart_6
+  - first:
+      213: -5682232956103276619
+    second: EffectivenessChart_7
+  - first:
+      213: -6161255629140103704
+    second: EffectivenessChart_8
+  - first:
+      213: -4364830151111706315
+    second: EffectivenessChart_9
+  - first:
+      213: -3690561822683132142
+    second: EffectivenessChart_10
+  - first:
+      213: 1185192744307397324
+    second: EffectivenessChart_11
+  - first:
+      213: 6412119824343917509
+    second: EffectivenessChart_12
+  - first:
+      213: -167023007771242193
+    second: EffectivenessChart_13
+  - first:
+      213: 220460681350685203
+    second: EffectivenessChart_14
+  - first:
+      213: -8995746654499248100
+    second: EffectivenessChart_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EffectivenessChart_0
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1146
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9dda38138c68c50800000000000000
+      internalID: 6667236413356759536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_1
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 1146
+        width: 182
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2193f0ce14983000800000000000000
+      internalID: 15925458502914350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_2
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 859
+        width: 262
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f6ea22a996c9f030800000000000000
+      internalID: 3529070146174510840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_3
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 859
+        width: 262
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db2f30df4ec09a170800000000000000
+      internalID: 8190091574986928829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_4
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 787
+        width: 227
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b4d8f15ee13c600800000000000000
+      internalID: 487267154111843194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_5
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 765
+        width: 197
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a8534cb51cf14130800000000000000
+      internalID: 3549395151627704488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_6
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 825
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54f1abea7a246960800000000000000
+      internalID: 7594241579081135197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_7
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 349
+        width: 162
+        height: 402
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b742707b37a421b0800000000000000
+      internalID: -5682232956103276619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_8
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 319
+        width: 182
+        height: 432
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed6ab626a2de7aa0800000000000000
+      internalID: -6161255629140103704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_9
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 238
+        width: 92
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 539721a7a120d63c0800000000000000
+      internalID: -4364830151111706315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_10
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 253
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f8a51639d78ccc0800000000000000
+      internalID: -3690561822683132142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_11
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 298
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc210d28586a27010800000000000000
+      internalID: 1185192744307397324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_12
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 253
+        width: 61
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c36243e10d6cf850800000000000000
+      internalID: 6412119824343917509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_13
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 239
+        width: 302
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f215a78957d9eadf0800000000000000
+      internalID: -167023007771242193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_14
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 253
+        width: 39
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31229d652db3f0300800000000000000
+      internalID: 220460681350685203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EffectivenessChart_15
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 238
+        width: 182
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c18e9294410b82380800000000000000
+      internalID: -8995746654499248100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EffectivenessChart_0: 6667236413356759536
+      EffectivenessChart_1: 15925458502914350
+      EffectivenessChart_10: -3690561822683132142
+      EffectivenessChart_11: 1185192744307397324
+      EffectivenessChart_12: 6412119824343917509
+      EffectivenessChart_13: -167023007771242193
+      EffectivenessChart_14: 220460681350685203
+      EffectivenessChart_15: -8995746654499248100
+      EffectivenessChart_2: 3529070146174510840
+      EffectivenessChart_3: 8190091574986928829
+      EffectivenessChart_4: 487267154111843194
+      EffectivenessChart_5: 3549395151627704488
+      EffectivenessChart_6: 7594241579081135197
+      EffectivenessChart_7: -5682232956103276619
+      EffectivenessChart_8: -6161255629140103704
+      EffectivenessChart_9: -4364830151111706315
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
