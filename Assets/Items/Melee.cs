@@ -20,10 +20,8 @@ public class Melee : MonoBehaviour
 
             Vector2 direction = player.WorldPointPosition - (Vector2)transform.position;
 
-            Debug.Log("Attacking with " + meleeData.name + " in direction: " + direction.normalized);
 
-
-            player.Attack(direction.normalized, "melee");
+            player.MeleeAttack(direction.normalized);
         }
     }
 }

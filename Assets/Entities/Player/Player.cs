@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     [SerializeField]private Camera mainCamera;
     [SerializeField] private SpriteRenderer itemSpriteHolder;
+    [SerializeField] private GameObject attackBox;
 
 
 
@@ -17,6 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Inventory inventory;
     private bool isAttacking = false;
+    private float invulnerabilityTimer = 0f;
+    
+    private float invulnerabilityDuration = 1f;
+    private int flashCount = 3;
 
     [Header("Input")]
     public InputActionReference moveAction;
@@ -43,12 +49,18 @@ public class Player : MonoBehaviour
 
         inventory.CurrentItemIndex = 0;
 
+        attackBox.SetActive(false);
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (invulnerabilityTimer > 0f)
+        {
+            invulnerabilityTimer -= Time.deltaTime;
+        }
         _moveDirection = moveAction.action.ReadValue<Vector2>();
 
         if (rb)
@@ -100,52 +112,112 @@ public class Player : MonoBehaviour
         
     }
 
-  public void Attack(Vector2 direction, string type)
-{
-    if (isAttacking) return;
-    if (direction == Vector2.zero) return;
-
-    isAttacking = true;
-    itemSpriteHolder.gameObject.SetActive(true);
-    itemSpriteHolder.sortingOrder = 1;
-    direction = direction.normalized;
-
-    if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-    {
-        if (direction.x < 0)
+    public void MeleeAttack(Vector2 direction)
+    {    
+        if (isAttacking) return;
+        if (direction == Vector2.zero) return;
+        AttackAnimation(direction, "melee");
+        isAttacking = true;
+        attackBox.SetActive(true);
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-            Debug.Log("Left Attack");
+             attackBox.transform.localPosition = new Vector2(1f, 0f);
+        }
+        else
+        {
+            attackBox.transform.localPosition = new Vector2(0f, direction.y > 0 ? 1f : -1f);
+        }
+       
+    }
+
+    public void MagicAttack(Vector2 direction)
+    {
+        if (isAttacking) return;
+        if (direction == Vector2.zero) return;
+        AttackAnimation(direction, "magic");
+        isAttacking = true;
+    }
+
+    public void AttackAnimation(Vector2 direction, string type)
+    {
+        
+        itemSpriteHolder.gameObject.SetActive(true);
+        itemSpriteHolder.sortingOrder = 1;
+        direction = direction.normalized;
+
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x < 0)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+                ////Debug.Log("Left Attack");
+            }
+            else
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+                ////Debug.Log("Right Attack");
+            }
+
+            anim.SetTrigger(type + "AttackLR");
         }
         else
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-            Debug.Log("Right Attack");
-        }
-
-        anim.SetTrigger(type + "AttackLR");
-    }
-    else
-    {
-        transform.localScale = new Vector3(1f, 1f, 1f);
-        if (direction.y > 0)
-        {
-            anim.SetTrigger(type + "AttackUp");
-            //itemSpriteHolder.sortingOrder = -1;
-            Debug.Log("Up Attack");
-        }
-        else
-        {
-            anim.SetTrigger(type + "AttackDown");
-            Debug.Log("Down Attack");
+            if (direction.y > 0)
+            {
+                anim.SetTrigger(type + "AttackUp");
+                //itemSpriteHolder.sortingOrder = -1;
+                //Debug.Log("Up Attack");
+            }
+            else
+            {
+                anim.SetTrigger(type + "AttackDown");
+                //Debug.Log("Down Attack");
+            }
         }
     }
-}
 
 
     public void FinishAttack()
     {
         itemSpriteHolder.gameObject.SetActive(false);
         isAttacking = false;
+        attackBox.SetActive(false);
     }
+
+    public void TakeDamage(float damage)
+    {
+        if (invulnerabilityTimer > 0f) return;
+
+        playerData.CurrentHealth -= damage;
+        Debug.Log("Player took " + damage + " damage!");
+        anim.SetTrigger("hurt");
+        invulnerabilityTimer = invulnerabilityDuration; 
+
+        StartCoroutine(DamageFlash());
+        
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        float pulseDuration = 0.1f;
+        sr.color = Color.red;
+        yield return new WaitForSeconds(pulseDuration);
+
+        sr.color = Color.white;
+
+        float flashInterval = invulnerabilityDuration / (flashCount * 2);
+        for (int i = 0; i < flashCount; i++)
+        {
+            sr.color = new Color(1.000f, 1.000f, 1.000f, 0.5f);
+            yield return new WaitForSeconds(flashInterval);
+            sr.color = Color.white;
+            yield return new WaitForSeconds(flashInterval);
+        }
+
+        sr.color = Color.white; 
+
+        isAttacking = false;
+    }
+
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
 public class PlayerData : EntityData
 {
+    [SerializeField] private float currentHealth;
     [SerializeField] private float gold;
     [SerializeField] private float experience;
     [SerializeField] private float critRate;
@@ -12,4 +13,5 @@ public class PlayerData : EntityData
     public global::System.Single Experience { get => experience; set => experience = value; }
     public global::System.Single CritRate { get => critRate; set => critRate = value; }
     public global::System.Single CritBonus { get => critBonus; set => critBonus = value; }
+    public global::System.Single CurrentHealth { get => currentHealth; set => currentHealth = value; }
 }

@@ -23,7 +23,7 @@ public class Magic: MonoBehaviour
             Debug.Log("Attacking with " + magicData.name + " in direction: " + direction.normalized);
 
 
-            player.Attack(direction.normalized, "magic");
+            player.MagicAttack(direction.normalized);
         }
     }
 }
