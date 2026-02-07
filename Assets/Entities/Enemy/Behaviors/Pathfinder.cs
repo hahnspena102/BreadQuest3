@@ -42,7 +42,13 @@ public class Pathfinder : MonoBehaviour
 
     void Update()
     {
-
+        if (agent.path.status == NavMeshPathStatus.PathInvalid)
+        {
+            hasTarget = false;
+//            agent.isStopped = true;
+            return;
+        }
+        
         if (hasTarget && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             hasTarget = false;
