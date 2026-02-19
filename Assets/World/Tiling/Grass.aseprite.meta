@@ -1,0 +1,2788 @@
+fileFormatVersion: 2
+guid: 365e5efc1502ae941b001f88fccfbd4c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 2
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+    generateIndividualEvents: 1
+    generateSpriteAtlas: 1
+  asepriteImporterSettings:
+    fileImportMode: 2
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+    generateIndividualEvents: 1
+    generateSpriteAtlas: 1
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData: []
+  spriteSheetImportData: []
+  tileSetImportData:
+  - name: WallTiles_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 268
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 478d7978cb59a8d49bbcca0061e57954
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 268, y: 4}
+  - name: WallTiles_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 308
+      y: 4
+      width: 32
+      height: 32
+    spriteID: b328f3c91db70a84291a6f67f259d13f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 308, y: 4}
+  - name: WallTiles_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 348
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 25f0e44d26cd5a14e8360eeddfec18e2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 348, y: 4}
+  - name: WallTiles_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 388
+      y: 4
+      width: 32
+      height: 32
+    spriteID: ec3862bc0ae881f40af02bb088e8a9b3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 388, y: 4}
+  - name: WallTiles_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 428
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 5e0d2f55ecdb05e4fb26d174d66f200b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 428, y: 4}
+  - name: WallTiles_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 468
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 8b2c63f8f0a5dce4c8ebe940e30cf035
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 468, y: 4}
+  - name: WallTiles_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 268
+      y: 44
+      width: 32
+      height: 32
+    spriteID: d9c510c86b1bbcc4086fbf66e58e0335
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 268, y: 44}
+  - name: WallTiles_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 308
+      y: 44
+      width: 32
+      height: 32
+    spriteID: e6f281da70aadee4796cfa701ae689d3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 308, y: 44}
+  - name: WallTiles_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 348
+      y: 44
+      width: 32
+      height: 32
+    spriteID: c2236263d542ea54da36a13b2fb7a5c2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 348, y: 44}
+  - name: WallTiles_10
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 388
+      y: 44
+      width: 32
+      height: 32
+    spriteID: eb00f5ae07555da47baf5f2b02d6c1df
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 388, y: 44}
+  - name: WallTiles_11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 428
+      y: 44
+      width: 32
+      height: 32
+    spriteID: b1c1d3e29cc1d2b47a1b01f95d14ea14
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 428, y: 44}
+  - name: WallTiles_12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 468
+      y: 44
+      width: 32
+      height: 32
+    spriteID: 648f03891004b9345b4c4ca9bc56a689
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 468, y: 44}
+  - name: WallTiles_13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 268
+      y: 84
+      width: 32
+      height: 32
+    spriteID: bfc9b3d38564d85448d4a0e6262a7025
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 268, y: 84}
+  - name: WallTiles_14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 308
+      y: 84
+      width: 32
+      height: 32
+    spriteID: 1a9bbb7b222d08e4dbfd3e9621aa46f0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 308, y: 84}
+  - name: WallTiles_15
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 348
+      y: 84
+      width: 32
+      height: 32
+    spriteID: 986ad0193aeae2c4fbec437d0cc823e1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 348, y: 84}
+  - name: WallTiles_16
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 388
+      y: 84
+      width: 32
+      height: 32
+    spriteID: d51b28c5602135c489dfe545b339c6a4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 388, y: 84}
+  - name: WallTiles_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 428
+      y: 84
+      width: 32
+      height: 32
+    spriteID: 8f5890d1299b8fb4191c226e92fb8355
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 428, y: 84}
+  - name: WallTiles_18
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 468
+      y: 84
+      width: 32
+      height: 32
+    spriteID: be149c5a10e2beb4a8d5371f599ef3a1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 468, y: 84}
+  - name: WallTiles_19
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 268
+      y: 124
+      width: 32
+      height: 32
+    spriteID: e4574b2b4cb20c44db10fe16069d9cbe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 268, y: 124}
+  - name: WallTiles_20
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 308
+      y: 124
+      width: 32
+      height: 32
+    spriteID: 3f104512e7862df499ff08482c167939
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 308, y: 124}
+  - name: WallTiles_21
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 348
+      y: 124
+      width: 32
+      height: 32
+    spriteID: 191e63a0ec9fc5e4eb97209d1e302b15
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 348, y: 124}
+  - name: WallTiles_22
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 388
+      y: 124
+      width: 32
+      height: 32
+    spriteID: 18144eb77657074499756b859ada24cb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 388, y: 124}
+  - name: WallTiles_23
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 428
+      y: 124
+      width: 32
+      height: 32
+    spriteID: fb7de46fb583538478c2c57ee6dbf477
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 428, y: 124}
+  - name: WallTiles_24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 468
+      y: 124
+      width: 32
+      height: 32
+    spriteID: a8eb886162d0455488c2da18d33acb6b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 468, y: 124}
+  - name: WallTiles_25
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 268
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 61bf2047c7e56b645bb784934126e9aa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 268, y: 164}
+  - name: WallTiles_26
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 308
+      y: 164
+      width: 32
+      height: 32
+    spriteID: e99e505d3b2e1434c83d78d1c3340cb5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 308, y: 164}
+  - name: WallTiles_27
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 348
+      y: 164
+      width: 32
+      height: 32
+    spriteID: e67d00ef5f6c6eb4eba51a42c421fb5c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 348, y: 164}
+  - name: WallTiles_28
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 388
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 711d94063f99db74482fed80c51ff399
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 388, y: 164}
+  - name: WallTiles_29
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 428
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 3fdd1f8792b7f7c46b6397e98a9d70ff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 428, y: 164}
+  - name: WallTiles_30
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 468
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 03825c2a7afb17046a495d0dda139f3b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 468, y: 164}
+  - name: WallTiles_31
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 1f50106d25bf8724eaf13e418cdaaa89
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 236}
+  - name: WallTiles_32
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 29ef988bf51f25b49b82c6010688f1be
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 236}
+  - name: WallTiles_33
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 99c43aa235125d5439d6d77181b7adde
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 236}
+  - name: WallTiles_34
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 38d2386b86708b8418a6c072399c8ced
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 236}
+  - name: WallTiles_35
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 00a5bbe1a0c0b434a8ec7a2069906f1f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 236}
+  - name: WallTiles_36
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 105a6aafd5e36a147a9e61b391de44c2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 236}
+  - name: WallTiles_37
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 244
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 80a7e17a135c81c49828deefba2cbe8b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 244, y: 236}
+  - name: WallTiles_38
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 284
+      y: 236
+      width: 32
+      height: 32
+    spriteID: cb0ce16cdf15a374691676477ed1faf0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 284, y: 236}
+  - name: WallTiles_39
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 324
+      y: 236
+      width: 32
+      height: 32
+    spriteID: d6717d576ffd6ba4fae37b863f08f3da
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 324, y: 236}
+  - name: WallTiles_40
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 364
+      y: 236
+      width: 32
+      height: 32
+    spriteID: c4ae18aeceb72c041b1ccb3db6bb51f1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 364, y: 236}
+  - name: WallTiles_41
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 404
+      y: 236
+      width: 32
+      height: 32
+    spriteID: 1b32ce9ffc7ba934682dc86bb4009b91
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 404, y: 236}
+  - name: WallTiles_42
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 444
+      y: 236
+      width: 32
+      height: 32
+    spriteID: a90001e530f18d54b810c390e7436761
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 444, y: 236}
+  - name: WallTiles_43
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 716e61ec89abf83488e484f3b4056d66
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 276}
+  - name: WallTiles_44
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 7c6e4bec08c6be548a8c9d68270de570
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 276}
+  - name: WallTiles_45
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 276
+      width: 32
+      height: 32
+    spriteID: a1c5cabe87c6b5b43ac21c553aed58e1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 276}
+  - name: WallTiles_46
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 1401b9ee0bf8e9c4596e938e89dac447
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 276}
+  - name: WallTiles_47
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 276
+      width: 32
+      height: 32
+    spriteID: bb77d7502131ee84fb33ac822c64d615
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 276}
+  - name: WallTiles_48
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 63fa24f96bc802b4098370b2097fbe43
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 276}
+  - name: WallTiles_49
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 244
+      y: 276
+      width: 32
+      height: 32
+    spriteID: d79e027f83fbfa44d9dd1b0df59a6802
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 244, y: 276}
+  - name: GrassTiles_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 284
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 473efb1e20a16ba47891c137a26a1d7d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 284, y: 276}
+  - name: GrassTiles_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 324
+      y: 276
+      width: 32
+      height: 32
+    spriteID: fdfe88cc2bd736a4c85de2a094ed191e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 324, y: 276}
+  - name: GrassTiles_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 364
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 2c8eceeabd4c68840a5f6dcc34d0b717
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 364, y: 276}
+  - name: GrassTiles_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 404
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 4029d054c62c26549947c82b58551bf7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 404, y: 276}
+  - name: GrassTiles_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 444
+      y: 276
+      width: 32
+      height: 32
+    spriteID: 65bf9e99ee487aa479705ee0527a311a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 444, y: 276}
+  - name: GrassTiles_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 316
+      width: 32
+      height: 32
+    spriteID: 737e16a3d620bbe4193e4cb2a70da36c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 316}
+  - name: GrassTiles_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 316
+      width: 32
+      height: 32
+    spriteID: d0e1431b2631409459b95e8c17df0369
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 316}
+  - name: GrassTiles_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 316
+      width: 32
+      height: 32
+    spriteID: ef9a58dd6df007847b361a4f4bfb5757
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 316}
+  - name: GrassTiles_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 316
+      width: 32
+      height: 32
+    spriteID: a97f1b75effef1d46901eae80004f737
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 316}
+  - name: GrassTiles_10
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 316
+      width: 32
+      height: 32
+    spriteID: fdd2a661327eff74c919cd880b6e1aeb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 316}
+  - name: GrassTiles_11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 316
+      width: 32
+      height: 32
+    spriteID: 48179ccb9b7774748b2aa502c4a760c0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 316}
+  - name: GrassTiles_12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 244
+      y: 316
+      width: 32
+      height: 32
+    spriteID: d1efe65a459959a4a930da8e8b5f88e1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 244, y: 316}
+  - name: GrassTiles_13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 284
+      y: 316
+      width: 32
+      height: 32
+    spriteID: 0c073359c40de8e42a70ed0143580dd6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 284, y: 316}
+  - name: GrassTiles_14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 324
+      y: 316
+      width: 32
+      height: 32
+    spriteID: 4d9157f2623b2054fa4c967615138ea9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 324, y: 316}
+  - name: GrassTiles_15
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 364
+      y: 316
+      width: 32
+      height: 32
+    spriteID: e4e79624e3bf5fa46b8479b0b011e137
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 364, y: 316}
+  - name: GrassTiles_16
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 404
+      y: 316
+      width: 32
+      height: 32
+    spriteID: 99b016cc71f7d0146b2444ae386bf33b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 404, y: 316}
+  - name: GrassTiles_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 444
+      y: 316
+      width: 32
+      height: 32
+    spriteID: 5e386aec3863a994e97ff9339c2ab893
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 444, y: 316}
+  - name: GrassTiles_18
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 318a91d9d1537e140ac46385412ebb0f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 356}
+  - name: GrassTiles_19
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 783c3d4e6f357324ab65e05bd23ee16f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 356}
+  - name: GrassTiles_20
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 356
+      width: 32
+      height: 32
+    spriteID: a132ec89d91aeb748a19ef1112697b6c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 356}
+  - name: GrassTiles_21
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 356
+      width: 32
+      height: 32
+    spriteID: ba46b2208732b4840a63d74c7c394b58
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 356}
+  - name: GrassTiles_22
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 356
+      width: 32
+      height: 32
+    spriteID: c7112ce18025df246b5c0ce9f6726fc0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 356}
+  - name: GrassTiles_23
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 7505d008016edea439466453627aa508
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 356}
+  - name: GrassTiles_24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 244
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 8da5e2893be63654caea50a3aba8d5d9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 244, y: 356}
+  - name: GrassTiles_25
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 284
+      y: 356
+      width: 32
+      height: 32
+    spriteID: ed7a5c2627992714f868c267e395bb2e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 284, y: 356}
+  - name: GrassTiles_26
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 324
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 48e7766e83141b843bdc6ba0240bc093
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 324, y: 356}
+  - name: GrassTiles_27
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 364
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 802d52fec49fadf4ea78e4d715aa872a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 364, y: 356}
+  - name: GrassTiles_28
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 404
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 3d04944b3fc2b3843a7bf147cdeaf19e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 404, y: 356}
+  - name: GrassTiles_29
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 444
+      y: 356
+      width: 32
+      height: 32
+    spriteID: 6e5c948223a6a4745bc601c5ade57b6c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 444, y: 356}
+  - name: GrassTiles_30
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 396
+      width: 32
+      height: 32
+    spriteID: f7ad3e735c038834ab8b56a597177c78
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 396}
+  - name: GrassTiles_31
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 957e93fd00130cf46af278279bab707a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 396}
+  - name: GrassTiles_32
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 360a29b550b7cb34982693ba7705696c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 396}
+  - name: GrassTiles_33
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 981a9cd76a9d17f4490b957f86682447
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 396}
+  - name: GrassTiles_34
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 396
+      width: 32
+      height: 32
+    spriteID: fc47fd448ac858e4ea81f864adb7b6b3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 396}
+  - name: GrassTiles_35
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 204
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 929f53d7e4881b74694313d6c2e4f730
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 204, y: 396}
+  - name: GrassTiles_36
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 244
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 3841c40d9b2fc8d4284e26bfb907c728
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 244, y: 396}
+  - name: GrassTiles_37
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 284
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 6ba61cc233b8642499daec5b398059be
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 284, y: 396}
+  - name: GrassTiles_38
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 324
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 8188e813dcc13db4e9bb7842b6a6b894
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 324, y: 396}
+  - name: GrassTiles_39
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 364
+      y: 396
+      width: 32
+      height: 32
+    spriteID: e598ead7ec58876448d8cc85b1fbfea9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 364, y: 396}
+  - name: GrassTiles_40
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 404
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 9c93175368f9d8b46ba5c47fc5e10c86
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 404, y: 396}
+  - name: GrassTiles_41
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 444
+      y: 396
+      width: 32
+      height: 32
+    spriteID: 28383ba3d49f01047aaa8c1261b192b1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 444, y: 396}
+  - name: GrassTiles_42
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 436
+      width: 32
+      height: 32
+    spriteID: 40e0e903a4b54704abdc9012e207fede
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 436}
+  - name: GrassTiles_43
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 436
+      width: 32
+      height: 32
+    spriteID: 9672bb937bcd0434d923d5fc80912f65
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 436}
+  - name: GrassTiles_44
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 436
+      width: 32
+      height: 32
+    spriteID: d97c9020b3d152e47b32e6caef05f267
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 436}
+  - name: GrassTiles_45
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 436
+      width: 32
+      height: 32
+    spriteID: 993c7f23562a9694abb9f05d6230f0c4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 436}
+  - name: GrassTiles_46
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 164
+      y: 436
+      width: 32
+      height: 32
+    spriteID: fce8bb5f6c87af44591304503d532ac5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 164, y: 436}
+  - name: Layer 1
+    originalName: 
+    pivot: {x: 1, y: 1.1428572}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 256
+      height: 224
+    spriteID: 8a1bdcfe5bb95004e9d92b2083495212
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  asepriteLayers:
+  - layerIndex: 0
+    uuid:
+      value0: 4287466680
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 1
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 128
+        y: 160
+        width: 256
+        height: 224
+      spriteId: 8a1bdcfe5bb95004e9d92b2083495212
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 2
+    uuid:
+      value0: 405905958
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Wall
+    layerFlags: 3
+    layerType: 2
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    tileCells:
+    - layerIndex: 2
+      frameIndex: 0
+      cellRect:
+        x: 128
+        y: 128
+        width: 11
+        height: 7
+      tileIndices: 01000000020000000300000004000000050000000600000000000000000000000000000000000000000000000700000008000000090000000a0000000b0000000c00000000000000080000000000000000000000000000000d0000000e0000000f0000001000000011000000120000000000000013000000000000000000000000000000140000001500000016000000170000001800000019000000000000001a0000000000000000000000000000001b0000000b0000001c0000001d0000001e0000001f00000000000000000000000000000000000000000000002000000021000000220000002300000024000000250000002600000027000000310000002e0000002600000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000002f00000027000000
+    tileSetIndex: 0
+    parentIndex: -1
+  tileSets:
+  - id: 0
+    name: WallTiles
+    tileSize:
+      x: 32
+      y: 32
+    tiles:
+    - tileId: 1
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_1
+      spriteId: 478d7978cb59a8d49bbcca0061e57954
+    - tileId: 2
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_2
+      spriteId: b328f3c91db70a84291a6f67f259d13f
+    - tileId: 3
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_3
+      spriteId: 25f0e44d26cd5a14e8360eeddfec18e2
+    - tileId: 4
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_4
+      spriteId: ec3862bc0ae881f40af02bb088e8a9b3
+    - tileId: 5
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_5
+      spriteId: 5e0d2f55ecdb05e4fb26d174d66f200b
+    - tileId: 6
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_6
+      spriteId: 8b2c63f8f0a5dce4c8ebe940e30cf035
+    - tileId: 7
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_7
+      spriteId: d9c510c86b1bbcc4086fbf66e58e0335
+    - tileId: 8
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_8
+      spriteId: e6f281da70aadee4796cfa701ae689d3
+    - tileId: 9
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_9
+      spriteId: c2236263d542ea54da36a13b2fb7a5c2
+    - tileId: 10
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_10
+      spriteId: eb00f5ae07555da47baf5f2b02d6c1df
+    - tileId: 11
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_11
+      spriteId: b1c1d3e29cc1d2b47a1b01f95d14ea14
+    - tileId: 12
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_12
+      spriteId: 648f03891004b9345b4c4ca9bc56a689
+    - tileId: 13
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_13
+      spriteId: bfc9b3d38564d85448d4a0e6262a7025
+    - tileId: 14
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_14
+      spriteId: 1a9bbb7b222d08e4dbfd3e9621aa46f0
+    - tileId: 15
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_15
+      spriteId: 986ad0193aeae2c4fbec437d0cc823e1
+    - tileId: 16
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_16
+      spriteId: d51b28c5602135c489dfe545b339c6a4
+    - tileId: 17
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_17
+      spriteId: 8f5890d1299b8fb4191c226e92fb8355
+    - tileId: 18
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_18
+      spriteId: be149c5a10e2beb4a8d5371f599ef3a1
+    - tileId: 19
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_19
+      spriteId: e4574b2b4cb20c44db10fe16069d9cbe
+    - tileId: 20
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_20
+      spriteId: 3f104512e7862df499ff08482c167939
+    - tileId: 21
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_21
+      spriteId: 191e63a0ec9fc5e4eb97209d1e302b15
+    - tileId: 22
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_22
+      spriteId: 18144eb77657074499756b859ada24cb
+    - tileId: 23
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_23
+      spriteId: fb7de46fb583538478c2c57ee6dbf477
+    - tileId: 24
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_24
+      spriteId: a8eb886162d0455488c2da18d33acb6b
+    - tileId: 25
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_25
+      spriteId: 61bf2047c7e56b645bb784934126e9aa
+    - tileId: 26
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_26
+      spriteId: e99e505d3b2e1434c83d78d1c3340cb5
+    - tileId: 27
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_27
+      spriteId: e67d00ef5f6c6eb4eba51a42c421fb5c
+    - tileId: 28
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_28
+      spriteId: 711d94063f99db74482fed80c51ff399
+    - tileId: 29
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_29
+      spriteId: 3fdd1f8792b7f7c46b6397e98a9d70ff
+    - tileId: 30
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_30
+      spriteId: 03825c2a7afb17046a495d0dda139f3b
+    - tileId: 31
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_31
+      spriteId: 1f50106d25bf8724eaf13e418cdaaa89
+    - tileId: 32
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_32
+      spriteId: 29ef988bf51f25b49b82c6010688f1be
+    - tileId: 33
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_33
+      spriteId: 99c43aa235125d5439d6d77181b7adde
+    - tileId: 34
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_34
+      spriteId: 38d2386b86708b8418a6c072399c8ced
+    - tileId: 35
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_35
+      spriteId: 00a5bbe1a0c0b434a8ec7a2069906f1f
+    - tileId: 36
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_36
+      spriteId: 105a6aafd5e36a147a9e61b391de44c2
+    - tileId: 37
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_37
+      spriteId: 80a7e17a135c81c49828deefba2cbe8b
+    - tileId: 38
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_38
+      spriteId: cb0ce16cdf15a374691676477ed1faf0
+    - tileId: 39
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_39
+      spriteId: d6717d576ffd6ba4fae37b863f08f3da
+    - tileId: 40
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_40
+      spriteId: c4ae18aeceb72c041b1ccb3db6bb51f1
+    - tileId: 41
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_41
+      spriteId: 1b32ce9ffc7ba934682dc86bb4009b91
+    - tileId: 42
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_42
+      spriteId: a90001e530f18d54b810c390e7436761
+    - tileId: 43
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_43
+      spriteId: 716e61ec89abf83488e484f3b4056d66
+    - tileId: 44
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_44
+      spriteId: 7c6e4bec08c6be548a8c9d68270de570
+    - tileId: 45
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_45
+      spriteId: a1c5cabe87c6b5b43ac21c553aed58e1
+    - tileId: 46
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_46
+      spriteId: 1401b9ee0bf8e9c4596e938e89dac447
+    - tileId: 47
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_47
+      spriteId: bb77d7502131ee84fb33ac822c64d615
+    - tileId: 48
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_48
+      spriteId: 63fa24f96bc802b4098370b2097fbe43
+    - tileId: 49
+      size:
+        x: 32
+        y: 32
+      name: WallTiles_49
+      spriteId: d79e027f83fbfa44d9dd1b0df59a6802
+    guid: 555418069
+  - id: 1
+    name: GrassTiles
+    tileSize:
+      x: 32
+      y: 32
+    tiles:
+    - tileId: 1
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_1
+      spriteId: 473efb1e20a16ba47891c137a26a1d7d
+    - tileId: 2
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_2
+      spriteId: fdfe88cc2bd736a4c85de2a094ed191e
+    - tileId: 3
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_3
+      spriteId: 2c8eceeabd4c68840a5f6dcc34d0b717
+    - tileId: 4
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_4
+      spriteId: 4029d054c62c26549947c82b58551bf7
+    - tileId: 5
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_5
+      spriteId: 65bf9e99ee487aa479705ee0527a311a
+    - tileId: 6
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_6
+      spriteId: 737e16a3d620bbe4193e4cb2a70da36c
+    - tileId: 7
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_7
+      spriteId: d0e1431b2631409459b95e8c17df0369
+    - tileId: 8
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_8
+      spriteId: ef9a58dd6df007847b361a4f4bfb5757
+    - tileId: 9
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_9
+      spriteId: a97f1b75effef1d46901eae80004f737
+    - tileId: 10
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_10
+      spriteId: fdd2a661327eff74c919cd880b6e1aeb
+    - tileId: 11
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_11
+      spriteId: 48179ccb9b7774748b2aa502c4a760c0
+    - tileId: 12
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_12
+      spriteId: d1efe65a459959a4a930da8e8b5f88e1
+    - tileId: 13
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_13
+      spriteId: 0c073359c40de8e42a70ed0143580dd6
+    - tileId: 14
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_14
+      spriteId: 4d9157f2623b2054fa4c967615138ea9
+    - tileId: 15
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_15
+      spriteId: e4e79624e3bf5fa46b8479b0b011e137
+    - tileId: 16
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_16
+      spriteId: 99b016cc71f7d0146b2444ae386bf33b
+    - tileId: 17
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_17
+      spriteId: 5e386aec3863a994e97ff9339c2ab893
+    - tileId: 18
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_18
+      spriteId: 318a91d9d1537e140ac46385412ebb0f
+    - tileId: 19
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_19
+      spriteId: 783c3d4e6f357324ab65e05bd23ee16f
+    - tileId: 20
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_20
+      spriteId: a132ec89d91aeb748a19ef1112697b6c
+    - tileId: 21
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_21
+      spriteId: ba46b2208732b4840a63d74c7c394b58
+    - tileId: 22
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_22
+      spriteId: c7112ce18025df246b5c0ce9f6726fc0
+    - tileId: 23
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_23
+      spriteId: 7505d008016edea439466453627aa508
+    - tileId: 24
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_24
+      spriteId: 8da5e2893be63654caea50a3aba8d5d9
+    - tileId: 25
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_25
+      spriteId: ed7a5c2627992714f868c267e395bb2e
+    - tileId: 26
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_26
+      spriteId: 48e7766e83141b843bdc6ba0240bc093
+    - tileId: 27
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_27
+      spriteId: 802d52fec49fadf4ea78e4d715aa872a
+    - tileId: 28
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_28
+      spriteId: 3d04944b3fc2b3843a7bf147cdeaf19e
+    - tileId: 29
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_29
+      spriteId: 6e5c948223a6a4745bc601c5ade57b6c
+    - tileId: 30
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_30
+      spriteId: f7ad3e735c038834ab8b56a597177c78
+    - tileId: 31
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_31
+      spriteId: 957e93fd00130cf46af278279bab707a
+    - tileId: 32
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_32
+      spriteId: 360a29b550b7cb34982693ba7705696c
+    - tileId: 33
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_33
+      spriteId: 981a9cd76a9d17f4490b957f86682447
+    - tileId: 34
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_34
+      spriteId: fc47fd448ac858e4ea81f864adb7b6b3
+    - tileId: 35
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_35
+      spriteId: 929f53d7e4881b74694313d6c2e4f730
+    - tileId: 36
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_36
+      spriteId: 3841c40d9b2fc8d4284e26bfb907c728
+    - tileId: 37
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_37
+      spriteId: 6ba61cc233b8642499daec5b398059be
+    - tileId: 38
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_38
+      spriteId: 8188e813dcc13db4e9bb7842b6a6b894
+    - tileId: 39
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_39
+      spriteId: e598ead7ec58876448d8cc85b1fbfea9
+    - tileId: 40
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_40
+      spriteId: 9c93175368f9d8b46ba5c47fc5e10c86
+    - tileId: 41
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_41
+      spriteId: 28383ba3d49f01047aaa8c1261b192b1
+    - tileId: 42
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_42
+      spriteId: 40e0e903a4b54704abdc9012e207fede
+    - tileId: 43
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_43
+      spriteId: 9672bb937bcd0434d923d5fc80912f65
+    - tileId: 44
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_44
+      spriteId: d97c9020b3d152e47b32e6caef05f267
+    - tileId: 45
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_45
+      spriteId: 993c7f23562a9694abb9f05d6230f0c4
+    - tileId: 46
+      size:
+        x: 32
+        y: 32
+      name: GrassTiles_46
+      spriteId: fce8bb5f6c87af44591304503d532ac5
+    guid: 16518010
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 512, y: 512}
+  previousTextureSize: {x: 512, y: 512}
