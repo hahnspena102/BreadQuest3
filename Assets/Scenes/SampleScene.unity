@@ -372,7 +372,7 @@ Animator:
   m_GameObject: {fileID: 444555240}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 1157795486}
+  m_Controller: {fileID: 763480324}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -926,6 +926,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!221 &763480324
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Controller: {fileID: 9100000, guid: d27c839d7fd334e78838c5244e648d30, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f1b0b268676c54f62ac8800674be7fa7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c53b6c7f876154e6aa16089568c78a29, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
 --- !u!1 &908672973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,26 +1151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c877a8993eef242932dca68006c6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldManager
-  worldWidth: 108
-  worldHeight: 72
+  worldWidth: 54
+  worldHeight: 36
   navMeshSurface: {fileID: 645034502}
   minPartitionSize: 12
   minRoomSize: 6
   targetTilemap: {fileID: 1182057069}
-  tileToDraw: {fileID: 11400000, guid: 6fe96e34ec30742bea5334dac6c1c9a3, type: 2}
---- !u!221 &1157795486
-AnimatorOverrideController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Controller: {fileID: 9100000, guid: d27c839d7fd334e78838c5244e648d30, type: 2}
-  m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: f1b0b268676c54f62ac8800674be7fa7, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: c53b6c7f876154e6aa16089568c78a29, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  tileToDraw: {fileID: 11400000, guid: 8e2f88e279dae644b8008cf18011bb8e, type: 2}
 --- !u!1 &1163713723
 GameObject:
   m_ObjectHideFlags: 0
