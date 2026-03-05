@@ -190,7 +190,6 @@ public class Player : MonoBehaviour
         if (invulnerabilityTimer > 0f) return;
 
         playerData.CurrentHealth -= damage;
-        Debug.Log("Player took " + damage + " damage!");
         anim.SetTrigger("hurt");
         invulnerabilityTimer = invulnerabilityDuration; 
 

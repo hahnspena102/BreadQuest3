@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField] private EnemyData enemyData;
+    [SerializeField] private Room assignedRoom;
     [SerializeField] private float currentHealth;
 
     [Header("Combat")]
@@ -18,9 +19,10 @@ public class Enemy : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     private Coroutine behaviorCoroutine;
 
-    public EnemyData EnemyData => enemyData;
 
     public GameObject ProjectilePrefab { get => projectilePrefab; set => projectilePrefab = value; }
+    public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
+    public Room AssignedRoom { get => assignedRoom; set => assignedRoom = value; }
 
     void Awake()
     {
@@ -118,6 +120,10 @@ public class Enemy : MonoBehaviour
         if (popupManager != null)
         {
             popupManager.ShowDeathParticles(transform.position);
+        }
+        if (AssignedRoom != null)
+        {
+            AssignedRoom.enemiesInRoom.Remove(gameObject);
         }
         Destroy(gameObject);
     }

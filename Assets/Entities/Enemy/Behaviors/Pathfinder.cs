@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -11,11 +12,20 @@ public class Pathfinder : MonoBehaviour
 
     private bool hasTarget = false;
 
+    public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        enemyData = GetComponent<Enemy>().EnemyData;
+
+        StartCoroutine(StartPathfinding());
+    }
+
+    IEnumerator StartPathfinding()
+    {
+        while (enemyData == null)
+            yield return null;
 
         // 2D setup
         agent.updateRotation = false;  // prevent 3D rotation

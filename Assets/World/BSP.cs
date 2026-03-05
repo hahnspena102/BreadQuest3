@@ -5,7 +5,7 @@ class BSPNode
     public RectInt area;
     public BSPNode left;
     public BSPNode right;
-    public RectInt room;
+    public Room room;
 
     public bool IsLeaf => left == null && right == null;
 
@@ -73,7 +73,7 @@ class BSPNode
     public RectInt GetRoom()
     {
         if (IsLeaf)
-            return room;
+            return area;
 
         if (left != null)
         {
@@ -92,13 +92,7 @@ class BSPNode
         return new RectInt();
     }
 
-    public Vector2Int GetRoomCenter()
-    {
-        return new Vector2Int(
-            room.xMin + room.width / 2,
-            room.yMin + room.height / 2
-        );
-    }
+
 
 }
 

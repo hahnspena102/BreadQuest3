@@ -39,12 +39,7 @@ public class Inventory : ScriptableObject
         }
 
         equippedItemData = itemDatas[currentItemIndex];
-        if (equippedItemData != null)
-        {
-            Debug.Log("Cycled to Item: " + equippedItemData.ItemName);
-        } else {
-            Debug.Log("No item equipped.");
-        }
+
     }
 
     public void CycleTo(int index)
@@ -54,12 +49,7 @@ public class Inventory : ScriptableObject
         {
             currentItemIndex = index;
             equippedItemData = itemDatas[currentItemIndex];
-            if (equippedItemData != null)
-            {
-                Debug.Log("Cycled to Item: " + equippedItemData.ItemName);
-            } else {
-                Debug.Log("No item equipped.");
-            }
+ 
         }
     }
 

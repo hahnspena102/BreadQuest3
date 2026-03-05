@@ -4,6 +4,7 @@ using System.Collections;
 using NavMeshPlus.Components;
 using System.Collections.Generic;
 
+
 public class WorldManager : MonoBehaviour
 {
     [SerializeField] private int worldWidth = 108;
@@ -11,19 +12,52 @@ public class WorldManager : MonoBehaviour
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private int minPartitionSize = 12;
     [SerializeField] private int minRoomSize = 6;
-
-    private List<RectInt> rooms = new List<RectInt>();
+    private EnemyManager enemyManager;
+    private List<Room> rooms = new List<Room>();
+    private Player player;
 
     public Tilemap floorTilemap;
     public Tilemap wallTilemap;
+    public Tilemap barrierTilemap;
     public TileBase floorTile;
     public TileBase wallTile;
     public TileBase wallTopTile;
+    public TileBase barrierTile;
 
     void Start()
     {
+        enemyManager = FindFirstObjectByType<EnemyManager>();
+        player = FindFirstObjectByType<Player>();
         StartCoroutine(BuildWorld());
     }
+
+    void Update()
+    {
+        foreach (Room room in rooms)
+        {
+            
+            if (room.isEntered && room.isSealed && room.enemiesInRoom.Count == 0)
+            {
+                Debug.Log("Cleared Room " + room.roomID);
+                UnsealRoom(room);
+            }
+
+            if (player != null && room.area.Contains(Vector2Int.FloorToInt(player.transform.position)))
+            {
+                if (room.isEntered) continue;
+
+                Debug.Log("Entered Room " + room.roomID);
+                enemyManager.PopulateSubCells(room);
+                SealRoom(room);
+                room.isEntered = true;
+                
+                
+                
+            }
+
+        }
+    }
+    
 
 
     IEnumerator BuildWorld()
@@ -39,11 +73,6 @@ public class WorldManager : MonoBehaviour
         Physics2D.SyncTransforms();
         navMeshSurface.RemoveData();
         navMeshSurface.BuildNavMesh();
-
-        Debug.Log(
-            "NavMesh verts: " +
-            UnityEngine.AI.NavMesh.CalculateTriangulation().vertices.Length
-        );
     }
 
     void GenerateMap()
@@ -63,7 +92,6 @@ public class WorldManager : MonoBehaviour
         root.GenerateBSP(minPartitionSize);
 
         CreateRooms(root);
-        DrawRooms();   
         ConnectRooms(root);
         CreateWalls();
     }
@@ -110,8 +138,15 @@ public class WorldManager : MonoBehaviour
             node.area.yMax - roomHeight - 1
         );
 
-        node.room = new RectInt(roomX, roomY, roomWidth, roomHeight);
-        rooms.Add(node.room);
+        RectInt roomArea = new RectInt(roomX, roomY, roomWidth, roomHeight);
+        Room newRoom = new Room(roomArea, rooms.Count);
+        DrawRoom(newRoom);
+
+        int subCellCount = Random.Range(2, 5); 
+        var subCells = newRoom.GenerateVoronoiInRoom(subCellCount);
+
+        rooms.Add(newRoom);
+        node.room = newRoom;
     }
 
     void ConnectRooms(BSPNode node)
@@ -121,8 +156,8 @@ public class WorldManager : MonoBehaviour
 
         for (int i = 0; i < rooms.Count - 1; i++)
         {
-            Vector2Int pointA = GetRoomCenter(rooms[i]);
-            Vector2Int pointB = GetRoomCenter(rooms[i + 1]);
+            Vector2Int pointA = rooms[i].GetRoomCenter();
+            Vector2Int pointB = rooms[i + 1].GetRoomCenter();
 
             CreateCorridor(pointA, pointB);
         }
@@ -174,19 +209,17 @@ public class WorldManager : MonoBehaviour
         floorTilemap.SetTile(position, floorTile);
     }
 
-    void DrawRooms()
+    void DrawRoom(Room room)
     {
-        /* Helper function to draw all rooms in the tilemap. */
-        foreach (var room in rooms)
+        /* Helper function to draw a room in the tilemap. */
+        for (int x = room.area.xMin; x < room.area.xMax; x++)
         {
-            for (int x = room.xMin; x < room.xMax; x++)
+            for (int y = room.area.yMin; y < room.area.yMax; y++)
             {
-                for (int y = room.yMin; y < room.yMax; y++)
-                {
-                    DrawTile(x, y);
-                }
+                DrawTile(x, y);
             }
         }
+        
     }
 
     void DrawCorridor(RectInt corridor)
@@ -207,13 +240,6 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    Vector2Int GetRoomCenter(RectInt room)
-    {
-        return new Vector2Int(
-            room.xMin + room.width / 2,
-            room.yMin + room.height / 2
-        );
-    }
 
     void CreateWalls()
     {
@@ -287,5 +313,96 @@ public class WorldManager : MonoBehaviour
         }
     }
 
+    void OnDrawGizmos()
+    {
+        if (rooms == null)
+            return;
 
+        foreach (var room in rooms)
+        {
+            foreach (var cell in room.subCells)
+            {
+                // Random stable color per cell
+                Random.InitState(cell.center.GetHashCode());
+                Color baseColor = Color.HSVToRGB(Random.value, 0.6f, 1f);
+                baseColor.a = 0.5f;
+                Gizmos.color = baseColor;
+
+
+                // Draw tiles
+                foreach (var tile in cell.tiles)
+                {
+                    Vector3 pos = new Vector3(tile.x + 0.5f, tile.y + 0.5f, 0);
+                    Gizmos.DrawCube(pos, Vector3.one * 0.9f);
+                }
+
+                // Draw center
+                Gizmos.color = Color.red;
+                Vector3 centerPos = new Vector3(cell.center.x + 0.5f, cell.center.y + 0.5f, 0);
+                Gizmos.DrawSphere(centerPos, 0.3f);
+                
+            }
+        }
+    }
+
+    void SealRoom(Room room)
+    {
+        if (room.isSealed)
+            return;
+
+        RectInt area = room.area;
+
+        for (int x = area.xMin; x < area.xMax; x++)
+        {
+            for (int y = area.yMin; y < area.yMax; y++)
+            {
+                Vector3Int pos = new Vector3Int(x, y, 0);
+
+                // Only check perimeter
+                bool isEdge =
+                    x == area.xMin ||
+                    x == area.xMax - 1 ||
+                    y == area.yMin ||
+                    y == area.yMax - 1;
+
+                if (!isEdge)
+                    continue;
+
+                // Check outward direction for corridor
+                Vector3Int[] directions =
+                {
+                    Vector3Int.up,
+                    Vector3Int.down,
+                    Vector3Int.left,
+                    Vector3Int.right
+                };
+
+                foreach (var dir in directions)
+                {
+                    Vector3Int outside = pos + dir;
+
+                    // If outside tile is floor but not inside this room
+                    if (floorTilemap.GetTile(outside) != null &&
+                        !area.Contains((Vector2Int)outside))
+                    {
+                        barrierTilemap.SetTile(outside, barrierTile);
+                        room.barrierPositions.Add(outside);
+                    }
+                }
+            }
+        }
+
+        room.isSealed = true;
+    }
+
+    void UnsealRoom(Room room)
+    {
+        foreach (var pos in room.barrierPositions)
+        {
+            barrierTilemap.SetTile(pos, null);
+        }
+
+        room.barrierPositions.Clear();
+        room.isSealed = false;
+    }
 }
