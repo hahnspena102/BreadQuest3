@@ -24,10 +24,14 @@ public class WorldManager : MonoBehaviour
     public TileBase wallTopTile;
     public TileBase barrierTile;
 
+    public Room startingRoom;
+    public Room endingRoom;
+
     void Start()
     {
         enemyManager = FindFirstObjectByType<EnemyManager>();
         player = FindFirstObjectByType<Player>();
+        navMeshSurface.hideEditorLogs = true;
         StartCoroutine(BuildWorld());
     }
 
@@ -50,7 +54,7 @@ public class WorldManager : MonoBehaviour
                 enemyManager.PopulateSubCells(room);
                 SealRoom(room);
                 room.isEntered = true;
-                
+            
                 
                 
             }
@@ -58,7 +62,6 @@ public class WorldManager : MonoBehaviour
         }
     }
     
-
 
     IEnumerator BuildWorld()
     {
@@ -73,6 +76,73 @@ public class WorldManager : MonoBehaviour
         Physics2D.SyncTransforms();
         navMeshSurface.RemoveData();
         navMeshSurface.BuildNavMesh();
+        Debug.Log(rooms.Count + " rooms generated.");
+        startingRoom = ChooseStartingRoom();
+        endingRoom = ChooseEndingRoom(startingRoom);
+        Debug.Log("Starting Room: " + startingRoom.roomID);
+        Debug.Log("Ending Room: " + endingRoom.roomID);
+
+        InitializePlayer();
+    }
+
+    void InitializePlayer()
+    {
+        if (player == null || startingRoom == null)
+            return;
+
+        Vector2Int startPos = startingRoom.GetRoomCenter();
+        player.transform.position = new Vector3(startPos.x, startPos.y, 0);
+        startingRoom.isEntered = true;
+    }
+
+    Room ChooseStartingRoom()
+    {
+        List<Room> validRooms = rooms.FindAll(room =>
+            room.area.xMin > -worldWidth / 2 + 10 &&
+            room.area.xMax < worldWidth / 2 - 10 &&
+            room.area.yMin > -worldHeight / 2 + 10 &&
+            room.area.yMax < worldHeight / 2 - 10
+        );
+
+        if (validRooms.Count == 0)
+            validRooms = rooms;
+
+        if (validRooms.Count == 0)
+            return null; 
+
+        return validRooms[Random.Range(0, validRooms.Count)];
+    }
+    Room ChooseEndingRoom(Room startRoom)
+    {
+        Room bestRoom = null;
+        float maxDistance = 0f;
+
+        List<Room> validRooms = rooms.FindAll(room =>
+            room.area.xMin > -worldWidth / 2 + 10 &&
+            room.area.xMax < worldWidth / 2 - 10 &&
+            room.area.yMin > -worldHeight / 2 + 10 &&
+            room.area.yMax < worldHeight / 2 - 10
+        );
+
+        // Fallback if none meet strict criteria
+        if (validRooms.Count == 0)
+            validRooms = rooms;
+
+        foreach (Room room in validRooms)
+        {
+            float dist = Vector2.Distance(
+                room.GetRoomCenter(),
+                startRoom.GetRoomCenter()
+            );
+
+            if (dist > maxDistance)
+            {
+                maxDistance = dist;
+                bestRoom = room;
+            }
+        }
+
+        return bestRoom;
     }
 
     void GenerateMap()
