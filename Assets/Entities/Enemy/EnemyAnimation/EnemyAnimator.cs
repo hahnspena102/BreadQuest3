@@ -5,15 +5,16 @@ using System.Collections;
 public class EnemyAnimator : MonoBehaviour
 {
     [Header("Data")]
-    [SerializeField] private EnemyData enemyData;
+    [ReadOnly][SerializeField] private EnemyData enemyData;
 
     [Header("Animator Placeholders (from base controller)")]
     [SerializeField] private AnimationClip idleFPlaceholder;
     [SerializeField] private AnimationClip idleBPlaceholder;
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private AnimatorOverrideController overrideController;
-    [SerializeField] private RuntimeAnimatorController baseController;
+    [Header("Debug")]
+    [ReadOnly][SerializeField] private Animator animator;
+    [ReadOnly][SerializeField] private AnimatorOverrideController overrideController;
+    [ReadOnly][SerializeField] private RuntimeAnimatorController baseController;
 
     public EnemyData EnemyData
     {
@@ -24,6 +25,9 @@ public class EnemyAnimator : MonoBehaviour
             ApplyEnemyData();
         }
     }
+
+    public AnimationClip IdleFPlaceholder { get => idleFPlaceholder; set => idleFPlaceholder = value; }
+    public AnimationClip IdleBPlaceholder { get => idleBPlaceholder; set => idleBPlaceholder = value; }
 
     void Awake()
     {
@@ -53,4 +57,5 @@ public class EnemyAnimator : MonoBehaviour
         animator.Play("EnemyIdleF", 0, 0f);
     }
 
+    
 }

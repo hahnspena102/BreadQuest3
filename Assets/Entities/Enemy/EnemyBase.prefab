@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f84d06adb9647adae9ab6a0f34971f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pathfinder
+  enemyData: {fileID: 0}
 --- !u!50 &2536320018919390885
 Rigidbody2D:
   serializedVersion: 5

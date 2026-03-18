@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private GameObject projectilePrefab;
 
-    [SerializeField] private PopupManager popupManager;
+    [ReadOnly][SerializeField] private PopupManager popupManager;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -34,8 +34,11 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        ApplyEnemyData();
+        //agent.enabled = true;
         behaviorCoroutine = StartCoroutine(BehaviorLoop());
         currentHealth = enemyData.MaxHealth;
+      
     }
 
     void OnDisable()
@@ -149,6 +152,35 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ApplyEnemyData()
+    {
+        if (enemyData == null)
+            return;
+
+
+        Pathfinder pathfinder = GetComponent<Pathfinder>();
+        if (pathfinder != null)
+        {
+            pathfinder.EnemyData = enemyData;
+            UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.enabled = true;
+                agent.updateRotation = false;
+                agent.updateUpAxis = false;
+                agent.speed = enemyData.Speed;
+            }
+        }
+
+        EnemyAnimator anim = GetComponent<EnemyAnimator>();
+        if (anim != null)
+            anim.EnemyData = enemyData;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null && enemyData.EnemySprite)
+            sr.sprite = enemyData.EnemySprite;
     }
 
 }

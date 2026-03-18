@@ -23,6 +23,14 @@ public class Inventory : ScriptableObject
         return null;
     }
 
+    public void SetItemAtIndex(int index, ItemData itemData)
+    {
+        if (index >= 0 && index < itemDatas.Length)
+        {
+            itemDatas[index] = itemData;
+        }
+    }
+
     public void CycleItem(float direction)
     {
         if (itemDatas.Length == 0) return;
@@ -51,6 +59,53 @@ public class Inventory : ScriptableObject
             equippedItemData = itemDatas[currentItemIndex];
  
         }
+    }
+
+    private bool IsFull()
+    {
+        for (int i = 0; i < itemDatas.Length; i++)
+        {
+            if (itemDatas[i] == null)
+                return false;
+        }
+
+        return true;
+    }
+    public void AddItem(Item item)
+    {
+        if (item.ItemData == null)
+        {
+            Debug.LogWarning("Trying to add an item with no ItemData!");
+            return;
+        }
+
+        if (IsFull())
+        {
+            Debug.LogWarning("Inventory is full.");
+            return;
+        }
+
+        ItemData newItemData = item.ItemData;
+
+        // Find the first empty slot
+        for (int i = 0; i < itemDatas.Length; i++)
+        {
+            if (itemDatas[i] == null)
+            {
+                itemDatas[i] = newItemData;
+                break;
+            }
+        }
+    }
+
+    public int NextEmptySlot()
+    {
+        for (int i = 0; i < itemDatas.Length; i++)
+        {
+            if (itemDatas[i] == null)
+                return i;
+        }
+        return -1; 
     }
 
 

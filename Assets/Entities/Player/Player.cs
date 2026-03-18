@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [Header("Player Data")]
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private GameObject hoverItem;
     private bool isAttacking = false;
     private float invulnerabilityTimer = 0f;
     
@@ -27,7 +28,11 @@ public class Player : MonoBehaviour
     [Header("Input")]
     public InputActionReference moveAction;
     public InputActionReference numberKeyAction;
+    public InputActionReference equipAction;
+    public InputActionReference dropAction;
 
+    [Header("Managers")]
+    [ReadOnly] public ItemManager itemManager;
 
     private Vector2 _moveDirection;
 
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour
     public Vector2 WorldPointPosition { get => worldPointPosition; set => worldPointPosition = value; }
     public Inventory Inventory { get => inventory; set => inventory = value; }
     public global::System.Boolean IsAttacking { get => isAttacking; set => isAttacking = value; }
+    
 
 
 
@@ -47,7 +53,9 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
+        itemManager = FindFirstObjectByType<ItemManager>();
         inventory.CurrentItemIndex = 0;
+        inventory.EquippedItemData = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
 
         attackBox.SetActive(false);
 
@@ -93,6 +101,23 @@ public class Player : MonoBehaviour
 
         if (!isAttacking)
         { 
+            if (equipAction.action.WasPressedThisFrame())
+            {
+                if (hoverItem != null)
+                {
+                    EquipItem(hoverItem);
+                }
+            }
+
+            if (dropAction.action.WasPressedThisFrame())
+            {
+                if (inventory.EquippedItemData != null)
+                {
+                    DropItem();
+                    
+                }
+            }
+
             int _numberKey = Mathf.FloorToInt(numberKeyAction.action.ReadValue<float>());
             inventory.CycleTo(_numberKey - 1);
             itemSpriteHolder.sprite = inventory.EquippedItemData != null ? inventory.EquippedItemData.ItemSprite : null;
@@ -217,6 +242,61 @@ public class Player : MonoBehaviour
         sr.color = Color.white; 
 
         isAttacking = false;
+    }
+
+    public void EquipItem(GameObject itemObj)
+    {
+        Item item = itemObj.GetComponent<Item>();
+        if (item != null && item.ItemData != null)
+        {
+            if (inventory.GetItemAtIndex(inventory.CurrentItemIndex) == null)
+            { 
+                inventory.SetItemAtIndex(inventory.CurrentItemIndex, item.ItemData);
+            } else
+            {
+                int nextEmptySlot = inventory.NextEmptySlot();
+                if (nextEmptySlot == -1)
+                {
+                    DropItem();
+                    inventory.SetItemAtIndex(inventory.CurrentItemIndex, item.ItemData);
+                } else
+                {
+                    inventory.SetItemAtIndex(nextEmptySlot, item.ItemData);
+                }
+            
+                
+            }
+            inventory.EquippedItemData = item.ItemData;
+            itemSpriteHolder.sprite = item.ItemData.ItemSprite;
+            Destroy(itemObj);
+        }
+    }
+   
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            hoverItem = other.gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            hoverItem = null;
+        }
+    }
+
+    
+    public void DropItem()
+    {
+        Vector2 dropPosition = (Vector2)transform.position + new Vector2(0f, -0.5f);
+        itemManager.SpawnItem(inventory.EquippedItemData, dropPosition);
+        inventory.SetItemAtIndex(inventory.CurrentItemIndex, null);
+        inventory.EquippedItemData = null;
+        //inventory.CurrentItemIndex = -1;
+        itemSpriteHolder.sprite = null;
     }
 
 }

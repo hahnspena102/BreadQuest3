@@ -29,33 +29,10 @@ public class EnemyManager : MonoBehaviour
 
         newEnemy.transform.SetParent(transform);
 
-        SpriteRenderer sr = newEnemy.GetComponent<SpriteRenderer>();
-        if (sr != null && enemyData.EnemySprite != null)
-        {
-            sr.sprite = enemyData.EnemySprite;
-        }
-        Enemy enemy = newEnemy.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            enemy.EnemyData = enemyData;
-        }
-        EnemyAnimator animator = newEnemy.GetComponent<EnemyAnimator>();
-        if (animator != null)
-        {
-            animator.EnemyData = enemyData; 
-        }
-        Pathfinder pathfinder = newEnemy.GetComponent<Pathfinder>();
-        if (pathfinder != null)
-        {
-            pathfinder.EnemyData = enemyData;
-            UnityEngine.AI.NavMeshAgent agent = newEnemy.GetComponent<UnityEngine.AI.NavMeshAgent>();
-            if (agent != null)
-            {
-                agent.enabled = true;
-                agent.updateRotation = false;
-                agent.updateUpAxis = false;
-                agent.speed = enemyData.Speed;
-            }
+        Enemy enemyComponent = newEnemy.GetComponent<Enemy>();
+        if (enemyComponent != null)        {
+            enemyComponent.EnemyData = enemyData;
+            enemyComponent.ApplyEnemyData();
         }
 
         return newEnemy;
