@@ -15,6 +15,7 @@ public class WorldManager : MonoBehaviour
     private EnemyManager enemyManager;
     private List<Room> rooms = new List<Room>();
     private Player player;
+    [SerializeField]private GameObject teleporterPrefab;
 
     public Tilemap floorTilemap;
     public Tilemap wallTilemap;
@@ -24,10 +25,14 @@ public class WorldManager : MonoBehaviour
     public TileBase wallTopTile;
     public TileBase barrierTile;
 
+    public Room startingRoom;
+    public Room endingRoom;
+
     void Start()
     {
         enemyManager = FindFirstObjectByType<EnemyManager>();
         player = FindFirstObjectByType<Player>();
+        navMeshSurface.hideEditorLogs = true;
         StartCoroutine(BuildWorld());
     }
 
@@ -35,22 +40,53 @@ public class WorldManager : MonoBehaviour
     {
         foreach (Room room in rooms)
         {
-            
-            if (room.isEntered && room.isSealed && room.enemiesInRoom.Count == 0)
+            bool wavesCompleted = room.waves.TrueForAll(wave => wave.isCleared);
+            if (room.isEntered && room.isSealed && wavesCompleted)
             {
-                Debug.Log("Cleared Room " + room.roomID);
+                Debugger.Log("Cleared Room " + room.roomID, type: DebugType.World);
                 UnsealRoom(room);
             }
 
             if (player != null && room.area.Contains(Vector2Int.FloorToInt(player.transform.position)))
             {
-                if (room.isEntered) continue;
+                if (!room.isEntered)
+                {
+                    Debugger.Log("Entered Room " + room.roomID, type: DebugType.World);
+                    SealRoom(room);
+                    room.isEntered = true;
+                    Debugger.Log("room.currentWaveIndex: " + room.currentWaveIndex, type: DebugType.World);
+                }
 
-                Debug.Log("Entered Room " + room.roomID);
-                enemyManager.PopulateSubCells(room);
-                SealRoom(room);
-                room.isEntered = true;
+                if (room.currentWaveIndex >= room.waves.Count) continue;
                 
+                Wave currentWave = room.waves[room.currentWaveIndex];
+
+                if (!currentWave.isSpawned)
+                {                    
+
+                    Debugger.Log("Spawning wave " + room.currentWaveIndex + " in Room " + room.roomID, type: DebugType.World);
+                    enemyManager.SpawnInWave(currentWave);
+                    currentWave.isSpawned = true;
+                }
+
+                
+                if (currentWave.isSpawned && !currentWave.isCleared)
+                {
+                    bool allEnemiesDefeated = currentWave.enemiesLeft == 0;
+
+                    if (allEnemiesDefeated)
+                    {
+                        Debugger.Log("Cleared wave " + room.currentWaveIndex + " in Room " + room.roomID, type: DebugType.World);
+                        currentWave.isCleared = true;
+                    }
+                }
+
+                if (currentWave.isCleared)
+                {
+                    room.currentWaveIndex = Mathf.Min(room.currentWaveIndex + 1, room.waves.Count - 1);
+                }
+               
+            
                 
                 
             }
@@ -58,7 +94,6 @@ public class WorldManager : MonoBehaviour
         }
     }
     
-
 
     IEnumerator BuildWorld()
     {
@@ -73,6 +108,117 @@ public class WorldManager : MonoBehaviour
         Physics2D.SyncTransforms();
         navMeshSurface.RemoveData();
         navMeshSurface.BuildNavMesh();
+        Debugger.Log(rooms.Count + " rooms generated.", type: DebugType.World);
+        startingRoom = ChooseStartingRoom();
+        endingRoom = ChooseEndingRoom(startingRoom);
+        Debugger.Log("Starting Room: " + startingRoom.roomID, type: DebugType.World);
+        Debugger.Log("Ending Room: " + endingRoom.roomID, type: DebugType.World);
+
+        InitializeRooms();
+
+        InitializePlayer();
+    }
+
+    void InitializeRooms()
+    {
+        foreach (var room in rooms)
+        {
+          
+            room.isEntered = false;
+            room.isCleared = false;
+            room.isSealed = false;
+            room.barrierPositions.Clear();
+
+
+            if (room == startingRoom) {
+                continue;
+            }
+            else if (room == endingRoom)
+            {
+                GameObject teleporter = Instantiate(teleporterPrefab, new Vector3(room.GetRoomCenter().x, room.GetRoomCenter().y, 0), Quaternion.identity);
+                teleporter.transform.SetParent(transform);
+                continue;
+            } 
+         
+            int numWaves = Random.Range(1, 4);
+            room.waves.Clear();
+            for (int i = 0; i < numWaves; i++)
+            {
+                room.waves.Add(new Wave());
+                room.waves[i].associatedRoom = room;
+            }
+
+            foreach (var wave in room.waves)
+            {
+                enemyManager.PopulateWave(wave);
+                Debugger.Log("Populated wave in Room " + room.roomID + " with " + wave.enemiesLeft + " enemies.", type: DebugType.World);
+            }
+            
+
+            
+            Debugger.Log("Room " + room.roomID + " initialized with " + numWaves + " waves.", type: DebugType.World);
+        }
+    }
+    
+
+    void InitializePlayer()
+    {
+        if (player == null || startingRoom == null)
+            return;
+
+        Vector2Int startPos = startingRoom.GetRoomCenter();
+        player.transform.position = new Vector3(startPos.x, startPos.y, 0);
+        startingRoom.isEntered = true;
+    }
+
+    Room ChooseStartingRoom()
+    {
+        List<Room> validRooms = rooms.FindAll(room =>
+            room.area.xMin > -worldWidth / 2 + 10 &&
+            room.area.xMax < worldWidth / 2 - 10 &&
+            room.area.yMin > -worldHeight / 2 + 10 &&
+            room.area.yMax < worldHeight / 2 - 10
+        );
+
+        if (validRooms.Count == 0)
+            validRooms = rooms;
+
+        if (validRooms.Count == 0)
+            return null; 
+
+        return validRooms[Random.Range(0, validRooms.Count)];
+    }
+    Room ChooseEndingRoom(Room startRoom)
+    {
+        Room bestRoom = null;
+        float maxDistance = 0f;
+
+        List<Room> validRooms = rooms.FindAll(room =>
+            room.area.xMin > -worldWidth / 2 + 10 &&
+            room.area.xMax < worldWidth / 2 - 10 &&
+            room.area.yMin > -worldHeight / 2 + 10 &&
+            room.area.yMax < worldHeight / 2 - 10
+        );
+
+        // Fallback if none meet strict criteria
+        if (validRooms.Count == 0)
+            validRooms = rooms;
+
+        foreach (Room room in validRooms)
+        {
+            float dist = Vector2.Distance(
+                room.GetRoomCenter(),
+                startRoom.GetRoomCenter()
+            );
+
+            if (dist > maxDistance)
+            {
+                maxDistance = dist;
+                bestRoom = room;
+            }
+        }
+
+        return bestRoom;
     }
 
     void GenerateMap()

@@ -1,12 +1,28 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ItemData", menuName = "Scriptable Objects/ItemData")]
-public class ItemData : ScriptableObject
+public class Item : MonoBehaviour
 {
-    [SerializeField] private string itemName;
-    [SerializeField] private string description;
-    [SerializeField] private Sprite itemSprite;
-    public string ItemName { get => itemName; set => itemName = value; }
-    public string Description { get => description; set => description = value; }
-    public Sprite ItemSprite { get => itemSprite; set => itemSprite = value; }
+    [SerializeField] private ItemData itemData;
+
+    public ItemData ItemData { get => itemData; set => itemData = value; }
+    private SpriteRenderer spriteRenderer;
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        gameObject.name = itemData != null ? itemData.ItemName : "Item";
+        if (spriteRenderer != null && itemData != null && itemData.ItemSprite != null)
+        {
+            spriteRenderer.sprite = itemData.ItemSprite;
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+     
+    }
+
 }

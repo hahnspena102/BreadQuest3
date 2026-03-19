@@ -18,15 +18,19 @@ public class Room
     public bool isEntered = false;
 
     public List<Vector3Int> barrierPositions = new List<Vector3Int>();
-    public List<GameObject> enemiesInRoom = new List<GameObject>();
+    public List<Wave> waves = new List<Wave>();
+    ///public List<GameObject> enemiesInRoom = new List<GameObject>();
+    
     public bool isSealed = false;
+    public bool isCleared = false;
+    public int currentWaveIndex = 0;
 
     public Room(RectInt area, int roomID = -1)
     {
         this.roomID = roomID;
         this.area = area;
         this.subCells = new List<RoomSubCell>();
-        this.enemiesInRoom = new List<GameObject>();
+        this.waves = new List<Wave>();
     }
 
 

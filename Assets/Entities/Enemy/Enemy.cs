@@ -6,13 +6,14 @@ public class Enemy : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField] private EnemyData enemyData;
-    [SerializeField] private Room assignedRoom;
+    public Wave AssignedWave { get; set; }
+    public Room AssignedRoom { get; set; }
     [SerializeField] private float currentHealth;
 
     [Header("Combat")]
     [SerializeField] private GameObject projectilePrefab;
 
-    [SerializeField] private PopupManager popupManager;
+    [ReadOnly][SerializeField] private PopupManager popupManager;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject ProjectilePrefab { get => projectilePrefab; set => projectilePrefab = value; }
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
-    public Room AssignedRoom { get => assignedRoom; set => assignedRoom = value; }
+    
 
     void Awake()
     {
@@ -34,8 +35,11 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        ApplyEnemyData();
+        //agent.enabled = true;
         behaviorCoroutine = StartCoroutine(BehaviorLoop());
         currentHealth = enemyData.MaxHealth;
+      
     }
 
     void OnDisable()
@@ -121,9 +125,13 @@ public class Enemy : MonoBehaviour
         {
             popupManager.ShowDeathParticles(transform.position);
         }
-        if (AssignedRoom != null)
+        if (AssignedWave != null)
         {
-            AssignedRoom.enemiesInRoom.Remove(gameObject);
+            AssignedWave.enemiesLeft--;
+            Debugger.Log("Remaining enemies in wave: " + AssignedWave.enemiesLeft, context: this, type: DebugType.World);
+        } else
+        {
+            Debugger.LogWarning("Enemy " + gameObject.name + " has no assigned wave to remove itself from.", context: this, type: DebugType.World);
         }
         Destroy(gameObject);
     }
@@ -141,14 +149,41 @@ public class Enemy : MonoBehaviour
                 TakeDamage(weaponData != null ? weaponData.Damage : 0f);
                 if (popupManager != null)
                 {
-                    //bool isCritical = Random.value < player.PlayerData.CriticalHitChance;
                     int damageAmount = weaponData != null ? Mathf.RoundToInt(weaponData.Damage) : 0;
-        
        
                     popupManager.ShowDamagePopup(transform.position, damageAmount, false, false);
                 }
             }
         }
+    }
+
+    public void ApplyEnemyData()
+    {
+        if (enemyData == null)
+            return;
+
+
+        Pathfinder pathfinder = GetComponent<Pathfinder>();
+        if (pathfinder != null)
+        {
+            pathfinder.EnemyData = enemyData;
+            UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.enabled = true;
+                agent.updateRotation = false;
+                agent.updateUpAxis = false;
+                agent.speed = enemyData.Speed;
+            }
+        }
+
+        EnemyAnimator anim = GetComponent<EnemyAnimator>();
+        if (anim != null)
+            anim.EnemyData = enemyData;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null && enemyData.EnemySprite)
+            sr.sprite = enemyData.EnemySprite;
     }
 
 }

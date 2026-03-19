@@ -25,4 +25,5 @@ public class EnemyData : EntityData
     public global::System.Boolean PerformBehaviorsInOrder { get => performBehaviorsInOrder; set => performBehaviorsInOrder = value; }
     public ProjectileData ProjectileData { get => projectileData; set => projectileData = value; }
     public global::System.Int32 ContactDamage { get => contactDamage; set => contactDamage = value; }
+    public global::System.String EnemyName { get => enemyName; set => enemyName = value; }
 }

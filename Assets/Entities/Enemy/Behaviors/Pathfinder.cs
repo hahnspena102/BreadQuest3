@@ -6,7 +6,7 @@ using System.Collections;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Pathfinder : MonoBehaviour
 {
-    private EnemyData enemyData;
+    [ReadOnly][SerializeField] private EnemyData enemyData;
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
 
