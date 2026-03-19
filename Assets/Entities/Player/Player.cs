@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public InputActionReference numberKeyAction;
     public InputActionReference equipAction;
     public InputActionReference dropAction;
+    public InputActionReference useAction;
 
     [Header("Managers")]
     [ReadOnly] public ItemManager itemManager;

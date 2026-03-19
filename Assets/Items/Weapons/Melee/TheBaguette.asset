@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: The Baguette
   description: 
   itemSprite: {fileID: -5560997628221282433, guid: 58eace0afaf014f27a64f5e5561d61db, type: 3}
-  damage: 5
+  damage: 50
   attackSpeed: 1
   range: 1
   flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}

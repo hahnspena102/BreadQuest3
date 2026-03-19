@@ -38,7 +38,7 @@ public class UseItem : MonoBehaviour
         {    
             Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
 
-            Debug.Log("Attacking with " + equippedItemData.name + " in direction: " + direction.normalized);
+//            Debug.Log("Attacking with " + equippedItemData.name + " in direction: " + direction.normalized);
             
 
             player.MeleeAttack(direction.normalized);
@@ -51,7 +51,7 @@ public class UseItem : MonoBehaviour
         {    
             Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
 
-            Debug.Log("Attacking with " + equippedItemData.name + " in direction: " + direction.normalized);
+//            Debug.Log("Attacking with " + equippedItemData.name + " in direction: " + direction.normalized);
 
 
             player.MagicAttack(direction.normalized);

@@ -1066,6 +1066,7 @@ MonoBehaviour:
   navMeshSurface: {fileID: 645034502}
   minPartitionSize: 12
   minRoomSize: 6
+  teleporterPrefab: {fileID: 8952454158959800989, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
   floorTilemap: {fileID: 1182057069}
   wallTilemap: {fileID: 1542022377}
   barrierTilemap: {fileID: 710882320}
@@ -2178,6 +2179,20 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &1834262910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Gameplay/Use
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: ccf45f268cde24a4bba2212da3aa1c04, type: 3}
+  m_ActionId: bb45689a-175f-4d77-8710-03df5ec69cd3
 --- !u!1 &2079751700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,6 +2466,7 @@ MonoBehaviour:
   numberKeyAction: {fileID: 1490149409}
   equipAction: {fileID: 1273724775}
   dropAction: {fileID: 667038330}
+  useAction: {fileID: 1834262910}
   itemManager: {fileID: 0}
 --- !u!4 &2139603245
 Transform:

@@ -6,7 +6,8 @@ public class Enemy : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField] private EnemyData enemyData;
-    [SerializeField] private Room assignedRoom;
+    public Wave AssignedWave { get; set; }
+    public Room AssignedRoom { get; set; }
     [SerializeField] private float currentHealth;
 
     [Header("Combat")]
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject ProjectilePrefab { get => projectilePrefab; set => projectilePrefab = value; }
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
-    public Room AssignedRoom { get => assignedRoom; set => assignedRoom = value; }
+    
 
     void Awake()
     {
@@ -124,9 +125,13 @@ public class Enemy : MonoBehaviour
         {
             popupManager.ShowDeathParticles(transform.position);
         }
-        if (AssignedRoom != null)
+        if (AssignedWave != null)
         {
-            AssignedRoom.enemiesInRoom.Remove(gameObject);
+            AssignedWave.enemiesLeft--;
+            Debugger.Log("Remaining enemies in wave: " + AssignedWave.enemiesLeft, context: this, type: DebugType.World);
+        } else
+        {
+            Debugger.LogWarning("Enemy " + gameObject.name + " has no assigned wave to remove itself from.", context: this, type: DebugType.World);
         }
         Destroy(gameObject);
     }
@@ -144,9 +149,7 @@ public class Enemy : MonoBehaviour
                 TakeDamage(weaponData != null ? weaponData.Damage : 0f);
                 if (popupManager != null)
                 {
-                    //bool isCritical = Random.value < player.PlayerData.CriticalHitChance;
                     int damageAmount = weaponData != null ? Mathf.RoundToInt(weaponData.Damage) : 0;
-        
        
                     popupManager.ShowDamagePopup(transform.position, damageAmount, false, false);
                 }

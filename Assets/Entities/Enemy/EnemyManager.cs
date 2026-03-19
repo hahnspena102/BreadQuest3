@@ -19,11 +19,11 @@ public class EnemyManager : MonoBehaviour
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 spawnPosition = new Vector3(mousePosition.x, mousePosition.y, 0f);
-            SpawnEnemy(enemyData, spawnPosition);
+            SpawnEnemy(enemyData, spawnPosition, null);
         }
     }
 
-    GameObject SpawnEnemy(EnemyData enemyData, Vector3 position)
+    GameObject SpawnEnemy(EnemyData enemyData, Vector3 position, Wave assignedWave)
     {
         GameObject newEnemy = Instantiate(enemyBasePrefab, position, Quaternion.identity);
 
@@ -32,33 +32,34 @@ public class EnemyManager : MonoBehaviour
         Enemy enemyComponent = newEnemy.GetComponent<Enemy>();
         if (enemyComponent != null)        {
             enemyComponent.EnemyData = enemyData;
+            enemyComponent.AssignedWave = assignedWave;
             enemyComponent.ApplyEnemyData();
         }
 
         return newEnemy;
     }
 
-    public void PopulateSubCells(Room room)
+
+    public void SpawnInWave(Wave wave)
     {
-        foreach (var cell in room.subCells)
+        foreach (var (enemyData, spawnPosition) in wave.enemyDataInWave)
         {
-            int enemyCount = Random.Range(0, 2);
-
-            for (int i = 0; i < enemyCount; i++)
-            {
-                if (cell.tiles.Count == 0)
-                    continue;
-
-                Vector2Int spawnTile =
-                    cell.tiles[Random.Range(0, cell.tiles.Count)];
-
-                Vector3 worldPos =
-                    new Vector3(spawnTile.x + 0.5f, spawnTile.y + 0.5f, 0);
-
-                GameObject enemy = SpawnEnemy(enemyData, worldPos);
-                enemy.GetComponent<Enemy>().AssignedRoom = room;
-                room.enemiesInRoom.Add(enemy);
-            }
+            SpawnEnemy(enemyData, spawnPosition, wave);
         }
     }
+
+    public void PopulateWave(Wave wave)
+    {
+        Room room = wave.associatedRoom;
+        
+        
+        foreach (var subCell in room.subCells)
+        {
+            Vector3 spawnPosition = new Vector3(subCell.center.x, subCell.center.y, 0f);
+            wave.enemyDataInWave.Add((enemyData, spawnPosition));
+            wave.enemiesLeft++;
+        }
+        
+    }
+    
 }
