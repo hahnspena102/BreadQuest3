@@ -16,6 +16,7 @@ public class WorldManager : MonoBehaviour
     private List<Room> rooms = new List<Room>();
     private Player player;
     [SerializeField]private GameObject teleporterPrefab;
+    [SerializeField] private GameObject chestPrefab;    
 
     public Tilemap floorTilemap;
     public Tilemap wallTilemap;
@@ -44,6 +45,15 @@ public class WorldManager : MonoBehaviour
             if (room.isEntered && room.isSealed && wavesCompleted)
             {
                 Debugger.Log("Cleared Room " + room.roomID, type: DebugType.World);
+                room.isCleared = true;
+                CreateChest(room);
+                if (room == endingRoom)
+                {
+                    Debugger.Log("Player has cleared the final room!", type: DebugType.World);
+                    Vector2Int center = room.GetRoomCenter();
+                    Vector3 teleporterPos = new Vector3(center.x+ 2, center.y + 2, 0);
+                    Instantiate(teleporterPrefab, teleporterPos, Quaternion.identity);
+                }
                 UnsealRoom(room);
             }
 
@@ -85,6 +95,8 @@ public class WorldManager : MonoBehaviour
                 {
                     room.currentWaveIndex = Mathf.Min(room.currentWaveIndex + 1, room.waves.Count - 1);
                 }
+                
+             
                
             
                 
@@ -92,6 +104,14 @@ public class WorldManager : MonoBehaviour
             }
 
         }
+    }
+
+    void CreateChest(Room room)
+    {
+        Vector2Int center = room.GetRoomCenter();
+        Vector3 chestPos = new Vector3(center.x, center.y, 0);
+        GameObject chestObj = Instantiate(chestPrefab, chestPos, Quaternion.identity);
+        chestObj.transform.SetParent(transform);
     }
     
 
@@ -133,12 +153,7 @@ public class WorldManager : MonoBehaviour
             if (room == startingRoom) {
                 continue;
             }
-            else if (room == endingRoom)
-            {
-                GameObject teleporter = Instantiate(teleporterPrefab, new Vector3(room.GetRoomCenter().x, room.GetRoomCenter().y, 0), Quaternion.identity);
-                teleporter.transform.SetParent(transform);
-                continue;
-            } 
+            
          
             int numWaves = Random.Range(1, 4);
             room.waves.Clear();
@@ -202,8 +217,13 @@ public class WorldManager : MonoBehaviour
 
         // Fallback if none meet strict criteria
         if (validRooms.Count == 0)
+        {
             validRooms = rooms;
-
+            validRooms.Remove(startRoom);
+            if (validRooms.Count == 0)
+                return null;
+        }
+           
         foreach (Room room in validRooms)
         {
             float dist = Vector2.Distance(
@@ -216,6 +236,11 @@ public class WorldManager : MonoBehaviour
                 maxDistance = dist;
                 bestRoom = room;
             }
+        }
+
+        if (bestRoom == null && validRooms.Count > 0)
+        {
+            bestRoom = validRooms[Random.Range(0, validRooms.Count)];
         }
 
         return bestRoom;
@@ -390,6 +415,10 @@ public class WorldManager : MonoBehaviour
     void CreateWalls()
     {
         BoundsInt bounds = floorTilemap.cellBounds;
+        bounds.yMax += 6;
+        bounds.xMin -= 1;
+        bounds.xMax += 1;
+        bounds.yMin -= 1;
 
         foreach (var pos in bounds.allPositionsWithin)
         {
@@ -400,34 +429,49 @@ public class WorldManager : MonoBehaviour
             bool hasFloorAbove = floorTilemap.GetTile(pos + Vector3Int.up) != null;
             bool hasFloorLeft  = floorTilemap.GetTile(pos + Vector3Int.left) != null;
             bool hasFloorRight = floorTilemap.GetTile(pos + Vector3Int.right) != null;
+            
 
             // ===== TOP WALLS =====
             if (hasFloorBelow)
             {
-                // First 2 layers = wallTile
-                wallTilemap.SetTile(pos, wallTile);
-                wallTilemap.SetTile(pos + Vector3Int.up, wallTile);
+                Vector3Int oneUp = pos + Vector3Int.up;
+                Vector3Int twoUp = pos + Vector3Int.up * 2;
 
-                // Everything above those = wallTopTile
-                for (int i = 2; i < 6; i++)
+                bool canPlaceOne = floorTilemap.GetTile(oneUp) == null;
+                bool canPlaceTwo = canPlaceOne && floorTilemap.GetTile(twoUp) == null;
+
+                bool placedWall = false;
+                int startHeight = 0;
+
+                if (canPlaceTwo)
                 {
-                    Vector3Int abovePos = pos + Vector3Int.up * i;
+                    wallTilemap.SetTile(pos, wallTile);
+                    wallTilemap.SetTile(oneUp, wallTile);
 
-                    if (floorTilemap.GetTile(abovePos) == null)
-                        wallTilemap.SetTile(abovePos, wallTopTile);
-                    else
-                        break;
+                    placedWall = true;
+                    startHeight = 2;
                 }
-            }
-            // ===== BOTTOM WALL =====
-            else if (hasFloorAbove)
-            {
-                //wallTilemap.SetTile(pos, wallTopTile);
-            }
-            // ===== SIDE WALLS =====
-            else if (hasFloorLeft || hasFloorRight)
-            {
-                //wallTilemap.SetTile(pos, wallTopTile);
+                else
+                {
+                    // Always allow base tile if current pos is empty (it is)
+                    wallTilemap.SetTile(pos, wallTile);
+
+                    placedWall = true;
+                    startHeight = 1;
+                }
+
+                if (placedWall)
+                {
+                    for (int i = startHeight; i < 6; i++)
+                    {
+                        Vector3Int abovePos = pos + Vector3Int.up * i;
+
+                        if (floorTilemap.GetTile(abovePos) == null)
+                            wallTilemap.SetTile(abovePos, wallTopTile);
+                        else
+                            break;
+                    }
+                }
             }
         }
 

@@ -15,7 +15,8 @@ MonoBehaviour:
   itemName: Spearmint
   description: 
   itemSprite: {fileID: 3732695439383397635, guid: 5e40fe38f9177554d9103006cb63fd8f, type: 3}
-  damage: 3
+  tier: 1
+  damage: 6
   attackSpeed: 1
   range: 1
   flavor: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}

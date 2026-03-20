@@ -24,6 +24,6 @@ MonoBehaviour:
   enemyBehaviors:
   - {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
   - {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
-  performBehaviorsInOrder: 0
+  performBehaviorsInOrder: 1
   idleAnimationF: {fileID: 7400000, guid: 94fd169a284c747e8ba3c6d173de681d, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 94fd169a284c747e8ba3c6d173de681d, type: 2}

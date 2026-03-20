@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   enemyBasePrefab: {fileID: 2767976121527430670, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
-  enemyData: {fileID: 11400000, guid: 89142234893e240459b0d64ab40d6293, type: 2}
+  enemySpawns: {fileID: 11400000, guid: 98595360640cb2a47aaafd44b416ec21, type: 2}
 --- !u!4 &391958829
 Transform:
   m_ObjectHideFlags: 0
@@ -1067,10 +1067,11 @@ MonoBehaviour:
   minPartitionSize: 12
   minRoomSize: 6
   teleporterPrefab: {fileID: 8952454158959800989, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+  chestPrefab: {fileID: 8952454158959800989, guid: 4a8c48a037c0a7f40899c5054577725f, type: 3}
   floorTilemap: {fileID: 1182057069}
   wallTilemap: {fileID: 1542022377}
   barrierTilemap: {fileID: 710882320}
-  floorTile: {fileID: 11400000, guid: 8e2f88e279dae644b8008cf18011bb8e, type: 2}
+  floorTile: {fileID: 11400000, guid: 7d1fdfa54defcb348b56b998b2b031b0, type: 2}
   wallTile: {fileID: 11400000, guid: 69bc9bc1a3d8ae24fbc2609d7a84390a, type: 2}
   wallTopTile: {fileID: 11400000, guid: c883d45362140984b90e823c03a7e238, type: 2}
   barrierTile: {fileID: 11400000, guid: 4df58bc25e3b9b24bbe624271a7c31dd, type: 2}
@@ -2222,6 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f1fcec8780b4118bcdb8baceb82ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  itemDrops: {fileID: 11400000, guid: a08e9f888506e7a4d8264e5862648897, type: 2}
   itemPrefab: {fileID: 6428189227700918369, guid: da26783c003254c85bb0130382bf87d2, type: 3}
 --- !u!4 &2079751702
 Transform:
@@ -2493,12 +2495,12 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1052494064}
   - {fileID: 2139603245}
   - {fileID: 1236087068}
   - {fileID: 1163713726}
   - {fileID: 721701492}
   - {fileID: 1707808266}
+  - {fileID: 1052494064}
   - {fileID: 631838199}
   - {fileID: 391958829}
   - {fileID: 2079751702}

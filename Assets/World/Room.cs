@@ -15,7 +15,6 @@ public class Room
     public int roomID;
     public RectInt area;
     public List<RoomSubCell> subCells = new List<RoomSubCell>();
-    public bool isEntered = false;
 
     public List<Vector3Int> barrierPositions = new List<Vector3Int>();
     public List<Wave> waves = new List<Wave>();
@@ -23,6 +22,7 @@ public class Room
     
     public bool isSealed = false;
     public bool isCleared = false;
+    public bool isEntered = false;
     public int currentWaveIndex = 0;
 
     public Room(RectInt area, int roomID = -1)
