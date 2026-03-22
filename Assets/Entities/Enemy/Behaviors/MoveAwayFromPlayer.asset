@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2abe7ab9095c4c689b3595e3bce7611, type: 3}
   m_Name: MoveAwayFromPlayer
   m_EditorClassIdentifier: Assembly-CSharp::Move
+  behaviorDuration:
+    min: 2
+    max: 5
   targetMode: 1
   delta: {x: 0, y: 0}
   targetTag: Player
   towardsTarget: 0
   fleeDistance: 2
+  continuousPursuit: 1
+  updateInterval: 0.1

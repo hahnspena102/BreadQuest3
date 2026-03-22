@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: CacaoJellySlime
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 6
+  speed: 1
+  enemyName: CacaoJellySlime
+  enemySprite: {fileID: -7692583356980716929, guid: ff68d32900b5ce149a02ac139adc6085, type: 3}
+  description: Made out of jelly, this slime chases anyone near it. It is said they
+    smell like chocolate.
+  flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
+  contactDamage: 5
+  projectileData: {fileID: 0}
+  projectileCooldown: 0
+  enemyBehaviors:
+  - {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+  - {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+  performBehaviorsInOrder: 1
+  idleAnimationF: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
+  shadowOffset: {x: 0, y: -0.3}
+  shadowScale: {x: 0.5, y: 0.5}

@@ -19,4 +19,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
 
     }
+
+    public void GameOver() {
+        SceneManager.LoadScene("GameOver");
+    }
+    
 }

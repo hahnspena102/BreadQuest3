@@ -9,27 +9,34 @@ public class Enemy : MonoBehaviour
     public Wave AssignedWave { get; set; }
     public Room AssignedRoom { get; set; }
     [SerializeField] private float currentHealth;
+    [SerializeField] private Transform shadowTransform;
 
     [Header("Combat")]
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private bool isAttackReady = false;
 
     [ReadOnly][SerializeField] private PopupManager popupManager;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Animator animator;
     private UnityEngine.AI.NavMeshAgent agent;
     private Coroutine behaviorCoroutine;
 
 
+
+
     public GameObject ProjectilePrefab { get => projectilePrefab; set => projectilePrefab = value; }
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
-    
+    public Transform ShadowTransform { get => shadowTransform; set => shadowTransform = value; }
+    public global::System.Boolean IsAttackReady { get => isAttackReady; set => isAttackReady = value; }
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         popupManager = FindFirstObjectByType<PopupManager>();
     }
 
@@ -58,6 +65,14 @@ public class Enemy : MonoBehaviour
         else if (agent.velocity.x < -0.01f)
             transform.localScale = new Vector3(-1, 1, 1);
 
+        if (animator != null)
+        {
+            float speed = agent.velocity.magnitude;
+            animator.SetFloat("speed", speed);
+        } else
+        {
+            Debugger.LogWarning("Enemy " + gameObject.name + " has no Animator component for animation control.", context: this, type: DebugType.World);
+        }    
     }
 
     IEnumerator BehaviorLoop()
@@ -178,7 +193,7 @@ public class Enemy : MonoBehaviour
         }
 
         EnemyAnimator anim = GetComponent<EnemyAnimator>();
-        if (anim != null)
+        if (anim != null) 
             anim.EnemyData = enemyData;
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -186,4 +201,8 @@ public class Enemy : MonoBehaviour
             sr.sprite = enemyData.EnemySprite;
     }
 
+    public void AttackReady()
+    {
+        IsAttackReady = true;
+    }
 }

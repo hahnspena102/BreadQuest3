@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
   m_Name: VanillaJellySlime
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHealth: 10
+  maxHealth: 6
   speed: 1
   enemyName: Vanilla Jelly Slime
   enemySprite: {fileID: -5066406686372051032, guid: f37b6dd227e77443688f4f9440c473d3, type: 3}
-  description: 
+  description: Made out of jelly, this slime chases anyone near it. It is said they
+    smell like vanilla extract.
   flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   contactDamage: 5
   projectileData: {fileID: 0}
@@ -27,3 +28,5 @@ MonoBehaviour:
   performBehaviorsInOrder: 1
   idleAnimationF: {fileID: 7400000, guid: 94fd169a284c747e8ba3c6d173de681d, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 94fd169a284c747e8ba3c6d173de681d, type: 2}
+  shadowOffset: {x: 0, y: -0.3}
+  shadowScale: {x: 0.5, y: 0.5}

@@ -17,6 +17,7 @@ public class ShootProjectile : EnemyBehavior
     [SerializeField] private int projectileCount = 1;
     [SerializeField] private float spreadAngle = 15f;
     [SerializeField] private float projectileDelay = 0.1f;
+    [SerializeField] private bool rotateTowardsTarget = true;
 
     public override float PerformBehavior(Enemy enemy)
     {
@@ -56,6 +57,30 @@ public class ShootProjectile : EnemyBehavior
 
         Vector2 baseDirection = (targetPosition - spawnPosition).normalized;
 
+        Animator animator = enemy.GetComponent<Animator>();
+        Vector3 directionToTarget = targetPosition - spawnPosition;
+        if (animator != null)
+        {
+            Debug.Log("Direction to target: " + directionToTarget);
+            if (directionToTarget.y > 0.00f)
+            {
+                animator.SetBool("attackB", true);
+                Debug.Log("Setting attackB to true");
+            } else
+            {
+                animator.SetBool("attackF", true);
+                Debug.Log("Setting attackF to true");
+            }
+                
+        } 
+
+        
+        while (!enemy.IsAttackReady)
+        {
+                yield return null;
+        }
+         enemy.IsAttackReady = false;
+
         for (int i = 0; i < projectileCount; i++)
         {
             float step = spreadAngle / projectileCount;
@@ -67,6 +92,12 @@ public class ShootProjectile : EnemyBehavior
             GameObject projectileInstance =
                 Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
 
+            if (rotateTowardsTarget)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                projectileInstance.transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
+
             Projectile projectileComp = projectileInstance.GetComponent<Projectile>();
           
             projectileComp.InitializeProjectile(direction, enemy);
@@ -74,5 +105,13 @@ public class ShootProjectile : EnemyBehavior
             if (i < projectileCount - 1)
                 yield return new WaitForSeconds(projectileDelay);
         }
+
+        if (animator != null)
+        {
+            animator.SetBool("attackB", false);
+            animator.SetBool("attackF", false);
+        }
+
+
     }
 }

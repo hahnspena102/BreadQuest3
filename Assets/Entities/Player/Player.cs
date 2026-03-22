@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
 
     [Header("Managers")]
     [ReadOnly] public ItemManager itemManager;
+    [ReadOnly] public GameManager gameManager;
+
+    [Header("Debug")]
+    [SerializeField]private bool debugInvulnerability = false;
 
     private Vector2 _moveDirection;
 
@@ -55,6 +59,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
 
         itemManager = FindFirstObjectByType<ItemManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
         inventory.CurrentItemIndex = 0;
         inventory.EquippedItemData = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
 
@@ -66,6 +71,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerData.CurrentHealth <= 0 && debugInvulnerability == false)
+        {
+            gameManager.GameOver();
+        }
+
         if (invulnerabilityTimer > 0f)
         {
             invulnerabilityTimer -= Time.deltaTime;
@@ -132,7 +142,12 @@ public class Player : MonoBehaviour
     {
         if (rb)
         {
-            rb.linearVelocity = _moveDirection * playerData.Speed;
+            float totalSpeed = playerData.Speed;
+            if (isAttacking)
+            {
+                totalSpeed *= 0.8f;
+            }
+            rb.linearVelocity = _moveDirection * totalSpeed;
         }
         
         

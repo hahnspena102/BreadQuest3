@@ -2164,8 +2164,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1182057066}
-  - {fileID: 1542022380}
   - {fileID: 710882325}
+  - {fileID: 1542022380}
   m_Father: {fileID: 1052494064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1767880849
@@ -2470,6 +2470,8 @@ MonoBehaviour:
   dropAction: {fileID: 667038330}
   useAction: {fileID: 1834262910}
   itemManager: {fileID: 0}
+  gameManager: {fileID: 0}
+  debugInvulnerability: 1
 --- !u!4 &2139603245
 Transform:
   m_ObjectHideFlags: 0

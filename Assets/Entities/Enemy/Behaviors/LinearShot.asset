@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cf68ac8bfaa49842a8095e50ba0d7f8, type: 3}
-  m_Name: ShootProjectile
+  m_Name: LinearShot
   m_EditorClassIdentifier: Assembly-CSharp::ShootProjectile
-  behaviorDuration: 0.5
+  behaviorDuration:
+    min: 1
+    max: 1
   targetMode: 0
   targetTag: Player
   targetDelta: {x: 0, y: 0, z: 0}
-  projectileCount: 12
-  spreadAngle: 360
-  projectileDelay: 0.1
+  projectileCount: 1
+  spreadAngle: 0
+  projectileDelay: 0
+  rotateTowardsTarget: 1

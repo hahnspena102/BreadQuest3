@@ -92,8 +92,26 @@ public class EnemyEditor : Editor
 
         if (enemyAnimator.IdleBPlaceholder && data.IdleAnimationB)
             overrideController[enemyAnimator.IdleBPlaceholder] = data.IdleAnimationB;
+        if (enemyAnimator.MoveFPlaceholder && data.MoveAnimationF)
+            overrideController[enemyAnimator.MoveFPlaceholder] = data.MoveAnimationF;
+        if (enemyAnimator.MoveBPlaceholder && data.MoveAnimationB)
+            overrideController[enemyAnimator.MoveBPlaceholder] = data.MoveAnimationB;
+        if (enemyAnimator.AttackFPlaceholder && data.AttackAnimationF)
+            overrideController[enemyAnimator.AttackFPlaceholder] = data.AttackAnimationF;
+        if (enemyAnimator.AttackBPlaceholder && data.AttackAnimationB)
+            overrideController[enemyAnimator.AttackBPlaceholder] = data.AttackAnimationB;
+
+        Transform shadowTransform = enemy.ShadowTransform;
+
+        if (shadowTransform != null)
+        {
+            shadowTransform.localPosition = data.ShadowOffset;
+            shadowTransform.localScale = data.ShadowScale;
+        }
 
         EditorUtility.SetDirty(animator);
+
+        
     }
     
 }

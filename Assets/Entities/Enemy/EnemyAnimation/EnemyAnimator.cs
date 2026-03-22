@@ -10,6 +10,10 @@ public class EnemyAnimator : MonoBehaviour
     [Header("Animator Placeholders (from base controller)")]
     [SerializeField] private AnimationClip idleFPlaceholder;
     [SerializeField] private AnimationClip idleBPlaceholder;
+    [SerializeField] private AnimationClip moveFPlaceholder;
+    [SerializeField] private AnimationClip moveBPlaceholder;
+    [SerializeField] private AnimationClip attackFPlaceholder;
+    [SerializeField] private AnimationClip attackBPlaceholder;
 
     [Header("Debug")]
     [ReadOnly][SerializeField] private Animator animator;
@@ -28,6 +32,10 @@ public class EnemyAnimator : MonoBehaviour
 
     public AnimationClip IdleFPlaceholder { get => idleFPlaceholder; set => idleFPlaceholder = value; }
     public AnimationClip IdleBPlaceholder { get => idleBPlaceholder; set => idleBPlaceholder = value; }
+    public AnimationClip MoveFPlaceholder { get => moveFPlaceholder; set => moveFPlaceholder = value; }
+    public AnimationClip MoveBPlaceholder { get => moveBPlaceholder; set => moveBPlaceholder = value; }
+    public AnimationClip AttackFPlaceholder { get => attackFPlaceholder; set => attackFPlaceholder = value; }
+    public AnimationClip AttackBPlaceholder { get => attackBPlaceholder; set => attackBPlaceholder = value; }
 
     void Awake()
     {
@@ -51,6 +59,18 @@ public class EnemyAnimator : MonoBehaviour
 
         if (idleBPlaceholder && enemyData.IdleAnimationB)
             overrideController[idleBPlaceholder] = enemyData.IdleAnimationB;
+
+        if (moveFPlaceholder && enemyData.MoveAnimationF)
+            overrideController[moveFPlaceholder] = enemyData.MoveAnimationF;
+        
+        if (moveBPlaceholder && enemyData.MoveAnimationB)
+            overrideController[moveBPlaceholder] = enemyData.MoveAnimationB;
+
+        if (attackFPlaceholder && enemyData.AttackAnimationF)
+            overrideController[attackFPlaceholder] = enemyData.AttackAnimationF;
+
+        if (attackBPlaceholder && enemyData.AttackAnimationB)
+            overrideController[attackBPlaceholder] = enemyData.AttackAnimationB;
 
         animator.Rebind();
         animator.Update(0f);

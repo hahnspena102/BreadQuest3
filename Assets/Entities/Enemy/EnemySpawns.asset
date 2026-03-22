@@ -17,3 +17,11 @@ MonoBehaviour:
     spawnChance: 0
   - enemyData: {fileID: 11400000, guid: e9ac1d6ba8b1542c3b4a352311730b67, type: 2}
     spawnChance: 0
+  - enemyData: {fileID: 11400000, guid: 084720f36e6efa34cb7c4e02cf92560f, type: 2}
+    spawnChance: 0
+  - enemyData: {fileID: 11400000, guid: 6cf69ef8284e04f4c945117b3010cf77, type: 2}
+    spawnChance: 0
+  - enemyData: {fileID: 11400000, guid: 4b8c28868a36bac4fb75d460a6b0d844, type: 2}
+    spawnChance: 0
+  - enemyData: {fileID: 11400000, guid: 8812912c7e4ad0f4a8ad66ecec17496f, type: 2}
+    spawnChance: 0

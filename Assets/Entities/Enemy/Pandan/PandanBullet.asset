@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c370366e05adc154e99f791deacab6a6, type: 3}
+  m_Name: PandanBullet
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  speed: 10
+  damage: 20
+  lifetime: 6
+  projectileSprite: {fileID: 6710668656658550051, guid: f2900edd8f9afc04a8029ddd9fb1dce8, type: 3}
+  rotationSpeed: 0

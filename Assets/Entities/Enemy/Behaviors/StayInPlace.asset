@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2abe7ab9095c4c689b3595e3bce7611, type: 3}
   m_Name: StayInPlace
   m_EditorClassIdentifier: Assembly-CSharp::Move
-  behaviorDuration: 2
+  behaviorDuration:
+    min: 0.5
+    max: 2
   targetMode: 0
   delta: {x: 0, y: 0}
   targetTag: Player
   towardsTarget: 0
   fleeDistance: 2
+  continuousPursuit: 1
+  updateInterval: 0.1
