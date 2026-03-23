@@ -114,7 +114,9 @@ MonoBehaviour:
   enemyData: {fileID: 0}
   currentHealth: 0
   shadowTransform: {fileID: 7667810397641370904}
+  bouncyMaterial: {fileID: 6200000, guid: 125f5fee532b1cc489689a47984b55d9, type: 2}
   projectilePrefab: {fileID: 6349153925857546609, guid: f4f1a34e6b7b4fb44993985c84646989, type: 3}
+  isAttackReady: 0
   popupManager: {fileID: 0}
 --- !u!114 &6995008896430759957
 MonoBehaviour:

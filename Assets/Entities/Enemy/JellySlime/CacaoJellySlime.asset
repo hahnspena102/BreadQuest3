@@ -21,12 +21,20 @@ MonoBehaviour:
   flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
   contactDamage: 5
   projectileData: {fileID: 0}
+  projectileOffset: {x: 0, y: 0}
   projectileCooldown: 0
-  enemyBehaviors:
-  - {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
-  - {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+    behaviorDuration:
+      min: 0.5
+      max: 0.5
+    TimesToRepeat: 1
   performBehaviorsInOrder: 1
   idleAnimationF: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
   idleAnimationB: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: d5f4f4b8ff4f30f45ad2d9ef72ee42bf, type: 2}
   shadowOffset: {x: 0, y: -0.3}
   shadowScale: {x: 0.5, y: 0.5}

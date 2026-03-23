@@ -20,11 +20,30 @@ MonoBehaviour:
   flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   contactDamage: 10
   projectileData: {fileID: 11400000, guid: 0ed03a4ff335cb34fa33c5e69b621393, type: 2}
+  projectileOffset: {x: 0, y: 0}
   projectileCooldown: 3
-  enemyBehaviors:
-  - {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
-  - {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
-  - {fileID: 11400000, guid: f4c07599420a6374c8fc0a9917bee96a, type: 2}
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: f4c07599420a6374c8fc0a9917bee96a, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 2
+    TimesToRepeat: 1
   performBehaviorsInOrder: 1
   idleAnimationF: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
+  shadowOffset: {x: 0, y: -0.5}
+  shadowScale: {x: 0.5, y: 0.5}

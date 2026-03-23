@@ -10,8 +10,13 @@ public class EnemyData : EntityData
     [SerializeField]private Flavor flavor;
     [SerializeField]private int contactDamage;
     [SerializeField] private ProjectileData projectileData;
+    [SerializeField] private Vector2 projectileOffset = Vector2.zero;
     [SerializeField]private float projectileCooldown;
-    [SerializeField]private List<EnemyBehavior> enemyBehaviors;
+    [SerializeField]private List<EnemyBehaviorEntry> onSpawnBehaviors;
+    [SerializeField]private List<EnemyBehaviorEntry> behaviors;
+    [SerializeField]private bool disableAgent = false;
+    [SerializeField]private bool isBouncy = false;
+
     [SerializeField]private bool performBehaviorsInOrder = false;
     [Header("Animations")]
     [SerializeField]private AnimationClip idleAnimationF;
@@ -25,7 +30,8 @@ public class EnemyData : EntityData
 
     public Vector2 ShadowOffset { get => shadowOffset; set => shadowOffset = value; }
     public Vector2 ShadowScale { get => shadowScale; set => shadowScale = value; }
-    public List<EnemyBehavior> EnemyBehaviors { get => enemyBehaviors; set => enemyBehaviors = value; }
+    public List<EnemyBehaviorEntry> OnSpawnBehaviors { get => onSpawnBehaviors; set => onSpawnBehaviors = value; }
+    public List<EnemyBehaviorEntry> Behaviors { get => behaviors; set => behaviors = value; }
     public Sprite EnemySprite { get => enemySprite; set => enemySprite = value; }
     public AnimationClip IdleAnimationF { get => idleAnimationF; set => idleAnimationF = value; }
     public AnimationClip IdleAnimationB { get => idleAnimationB; set => idleAnimationB = value; }
@@ -38,4 +44,7 @@ public class EnemyData : EntityData
     public AnimationClip MoveAnimationB { get => moveAnimationB; set => moveAnimationB = value; }
     public AnimationClip AttackAnimationF { get => attackAnimationF; set => attackAnimationF = value; }
     public AnimationClip AttackAnimationB { get => attackAnimationB; set => attackAnimationB = value; }
+    public Vector2 ProjectileOffset { get => projectileOffset; set => projectileOffset = value; }
+    public global::System.Boolean IsBouncy { get => isBouncy; set => isBouncy = value; }
+    public global::System.Boolean DisableAgent { get => disableAgent; set => disableAgent = value; }
 }

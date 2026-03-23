@@ -48,29 +48,28 @@ public class EnemyAnimator : MonoBehaviour
         StartCoroutine(ApplyEnemyData());
     }
 
-    
+    void ApplyOverride(AnimationClip placeholder, AnimationClip newClip)
+    {
+        if (!placeholder) return;
+
+        if (newClip)
+            overrideController[placeholder.name] = newClip;
+        else
+            overrideController[placeholder.name] = placeholder;
+    }
+
     IEnumerator ApplyEnemyData()
     {
-        while (enemyData == null || overrideController == null || animator == null) 
+        while (enemyData == null || overrideController == null || animator == null)
             yield return null;
 
-        if (idleFPlaceholder && enemyData.IdleAnimationF)
-            overrideController[idleFPlaceholder] = enemyData.IdleAnimationF;
 
-        if (idleBPlaceholder && enemyData.IdleAnimationB)
-            overrideController[idleBPlaceholder] = enemyData.IdleAnimationB;
-
-        if (moveFPlaceholder && enemyData.MoveAnimationF)
-            overrideController[moveFPlaceholder] = enemyData.MoveAnimationF;
-        
-        if (moveBPlaceholder && enemyData.MoveAnimationB)
-            overrideController[moveBPlaceholder] = enemyData.MoveAnimationB;
-
-        if (attackFPlaceholder && enemyData.AttackAnimationF)
-            overrideController[attackFPlaceholder] = enemyData.AttackAnimationF;
-
-        if (attackBPlaceholder && enemyData.AttackAnimationB)
-            overrideController[attackBPlaceholder] = enemyData.AttackAnimationB;
+        ApplyOverride(idleFPlaceholder, enemyData.IdleAnimationF);
+        ApplyOverride(idleBPlaceholder, enemyData.IdleAnimationB);
+        ApplyOverride(moveFPlaceholder, enemyData.MoveAnimationF);
+        ApplyOverride(moveBPlaceholder, enemyData.MoveAnimationB);
+        ApplyOverride(attackFPlaceholder, enemyData.AttackAnimationF);
+        ApplyOverride(attackBPlaceholder, enemyData.AttackAnimationB);
 
         animator.Rebind();
         animator.Update(0f);

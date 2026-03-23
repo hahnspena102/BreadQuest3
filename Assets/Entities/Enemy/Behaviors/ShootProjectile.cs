@@ -19,11 +19,11 @@ public class ShootProjectile : EnemyBehavior
     [SerializeField] private float projectileDelay = 0.1f;
     [SerializeField] private bool rotateTowardsTarget = true;
 
-    public override float PerformBehavior(Enemy enemy)
+    public override float PerformBehavior(Enemy enemy, float behaviorDuration)
     {
         enemy.StartCoroutine(FireProjectiles(enemy));
         // Return total duration including delays
-        return BehaviorDuration + enemy.EnemyData.ProjectileCooldown + projectileDelay * (projectileCount - 1);
+        return behaviorDuration + enemy.EnemyData.ProjectileCooldown + projectileDelay * (projectileCount - 1);
     }
 
     private IEnumerator FireProjectiles(Enemy enemy)
@@ -61,25 +61,34 @@ public class ShootProjectile : EnemyBehavior
         Vector3 directionToTarget = targetPosition - spawnPosition;
         if (animator != null)
         {
-            Debug.Log("Direction to target: " + directionToTarget);
             if (directionToTarget.y > 0.00f)
             {
                 animator.SetBool("attackB", true);
-                Debug.Log("Setting attackB to true");
             } else
             {
                 animator.SetBool("attackF", true);
-                Debug.Log("Setting attackF to true");
             }
                 
         } 
 
+        if (directionToTarget.x > 0.01f)
+        {
+            spawnPosition += enemy.EnemyData.ProjectileOffset;
+            enemy.transform.localScale = Vector3.one;
+        }
+            else if (directionToTarget.x < -0.01f)
+        {
+            spawnPosition += new Vector2(-enemy.EnemyData.ProjectileOffset.x, enemy.EnemyData.ProjectileOffset.y);
+            enemy.transform.localScale = new Vector3(-1, 1, 1);
+        }
+            
+
         
         while (!enemy.IsAttackReady)
         {
-                yield return null;
+            yield return null;
         }
-         enemy.IsAttackReady = false;
+        enemy.IsAttackReady = false;
 
         for (int i = 0; i < projectileCount; i++)
         {

@@ -23,7 +23,7 @@ public class Move : EnemyBehavior
     [SerializeField] private bool continuousPursuit = true; // new: follow player continuously
     [SerializeField] private float updateInterval = 0.1f;   // how often to recalc target
 
-    public override float PerformBehavior(Enemy enemy)
+    public override float PerformBehavior(Enemy enemy, float behaviorDuration)
     {
         Pathfinder pathfinder = enemy.GetComponent<Pathfinder>();
         if (pathfinder == null)
@@ -33,17 +33,17 @@ public class Move : EnemyBehavior
         }
 
         // Start a coroutine to handle movement
-        enemy.StartCoroutine(MoveRoutine(enemy, pathfinder));
+        enemy.StartCoroutine(MoveRoutine(enemy, pathfinder, behaviorDuration));
 
         // Return how long this behavior should last
-        return BehaviorDuration;
+        return behaviorDuration;
     }
 
-    private IEnumerator MoveRoutine(Enemy enemy, Pathfinder pathfinder)
+    private IEnumerator MoveRoutine(Enemy enemy, Pathfinder pathfinder, float behaviorDuration = 5f)
     {
         float timer = 0f;
 
-        while (timer < BehaviorDuration)
+        while (timer < behaviorDuration)
         {
             Vector2 enemyPos = enemy.transform.position;
 

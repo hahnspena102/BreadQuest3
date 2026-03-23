@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: Marshmoblin
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 12
+  speed: 2
+  enemyName: Marshmoblin
+  enemySprite: {fileID: 1802537128826739424, guid: e4046f73f9f219e4f98da3c6b87e2aef, type: 3}
+  description: 'Marshmoblins are loyal members of the S''more Goblins. Despite being
+    mostly lower class troops, they stay loyal. '
+  flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
+  contactDamage: 5
+  projectileData: {fileID: 11400000, guid: 8c2366915db1f0a4c9a516d2cb519b83, type: 2}
+  projectileOffset: {x: 0.1, y: 0.35}
+  projectileCooldown: 0
+  onSpawnBehaviors: []
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: c9c59a7f906e6d64cafb35f7dd43d6b6, type: 2}
+    behaviorDuration:
+      min: 2
+      max: 2
+    TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  performBehaviorsInOrder: 1
+  idleAnimationF: {fileID: 7400000, guid: b42d8ed9e4faddb418331a0b5258c08e, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: b42d8ed9e4faddb418331a0b5258c08e, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: b42d8ed9e4faddb418331a0b5258c08e, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: b42d8ed9e4faddb418331a0b5258c08e, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: 018c2bb4f60e31545862cc6f917c92a1, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: 018c2bb4f60e31545862cc6f917c92a1, type: 2}
+  shadowOffset: {x: 0, y: -0.5}
+  shadowScale: {x: 0.5, y: 0.5}

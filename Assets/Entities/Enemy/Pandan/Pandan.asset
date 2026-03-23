@@ -21,13 +21,24 @@ MonoBehaviour:
   flavor: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}
   contactDamage: 0
   projectileData: {fileID: 11400000, guid: f3c5948684a83ce48857addbf0942fc7, type: 2}
+  projectileOffset: {x: 0.2, y: 0}
   projectileCooldown: 0
-  enemyBehaviors:
-  - {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
-  - {fileID: 11400000, guid: c9c59a7f906e6d64cafb35f7dd43d6b6, type: 2}
-  - {fileID: 11400000, guid: c9c59a7f906e6d64cafb35f7dd43d6b6, type: 2}
-  - {fileID: 11400000, guid: c9c59a7f906e6d64cafb35f7dd43d6b6, type: 2}
-  - {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 3
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: c9c59a7f906e6d64cafb35f7dd43d6b6, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 3
+  - Behavior: {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 2
+    TimesToRepeat: 1
   performBehaviorsInOrder: 1
   idleAnimationF: {fileID: 7400000, guid: 962db1ff07ce2ca40a7b035e82b22148, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 962db1ff07ce2ca40a7b035e82b22148, type: 2}
