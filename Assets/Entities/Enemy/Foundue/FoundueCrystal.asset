@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: FoundueCrystal
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 0
+  speed: 0
+  enemyName: FoundueCrystal
+  enemySprite: {fileID: -1640278528, guid: 2e9e1927b4128be4792594bfa2ebd342, type: 3}
+  description: 
+  flavor: {fileID: 0}
+  contactDamage: 0
+  projectileData: {fileID: 0}
+  projectileOffset: {x: 0, y: 0}
+  projectileCooldown: 0
+  onSpawnBehaviors: []
+  behaviors: []
+  disableAgent: 0
+  isBouncy: 0
+  performBehaviorsInOrder: 0
+  animatorOverride: {fileID: 9100000, guid: 5e60148d9a96476408223c1a2dd7a6f2, type: 2}
+  idleAnimationF: {fileID: 0}
+  idleAnimationB: {fileID: 0}
+  moveAnimationF: {fileID: 0}
+  moveAnimationB: {fileID: 0}
+  attackAnimationF: {fileID: 0}
+  attackAnimationB: {fileID: 0}
+  shadowOffset: {x: 0, y: -0.35}
+  shadowScale: {x: 0.5, y: 0.5}

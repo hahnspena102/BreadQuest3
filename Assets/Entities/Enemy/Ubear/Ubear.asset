@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: Ubear
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 30
+  speed: 4
+  enemyName: Ubear
+  enemySprite: {fileID: -8857117676597791695, guid: 1fd9b74163b61d34ba194890099fd936, type: 3}
+  description: 
+  flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
+  contactDamage: 4
+  projectileData: {fileID: 0}
+  projectileOffset: {x: 0, y: 0}
+  projectileCooldown: 0
+  onSpawnBehaviors: []
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 74bb205e5939fa24796ba3acbef7efb1, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: f786ef53bf5e75b408be104a562066f7, type: 2}
+    behaviorDuration:
+      min: 2
+      max: 4
+    TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
+  idleAnimationF: {fileID: 7400000, guid: 1d0fe3c88cd3e3549bc4b132f7db184a, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: 1d0fe3c88cd3e3549bc4b132f7db184a, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: a2bf6d2fb7b55484092a787ea2cb8f24, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: a2bf6d2fb7b55484092a787ea2cb8f24, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: da56f853e2c4d4c49978625ce5bf03cc, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: da56f853e2c4d4c49978625ce5bf03cc, type: 2}
+  shadowOffset: {x: 0, y: -0.6}
+  shadowScale: {x: 0.6, y: 0.6}

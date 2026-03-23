@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     [ReadOnly][SerializeField] private PopupManager popupManager;
 
+    [SerializeField] private Enemy linkedEnemy;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator animator;
@@ -32,6 +34,7 @@ public class Enemy : MonoBehaviour
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
     public Transform ShadowTransform { get => shadowTransform; set => shadowTransform = value; }
     public global::System.Boolean IsAttackReady { get => isAttackReady; set => isAttackReady = value; }
+    public Enemy LinkedEnemy { get => linkedEnemy; set => linkedEnemy = value; }
 
     void Awake()
     {
@@ -170,6 +173,13 @@ public class Enemy : MonoBehaviour
         {
             Debugger.LogWarning("Enemy " + gameObject.name + " has no assigned wave to remove itself from.", context: this, type: DebugType.World);
         }
+
+        if (linkedEnemy != null)
+        {
+            linkedEnemy.LinkedEnemy = null;
+            linkedEnemy.TakeDamage(linkedEnemy.currentHealth);
+            linkedEnemy.SetLinkedEnemy(null);
+        }
         Destroy(gameObject);
     }
 
@@ -236,5 +246,10 @@ public class Enemy : MonoBehaviour
     public void AttackReady()
     {
         IsAttackReady = true;
+    }
+
+    public void SetLinkedEnemy(Enemy enemy)
+    {
+        linkedEnemy = enemy;
     }
 }

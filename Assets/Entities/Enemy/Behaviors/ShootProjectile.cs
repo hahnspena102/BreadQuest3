@@ -36,29 +36,11 @@ public class ShootProjectile : EnemyBehavior
         }
 
         Vector2 spawnPosition = enemy.transform.position;
-        Vector2 targetPosition = Vector2.zero;
-
-        switch (targetMode)
-        {
-            case TargetMode.Tag:
-                GameObject target = GameObject.FindWithTag(targetTag);
-                if (target == null)
-                {
-                    Debug.LogWarning($"No object with '{targetTag}' tag found");
-                    yield break;
-                }
-                targetPosition = target.transform.position;
-                break;
-
-            case TargetMode.Delta:
-                targetPosition = spawnPosition + (Vector2)targetDelta;
-                break;
-        }
-
-        Vector2 baseDirection = (targetPosition - spawnPosition).normalized;
+        Vector2 targetPosition = findTargetPosition(enemy);
+        Vector2 directionToTarget = targetPosition - spawnPosition;
 
         Animator animator = enemy.GetComponent<Animator>();
-        Vector3 directionToTarget = targetPosition - spawnPosition;
+        
         if (animator != null)
         {
             if (directionToTarget.y > 0.00f)
@@ -70,6 +52,20 @@ public class ShootProjectile : EnemyBehavior
             }
                 
         } 
+
+        while (!enemy.IsAttackReady)
+        {
+            yield return null;
+        }
+        enemy.IsAttackReady = false;
+
+        spawnPosition = enemy.transform.position;
+        targetPosition = findTargetPosition(enemy);
+        directionToTarget = targetPosition - spawnPosition;
+
+        Vector2 baseDirection = (targetPosition - spawnPosition).normalized;
+
+        
 
         if (directionToTarget.x > 0.01f)
         {
@@ -84,11 +80,9 @@ public class ShootProjectile : EnemyBehavior
             
 
         
-        while (!enemy.IsAttackReady)
-        {
-            yield return null;
-        }
-        enemy.IsAttackReady = false;
+
+
+        
 
         for (int i = 0; i < projectileCount; i++)
         {
@@ -122,5 +116,22 @@ public class ShootProjectile : EnemyBehavior
         }
 
 
+    }
+
+    Vector2 findTargetPosition(Enemy enemy)
+    {
+        switch (targetMode)
+        {
+            case TargetMode.Tag:
+                GameObject target = GameObject.FindWithTag(targetTag);
+                if (target != null)
+                    return target.transform.position;
+                break;
+
+            case TargetMode.Delta:
+                return (Vector2)enemy.transform.position + (Vector2)targetDelta;
+        }
+
+        return Vector2.zero;
     }
 }

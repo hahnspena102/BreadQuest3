@@ -19,6 +19,7 @@ public class EnemyData : EntityData
 
     [SerializeField]private bool performBehaviorsInOrder = false;
     [Header("Animations")]
+    [SerializeField]private RuntimeAnimatorController animatorOverride;
     [SerializeField]private AnimationClip idleAnimationF;
     [SerializeField]private AnimationClip idleAnimationB;
     [SerializeField]private AnimationClip moveAnimationF;
@@ -47,4 +48,5 @@ public class EnemyData : EntityData
     public Vector2 ProjectileOffset { get => projectileOffset; set => projectileOffset = value; }
     public global::System.Boolean IsBouncy { get => isBouncy; set => isBouncy = value; }
     public global::System.Boolean DisableAgent { get => disableAgent; set => disableAgent = value; }
+    public RuntimeAnimatorController AnimatorOverride { get => animatorOverride; set => animatorOverride = value; }
 }

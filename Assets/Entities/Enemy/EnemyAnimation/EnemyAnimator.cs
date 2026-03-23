@@ -63,6 +63,13 @@ public class EnemyAnimator : MonoBehaviour
         while (enemyData == null || overrideController == null || animator == null)
             yield return null;
 
+            
+        if (EnemyData.AnimatorOverride)
+        {
+            animator.runtimeAnimatorController = EnemyData.AnimatorOverride;
+            yield break;
+        }
+
 
         ApplyOverride(idleFPlaceholder, enemyData.IdleAnimationF);
         ApplyOverride(idleBPlaceholder, enemyData.IdleAnimationB);

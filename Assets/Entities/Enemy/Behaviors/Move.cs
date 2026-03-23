@@ -62,6 +62,7 @@ public class Move : EnemyBehavior
                         yield break;
                     }
 
+
                     Vector2 targetPos = target.transform.position;
 
                     if (towardsTarget)
@@ -90,5 +91,20 @@ public class Move : EnemyBehavior
 
         // Stop moving at the end of behavior
         pathfinder.Stop();
+    }
+
+    bool IsPlayerLookingAtEnemy(Transform enemy)
+    {
+        Player player = GameObject.FindFirstObjectByType<Player>();
+        if (player == null)        {
+            Debug.LogWarning("Player not found in scene");
+            return false;
+        }
+        Debug.Log("Player Direction: " + player.DirectionFacing);
+        if (player.DirectionFacing == "Up" && enemy.position.y > player.transform.position.y) return true;
+        if (player.DirectionFacing == "Down" && enemy.position.y < player.transform.position.y) return true;
+        if (player.DirectionFacing == "Left" && enemy.position.x < player.transform.position.x) return true;
+        if (player.DirectionFacing == "Right" && enemy.position.x > player.transform.position.x) return true;
+        return false;
     }
 }

@@ -29,3 +29,9 @@ MonoBehaviour:
     spawnChance: 1
   - enemyData: {fileID: 11400000, guid: d5d9f6860e74b794cad7a1423dfa437b, type: 2}
     spawnChance: 1
+  - enemyData: {fileID: 11400000, guid: 438b3ab25438f354b96bafd4a21632f2, type: 2}
+    spawnChance: 1
+  - enemyData: {fileID: 11400000, guid: 438b3ab25438f354b96bafd4a21632f2, type: 2}
+    spawnChance: 1
+  - enemyData: {fileID: 11400000, guid: d149a486eaa654344aff76369709e928, type: 2}
+    spawnChance: 1

@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    GameObject SpawnEnemy(EnemyData enemyData, Vector3 position, Wave assignedWave)
+    public GameObject SpawnEnemy(EnemyData enemyData, Vector3 position, Wave assignedWave)
     {
         GameObject newEnemy = Instantiate(enemyBasePrefab, position, Quaternion.identity);
 

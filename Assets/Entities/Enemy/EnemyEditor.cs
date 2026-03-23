@@ -71,6 +71,13 @@ public class EnemyEditor : Editor
         if (animator == null || enemyAnimator == null)
             return;
 
+        if (data.AnimatorOverride)
+        {
+            animator.runtimeAnimatorController = data.AnimatorOverride;
+            Debug.Log("Applied animator override: " + data.AnimatorOverride.name);
+            return;
+        }
+
         RuntimeAnimatorController baseController = animator.runtimeAnimatorController;
         if (baseController == null)
             return;

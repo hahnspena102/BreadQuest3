@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: Foundue
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 999
+  speed: 3
+  enemyName: Foundue
+  enemySprite: {fileID: -2090444825, guid: 096f038790da3ef43b6ad45d6678ad1c, type: 3}
+  description: 
+  flavor: {fileID: 0}
+  contactDamage: 0
+  projectileData: {fileID: 0}
+  projectileOffset: {x: 0, y: 0}
+  projectileCooldown: 0
+  onSpawnBehaviors:
+  - Behavior: {fileID: 11400000, guid: 2b4854a48606eea42a0aa12346a96aa0, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 1
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: abefd30dadec97045b6023646d7ea41f, type: 2}
+    behaviorDuration:
+      min: 0.01
+      max: 0.01
+    TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  performBehaviorsInOrder: 0
+  animatorOverride: {fileID: 0}
+  idleAnimationF: {fileID: 7400000, guid: a0e8f6dd70e403a489562ec032dd100a, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: a0e8f6dd70e403a489562ec032dd100a, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: 9a8b7a47df5817c4598a3e909daeaf2c, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: 9a8b7a47df5817c4598a3e909daeaf2c, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: a0e8f6dd70e403a489562ec032dd100a, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: a0e8f6dd70e403a489562ec032dd100a, type: 2}
+  shadowOffset: {x: 0, y: -0.8}
+  shadowScale: {x: 0.5, y: 0.5}

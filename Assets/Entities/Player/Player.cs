@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     
     private float invulnerabilityDuration = 1f;
     private int flashCount = 3;
+    private string directionFacing = "Down";
 
     [Header("Input")]
     public InputActionReference moveAction;
@@ -47,7 +48,8 @@ public class Player : MonoBehaviour
     public Vector2 WorldPointPosition { get => worldPointPosition; set => worldPointPosition = value; }
     public Inventory Inventory { get => inventory; set => inventory = value; }
     public global::System.Boolean IsAttacking { get => isAttacking; set => isAttacking = value; }
-    
+    public global::System.String DirectionFacing { get => directionFacing; set => directionFacing = value; }
+
 
 
 
@@ -92,11 +94,20 @@ public class Player : MonoBehaviour
                 
                 if (_moveDirection.x < 0) {
                     transform.localScale = new Vector3(-1f, 1f, 1f);
+                    directionFacing = "Left";
                 } else if (_moveDirection.x > 0) {
                     transform.localScale = new Vector3(1f, 1f, 1f);
+                    directionFacing = "Right";
+                }
+
+                if (_moveDirection.y > 0) {
+                    directionFacing = "Up";
+                } else if (_moveDirection.y < 0) {
+                    directionFacing = "Down";
                 }
             
             }
+            
             
 
             anim.SetFloat("speed", _moveDirection.magnitude);
