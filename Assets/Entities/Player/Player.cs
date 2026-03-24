@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     public Inventory Inventory { get => inventory; set => inventory = value; }
     public global::System.Boolean IsAttacking { get => isAttacking; set => isAttacking = value; }
     public global::System.String DirectionFacing { get => directionFacing; set => directionFacing = value; }
+    public PlayerData PlayerData { get => playerData; set => playerData = value; }
 
 
 
@@ -67,12 +68,26 @@ public class Player : MonoBehaviour
 
         attackBox.SetActive(false);
 
+        StartCoroutine(StatCoroutine());
+    }
 
+    private IEnumerator StatCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            if (playerData.CurrentGlucose < playerData.MaxGlucose)
+            {
+                playerData.CurrentGlucose += 1f;
+            }
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        playerData.UpdateLevel();
         if (playerData.CurrentHealth <= 0 && debugInvulnerability == false)
         {
             gameManager.GameOver();

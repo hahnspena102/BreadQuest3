@@ -7,7 +7,7 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private GameObject damagePopupPrefab;
     [SerializeField] private GameObject deathParticlePrefab;
 
-    public void ShowDamagePopup(Vector2 position, int damage, bool isCritical, bool isPlayerHurt)
+    public void ShowDamagePopup(Vector2 position, int damage, bool isCritical, bool isPlayerHurt, Color? customOutlineColor = null)
     {
         if (damagePopupPrefab == null)
         {
@@ -16,7 +16,7 @@ public class PopupManager : MonoBehaviour
         }
         GameObject popupInstance = Instantiate(damagePopupPrefab, position, Quaternion.identity, transform);
         DamagePopup damagePopup = popupInstance.GetComponent<DamagePopup>();
-        damagePopup.InitializePopup(damage, isCritical, isPlayerHurt);
+        damagePopup.InitializePopup(damage, isCritical, isPlayerHurt, customOutlineColor);
     }
 
     public void ShowDeathParticles(Vector2 position)

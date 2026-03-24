@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fece207f0a1e04695ec6a3a5019e57, type: 3}
-  m_Name: KnightsSword
+  m_Name: ButterKnife
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
-  itemName: Knight's Sword
+  itemName: Butter Knife
   description: 
-  itemSprite: {fileID: 6448972388924427744, guid: d9b314c25f9e9b642925d4112a8e31b7, type: 3}
+  itemSprite: {fileID: 21300000, guid: 3a1292de9bc394dc6ad9f831421780f8, type: 3}
   tier: 1
-  damage: 3
+  damage: 8
   attackSpeed: 1
   range: 1
-  flavor: {fileID: 11400000, guid: fb8de5b4c2fdb473e932288ee8114381, type: 2}
+  flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}

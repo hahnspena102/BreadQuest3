@@ -9,6 +9,7 @@ public class EnemyData : EntityData
     [SerializeField]private string description;
     [SerializeField]private Flavor flavor;
     [SerializeField]private int contactDamage;
+    [SerializeField]private float experienceDropped = 100f;
     [SerializeField] private ProjectileData projectileData;
     [SerializeField] private Vector2 projectileOffset = Vector2.zero;
     [SerializeField]private float projectileCooldown;
@@ -49,4 +50,6 @@ public class EnemyData : EntityData
     public global::System.Boolean IsBouncy { get => isBouncy; set => isBouncy = value; }
     public global::System.Boolean DisableAgent { get => disableAgent; set => disableAgent = value; }
     public RuntimeAnimatorController AnimatorOverride { get => animatorOverride; set => animatorOverride = value; }
+    public global::System.Single ExperienceDropped { get => experienceDropped; set => experienceDropped = value; }
+    public Flavor Flavor { get => flavor; set => flavor = value; }
 }

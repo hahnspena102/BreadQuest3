@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fece207f0a1e04695ec6a3a5019e57, type: 3}
-  m_Name: KnightsSword
+  m_Name: DarkChocoGreatsword
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Knight's Sword
   description: 
-  itemSprite: {fileID: 6448972388924427744, guid: d9b314c25f9e9b642925d4112a8e31b7, type: 3}
+  itemSprite: {fileID: 21300000, guid: 59cae2bbd9e2c42378daf99b594b2956, type: 3}
   tier: 1
   damage: 3
   attackSpeed: 1
   range: 1
-  flavor: {fileID: 11400000, guid: fb8de5b4c2fdb473e932288ee8114381, type: 2}
+  flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}

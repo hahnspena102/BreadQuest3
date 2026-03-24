@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private UnityEngine.AI.NavMeshAgent agent;
     private Coroutine behaviorCoroutine;
+    private Player player;
 
 
 
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         popupManager = FindFirstObjectByType<PopupManager>();
+        player = FindFirstObjectByType<Player>();
     }
 
     void Start()
@@ -129,9 +131,27 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Flavor flavor = null)
     {
-        currentHealth -= damage;
+        float totalDamage = damage;
+        Flavor effectiveAgainst = flavor?.EffectiveAgainst;
+        bool isEffective = effectiveAgainst != null && enemyData.Flavor != null && effectiveAgainst == enemyData.Flavor;
+      
+        if (effectiveAgainst == enemyData.Flavor)
+        {
+        
+            totalDamage = damage * 1.5f;
+        }
+     
+        currentHealth -= totalDamage;
+
+
+        if (popupManager != null)
+        {
+            Color? outlineColor = flavor != null ? flavor.FlavorColor : (Color?)null;
+            Debug.Log("Passing outline color: " + (outlineColor.HasValue ? outlineColor.Value.ToString() : "None"));
+            popupManager.ShowDamagePopup(transform.position, (int)totalDamage, isEffective, false, outlineColor);
+        }
         StartCoroutine(DamageFlash());
         if (currentHealth <= 0)
         {
@@ -180,6 +200,9 @@ public class Enemy : MonoBehaviour
             linkedEnemy.TakeDamage(linkedEnemy.currentHealth);
             linkedEnemy.SetLinkedEnemy(null);
         }
+
+        player.PlayerData.Experience += enemyData.ExperienceDropped;
+
         Destroy(gameObject);
     }
 
@@ -193,13 +216,8 @@ public class Enemy : MonoBehaviour
             if (player != null)
             {
                 WeaponData weaponData = player.Inventory.EquippedItemData as WeaponData;
-                TakeDamage(weaponData != null ? weaponData.Damage : 0f);
-                if (popupManager != null)
-                {
-                    int damageAmount = weaponData != null ? Mathf.RoundToInt(weaponData.Damage) : 0;
-       
-                    popupManager.ShowDamagePopup(transform.position, damageAmount, false, false);
-                }
+                TakeDamage(weaponData != null ? weaponData.Damage : 0f, weaponData != null ? weaponData.Flavor : null);
+
             }
         }
     }

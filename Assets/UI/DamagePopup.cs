@@ -9,10 +9,9 @@ public class DamagePopup : MonoBehaviour
     private TextMeshProUGUI textMesh;
     private Color originalColor;
   
-    private Color outlineColor = Color.black;
-    public Color OutlineColor { get => outlineColor; set => outlineColor = value; }
+    private Color defaultOutlineColor = Color.black;
 
-    public void InitializePopup(int damage, bool isCritical, bool isPlayerHurt)
+    public void InitializePopup(int damage, bool isCritical, bool isPlayerHurt, Color? customOutlineColor = null)
     {
         textMesh = GetComponent<TextMeshProUGUI>();
         if (textMesh == null)
@@ -23,10 +22,19 @@ public class DamagePopup : MonoBehaviour
 
         if (isCritical) {
             textMesh.color = Color.yellow;
-            textMesh.fontSize = 6;
+            textMesh.fontSize = textMesh.fontSize * 1.1f;
         }
         if (isPlayerHurt) {
             textMesh.color = new Color(255/255f, 110/255f,110/255f);
+        }
+        Debug.Log("custom outline color: " + (customOutlineColor.HasValue ? customOutlineColor.Value.ToString() : "None"));
+        Color outlineColor;
+        if (customOutlineColor.HasValue)
+        {
+            outlineColor = customOutlineColor.Value;
+        } else
+        {
+            outlineColor = defaultOutlineColor;
         }
         
         originalColor = textMesh.color;
@@ -34,7 +42,7 @@ public class DamagePopup : MonoBehaviour
         textMesh.text = $"{damage}";
 
         textMesh.fontMaterial.SetColor("_OutlineColor", outlineColor);
-        //textMesh.fontMaterial.SetFloat("_OutlineWidth", 1f);
+        textMesh.fontMaterial.SetFloat("_OutlineWidth", 0.2f);
     }
 
     private IEnumerator FadeOutAndMoveUp()

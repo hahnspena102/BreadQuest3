@@ -17,8 +17,9 @@ MonoBehaviour:
   enemyName: Foundue
   enemySprite: {fileID: -2090444825, guid: 096f038790da3ef43b6ad45d6678ad1c, type: 3}
   description: 
-  flavor: {fileID: 0}
+  flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
   contactDamage: 0
+  experienceDropped: 100
   projectileData: {fileID: 0}
   projectileOffset: {x: 0, y: 0}
   projectileCooldown: 0

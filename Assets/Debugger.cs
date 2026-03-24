@@ -17,7 +17,7 @@ public enum DebugType
 public static class Debugger
 {
     // Toggle what debug categories are enabled
-    public static DebugType EnabledTypes = DebugType.General | DebugType.World | DebugType.AI | DebugType.Combat | DebugType.Items | DebugType.Enemies;
+    public static DebugType EnabledTypes = DebugType.General | DebugType.AI | DebugType.Combat | DebugType.Items | DebugType.Enemies;
     [Conditional("DEVELOPMENT_BUILD"), Conditional("UNITY_EDITOR")]
     public static void Log(string message, Object context = null, DebugType type = DebugType.General)
     {

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e052f4f3705ccbd4f852fca62dbfe9b3
+guid: fbaea3b360b172448914c7e0caacb182
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6368806348762901367
-    second: Glucose_0
+      213: -1860702044411157243
+    second: YeastFill_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Glucose_0
+      name: YeastFill_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9841cb28e547d97a0800000000000000
-      internalID: -6368806348762901367
+      spriteID: 505a70a59557d26e0800000000000000
+      internalID: -1860702044411157243
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 978b4bd2e047b6c488327f80006efea3
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Glucose_0: -6368806348762901367
+      YeastFill_0: -1860702044411157243
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
