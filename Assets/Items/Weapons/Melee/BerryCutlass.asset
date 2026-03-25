@@ -15,7 +15,9 @@ MonoBehaviour:
   itemName: Berry Cutlass
   description: 
   itemSprite: {fileID: 21300000, guid: 9f474e5a87498486eaa5148215fb293b, type: 3}
+  tier: 1
   damage: 10
   attackSpeed: 1
-  range: 1
   flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
+  meleeScale: 1
+  meleeRange: 0

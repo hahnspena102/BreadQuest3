@@ -8,10 +8,9 @@ public class Player : MonoBehaviour
     [Header("Components")]
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private Animator anim;
+    private Animator animator;
     [SerializeField]private Camera mainCamera;
     [SerializeField] private SpriteRenderer itemSpriteHolder;
-    [SerializeField] private GameObject attackBox;
 
 
 
@@ -50,6 +49,7 @@ public class Player : MonoBehaviour
     public global::System.Boolean IsAttacking { get => isAttacking; set => isAttacking = value; }
     public global::System.String DirectionFacing { get => directionFacing; set => directionFacing = value; }
     public PlayerData PlayerData { get => playerData; set => playerData = value; }
+    public Animator Animator { get => animator; set => animator = value; }
 
 
 
@@ -59,14 +59,13 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
         itemManager = FindFirstObjectByType<ItemManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         inventory.CurrentItemIndex = 0;
         inventory.EquippedItemData = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
 
-        attackBox.SetActive(false);
 
         StartCoroutine(StatCoroutine());
     }
@@ -125,9 +124,9 @@ public class Player : MonoBehaviour
             
             
 
-            anim.SetFloat("speed", _moveDirection.magnitude);
-            anim.SetFloat("horizontalSpeed", Mathf.Abs(_moveDirection.x));
-            anim.SetFloat("vertical", _moveDirection.y);
+            animator.SetFloat("speed", _moveDirection.magnitude);
+            animator.SetFloat("horizontalSpeed", Mathf.Abs(_moveDirection.x));
+            animator.SetFloat("vertical", _moveDirection.y);
         }
 
 
@@ -179,85 +178,13 @@ public class Player : MonoBehaviour
         
     }
 
-    public void MeleeAttack(Vector2 direction)
-    {    
-        if (isAttacking) return;
-        if (direction == Vector2.zero) return;
-        AttackAnimation(direction, "melee");
-        isAttacking = true;
-        attackBox.SetActive(true);
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-        {
-             attackBox.transform.localPosition = new Vector2(1f, 0f);
-        }
-        else
-        {
-            attackBox.transform.localPosition = new Vector2(0f, direction.y > 0 ? 1f : -1f);
-        }
-       
-    }
-
-    public void MagicAttack(Vector2 direction)
-    {
-        if (isAttacking) return;
-        if (direction == Vector2.zero) return;
-        AttackAnimation(direction, "magic");
-        isAttacking = true;
-    }
-
-    public void AttackAnimation(Vector2 direction, string type)
-    {
-        
-        itemSpriteHolder.gameObject.SetActive(true);
-        itemSpriteHolder.sortingOrder = 1;
-        direction = direction.normalized;
-
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-        {
-            if (direction.x < 0)
-            {
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-                ////Debug.Log("Left Attack");
-            }
-            else
-            {
-                transform.localScale = new Vector3(1f, 1f, 1f);
-                ////Debug.Log("Right Attack");
-            }
-
-            anim.SetTrigger(type + "AttackLR");
-        }
-        else
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-            if (direction.y > 0)
-            {
-                anim.SetTrigger(type + "AttackUp");
-                //itemSpriteHolder.sortingOrder = -1;
-                //Debug.Log("Up Attack");
-            }
-            else
-            {
-                anim.SetTrigger(type + "AttackDown");
-                //Debug.Log("Down Attack");
-            }
-        }
-    }
-
-
-    public void FinishAttack()
-    {
-        itemSpriteHolder.gameObject.SetActive(false);
-        isAttacking = false;
-        attackBox.SetActive(false);
-    }
-
+    
     public void TakeDamage(float damage)
     {
         if (invulnerabilityTimer > 0f) return;
 
         playerData.CurrentHealth -= damage;
-        anim.SetTrigger("hurt");
+        animator.SetTrigger("hurt");
         invulnerabilityTimer = invulnerabilityDuration; 
 
         StartCoroutine(DamageFlash());

@@ -16,6 +16,14 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: f806bc7a619124e7a8d52c39b4f964e5, type: 2}
     dropChance: 0
   - item: {fileID: 11400000, guid: ebbc955094b774482af7d58fd4d16e06, type: 2}
-    dropChance: 0
+    dropChance: 1
   - item: {fileID: 11400000, guid: be4a67c95d150453b8dd65185c786afc, type: 2}
     dropChance: 0
+  - item: {fileID: 11400000, guid: 41bc63079acd0cc49b31c60a47799389, type: 2}
+    dropChance: 0
+  - item: {fileID: 11400000, guid: da0d55bf0e13bbd478f66f0982b32f3a, type: 2}
+    dropChance: 0
+  - item: {fileID: 11400000, guid: 00078f3cceabe3f4f912d296cce0c8f8, type: 2}
+    dropChance: 0
+  - item: {fileID: 11400000, guid: 16d30de1a5587c84894c2bb11a603746, type: 2}
+    dropChance: 2

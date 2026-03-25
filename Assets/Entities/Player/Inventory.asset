@@ -20,5 +20,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be4a67c95d150453b8dd65185c786afc, type: 2}
   - {fileID: 11400000, guid: f806bc7a619124e7a8d52c39b4f964e5, type: 2}
   - {fileID: 11400000, guid: 16d30de1a5587c84894c2bb11a603746, type: 2}
-  currentItemIndex: 5
+  currentItemIndex: 4
   equippedItemData: {fileID: 11400000, guid: 16d30de1a5587c84894c2bb11a603746, type: 2}

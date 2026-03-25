@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fece207f0a1e04695ec6a3a5019e57, type: 3}
-  m_Name: DarkChocoGreatsword
+  m_Name: BananaSaber
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
-  itemName: Knight's Sword
+  itemName: Banana Saber
   description: 
-  itemSprite: {fileID: 21300000, guid: 59cae2bbd9e2c42378daf99b594b2956, type: 3}
+  itemSprite: {fileID: 21300000, guid: f5a40b6955e7044bdbcc81df915bcc18, type: 3}
   tier: 1
-  damage: 12
-  attackSpeed: 1
-  flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
-  meleeScale: 1.7
-  meleeSpeed: 0.5
+  damage: 4
+  flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
+  meleeScale: 1
+  meleeSpeed: 1

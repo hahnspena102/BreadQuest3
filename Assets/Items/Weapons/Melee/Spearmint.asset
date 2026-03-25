@@ -18,5 +18,6 @@ MonoBehaviour:
   tier: 1
   damage: 6
   attackSpeed: 1
-  range: 1
   flavor: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}
+  meleeScale: 1.3
+  meleeSpeed: 0.8
