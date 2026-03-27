@@ -34,6 +34,9 @@ public class UseItem : MonoBehaviour
             } else if (equippedItemData is MagicData)
             {
                 MagicWeapon();
+            } else if (equippedItemData is PotionData)
+            {
+                UsePotion();
             }
         }
     }
@@ -148,6 +151,35 @@ public class UseItem : MonoBehaviour
         player.IsAttacking = false;
         itemAnimator.SetSpeed(1f);
         player.Animator.speed = 1f;
+    }
+
+    public void UsePotion()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {    
+            PotionData potionData = equippedItemData as PotionData;
+            Debug.Log("Using potion with " + potionData.potionEffects.Length + " effects.");
+            
+            foreach (PotionEntry entry in potionData.potionEffects)
+            {
+                Debug.Log("Applying effect: " + entry.effect + " with magnitude: " + entry.magnitude + " for duration: " + entry.duration);
+                PotionEffect effect = entry.effect;
+                switch (effect)
+                {
+                    case PotionEffect.Heal:
+                        
+                        player.Heal(entry.magnitude);
+                        break;
+
+
+                    
+                }
+            
+            }
+
+            // remove item
+            inventory.SetItemAtIndex(inventory.CurrentItemIndex, null);
+        }
     }
 
 }

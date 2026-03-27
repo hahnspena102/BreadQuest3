@@ -191,6 +191,15 @@ public class Player : MonoBehaviour
         
     }
 
+    public void Heal(float amount)
+    {
+        playerData.CurrentHealth += amount;
+        if (playerData.CurrentHealth > playerData.MaxHealth)
+        {
+            playerData.CurrentHealth = playerData.MaxHealth;
+        }
+    }
+
     private IEnumerator DamageFlash()
     {
         float pulseDuration = 0.1f;
