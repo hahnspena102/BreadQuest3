@@ -4,14 +4,21 @@ public class UseItem : MonoBehaviour
 {
     private Player player;
     private Inventory inventory;
-    private ItemData equippedItemData;
+    private Item equippedItem;
     private ItemAnimator itemAnimator;
     [SerializeField] private GameObject itemSpriteHolder;
     
     void Start()
     {
         player = FindFirstObjectByType<Player>();
-        inventory = player.Inventory;
+        if (player != null)
+        {
+            inventory = player.Inventory;
+            if (inventory != null)
+            {
+                inventory.NormalizeItemTypes();
+            }
+        }
         itemAnimator = GetComponentInChildren<ItemAnimator>();
 
     }
@@ -23,20 +30,26 @@ public class UseItem : MonoBehaviour
             return;
         }
 
-        equippedItemData = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
+        equippedItem = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
 
-        if (equippedItemData != null)
-        {
-            if (equippedItemData is MeleeData)
+        if (equippedItem != null)
+        {   
+            ItemData equippedItemData = equippedItem.ItemData;
+            if (equippedItemData == null)
             {
-                MeleeData meleeData = equippedItemData as MeleeData;
+                return;
+            }
+
+        
+            if (equippedItemData is MeleeData meleeData)
+            {
                 MeleeWeapon(meleeData.MeleeScale, meleeData.MeleeSpeed);
             } else if (equippedItemData is MagicData)
             {
                 MagicWeapon();
-            } else if (equippedItemData is PotionData)
+            } else if (equippedItemData is PotionData potionData)
             {
-                UsePotion();
+                UsePotion(potionData);
             }
         }
     }
@@ -153,11 +166,15 @@ public class UseItem : MonoBehaviour
         player.Animator.speed = 1f;
     }
 
-    public void UsePotion()
+    public void UsePotion(PotionData potionData)
     {
         if (Input.GetMouseButtonDown(0))
-        {    
-            PotionData potionData = equippedItemData as PotionData;
+        {
+            if (potionData == null)
+            {
+                return;
+            }
+
             Debug.Log("Using potion with " + potionData.potionEffects.Length + " effects.");
             
             foreach (PotionEntry entry in potionData.potionEffects)
@@ -167,7 +184,7 @@ public class UseItem : MonoBehaviour
                 switch (effect)
                 {
                     case PotionEffect.Heal:
-                        
+
                         player.Heal(entry.magnitude);
                         break;
 

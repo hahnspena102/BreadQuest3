@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         itemManager = FindFirstObjectByType<ItemManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         inventory.CurrentItemIndex = 0;
-        inventory.EquippedItemData = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
+        inventory.EquippedItem = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
 
 
         StartCoroutine(StatCoroutine());
@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
 
             if (dropAction.action.WasPressedThisFrame())
             {
-                if (inventory.EquippedItemData != null)
+                if (inventory.EquippedItem.ItemData != null)
                 {
                     DropItem();
                     
@@ -156,7 +156,8 @@ public class Player : MonoBehaviour
 
             int _numberKey = Mathf.FloorToInt(numberKeyAction.action.ReadValue<float>());
             inventory.CycleTo(_numberKey - 1);
-            itemSpriteHolder.sprite = inventory.EquippedItemData != null ? inventory.EquippedItemData.ItemSprite : null;
+            ItemData itemData = inventory.EquippedItem != null ? inventory.EquippedItem.ItemData : null;
+            itemSpriteHolder.sprite = itemData != null ? itemData.ItemSprite : null;
         }
         
 
@@ -224,27 +225,33 @@ public class Player : MonoBehaviour
 
     public void EquipItem(GameObject itemObj)
     {
-        Item item = itemObj.GetComponent<Item>();
-        if (item != null && item.ItemData != null)
+        DroppedItem droppedItem = itemObj.GetComponent<DroppedItem>();
+        Item item = droppedItem.Item;
+        ItemData itemData = item != null ? item.ItemData : null;
+
+        if (item != null && itemData != null)
         {
-            if (inventory.GetItemAtIndex(inventory.CurrentItemIndex) == null)
+            Item currentlyEquipped = inventory.EquippedItem;
+            ItemData currentItemData = item.ItemData;
+            
+            if (currentItemData == null)
             { 
-                inventory.SetItemAtIndex(inventory.CurrentItemIndex, item.ItemData);
+                inventory.SetItemAtIndex(inventory.CurrentItemIndex, item);
             } else
             {
                 int nextEmptySlot = inventory.NextEmptySlot();
                 if (nextEmptySlot == -1)
                 {
                     DropItem();
-                    inventory.SetItemAtIndex(inventory.CurrentItemIndex, item.ItemData);
+                    inventory.SetItemAtIndex(inventory.CurrentItemIndex, item);
                 } else
                 {
-                    inventory.SetItemAtIndex(nextEmptySlot, item.ItemData);
+                    inventory.SetItemAtIndex(nextEmptySlot, item);
                 }
             
                 
             }
-            inventory.EquippedItemData = item.ItemData;
+            inventory.EquippedItem = item;
             itemSpriteHolder.sprite = item.ItemData.ItemSprite;
             Destroy(itemObj);
         }
@@ -270,9 +277,9 @@ public class Player : MonoBehaviour
     public void DropItem()
     {
         Vector2 dropPosition = (Vector2)transform.position + new Vector2(0f, -0.5f);
-        itemManager.SpawnItem(inventory.EquippedItemData, dropPosition);
+        itemManager.SpawnItem(inventory.EquippedItem, dropPosition);
         inventory.SetItemAtIndex(inventory.CurrentItemIndex, null);
-        inventory.EquippedItemData = null;
+        inventory.EquippedItem = null;
         //inventory.CurrentItemIndex = -1;
         itemSpriteHolder.sprite = null;
     }

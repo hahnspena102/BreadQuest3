@@ -6,7 +6,7 @@ public class ItemSlotUI : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Image itemSprite;
     [SerializeField] private Image highlightBorder;
-    [SerializeField] private ItemData itemData;
+    [SerializeField] private Item item;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,18 +20,25 @@ public class ItemSlotUI : MonoBehaviour
         
     }
 
-    public void SetItem(ItemData newItem)
+    public void SetItem(Item newItem)
     {
-        itemData = newItem;
-        if (itemData == null)
+        item = newItem;
+
+        if (item == null)
+        {
+            itemSprite.sprite = null;
+            itemSprite.enabled = false;
+            return;
+        } else if (item.ItemData == null)
         {
             itemSprite.sprite = null;
             itemSprite.enabled = false;
             return;
         }
-        if (itemSprite != null && itemData != null)
+        
+        if (itemSprite != null)
         {
-            itemSprite.sprite = itemData.ItemSprite;
+            itemSprite.sprite = item.ItemData.ItemSprite;
             itemSprite.enabled = true;
         }
     }

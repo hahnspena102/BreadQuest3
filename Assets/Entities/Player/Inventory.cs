@@ -4,76 +4,128 @@ using UnityEngine;
 public class Inventory : ScriptableObject
 {
     [SerializeField] private int capacity;
-    [SerializeField] private ItemData[] itemDatas;
+    [SerializeField] private Item[] items;
     [SerializeField] private int currentItemIndex = 0;
-    [SerializeField] private ItemData equippedItemData;
+    [SerializeField] private Item equippedItem;
     
    
 
     public int Capacity { get => capacity; set => capacity = value; }
-    public ItemData[] ItemDatas { get => itemDatas; set => itemDatas = value; }
-    public ItemData EquippedItemData { get => equippedItemData; set => equippedItemData = value; }
     public int CurrentItemIndex { get => currentItemIndex; set => currentItemIndex = value; }
-    public ItemData GetItemAtIndex(int index)
+    public Item EquippedItem { get => equippedItem; set => equippedItem = value; }
+    public Item[] Items { get => items; set => items = value; }
+
+    public void NormalizeItemTypes()
     {
-        if (index >= 0 && index < itemDatas.Length)
+        if (items == null)
         {
-            return itemDatas[index];
+            return;
+        }
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            Item originalItem = items[i];
+            if (originalItem == null)
+            {
+                continue;
+            }
+
+            ItemData data = originalItem.ItemData;
+            if (data == null)
+            {
+                continue;
+            }
+
+            Item normalizedItem = ItemFactory.Clone(originalItem);
+            if (normalizedItem != null)
+            {
+                items[i] = normalizedItem;
+            }
+        }
+
+        if (currentItemIndex >= 0 && currentItemIndex < items.Length)
+        {
+            equippedItem = items[currentItemIndex];
+        }
+        else
+        {
+            equippedItem = null;
+        }
+    }
+
+    public Item GetItemAtIndex(int index)
+    {
+        if (items != null && index >= 0 && index < items.Length)
+        {
+            return items[index];
         }
         return null;
     }
 
-    public void SetItemAtIndex(int index, ItemData itemData)
+    public void SetItemAtIndex(int index, Item item)
     {
-        if (index >= 0 && index < itemDatas.Length)
+        if (items != null && index >= 0 && index < items.Length)
         {
-            itemDatas[index] = itemData;
+            items[index] = item;
         }
     }
 
     public void CycleItem(float direction)
     {
-        if (itemDatas.Length == 0) return;
+        if (items == null)
+        {
+            return;
+        }
+
+        if (items.Length == 0) return;
 
         if (currentItemIndex == -1) currentItemIndex = 0;
 
         if (direction > 0)
         {
-            currentItemIndex = (currentItemIndex + 1) % itemDatas.Length;
+            currentItemIndex = (currentItemIndex + 1) % items.Length;
         }
         else if (direction < 0)
         {
-            currentItemIndex = (currentItemIndex - 1 + itemDatas.Length) % itemDatas.Length;
+            currentItemIndex = (currentItemIndex - 1 + items.Length) % items.Length;
         }
 
-        equippedItemData = itemDatas[currentItemIndex];
-
+        equippedItem = items[currentItemIndex];
     }
 
     public void CycleTo(int index)
     {
-        if (itemDatas.Length == 0) return;
-        if (index >= 0 && index < itemDatas.Length)
+        if (items == null)
+        {
+            return;
+        }
+
+        if (items.Length == 0) return;
+        if (index >= 0 && index < items.Length)
         {
             currentItemIndex = index;
-            equippedItemData = itemDatas[currentItemIndex];
- 
+            equippedItem = items[currentItemIndex];
         }
     }
 
     private bool IsFull()
     {
-        for (int i = 0; i < itemDatas.Length; i++)
+        if (items == null)
         {
-            if (itemDatas[i] == null)
+            return false;
+        }
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] == null)
                 return false;
         }
 
         return true;
     }
-    public void AddItem(Item item)
+    public void AddItem(DroppedItem droppedItem)
     {
-        if (item.ItemData == null)
+        if (droppedItem == null || droppedItem.Item == null)
         {
             Debug.LogWarning("Trying to add an item with no ItemData!");
             return;
@@ -85,14 +137,19 @@ public class Inventory : ScriptableObject
             return;
         }
 
-        ItemData newItemData = item.ItemData;
+        Item newItem = ItemFactory.Clone(droppedItem.Item);
+        if (newItem == null || newItem.ItemData == null)
+        {
+            Debug.LogWarning("Trying to add an item with no ItemData!");
+            return;
+        }
 
         // Find the first empty slot
-        for (int i = 0; i < itemDatas.Length; i++)
+        for (int i = 0; i < items.Length; i++)
         {
-            if (itemDatas[i] == null)
+            if (items[i] == null)
             {
-                itemDatas[i] = newItemData;
+                items[i] = newItem;
                 break;
             }
         }
@@ -100,9 +157,14 @@ public class Inventory : ScriptableObject
 
     public int NextEmptySlot()
     {
-        for (int i = 0; i < itemDatas.Length; i++)
+        if (items == null)
         {
-            if (itemDatas[i] == null)
+            return -1;
+        }
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] == null)
                 return i;
         }
         return -1; 

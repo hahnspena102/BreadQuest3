@@ -34,11 +34,11 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = 0; i < inventory.Capacity; i++)
         {
-            ItemData itemData = inventory.GetItemAtIndex(i);
+            Item item = inventory.GetItemAtIndex(i);
             ItemSlotUI itemSlotUI = transform.GetChild(i).GetComponent<ItemSlotUI>();
             if (itemSlotUI != null)
             {
-                itemSlotUI.SetItem(itemData);
+                itemSlotUI.SetItem(item);
             }
 
             if (i == inventory.CurrentItemIndex)

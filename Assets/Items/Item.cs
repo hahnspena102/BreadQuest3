@@ -1,28 +1,11 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[System.Serializable]
+public class Item
 {
     [SerializeField] private ItemData itemData;
+    [SerializeField] private int count = 1;
 
     public ItemData ItemData { get => itemData; set => itemData = value; }
-    private SpriteRenderer spriteRenderer;
-
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        gameObject.name = itemData != null ? itemData.ItemName : "Item";
-        if (spriteRenderer != null && itemData != null && itemData.ItemSprite != null)
-        {
-            spriteRenderer.sprite = itemData.ItemSprite;
-        }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-     
-    }
-
+    public int Count { get => count; set => count = value; }
 }

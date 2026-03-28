@@ -149,7 +149,7 @@ public class Enemy : MonoBehaviour
         if (popupManager != null)
         {
             Color? outlineColor = flavor != null ? flavor.FlavorColor : (Color?)null;
-            Debug.Log("Passing outline color: " + (outlineColor.HasValue ? outlineColor.Value.ToString() : "None"));
+//            Debug.Log("Passing outline color: " + (outlineColor.HasValue ? outlineColor.Value.ToString() : "None"));
             popupManager.ShowDamagePopup(transform.position, (int)totalDamage, isEffective, false, outlineColor);
         }
         StartCoroutine(DamageFlash());
@@ -215,7 +215,8 @@ public class Enemy : MonoBehaviour
             
             if (player != null)
             {
-                WeaponData weaponData = player.Inventory.EquippedItemData as WeaponData;
+                Weapon weapon = player.Inventory.EquippedItem as Weapon;
+                WeaponData weaponData = weapon != null ? weapon.WeaponData : null;
                 TakeDamage(weaponData != null ? weaponData.Damage : 0f, weaponData != null ? weaponData.Flavor : null);
 
             }
