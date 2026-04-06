@@ -226,35 +226,47 @@ public class Player : MonoBehaviour
     public void EquipItem(GameObject itemObj)
     {
         DroppedItem droppedItem = itemObj.GetComponent<DroppedItem>();
-        Item item = droppedItem.Item;
-        ItemData itemData = item != null ? item.ItemData : null;
-
-        if (item != null && itemData != null)
+        if (droppedItem == null || droppedItem.Item == null || droppedItem.Item.ItemData == null)
         {
-            Item currentlyEquipped = inventory.EquippedItem;
-            ItemData currentItemData = item.ItemData;
-            
-            if (currentItemData == null)
-            { 
-                inventory.SetItemAtIndex(inventory.CurrentItemIndex, item);
-            } else
-            {
-                int nextEmptySlot = inventory.NextEmptySlot();
-                if (nextEmptySlot == -1)
-                {
-                    DropItem();
-                    inventory.SetItemAtIndex(inventory.CurrentItemIndex, item);
-                } else
-                {
-                    inventory.SetItemAtIndex(nextEmptySlot, item);
-                }
-            
-                
-            }
-            inventory.EquippedItem = item;
-            itemSpriteHolder.sprite = item.ItemData.ItemSprite;
+            return;
+        }
+
+        int startingDroppedCount = Mathf.Max(1, droppedItem.Item.Count);
+        bool pickedUpFully = inventory.AddItem(droppedItem);
+        if (pickedUpFully)
+        {
             Destroy(itemObj);
         }
+        else
+        {
+            bool noEmptySlots = inventory.NextEmptySlot() == -1;
+            bool nothingWasAdded = droppedItem.Item.Count == startingDroppedCount;
+
+            if (noEmptySlots && nothingWasAdded)
+            {
+                Item equippedBeforeSwap = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
+                Item incomingItem = ItemFactory.Clone(droppedItem.Item);
+
+                if (incomingItem != null)
+                {
+                    inventory.SetItemAtIndex(inventory.CurrentItemIndex, incomingItem);
+                    inventory.EquippedItem = incomingItem;
+
+                    if (equippedBeforeSwap != null)
+                    {
+                        droppedItem.Item = ItemFactory.Clone(equippedBeforeSwap);
+                    }
+                    else
+                    {
+                        Destroy(itemObj);
+                    }
+                }
+            }
+        }
+
+        Item equipped = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
+        inventory.EquippedItem = equipped;
+        itemSpriteHolder.sprite = equipped != null && equipped.ItemData != null ? equipped.ItemData.ItemSprite : null;
     }
    
     void OnTriggerEnter2D(Collider2D other)

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ItemSlotUI : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class ItemSlotUI : MonoBehaviour
     [SerializeField] private Image itemSprite;
     [SerializeField] private Image highlightBorder;
     [SerializeField] private Item item;
+    [SerializeField] private TextMeshProUGUI quantityText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,11 +30,13 @@ public class ItemSlotUI : MonoBehaviour
         {
             itemSprite.sprite = null;
             itemSprite.enabled = false;
+            quantityText.text = "";
             return;
         } else if (item.ItemData == null)
         {
             itemSprite.sprite = null;
             itemSprite.enabled = false;
+            quantityText.text = "";
             return;
         }
         
@@ -41,6 +45,9 @@ public class ItemSlotUI : MonoBehaviour
             itemSprite.sprite = item.ItemData.ItemSprite;
             itemSprite.enabled = true;
         }
+        quantityText.text = item.Count > 1 ? item.Count.ToString() : "";
+
+        
     }
 
     public void HighlightSlot(bool highlight)

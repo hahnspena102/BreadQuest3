@@ -25,7 +25,7 @@ public class ItemManager : MonoBehaviour
         DroppedItem droppedItemComponent = itemObj.GetComponent<DroppedItem>();
         if (droppedItemComponent != null)
         {
-            droppedItemComponent.Item = item;
+            droppedItemComponent.Item = ItemFactory.Clone(item);
         }
         else
         {

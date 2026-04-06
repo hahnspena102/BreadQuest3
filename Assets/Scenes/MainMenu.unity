@@ -726,6 +726,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb29e68638bd378499bcee62414514f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: ef445100a68f3b947adc92711f4984c5, type: 2}
+  inventory: {fileID: 11400000, guid: 49bad98f5eaa0594faf119d1fbba7496, type: 2}
+  starterPlayerData: {fileID: 11400000, guid: f4dc6730eb8c74a909b2025574973680, type: 2}
+  starterInventory: {fileID: 11400000, guid: 25f5ca973ea3048e8b1c9f3246f07098, type: 2}
 --- !u!82 &1936637579
 AudioSource:
   m_ObjectHideFlags: 0

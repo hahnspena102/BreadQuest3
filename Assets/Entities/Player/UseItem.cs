@@ -195,7 +195,11 @@ public class UseItem : MonoBehaviour
             }
 
             // remove item
-            inventory.SetItemAtIndex(inventory.CurrentItemIndex, null);
+            equippedItem.Count = Mathf.Max(0, equippedItem.Count - 1);
+            if (equippedItem.Count == 0)
+            {
+                inventory.SetItemAtIndex(inventory.CurrentItemIndex, null);
+            }
         }
     }
 

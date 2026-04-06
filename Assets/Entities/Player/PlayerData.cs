@@ -37,6 +37,18 @@ public class PlayerData : EntityData
         return (int)Mathf.Round(thresholdMultiplier * res);
     }
 
+    public void ResetToStarter(PlayerData starterData)
+    {
+        this.MaxHealth = starterData.MaxHealth;
+        this.CurrentHealth = starterData.CurrentHealth;
+        this.MaxGlucose = starterData.MaxGlucose;
+        this.CurrentGlucose = starterData.CurrentGlucose;
+        this.Gold = starterData.Gold;
+        this.Experience = starterData.Experience;
+        this.CritRate = starterData.CritRate;
+        this.CritBonus = starterData.CritBonus;
+    }
+
 
 
 

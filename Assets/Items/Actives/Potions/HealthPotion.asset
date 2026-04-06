@@ -16,6 +16,7 @@ MonoBehaviour:
   description: A simple healing potion.
   itemSprite: {fileID: 141063693582682956, guid: e363850c1e99fb948b3d124660456616, type: 3}
   tier: 1
+  maxStackSize: 99
   potionEffects:
   - effect: 0
     magnitude: 100

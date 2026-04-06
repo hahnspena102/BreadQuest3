@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   capacity: 6
   items:
-  - itemData: {fileID: 0}
+  - itemData: {fileID: 11400000, guid: 00078f3cceabe3f4f912d296cce0c8f8, type: 2}
+    count: 1
+  - itemData: {fileID: 11400000, guid: 957e115a573b42a45bd24c7099e11a7e, type: 2}
+    count: 1
+  - itemData: {fileID: 11400000, guid: 41bc63079acd0cc49b31c60a47799389, type: 2}
+    count: 1
+  - itemData: {fileID: 11400000, guid: 41bc63079acd0cc49b31c60a47799389, type: 2}
     count: 1
   - itemData: {fileID: 11400000, guid: da0d55bf0e13bbd478f66f0982b32f3a, type: 2}
     count: 1
-  - itemData: {fileID: 11400000, guid: 41bc63079acd0cc49b31c60a47799389, type: 2}
+  - itemData: {fileID: 11400000, guid: be4a67c95d150453b8dd65185c786afc, type: 2}
     count: 1
-  - itemData: {fileID: 11400000, guid: 41bc63079acd0cc49b31c60a47799389, type: 2}
-    count: 1
-  - itemData: {fileID: 0}
-    count: 1
-  - itemData: {fileID: 0}
-    count: 1
-  currentItemIndex: 1
+  currentItemIndex: 0
   equippedItem:
-    itemData: {fileID: 11400000, guid: da0d55bf0e13bbd478f66f0982b32f3a, type: 2}
+    itemData: {fileID: 11400000, guid: 00078f3cceabe3f4f912d296cce0c8f8, type: 2}
     count: 1
