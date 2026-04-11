@@ -106,7 +106,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306248d4f2eaf46db824a4ff57f72751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemData: {fileID: 11400000, guid: 3b6b7d5c17869400494489f7881a353f, type: 2}
+  item:
+    itemData: {fileID: 0}
+    count: 1
+  playSpawnPop: 1
+  popHeight: 0.85
+  popDuration: 0.4
+  popHorizontalSpread: 1
+  popScalePunch: 0.12
 --- !u!50 &8927163654162029532
 Rigidbody2D:
   serializedVersion: 5

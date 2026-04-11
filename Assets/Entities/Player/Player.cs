@@ -267,6 +267,7 @@ public class Player : MonoBehaviour
         Item equipped = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
         inventory.EquippedItem = equipped;
         itemSpriteHolder.sprite = equipped != null && equipped.ItemData != null ? equipped.ItemData.ItemSprite : null;
+        
     }
    
     void OnTriggerEnter2D(Collider2D other)

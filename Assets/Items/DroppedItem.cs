@@ -3,6 +3,11 @@ using UnityEngine;
 public class DroppedItem : MonoBehaviour
 {
     [SerializeField] private Item item;
+    [SerializeField] private bool playSpawnPop = true;
+    [SerializeField] private float popHeight = 0.85f;
+    [SerializeField] private float popDuration = 0.32f;
+    [SerializeField] private float popHorizontalSpread = 0.35f;
+    [SerializeField] private float popScalePunch = 0.12f;
 
     public Item Item
     {
@@ -14,10 +19,52 @@ public class DroppedItem : MonoBehaviour
         }
     }
     private SpriteRenderer spriteRenderer;
+    private Coroutine spawnPopRoutine;
+
+    void OnEnable()
+    {
+        if (!playSpawnPop) return;
+
+        if (spawnPopRoutine != null)
+        {
+            StopCoroutine(spawnPopRoutine);
+        }
+
+        spawnPopRoutine = StartCoroutine(PlaySpawnPop());
+    }
 
     void Start()
     {
         RefreshVisuals();
+    }
+
+    private System.Collections.IEnumerator PlaySpawnPop()
+    {
+        float duration = Mathf.Max(0.01f, popDuration);
+        Vector3 startPosition = transform.position;
+        Vector3 startScale = transform.localScale;
+
+        float horizontalOffset = Random.Range(-popHorizontalSpread, popHorizontalSpread);
+        Vector3 endPosition = startPosition + new Vector3(horizontalOffset, 0.5f, 0f);
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            float arc = Mathf.Sin(t * Mathf.PI) * popHeight;
+            transform.position = Vector3.Lerp(startPosition, endPosition, t) + Vector3.up * arc;
+
+            float punch = 1f + Mathf.Sin(t * Mathf.PI) * popScalePunch;
+            transform.localScale = startScale * punch;
+
+            yield return null;
+        }
+
+        transform.position = endPosition;
+        transform.localScale = startScale;
+        spawnPopRoutine = null;
     }
 
     public void RefreshVisuals()

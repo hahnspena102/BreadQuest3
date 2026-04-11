@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Chest : MonoBehaviour
 {
@@ -24,9 +25,7 @@ public class Chest : MonoBehaviour
         if (useAction != null && useAction.action.WasPressedThisFrame())
         {
             Debug.Log("Player used the chest!");
-            itemManager.SpawnRandomDrop(transform.position);
-            // Optionally, you could add an animation or sound effect here
-             Destroy(gameObject); // Remove the chest after opening
+            StartCoroutine(OpenChest());
         }
     }
 
@@ -50,5 +49,23 @@ public class Chest : MonoBehaviour
         {
             playerInRange = false;
         }
+    }
+
+    IEnumerator OpenChest()
+    {
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("open");
+        }
+        yield return new WaitForSeconds(1f); // Wait for the animation to finish
+
+        int numDrops = Random.Range(1, 4);
+        for (int i = 0; i < numDrops; i++) {
+            yield return new WaitForSeconds(0.5f); 
+            itemManager.SpawnRandomDrop(transform.position);
+        }
+        
+        Destroy(gameObject); // Remove the chest after opening
     }
 }
