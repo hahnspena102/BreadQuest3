@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private float invulnerabilityDuration = 1f;
     private int flashCount = 3;
     private string directionFacing = "Down";
+    private int previousLevel;
 
     [Header("Input")]
     public InputActionReference moveAction;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     [Header("Managers")]
     [ReadOnly] public ItemManager itemManager;
     [ReadOnly] public GameManager gameManager;
+    [ReadOnly] public PopupManager popupManager;
 
     [Header("Debug")]
     [SerializeField]private bool debugInvulnerability = false;
@@ -63,10 +65,11 @@ public class Player : MonoBehaviour
 
         itemManager = FindFirstObjectByType<ItemManager>();
         gameManager = FindFirstObjectByType<GameManager>();
+        popupManager = FindFirstObjectByType<PopupManager>();
         inventory.CurrentItemIndex = 0;
         inventory.EquippedItem = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
 
-
+        previousLevel = playerData.Level;
         StartCoroutine(StatCoroutine());
     }
 
@@ -87,6 +90,19 @@ public class Player : MonoBehaviour
     void Update()
     {
         playerData.UpdateLevel();
+        
+        playerData.MaxHealth = 100f + (playerData.Level - 1) * 20f;
+        playerData.MaxGlucose = 50f + (playerData.Level - 1) * 10f;
+        
+        if (playerData.Level > previousLevel)
+        {
+            playerData.CurrentHealth = playerData.MaxHealth;
+            playerData.CurrentGlucose = playerData.MaxGlucose;
+            Debug.Log("Level Up! Current Level: " + playerData.Level);
+            previousLevel = playerData.Level;
+        }
+
+
         if (playerData.CurrentHealth <= 0 && debugInvulnerability == false)
         {
             gameManager.GameOver();
@@ -100,11 +116,12 @@ public class Player : MonoBehaviour
 
         if (rb)
         {
-            if (_moveDirection.y != 0 && _moveDirection.x == 0) {
-                    transform.localScale = new Vector3(1f, 1f, 1f);
-            }
+            
             if (!isAttacking)
             {    
+                if (_moveDirection.y != 0 && _moveDirection.x == 0) {
+                    transform.localScale = new Vector3(1f, 1f, 1f);
+                }
                 
                 if (_moveDirection.x < 0) {
                     transform.localScale = new Vector3(-1f, 1f, 1f);
@@ -187,6 +204,8 @@ public class Player : MonoBehaviour
         playerData.CurrentHealth -= damage;
         animator.SetTrigger("hurt");
         invulnerabilityTimer = invulnerabilityDuration; 
+        
+        popupManager.ShowDamagePopup(transform.position, (int)damage, false, true);
 
         StartCoroutine(DamageFlash());
         

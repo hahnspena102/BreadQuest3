@@ -10,6 +10,19 @@ public class GameOver : MonoBehaviour
     [SerializeField]private TMPro.TextMeshProUGUI textBox;
     [SerializeField]private CanvasGroup continueGroup;
     [SerializeField]private CanvasGroup black;
+
+    [SerializeField] private PlayerData playerData;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private PlayerData starterPlayerData;
+    [SerializeField] private Inventory starterInventory;
+    IEnumerator NewGame() {
+
+        playerData.ResetToStarter(starterPlayerData);
+        inventory.ResetToStarter(starterInventory);
+        yield return null;
+
+        SceneManager.LoadScene("SampleScene");
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,12 +34,14 @@ public class GameOver : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return)) {
-            SceneManager.LoadScene("SampleScene");
+           StartCoroutine(NewGame());
+
         }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             SceneManager.LoadScene("MainMenu");
         }
     }
+    
 
     IEnumerator GameOverCo() {
         float fadeDuration = 2f;

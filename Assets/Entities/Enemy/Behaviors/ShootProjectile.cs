@@ -95,6 +95,7 @@ public class ShootProjectile : EnemyBehavior
             GameObject projectileInstance =
                 Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
 
+
             if (rotateTowardsTarget)
             {
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -102,8 +103,12 @@ public class ShootProjectile : EnemyBehavior
             }
 
             Projectile projectileComp = projectileInstance.GetComponent<Projectile>();
+
+           
           
             projectileComp.InitializeProjectile(direction, enemy);
+
+           
 
             if (i < projectileCount - 1)
                 yield return new WaitForSeconds(projectileDelay);

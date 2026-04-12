@@ -16,14 +16,14 @@ public class HurtBox : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
 
-                player.TakeDamage(enemy.EnemyData.ContactDamage);
+                player.TakeDamage(enemy.ContactDamage);
         }
         if (other.CompareTag("EnemyProjectile"))
         {
             Projectile projectile = other.GetComponent<Projectile>();
             if (projectile != null)
 
-                player.TakeDamage(projectile.ProjectileData.Damage);
+                player.TakeDamage(projectile.ProjectileDamage);
         }
     }
 }

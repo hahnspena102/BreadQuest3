@@ -8,7 +8,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyData enemyData;
     public Wave AssignedWave { get; set; }
     public Room AssignedRoom { get; set; }
-    [SerializeField] private float currentHealth;
+    [SerializeField] private float currentHealth, maxHealth;
+    [SerializeField] private float contactDamage;
+    
     [SerializeField] private Transform shadowTransform;
     [SerializeField]private PhysicsMaterial2D bouncyMaterial;
 
@@ -36,6 +38,8 @@ public class Enemy : MonoBehaviour
     public Transform ShadowTransform { get => shadowTransform; set => shadowTransform = value; }
     public global::System.Boolean IsAttackReady { get => isAttackReady; set => isAttackReady = value; }
     public Enemy LinkedEnemy { get => linkedEnemy; set => linkedEnemy = value; }
+    public Player Player { get => player; set => player = value; }
+    public global::System.Single ContactDamage { get => contactDamage; set => contactDamage = value; }
 
     void Awake()
     {
@@ -52,8 +56,14 @@ public class Enemy : MonoBehaviour
         ApplyEnemyData();
         //agent.enabled = true;
         behaviorCoroutine = StartCoroutine(BehaviorLoop());
-        currentHealth = enemyData.MaxHealth;
-      
+        float floor = player != null ? player.PlayerData.CurrentFloor : 0f;
+        currentHealth = enemyData.MaxHealth + (enemyData.MaxHealth * enemyData.HealthScalar) * floor;
+        maxHealth = currentHealth;
+        contactDamage = enemyData.ContactDamage + (enemyData.ContactDamage * enemyData.DamageScalar) * floor;
+        if (enemyData.IgnoreEnemyCollision)
+        {
+            Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer);
+        }
     }
 
     void OnDisable()

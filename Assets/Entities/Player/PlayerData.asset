@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b776020167e434f8fd6cc08196e71f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxHealth: 100
+  maxHealth: 140
   speed: 5
-  currentHealth: -20.099998
-  maxGlucose: 100
-  currentGlucose: 100
+  currentHealth: -110.6
+  maxGlucose: 70
+  currentGlucose: 70
   gold: 0
-  experience: 800
-  level: 1
+  experience: 4100
+  level: 3
   critRate: 0
   critBonus: 0
+  currentFloor: 6

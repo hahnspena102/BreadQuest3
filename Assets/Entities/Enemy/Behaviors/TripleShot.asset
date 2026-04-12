@@ -16,6 +16,6 @@ MonoBehaviour:
   targetTag: Player
   targetDelta: {x: 0, y: 0, z: 0}
   projectileCount: 3
-  spreadAngle: 30
+  spreadAngle: 45
   projectileDelay: 0
   rotateTowardsTarget: 1

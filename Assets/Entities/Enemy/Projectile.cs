@@ -3,8 +3,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private ProjectileData projectileData;
+    private float projectileDamage;
 
     public ProjectileData ProjectileData { get => projectileData; set => projectileData = value; }
+    public global::System.Single ProjectileDamage { get => projectileDamage; set => projectileDamage = value; }
 
     public void InitializeProjectile(Vector2 direction, Enemy enemy)
     {
@@ -28,6 +30,9 @@ public class Projectile : MonoBehaviour
         {
             sr.sprite = projectileData.ProjectileSprite;
         }
+
+        float floor = enemy.Player != null ? enemy.Player.PlayerData.CurrentFloor : 0f;
+        projectileDamage = projectileData.Damage + (projectileData.Damage * enemy.EnemyData.DamageScalar) * floor;
     }
 
     void OnTriggerEnter2D(Collider2D other)

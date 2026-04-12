@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c370366e05adc154e99f791deacab6a6, type: 3}
   m_Name: TaiyakiProj
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  speed: 5
+  speed: 3
   damage: 10
   lifetime: 6
   projectileSprite: {fileID: -6091231491983230200, guid: a6b0ec30dad04be44baf2f865412e853, type: 3}

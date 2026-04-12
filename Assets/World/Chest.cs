@@ -9,11 +9,14 @@ public class Chest : MonoBehaviour
     private Player player;
     private ItemManager itemManager;
     private bool playerInRange = false;
+    private Canvas statusCanvas;
 
     void Start()
     {
         player = FindFirstObjectByType<Player>();
         itemManager = FindFirstObjectByType<ItemManager>();
+        statusCanvas = GetComponentInChildren<Canvas>();
+        statusCanvas.enabled = false;
     }
 
     // Update is called once per frame
@@ -31,9 +34,12 @@ public class Chest : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Player is in the chest range.");
+        
+
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player is in the chest range.");
+            statusCanvas.enabled = true;
             Player player = other.gameObject.GetComponent<Player>();
             if (player == null) return;
             playerInRange = true;
@@ -44,9 +50,11 @@ public class Chest : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D other)
     {
-        Debug.Log("Player has left the chest range.");
+        
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player has left the chest range.");
+            statusCanvas.enabled = false;
             playerInRange = false;
         }
     }
@@ -60,7 +68,14 @@ public class Chest : MonoBehaviour
         }
         yield return new WaitForSeconds(1f); // Wait for the animation to finish
 
-        int numDrops = Random.Range(1, 4);
+        float dropRoll = Random.value;
+        int numDrops;
+        if (dropRoll < 0.65f)
+            numDrops = 1;
+        else if (dropRoll < 0.95f)
+            numDrops = 2;
+        else
+            numDrops = 3;
         for (int i = 0; i < numDrops; i++) {
             yield return new WaitForSeconds(0.5f); 
             itemManager.SpawnRandomDrop(transform.position);

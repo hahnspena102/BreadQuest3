@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class DroppedItem : MonoBehaviour
 {
@@ -7,7 +8,10 @@ public class DroppedItem : MonoBehaviour
     [SerializeField] private float popHeight = 0.85f;
     [SerializeField] private float popDuration = 0.32f;
     [SerializeField] private float popHorizontalSpread = 0.35f;
+    [SerializeField] private float popVerticalSpread = 0.15f;
     [SerializeField] private float popScalePunch = 0.12f;
+    
+    private TextMeshProUGUI equipText;
 
     public Item Item
     {
@@ -35,7 +39,10 @@ public class DroppedItem : MonoBehaviour
 
     void Start()
     {
+        equipText = GetComponentInChildren<TextMeshProUGUI>();
         RefreshVisuals();
+        
+        
     }
 
     private System.Collections.IEnumerator PlaySpawnPop()
@@ -45,7 +52,8 @@ public class DroppedItem : MonoBehaviour
         Vector3 startScale = transform.localScale;
 
         float horizontalOffset = Random.Range(-popHorizontalSpread, popHorizontalSpread);
-        Vector3 endPosition = startPosition + new Vector3(horizontalOffset, 0.5f, 0f);
+        float verticalOffset = Random.Range(-popVerticalSpread, popVerticalSpread);
+        Vector3 endPosition = startPosition + new Vector3(horizontalOffset, verticalOffset, 0f);
 
         float elapsed = 0f;
         while (elapsed < duration)
@@ -81,12 +89,30 @@ public class DroppedItem : MonoBehaviour
         {
             spriteRenderer.sprite = itemData != null ? itemData.ItemSprite : null;
         }
+
+        if (equipText != null)
+        {
+            equipText.text = $"[E] {item?.ItemData.ItemName ?? "item"}";
+            equipText.enabled = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-     
+
+        if (other.CompareTag("Player"))
+        {
+            
+            equipText.enabled = true;
+
+        }
     }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            equipText.enabled = false;
+        }
+    }
 }

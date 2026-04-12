@@ -17,6 +17,11 @@ public class EnemyData : EntityData
     [SerializeField]private List<EnemyBehaviorEntry> behaviors;
     [SerializeField]private bool disableAgent = false;
     [SerializeField]private bool isBouncy = false;
+    [SerializeField]private float healthScalar = 0.1f;
+    [SerializeField]private float damageScalar = 0.1f;
+    [SerializeField]private bool ignoreEnemyCollision = false;
+    public float HealthScalar { get => healthScalar; set => healthScalar = value; }
+    public float DamageScalar { get => damageScalar; set => damageScalar = value; }
 
     [SerializeField]private bool performBehaviorsInOrder = false;
     [Header("Animations")]
@@ -52,4 +57,5 @@ public class EnemyData : EntityData
     public RuntimeAnimatorController AnimatorOverride { get => animatorOverride; set => animatorOverride = value; }
     public global::System.Single ExperienceDropped { get => experienceDropped; set => experienceDropped = value; }
     public Flavor Flavor { get => flavor; set => flavor = value; }
+    public global::System.Boolean IgnoreEnemyCollision { get => ignoreEnemyCollision; set => ignoreEnemyCollision = value; }
 }

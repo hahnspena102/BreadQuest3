@@ -11,6 +11,8 @@ public class PlayerData : EntityData
     [ReadOnly] [SerializeField] private int level;
     [SerializeField] private float critRate;
     [SerializeField] private float critBonus;
+    [SerializeField] private int currentFloor = 1;
+    
 
     public global::System.Single Gold { get => gold; set => gold = value; }
     public global::System.Single Experience { get => experience; set => experience = value; }
@@ -20,6 +22,7 @@ public class PlayerData : EntityData
     public global::System.Single MaxGlucose { get => maxGlucose; set => maxGlucose = value; }
     public global::System.Single CurrentGlucose { get => currentGlucose; set => currentGlucose = value; }
     public global::System.Int32 Level { get => level; }
+    public global::System.Int32 CurrentFloor { get => currentFloor; set => currentFloor = value; }
 
     private float thresholdMultiplier = 1000;
     private float thresholdPower = 1.4f;

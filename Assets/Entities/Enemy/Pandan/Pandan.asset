@@ -19,10 +19,12 @@ MonoBehaviour:
   description: Although fragrant, don't stop to smell this little panda or else...
     BANG!
   flavor: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}
-  contactDamage: 0
+  contactDamage: 10
+  experienceDropped: 100
   projectileData: {fileID: 11400000, guid: f3c5948684a83ce48857addbf0942fc7, type: 2}
   projectileOffset: {x: 0.2, y: 0}
   projectileCooldown: 0
+  onSpawnBehaviors: []
   behaviors:
   - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
     behaviorDuration:
@@ -39,7 +41,12 @@ MonoBehaviour:
       min: 1
       max: 2
     TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
   performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: 962db1ff07ce2ca40a7b035e82b22148, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 962db1ff07ce2ca40a7b035e82b22148, type: 2}
   moveAnimationF: {fileID: 7400000, guid: 0266a0576c7d67a4daad171ff411e59c, type: 2}
