@@ -1,4 +1,5 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(DroppedItem))]
@@ -97,3 +98,4 @@ public class DroppedItemEditor : Editor
         }
     }
 }
+#endif

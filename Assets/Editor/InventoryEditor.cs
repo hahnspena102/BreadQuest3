@@ -1,5 +1,6 @@
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CustomEditor(typeof(Inventory))]
 public class InventoryEditor : Editor
@@ -154,3 +155,4 @@ public class InventoryEditor : Editor
         }
     }
 }
+#endif

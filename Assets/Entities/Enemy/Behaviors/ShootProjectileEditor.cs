@@ -1,5 +1,6 @@
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CustomEditor(typeof(ShootProjectile))]
 public class ShootProjectileEditor : Editor
@@ -19,7 +20,6 @@ public class ShootProjectileEditor : Editor
     {
         serializedObject.Update();
 
-        // 🔹 Draw all base & shared fields (including behaviorDuration)
         DrawPropertiesExcluding(
             serializedObject,
             "targetMode",
@@ -47,3 +47,4 @@ public class ShootProjectileEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

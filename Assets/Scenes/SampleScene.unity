@@ -2400,7 +2400,8 @@ MonoBehaviour:
   useAction: {fileID: 1834262910}
   itemManager: {fileID: 0}
   gameManager: {fileID: 0}
-  debugInvulnerability: 1
+  popupManager: {fileID: 0}
+  debugInvulnerability: 0
 --- !u!1 &2079751700
 GameObject:
   m_ObjectHideFlags: 0

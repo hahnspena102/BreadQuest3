@@ -1,5 +1,6 @@
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 [CustomEditor(typeof(Move))]
 public class MoveEditor : Editor
@@ -61,3 +62,4 @@ public class MoveEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif
