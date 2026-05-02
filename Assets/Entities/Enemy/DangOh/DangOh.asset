@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: DangOh
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 30
+  speed: 0
+  enemyName: DangOh
+  enemySprite: {fileID: -6050473969829582647, guid: bb206b2f72949437dbc021dadfe3468f, type: 3}
+  description: 
+  flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
+  contactDamage: 13
+  baseDamage: 7
+  experienceDropped: 100
+  projectileData: {fileID: 11400000, guid: 0075dcfad1275d34aad8eec0608c91c6, type: 2}
+  projectileOffset: {x: 0, y: 0}
+  projectileCooldown: 0
+  onSpawnBehaviors: []
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: ece8a4f638b144d4f9aaa238718c77fd, type: 2}
+    behaviorDuration:
+      min: 2
+      max: 2
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+    behaviorDuration:
+      min: 2
+      max: 5
+    TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  isDynamic: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
+  performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
+  idleAnimationF: {fileID: 7400000, guid: 0796dc3c3cfd54299835bb4f7c7df2e9, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: 0796dc3c3cfd54299835bb4f7c7df2e9, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: 0796dc3c3cfd54299835bb4f7c7df2e9, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: 0796dc3c3cfd54299835bb4f7c7df2e9, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: f99a2f63a1ac9436a90028cc73c58075, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: f99a2f63a1ac9436a90028cc73c58075, type: 2}
+  shadowOffset: {x: 0, y: -0.45}
+  shadowScale: {x: 0.7, y: 0.7}
+  attackSounds:
+  - {fileID: 8300000, guid: 41eb754adb7c2484abddf8a1e0cddbb9, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: c2e2c0f3107947f4d8bea60fc200795c, type: 3}
+  deathSounds: []

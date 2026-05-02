@@ -9,6 +9,7 @@ TagManager:
   - PlayerAttack
   - Item
   - Teleporter
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Player
   - Enemy
   - Item
-  - 
-  - 
+  - Projectile
+  - Floor
   - 
   - 
   - 

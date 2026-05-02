@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358e93b5ef25ad442a4102ce9aed70c0, type: 3}
+  m_Name: WandOfMochi
+  m_EditorClassIdentifier: Assembly-CSharp::MagicData
+  itemName: Wand of Mochi
+  description: 
+  itemSprite: {fileID: 5125201553696344367, guid: dc16130cbe8d6b04a89e362dfb52275b, type: 3}
+  tier: 1
+  maxStackSize: 1
+  damage: 5
+  flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
+  projectileData: {fileID: 11400000, guid: a37ecb35df5a20940a1680a8eb8bbd41, type: 2}
+  glucoseCost: 5
+  projectileCount: 1
+  spreadAngle: 15
+  projectileDelay: 0.1

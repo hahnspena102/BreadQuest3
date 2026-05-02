@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private bool isAttackReady = false;
+    private float repeatedHitCooldown = 0.5f;
 
     [ReadOnly][SerializeField] private PopupManager popupManager;
 
@@ -29,6 +31,7 @@ public class Enemy : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     private Coroutine behaviorCoroutine;
     private Player player;
+    private readonly Dictionary<int, float> lastHitTimesBySource = new Dictionary<int, float>();
 
 
 
@@ -62,7 +65,15 @@ public class Enemy : MonoBehaviour
         contactDamage = enemyData.ContactDamage + (enemyData.ContactDamage * enemyData.DamageScalar) * floor;
         if (enemyData.IgnoreEnemyCollision)
         {
-            Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer);
+            //ignore other enemies
+            Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemy"), true);
+        }
+        if (enemyData.IsDynamic)
+        {
+            if (rb != null)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
         }
     }
 
@@ -155,6 +166,8 @@ public class Enemy : MonoBehaviour
      
         currentHealth -= totalDamage;
 
+        SoundManager.instance.PlaySoundFXClip(enemyData.GetHurtSound(), transform);
+
 
         if (popupManager != null)
         {
@@ -195,6 +208,7 @@ public class Enemy : MonoBehaviour
         {
             popupManager.ShowDeathParticles(transform.position);
         }
+        SoundManager.instance.PlaySoundFXClip(enemyData.GetDeathSound(), transform);
         if (AssignedWave != null)
         {
             AssignedWave.enemiesLeft--;
@@ -213,7 +227,7 @@ public class Enemy : MonoBehaviour
 
         player.PlayerData.Experience += enemyData.ExperienceDropped;
 
-        Destroy(gameObject);
+        Destroy(gameObject, 0.01f);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -221,6 +235,11 @@ public class Enemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            if (!CanTakeDamageFrom(collision.gameObject))
+            {
+                return;
+            }
+
             Player player = collision.gameObject.GetComponentInParent<Player>();
             
             if (player != null)
@@ -231,8 +250,43 @@ public class Enemy : MonoBehaviour
 
             }
         }
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
+        {
+            if (!CanTakeDamageFrom(collision.gameObject))
+            {
+                return;
+            }
+
+            if (player != null)
+            {
+                Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+                if (projectile != null)
+                {
+                    TakeDamage(projectile.ProjectileDamage, projectile.Flavor);
+                }
+            }
+        }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
+        {
+            if (!CanTakeDamageFrom(collision.gameObject))
+            {
+                return;
+            }
+
+            if (player != null)
+            {
+                Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+                if (projectile != null)
+                {
+                    TakeDamage(projectile.ProjectileDamage, projectile.Flavor);
+                }
+            }
+        }
+    }
 
 
     public void ApplyEnemyData()
@@ -280,5 +334,25 @@ public class Enemy : MonoBehaviour
     public void SetLinkedEnemy(Enemy enemy)
     {
         linkedEnemy = enemy;
+    }
+
+    private bool CanTakeDamageFrom(GameObject source)
+    {
+        if (source == null)
+        {
+            return false;
+        }
+
+        int sourceId = source.GetInstanceID();
+        if (lastHitTimesBySource.TryGetValue(sourceId, out float lastHitTime))
+        {
+            if (Time.time - lastHitTime < repeatedHitCooldown)
+            {
+                return false;
+            }
+        }
+
+        lastHitTimesBySource[sourceId] = Time.time;
+        return true;
     }
 }

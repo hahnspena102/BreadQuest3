@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -18,16 +19,23 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerData playerData;
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject hoverItem;
+    private readonly List<GameObject> overlappingItems = new List<GameObject>();
     private bool isAttacking = false;
+    private bool isCharging = false;
+    private bool isDashing = false;
     private float invulnerabilityTimer = 0f;
     
     private float invulnerabilityDuration = 1f;
+    [SerializeField] private float dashSpeed = 18f;
+    [SerializeField] private float dashDuration = 0.1f;
+    [SerializeField] private float dashCooldown = 2f;
     private int flashCount = 3;
     private string directionFacing = "Down";
     private int previousLevel;
 
     [Header("Input")]
     public InputActionReference moveAction;
+    public InputActionReference dashAction;
     public InputActionReference numberKeyAction;
     public InputActionReference equipAction;
     public InputActionReference dropAction;
@@ -45,6 +53,9 @@ public class Player : MonoBehaviour
 
     private float _mouseScrollY;
     private Vector2 worldPointPosition;
+    private Vector2 dashDirection = Vector2.down;
+    private float dashTimer = 0f;
+    private float dashCooldownTimer = 0f;
 
     public Vector2 WorldPointPosition { get => worldPointPosition; set => worldPointPosition = value; }
     public Inventory Inventory { get => inventory; set => inventory = value; }
@@ -52,6 +63,12 @@ public class Player : MonoBehaviour
     public global::System.String DirectionFacing { get => directionFacing; set => directionFacing = value; }
     public PlayerData PlayerData { get => playerData; set => playerData = value; }
     public Animator Animator { get => animator; set => animator = value; }
+    public global::System.Boolean IsCharging { get => isCharging; set => isCharging = value; }
+    public GameObject HoverItem { get => hoverItem; set => hoverItem = value; }
+    public global::System.Single DashSpeed { get => dashSpeed; set => dashSpeed = value; }
+    public global::System.Single DashDuration { get => dashDuration; set => dashDuration = value; }
+    public global::System.Single DashCooldown { get => dashCooldown; set => dashCooldown = value; }
+    public global::System.Single DashCooldownTimer { get => dashCooldownTimer; set => dashCooldownTimer = value; }
 
 
 
@@ -66,7 +83,7 @@ public class Player : MonoBehaviour
         itemManager = FindFirstObjectByType<ItemManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         popupManager = FindFirstObjectByType<PopupManager>();
-        inventory.CurrentItemIndex = 0;
+        
         inventory.EquippedItem = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
 
         previousLevel = playerData.Level;
@@ -108,16 +125,65 @@ public class Player : MonoBehaviour
             gameManager.GameOver();
         }
 
+        if (playerData.HealCooldown > 0f)
+        {
+            playerData.HealCooldown -= Time.deltaTime;
+        }
+        if (playerData.GlucoseCooldown > 0f)
+        {
+            playerData.GlucoseCooldown -= Time.deltaTime;
+        }
+
         if (invulnerabilityTimer > 0f)
         {
             invulnerabilityTimer -= Time.deltaTime;
         }
+        if (dashCooldownTimer > 0f)
+        {
+            dashCooldownTimer -= Time.deltaTime;
+        }
+        if (isDashing)
+        {
+            dashTimer -= Time.deltaTime;
+            if (dashTimer <= 0f)
+            {
+                isDashing = false;
+            }
+        }
+
         _moveDirection = moveAction.action.ReadValue<Vector2>();
+
+        bool dashPressed = (dashAction != null && dashAction.action != null && dashAction.action.WasPressedThisFrame())
+            || (Keyboard.current != null && (Keyboard.current.leftShiftKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame));
+
+        if (!isDashing && !isAttacking&& dashPressed && dashCooldownTimer <= 0f)
+        {
+            Vector2 requestedDashDirection = _moveDirection;
+            if (requestedDashDirection.sqrMagnitude > 0.001f)
+            {
+                requestedDashDirection = requestedDashDirection.normalized;
+            }
+            else
+            {
+                requestedDashDirection = directionFacing switch
+                {
+                    "Left" => Vector2.left,
+                    "Right" => Vector2.right,
+                    "Up" => Vector2.up,
+                    _ => Vector2.down
+                };
+            }
+
+            dashDirection = requestedDashDirection;
+            isDashing = true;
+            dashTimer = dashDuration;
+            dashCooldownTimer = dashCooldown;
+        }
 
         if (rb)
         {
             
-            if (!isAttacking)
+            if (!isAttacking && !isCharging && !isDashing)
             {    
                 if (_moveDirection.y != 0 && _moveDirection.x == 0) {
                     transform.localScale = new Vector3(1f, 1f, 1f);
@@ -136,7 +202,6 @@ public class Player : MonoBehaviour
                 } else if (_moveDirection.y < 0) {
                     directionFacing = "Down";
                 }
-            
             }
             
             
@@ -152,7 +217,7 @@ public class Player : MonoBehaviour
 
         worldPointPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        if (!isAttacking)
+        if (!isAttacking && !isCharging && !isDashing)
         { 
             if (equipAction.action.WasPressedThisFrame())
             {
@@ -185,10 +250,21 @@ public class Player : MonoBehaviour
     {
         if (rb)
         {
+            if (isDashing)
+            {
+                rb.linearVelocity = dashDirection * dashSpeed;
+                return;
+            }
+
             float totalSpeed = playerData.Speed;
             if (isAttacking)
             {
                 totalSpeed *= 0.8f;
+            }
+
+            if (isCharging)
+            {
+                totalSpeed *= 0.25f;
             }
             rb.linearVelocity = _moveDirection * totalSpeed;
         }
@@ -203,6 +279,7 @@ public class Player : MonoBehaviour
 
         playerData.CurrentHealth -= damage;
         animator.SetTrigger("hurt");
+        itemSpriteHolder.sprite = null;
         invulnerabilityTimer = invulnerabilityDuration; 
         
         popupManager.ShowDamagePopup(transform.position, (int)damage, false, true);
@@ -286,6 +363,7 @@ public class Player : MonoBehaviour
         Item equipped = inventory.GetItemAtIndex(inventory.CurrentItemIndex);
         inventory.EquippedItem = equipped;
         itemSpriteHolder.sprite = equipped != null && equipped.ItemData != null ? equipped.ItemData.ItemSprite : null;
+        RefreshHoverItem();
         
     }
    
@@ -293,7 +371,12 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            hoverItem = other.gameObject;
+            GameObject item = other.gameObject;
+            if (!overlappingItems.Contains(item))
+            {
+                overlappingItems.Add(item);
+            }
+            RefreshHoverItem();
         }
     }
 
@@ -301,8 +384,36 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            hoverItem = null;
+            overlappingItems.Remove(other.gameObject);
+            RefreshHoverItem();
         }
+    }
+
+    private void RefreshHoverItem()
+    {
+        overlappingItems.RemoveAll(item => item == null || !item.CompareTag("Item"));
+        if (overlappingItems.Count == 0)
+        {
+            hoverItem = null;
+            return;
+        }
+
+        GameObject closestItem = null;
+        float closestDistanceSqr = float.MaxValue;
+        Vector3 playerPosition = transform.position;
+
+        for (int i = 0; i < overlappingItems.Count; i++)
+        {
+            GameObject item = overlappingItems[i];
+            float distanceSqr = (item.transform.position - playerPosition).sqrMagnitude;
+            if (distanceSqr < closestDistanceSqr)
+            {
+                closestDistanceSqr = distanceSqr;
+                closestItem = item;
+            }
+        }
+
+        hoverItem = closestItem;
     }
 
     

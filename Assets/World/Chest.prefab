@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee7a962d1347854b86406bd3646878e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chest
+  chestOpenSound: {fileID: 8300000, guid: b2f3a326887e2f84381243f6a5d0ed85, type: 3}
 --- !u!95 &-6019211379832027600
 Animator:
   serializedVersion: 7

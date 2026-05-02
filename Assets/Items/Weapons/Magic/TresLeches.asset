@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358e93b5ef25ad442a4102ce9aed70c0, type: 3}
+  m_Name: TresLeches
+  m_EditorClassIdentifier: Assembly-CSharp::MagicData
+  itemName: Tres Leches
+  description: 
+  itemSprite: {fileID: 7680053381261851907, guid: 3a3dc87c3ae91f349a5d6c76bb994cb7, type: 3}
+  tier: 1
+  maxStackSize: 1
+  damage: 3
+  flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
+  projectileData: {fileID: 11400000, guid: a3699c8368131d64082345161227c814, type: 2}
+  glucoseCost: 7
+  projectileCount: 3
+  spreadAngle: 15
+  projectileDelay: 0.1
+  castSounds:
+  - {fileID: 8300000, guid: b41a04af0bc86584b81b15c4704be1ea, type: 3}

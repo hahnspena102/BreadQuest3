@@ -135,9 +135,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ee9082588dba44a00800000000000000
+      spriteID: b2080ad474ef84447af7380330153154
       internalID: 739905185230883310
       vertices: []
       indices: 
@@ -157,76 +157,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4d321198f32d7840800000000000000
-      internalID: 5223370693312396623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Inventory_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba6332391a3530920800000000000000
-      internalID: 2955297733908575915
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Inventory_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c4b43b29ea825f100800000000000000
-      internalID: 141063693582682956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Inventory_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc4bbe6a017c47c47b57ea7d06fde60e
-      internalID: 506647924
+      spriteID: 155e87ac1cd38544c8f627fe79d37fa6
+      internalID: 5223370693312396623
       vertices: []
       indices: 
       edges: []
@@ -251,9 +185,6 @@ TextureImporter:
     nameFileIdTable:
       Inventory_0: 739905185230883310
       Inventory_1: 5223370693312396623
-      Inventory_2: 2955297733908575915
-      Inventory_3: 141063693582682956
-      Inventory_4: 506647924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

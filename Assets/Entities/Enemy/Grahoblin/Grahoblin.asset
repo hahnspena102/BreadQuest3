@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: Grahoblin
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  speed: 1
+  enemyName: Grahoblin
+  enemySprite: {fileID: 3691718313985784316, guid: 2597fbf9ee3ccc745bc1cb80a6df3b5e, type: 3}
+  description: 
+  flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
+  contactDamage: 20
+  baseDamage: 20
+  experienceDropped: 100
+  projectileData: {fileID: 0}
+  projectileOffset: {x: 0, y: 0}
+  projectileCooldown: 0
+  onSpawnBehaviors: []
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+    behaviorDuration:
+      min: 1.5094339
+      max: 5.0943394
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 10d7b0f24a9edf040aeb510cdef239f7, type: 2}
+    behaviorDuration:
+      min: 0.6722689
+      max: 0.6722689
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
+    behaviorDuration:
+      min: 1.3207545
+      max: 3.0188677
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: f786ef53bf5e75b408be104a562066f7, type: 2}
+    behaviorDuration:
+      min: 1.8867924
+      max: 4.1509433
+    TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  isDynamic: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
+  performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
+  idleAnimationF: {fileID: 7400000, guid: 39e75f4efa54f8d4e92886ca521a76bd, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: 39e75f4efa54f8d4e92886ca521a76bd, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: d61a5370d904ed2458471e6a02996728, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: d61a5370d904ed2458471e6a02996728, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: c2cdbe6caaa8c5f449fa74e7945968d0, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: c2cdbe6caaa8c5f449fa74e7945968d0, type: 2}
+  shadowOffset: {x: 0.1, y: -0.92}
+  shadowScale: {x: 1, y: 1}
+  attackSounds: []
+  hurtSounds: []
+  deathSounds: []

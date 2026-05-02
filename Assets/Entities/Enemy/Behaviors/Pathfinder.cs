@@ -11,6 +11,7 @@ public class Pathfinder : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private bool hasTarget = false;
+    private bool hasLoggedAgentNotReady = false;
 
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
 
@@ -39,6 +40,12 @@ public class Pathfinder : MonoBehaviour
 
     public void MoveToTarget(Vector2 destPos)
     {
+        if (!IsAgentReady())
+        {
+            hasTarget = false;
+            return;
+        }
+
         agent.isStopped = false;
         agent.SetDestination(destPos);
         hasTarget = true;
@@ -47,11 +54,23 @@ public class Pathfinder : MonoBehaviour
     public void Stop()
     {
         hasTarget = false;
+
+        if (!IsAgentReady())
+        {
+            return;
+        }
+
         agent.isStopped = true;
     }
 
     void Update()
     {
+        if (!IsAgentReady())
+        {
+            hasTarget = false;
+            return;
+        }
+
         if (agent.path.status == NavMeshPathStatus.PathInvalid)
         {
             hasTarget = false;
@@ -64,5 +83,28 @@ public class Pathfinder : MonoBehaviour
             hasTarget = false;
             agent.isStopped = true;
         }
+    }
+
+    private bool IsAgentReady()
+    {
+        bool ready = agent != null
+            && agent.enabled
+            && gameObject.activeInHierarchy
+            && agent.isActiveAndEnabled
+            && agent.isOnNavMesh;
+
+        if (!ready)
+        {
+            if (!hasLoggedAgentNotReady)
+            {
+                Debug.LogWarning("Pathfinder skipped movement: NavMeshAgent is disabled or not on a NavMesh for " + gameObject.name);
+                hasLoggedAgentNotReady = true;
+            }
+
+            return false;
+        }
+
+        hasLoggedAgentNotReady = false;
+        return true;
     }
 }

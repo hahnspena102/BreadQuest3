@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c370366e05adc154e99f791deacab6a6, type: 3}
+  m_Name: OBProj
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  speed: 0.001
+  lifetime: 1
+  projectileSprite: {fileID: -1391859619573250259, guid: d4acbd2e059f2004a883f371b78e5b6c, type: 3}
+  movingAnimation: {fileID: 7400000, guid: 86c447d9334da1c409c0175aa549e953, type: 2}
+  rotationSpeed: 1
+  rotateTowardsMovementDirection: 1
+  maxBounces: 0
+  isTrigger: 1

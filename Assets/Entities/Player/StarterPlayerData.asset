@@ -16,9 +16,10 @@ MonoBehaviour:
   speed: 5
   currentHealth: 100
   maxGlucose: 100
-  currentGlucose: 100
+  currentGlucose: 50
   gold: 0
   experience: 0
   level: 1
   critRate: 0
   critBonus: 0
+  currentFloor: 1

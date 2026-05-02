@@ -6336,6 +6336,7 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: 49bad98f5eaa0594faf119d1fbba7496, type: 2}
   hoverItem: {fileID: 0}
   moveAction: {fileID: 1322881080}
+  dashAction: {fileID: 0}
   numberKeyAction: {fileID: 1490149409}
   equipAction: {fileID: 0}
   dropAction: {fileID: 0}

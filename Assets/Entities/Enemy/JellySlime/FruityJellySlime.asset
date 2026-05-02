@@ -20,16 +20,26 @@ MonoBehaviour:
     smell like strawberries
   flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
   contactDamage: 5
+  baseDamage: 0
+  experienceDropped: 100
   projectileData: {fileID: 0}
   projectileOffset: {x: 0, y: 0}
   projectileCooldown: 0
+  onSpawnBehaviors: []
   behaviors:
   - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
     behaviorDuration:
       min: 0.5
       max: 0.5
     TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  isDynamic: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: 9e8b1a8124b41cd41a81959733e58e5c, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 9e8b1a8124b41cd41a81959733e58e5c, type: 2}
   moveAnimationF: {fileID: 7400000, guid: 9e8b1a8124b41cd41a81959733e58e5c, type: 2}
@@ -38,3 +48,7 @@ MonoBehaviour:
   attackAnimationB: {fileID: 7400000, guid: 9e8b1a8124b41cd41a81959733e58e5c, type: 2}
   shadowOffset: {x: 0, y: -0.3}
   shadowScale: {x: 0.5, y: 0.5}
+  attackSounds: []
+  hurtSounds: []
+  deathSounds:
+  - {fileID: 8300000, guid: df6380e361db20b45a9c874e6d9338a8, type: 3}

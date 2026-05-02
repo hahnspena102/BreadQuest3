@@ -2,10 +2,29 @@ using UnityEngine;
 
 public class ItemAnimator : MonoBehaviour
 {
-    Animator animator;
+    [SerializeField] private AnimationClip rangedChargePlaceholderClip;
+    [SerializeField] private AnimationClip rangedReleasePlaceholderClip;
+
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private RuntimeAnimatorController baseController;
+    private AnimatorOverrideController overrideController;
+    private AnimationClip currentRangedChargeClip;
+    private AnimationClip currentRangedReleaseClip;
+    private bool isRangedCharging;
+
+    public Animator Animator => animator;
+
+    public SpriteRenderer SpriteRenderer { get => spriteRenderer; set => spriteRenderer = value; }
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            baseController = animator.runtimeAnimatorController;
+        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void UseAnimation(string animationName)
@@ -31,5 +50,61 @@ public class ItemAnimator : MonoBehaviour
         {
             animator.speed = speed;
         }
+    }
+
+    public void BeginRangedCharge(RangedData rangedData)
+    {
+        if (rangedData == null || rangedData.ChargeAnimationClip == currentRangedChargeClip || rangedData.ReleaseAnimationClip == currentRangedReleaseClip)
+        {
+            return;
+        }
+
+        if (animator == null || rangedChargePlaceholderClip == null)
+        {
+            return;
+        }
+
+        RuntimeAnimatorController activeController = animator.runtimeAnimatorController;
+        if (activeController == null)
+        {
+            return;
+        }
+
+        if (overrideController == null)
+        {
+            RuntimeAnimatorController resolvedBaseController = activeController;
+            if (resolvedBaseController is AnimatorOverrideController existingOverride)
+            {
+                resolvedBaseController = existingOverride.runtimeAnimatorController;
+            }
+
+            baseController = resolvedBaseController;
+            overrideController = new AnimatorOverrideController(baseController);
+
+
+        }
+
+        overrideController[rangedChargePlaceholderClip.name] = rangedData.ChargeAnimationClip;
+        overrideController[rangedReleasePlaceholderClip.name] = rangedData.ReleaseAnimationClip;
+        animator.runtimeAnimatorController = overrideController;
+        animator.Rebind();
+        animator.Update(0f);
+        currentRangedChargeClip = rangedData.ChargeAnimationClip;
+        isRangedCharging = true;
+    }
+
+    public void EndRangedCharge()
+    {
+        if (animator == null || baseController == null || !isRangedCharging)
+        {
+            return;
+        }
+
+        animator.runtimeAnimatorController = baseController;
+        animator.Rebind();
+        animator.Update(0f);
+        isRangedCharging = false;
+        currentRangedChargeClip = null;
+        currentRangedReleaseClip = null;
     }
 }

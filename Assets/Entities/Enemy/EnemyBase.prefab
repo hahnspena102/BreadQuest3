@@ -87,7 +87,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 6d457a7bac82be24091955dc1e4e3911, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &7488364561652074606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,11 +113,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   enemyData: {fileID: 0}
   currentHealth: 0
+  maxHealth: 0
+  contactDamage: 0
   shadowTransform: {fileID: 7667810397641370904}
   bouncyMaterial: {fileID: 6200000, guid: 125f5fee532b1cc489689a47984b55d9, type: 2}
   projectilePrefab: {fileID: 6349153925857546609, guid: f4f1a34e6b7b4fb44993985c84646989, type: 3}
   isAttackReady: 0
   popupManager: {fileID: 0}
+  linkedEnemy: {fileID: 0}
 --- !u!114 &6995008896430759957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +164,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2767976121527430670}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -349,7 +352,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8104392357477098261, guid: 6e6d13bd9520c414ca431d5258650ef4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

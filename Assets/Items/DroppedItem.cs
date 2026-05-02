@@ -10,6 +10,7 @@ public class DroppedItem : MonoBehaviour
     [SerializeField] private float popHorizontalSpread = 0.35f;
     [SerializeField] private float popVerticalSpread = 0.15f;
     [SerializeField] private float popScalePunch = 0.12f;
+    private Player player;
     
     private TextMeshProUGUI equipText;
 
@@ -40,6 +41,7 @@ public class DroppedItem : MonoBehaviour
     void Start()
     {
         equipText = GetComponentInChildren<TextMeshProUGUI>();
+        player = FindFirstObjectByType<Player>();
         RefreshVisuals();
         
         
@@ -97,22 +99,17 @@ public class DroppedItem : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void Update()
     {
-
-        if (other.CompareTag("Player"))
+        if (player.HoverItem == this.gameObject)
         {
-            
             equipText.enabled = true;
-
         }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        else
         {
             equipText.enabled = false;
         }
     }
+
+
 }

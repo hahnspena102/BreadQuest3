@@ -29,3 +29,21 @@ MonoBehaviour:
     dropChance: 2
   - item: {fileID: 11400000, guid: 16d30de1a5587c84894c2bb11a603746, type: 2}
     dropChance: 3
+  - item: {fileID: 11400000, guid: 0ecc42e6443032c448956ee2d8c5335b, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: 1668e68623dbbf34396d467f6611ff88, type: 2}
+    dropChance: 1
+  - item: {fileID: 11400000, guid: c4b5fc28c54f48c4994637d8fdd5b92a, type: 2}
+    dropChance: 3
+  - item: {fileID: 11400000, guid: c4b5fc28c54f48c4994637d8fdd5b92a, type: 2}
+    dropChance: 3
+  - item: {fileID: 11400000, guid: aa7669a459f470d4fa587b144cbcb2d7, type: 2}
+    dropChance: 3
+  - item: {fileID: 11400000, guid: 54e22a21306076f4b97ed5906b4c5fb8, type: 2}
+    dropChance: 3
+  - item: {fileID: 11400000, guid: 9f3a6661ce353c044be422e11f0c4509, type: 2}
+    dropChance: 4
+  - item: {fileID: 11400000, guid: 933c3caefb545f34eacd51ad90c64a66, type: 2}
+    dropChance: 0
+  - item: {fileID: 11400000, guid: 933c3caefb545f34eacd51ad90c64a66, type: 2}
+    dropChance: 0

@@ -20,6 +20,8 @@ MonoBehaviour:
     mostly lower class troops, they stay loyal. '
   flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   contactDamage: 5
+  baseDamage: 10
+  experienceDropped: 100
   projectileData: {fileID: 11400000, guid: 8c2366915db1f0a4c9a516d2cb519b83, type: 2}
   projectileOffset: {x: 0.1, y: 0.35}
   projectileCooldown: 0
@@ -32,7 +34,11 @@ MonoBehaviour:
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: b42d8ed9e4faddb418331a0b5258c08e, type: 2}
   idleAnimationB: {fileID: 7400000, guid: b42d8ed9e4faddb418331a0b5258c08e, type: 2}
   moveAnimationF: {fileID: 7400000, guid: b42d8ed9e4faddb418331a0b5258c08e, type: 2}

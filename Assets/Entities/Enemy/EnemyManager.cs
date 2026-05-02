@@ -6,6 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyBasePrefab;
     [SerializeField] private EnemySpawns enemySpawns;
+    private float minSpawnDistanceFromPlayer = 3f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +27,7 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject SpawnEnemy(EnemyData enemyData, Vector3 position, Wave assignedWave)
     {
+        position = EnforceMinDistanceFromPlayer(position);
         GameObject newEnemy = Instantiate(enemyBasePrefab, position, Quaternion.identity);
 
         newEnemy.transform.SetParent(transform);
@@ -34,10 +36,42 @@ public class EnemyManager : MonoBehaviour
         if (enemyComponent != null) {
             enemyComponent.EnemyData = enemyData;
             enemyComponent.AssignedWave = assignedWave;
+            enemyComponent.AssignedRoom = assignedWave != null ? assignedWave.associatedRoom : null;
             enemyComponent.ApplyEnemyData();
         }
 
         return newEnemy;
+    }
+
+    private Vector3 EnforceMinDistanceFromPlayer(Vector3 spawnPosition)
+    {
+        Player player = FindFirstObjectByType<Player>();
+        if (player == null || minSpawnDistanceFromPlayer <= 0f)
+        {
+            return spawnPosition;
+        }
+
+        Vector2 playerPosition = player.transform.position;
+        Vector2 desiredPosition = new Vector2(spawnPosition.x, spawnPosition.y);
+        Vector2 offset = desiredPosition - playerPosition;
+        float minDistanceSqr = minSpawnDistanceFromPlayer * minSpawnDistanceFromPlayer;
+
+        if (offset.sqrMagnitude >= minDistanceSqr)
+        {
+            return spawnPosition;
+        }
+
+        if (offset.sqrMagnitude < 0.0001f)
+        {
+            offset = Random.insideUnitCircle;
+            if (offset.sqrMagnitude < 0.0001f)
+            {
+                offset = Vector2.right;
+            }
+        }
+
+        Vector2 clampedPosition = playerPosition + offset.normalized * minSpawnDistanceFromPlayer;
+        return new Vector3(clampedPosition.x, clampedPosition.y, spawnPosition.z);
     }
 
 

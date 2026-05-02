@@ -27,7 +27,7 @@ public class DamagePopup : MonoBehaviour
         if (isPlayerHurt) {
             textMesh.color = new Color(255/255f, 110/255f,110/255f);
         }
-        Debug.Log("custom outline color: " + (customOutlineColor.HasValue ? customOutlineColor.Value.ToString() : "None"));
+       
         Color outlineColor;
         if (customOutlineColor.HasValue)
         {

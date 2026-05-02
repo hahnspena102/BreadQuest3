@@ -9,6 +9,7 @@ public class EnemyData : EntityData
     [SerializeField]private string description;
     [SerializeField]private Flavor flavor;
     [SerializeField]private int contactDamage;
+    [SerializeField]private int baseDamage;
     [SerializeField]private float experienceDropped = 100f;
     [SerializeField] private ProjectileData projectileData;
     [SerializeField] private Vector2 projectileOffset = Vector2.zero;
@@ -17,6 +18,7 @@ public class EnemyData : EntityData
     [SerializeField]private List<EnemyBehaviorEntry> behaviors;
     [SerializeField]private bool disableAgent = false;
     [SerializeField]private bool isBouncy = false;
+    [SerializeField]private bool isDynamic = false;
     [SerializeField]private float healthScalar = 0.1f;
     [SerializeField]private float damageScalar = 0.1f;
     [SerializeField]private bool ignoreEnemyCollision = false;
@@ -35,6 +37,10 @@ public class EnemyData : EntityData
     [SerializeField]private Vector2 shadowOffset;
     [SerializeField]private Vector2 shadowScale = Vector2.one;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] private AudioClip[] hurtSounds;
+    [SerializeField] private AudioClip[] deathSounds;
     public Vector2 ShadowOffset { get => shadowOffset; set => shadowOffset = value; }
     public Vector2 ShadowScale { get => shadowScale; set => shadowScale = value; }
     public List<EnemyBehaviorEntry> OnSpawnBehaviors { get => onSpawnBehaviors; set => onSpawnBehaviors = value; }
@@ -58,4 +64,24 @@ public class EnemyData : EntityData
     public global::System.Single ExperienceDropped { get => experienceDropped; set => experienceDropped = value; }
     public Flavor Flavor { get => flavor; set => flavor = value; }
     public global::System.Boolean IgnoreEnemyCollision { get => ignoreEnemyCollision; set => ignoreEnemyCollision = value; }
+    public global::System.Int32 BaseDamage { get => baseDamage; set => baseDamage = value; }
+    public global::System.Boolean IsDynamic { get => isDynamic; set => isDynamic = value; }
+
+    public AudioClip GetAttackSound()
+    {
+        if (attackSounds == null || attackSounds.Length == 0) return null;
+        return attackSounds[Random.Range(0, attackSounds.Length)];
+    }
+
+    public AudioClip GetHurtSound()
+    {
+        if (hurtSounds == null || hurtSounds.Length == 0) return null;
+        return hurtSounds[Random.Range(0, hurtSounds.Length)];
+    }
+
+    public AudioClip GetDeathSound()
+    {
+        if (deathSounds == null || deathSounds.Length == 0) return null;
+        return deathSounds[Random.Range(0, deathSounds.Length)];
+    }
 }

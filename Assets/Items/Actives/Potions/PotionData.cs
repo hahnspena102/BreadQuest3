@@ -3,9 +3,7 @@ using UnityEngine;
 public enum PotionEffect
 {
     Heal,
-    Speed,
-    Strength,
-    Defense
+    Glucose,
 }
 
 [System.Serializable]

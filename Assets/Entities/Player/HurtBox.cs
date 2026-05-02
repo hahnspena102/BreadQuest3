@@ -24,6 +24,7 @@ public class HurtBox : MonoBehaviour
             if (projectile != null)
 
                 player.TakeDamage(projectile.ProjectileDamage);
+
         }
     }
 }

@@ -18,6 +18,7 @@ public class ShootProjectile : EnemyBehavior
     [SerializeField] private float spreadAngle = 15f;
     [SerializeField] private float projectileDelay = 0.1f;
     [SerializeField] private bool rotateTowardsTarget = true;
+    [SerializeField] private Color[] projectileColors;
 
     public override float PerformBehavior(Enemy enemy, float behaviorDuration)
     {
@@ -58,6 +59,8 @@ public class ShootProjectile : EnemyBehavior
             yield return null;
         }
         enemy.IsAttackReady = false;
+
+        SoundManager.instance.PlaySoundFXClip(enemy.EnemyData.GetAttackSound(), enemy.transform);
 
         spawnPosition = enemy.transform.position;
         targetPosition = findTargetPosition(enemy);
@@ -106,7 +109,16 @@ public class ShootProjectile : EnemyBehavior
 
            
           
-            projectileComp.InitializeProjectile(direction, enemy);
+            projectileComp.InitializeEnemyProjectile(direction, enemy);
+
+            if (projectileColors != null && projectileColors.Length > 0)
+            {
+                SpriteRenderer sr = projectileInstance.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.color = projectileColors[i % projectileColors.Length];
+                }
+            }
 
            
 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b803cf80106f2545bfeb0e3a8af0d12, type: 3}
+  m_Name: CremeBowlee
+  m_EditorClassIdentifier: Assembly-CSharp::RangedData
+  itemName: Creme Bowlee
+  description: 
+  itemSprite: {fileID: -3035390412557001596, guid: 09da902ecd6666643a0b2142631147ff, type: 3}
+  tier: 1
+  maxStackSize: 1
+  damage: 8
+  flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
+  projectileData: {fileID: 11400000, guid: e8ed1e10e58d0f64e86fee864ee92ac2, type: 2}
+  projectileCount: 1
+  spreadAngle: 15
+  projectileDelay: 0.1
+  chargeTime: 1
+  chargeAnimationClip: {fileID: 7400000, guid: 9474439cdc635134eb885021c6d29da7, type: 2}
+  releaseAnimationClip: {fileID: 7400000, guid: cc69604eb7108bf43acd41b88a0cadb8, type: 2}

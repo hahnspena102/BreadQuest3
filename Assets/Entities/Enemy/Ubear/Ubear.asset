@@ -19,6 +19,8 @@ MonoBehaviour:
   description: 
   flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
   contactDamage: 4
+  baseDamage: 0
+  experienceDropped: 100
   projectileData: {fileID: 0}
   projectileOffset: {x: 0, y: 0}
   projectileCooldown: 0
@@ -46,6 +48,10 @@ MonoBehaviour:
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0
+  isDynamic: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
   animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: 1d0fe3c88cd3e3549bc4b132f7db184a, type: 2}
@@ -56,3 +62,13 @@ MonoBehaviour:
   attackAnimationB: {fileID: 7400000, guid: da56f853e2c4d4c49978625ce5bf03cc, type: 2}
   shadowOffset: {x: 0, y: -0.6}
   shadowScale: {x: 0.6, y: 0.6}
+  attackSounds:
+  - {fileID: 8300000, guid: e372607eab4437b4bad26aa69a145ec5, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 40a3ba6e5e1eb0e488489663547bc7d9, type: 3}
+  - {fileID: 8300000, guid: 89a78b81c3fba314785f1597b769e0e1, type: 3}
+  - {fileID: 8300000, guid: 59fb199015e8c9d41bd146c8dc00f80d, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 40a3ba6e5e1eb0e488489663547bc7d9, type: 3}
+  - {fileID: 8300000, guid: 89a78b81c3fba314785f1597b769e0e1, type: 3}
+  - {fileID: 8300000, guid: 59fb199015e8c9d41bd146c8dc00f80d, type: 3}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358e93b5ef25ad442a4102ce9aed70c0, type: 3}
+  m_Name: OrangeBeamsicle
+  m_EditorClassIdentifier: Assembly-CSharp::MagicData
+  itemName: Orange Beamsicle
+  description: 
+  itemSprite: {fileID: 4577311707800459560, guid: a61992f870c061941b26245ca1211be7, type: 3}
+  tier: 1
+  maxStackSize: 1
+  damage: 10
+  flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
+  projectileData: {fileID: 11400000, guid: fc5a21c5f23d81a4f9cf80fb3cd087d7, type: 2}
+  glucoseCost: 12
+  projectileCount: 1
+  spreadAngle: 15
+  projectileDelay: 0.1

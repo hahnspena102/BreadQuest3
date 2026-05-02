@@ -35,7 +35,6 @@ public class Teleporter : MonoBehaviour
      
         if (other.CompareTag("Player"))
         {
-               Debug.Log("Player is in the teleporter area.");
             statusCanvas.enabled = true;
             Player player = other.GetComponent<Player>();
             if (player == null) return;
@@ -50,7 +49,7 @@ public class Teleporter : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player has left the teleporter area.");
+
             statusCanvas.enabled = false;
             playerInRange = false;
         }

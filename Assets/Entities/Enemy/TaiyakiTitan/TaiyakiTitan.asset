@@ -19,6 +19,8 @@ MonoBehaviour:
   description: 
   flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
   contactDamage: 20
+  baseDamage: 15
+  experienceDropped: 100
   projectileData: {fileID: 11400000, guid: 40982c99a53c38746825ccecca290334, type: 2}
   projectileOffset: {x: 0, y: 0}
   projectileCooldown: 0
@@ -34,7 +36,7 @@ MonoBehaviour:
       min: 1
       max: 1
     TimesToRepeat: 1
-  - Behavior: {fileID: 11400000, guid: 4c8fcdea0f01aa2448d5672b4e80f9cc, type: 2}
+  - Behavior: {fileID: 11400000, guid: c9c59a7f906e6d64cafb35f7dd43d6b6, type: 2}
     behaviorDuration:
       min: 2
       max: 2
@@ -46,6 +48,9 @@ MonoBehaviour:
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
   animatorOverride: {fileID: 9100000, guid: 70d1e405f64181b418b15e1ef0afad97, type: 2}
   idleAnimationF: {fileID: 0}

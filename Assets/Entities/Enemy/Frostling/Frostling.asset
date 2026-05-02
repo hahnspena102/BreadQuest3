@@ -19,9 +19,12 @@ MonoBehaviour:
   description: 
   flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   contactDamage: 10
+  baseDamage: 5
+  experienceDropped: 100
   projectileData: {fileID: 11400000, guid: 0ed03a4ff335cb34fa33c5e69b621393, type: 2}
   projectileOffset: {x: 0, y: 0}
   projectileCooldown: 3
+  onSpawnBehaviors: []
   behaviors:
   - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
     behaviorDuration:
@@ -38,7 +41,14 @@ MonoBehaviour:
       min: 1
       max: 2
     TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  isDynamic: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
   moveAnimationF: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
@@ -47,3 +57,9 @@ MonoBehaviour:
   attackAnimationB: {fileID: 7400000, guid: 15dda2c6af9ad4478bd69bb510dc6555, type: 2}
   shadowOffset: {x: 0, y: -0.5}
   shadowScale: {x: 0.5, y: 0.5}
+  attackSounds:
+  - {fileID: 8300000, guid: b977e1f3708900848b27915fac26a62b, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 83946ba4d6672c24baca6043ee805fb2, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 7815916e33e97bb48a08d0f21e69d151, type: 3}

@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: DoNot
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHealth: 20
-  speed: 10
+  speed: 5
   enemyName: DoNot
   enemySprite: {fileID: -5523151287713105908, guid: aab61a1b7d79ff243872b04159fa9bef, type: 3}
   description: Rampant donuts rejected from your local bagel shop. DONUT underestimate
     them.
   flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
   contactDamage: 10
+  baseDamage: 0
+  experienceDropped: 100
   projectileData: {fileID: 0}
   projectileOffset: {x: 0, y: 0}
   projectileCooldown: 0
@@ -32,7 +34,12 @@ MonoBehaviour:
   behaviors: []
   disableAgent: 1
   isBouncy: 1
+  isDynamic: 1
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 1
   performBehaviorsInOrder: 0
+  animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: 6430d7d2d986eff478a59fd8288fd8a4, type: 2}
   idleAnimationB: {fileID: 7400000, guid: 6430d7d2d986eff478a59fd8288fd8a4, type: 2}
   moveAnimationF: {fileID: 7400000, guid: 6430d7d2d986eff478a59fd8288fd8a4, type: 2}

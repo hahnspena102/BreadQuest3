@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: BlueberryMufflin
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 20
+  speed: 1
+  enemyName: Blueberry Mufflin
+  enemySprite: {fileID: -3552530474948280094, guid: 247c565b8516c8144a0964a1d4176aef, type: 3}
+  description: 
+  flavor: {fileID: 0}
+  contactDamage: 0
+  baseDamage: 0
+  experienceDropped: 100
+  projectileData: {fileID: 0}
+  projectileOffset: {x: 0, y: 0}
+  projectileCooldown: 0
+  onSpawnBehaviors: []
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 2
+    TimesToRepeat: 1
+  disableAgent: 0
+  isBouncy: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
+  performBehaviorsInOrder: 0
+  animatorOverride: {fileID: 0}
+  idleAnimationF: {fileID: 0}
+  idleAnimationB: {fileID: 0}
+  moveAnimationF: {fileID: 0}
+  moveAnimationB: {fileID: 0}
+  attackAnimationF: {fileID: 0}
+  attackAnimationB: {fileID: 0}
+  shadowOffset: {x: 0, y: -0.4}
+  shadowScale: {x: 0.5, y: 0.5}

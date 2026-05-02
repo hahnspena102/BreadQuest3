@@ -12,6 +12,8 @@ public class PlayerData : EntityData
     [SerializeField] private float critRate;
     [SerializeField] private float critBonus;
     [SerializeField] private int currentFloor = 1;
+    [SerializeField] private float healCooldown = 0f;
+    [SerializeField] private float glucoseCooldown = 0f;
     
 
     public global::System.Single Gold { get => gold; set => gold = value; }
@@ -23,8 +25,10 @@ public class PlayerData : EntityData
     public global::System.Single CurrentGlucose { get => currentGlucose; set => currentGlucose = value; }
     public global::System.Int32 Level { get => level; }
     public global::System.Int32 CurrentFloor { get => currentFloor; set => currentFloor = value; }
+    public global::System.Single HealCooldown { get => healCooldown; set => healCooldown = value; }
+    public global::System.Single GlucoseCooldown { get => glucoseCooldown; set => glucoseCooldown = value; }
 
-    private float thresholdMultiplier = 1000;
+    private float thresholdMultiplier = 5000;
     private float thresholdPower = 1.4f;
     public void UpdateLevel()
     {
@@ -50,6 +54,9 @@ public class PlayerData : EntityData
         this.Experience = starterData.Experience;
         this.CritRate = starterData.CritRate;
         this.CritBonus = starterData.CritBonus;
+        this.currentFloor = starterData.CurrentFloor;
+        this.healCooldown = starterData.healCooldown;
+        this.glucoseCooldown = starterData.glucoseCooldown;
     }
 
 

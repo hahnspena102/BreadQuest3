@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MeleeData", menuName = "Scriptable Objects/MeleeData")]
+[CreateAssetMenu(fileName = "MeleeData", menuName = "Scriptable Objects/Weapons/MeleeData")]
 public class MeleeData : WeaponData
 {
     [SerializeField] private float meleeScale = 1f;

@@ -10,6 +10,7 @@ public class Chest : MonoBehaviour
     private ItemManager itemManager;
     private bool playerInRange = false;
     private Canvas statusCanvas;
+    [SerializeField] private AudioClip chestOpenSound;
 
     void Start()
     {
@@ -66,6 +67,7 @@ public class Chest : MonoBehaviour
         {
             animator.SetTrigger("open");
         }
+        SoundManager.instance.PlaySoundFXClip(chestOpenSound, transform);
         yield return new WaitForSeconds(1f); // Wait for the animation to finish
 
         float dropRoll = Random.value;

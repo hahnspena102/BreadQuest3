@@ -16,6 +16,10 @@ public static class ItemFactory
         {
             item = new Magic();
         }
+        else if (data is RangedData)
+        {
+            item = new Ranged();
+        }
         else if (data is PotionData)
         {
             item = new Potion();

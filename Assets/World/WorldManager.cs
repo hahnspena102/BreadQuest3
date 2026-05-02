@@ -41,6 +41,7 @@ public class WorldManager : MonoBehaviour
     {
         foreach (Room room in rooms)
         {
+
             bool wavesCompleted = room.waves.TrueForAll(wave => wave.isCleared);
             if (room.isEntered && room.isSealed && wavesCompleted)
             {
@@ -50,9 +51,7 @@ public class WorldManager : MonoBehaviour
                 if (room == endingRoom)
                 {
                     Debugger.Log("Player has cleared the final room!", type: DebugType.World);
-                    Vector2Int center = room.GetRoomCenter();
-                    Vector3 teleporterPos = new Vector3(center.x+ 2, center.y + 2, 0);
-                    Instantiate(teleporterPrefab, teleporterPos, Quaternion.identity);
+                    EnsureEndingRoomTeleporter();
                 }
                 UnsealRoom(room);
             }
@@ -82,7 +81,7 @@ public class WorldManager : MonoBehaviour
                 
                 if (currentWave.isSpawned && !currentWave.isCleared)
                 {
-                    bool allEnemiesDefeated = currentWave.enemiesLeft == 0;
+                    bool allEnemiesDefeated = currentWave.enemiesLeft <= 0;
 
                     if (allEnemiesDefeated)
                     {
@@ -104,6 +103,50 @@ public class WorldManager : MonoBehaviour
             }
 
         }
+
+        EnsureEndingRoomTeleporter();
+    }
+
+
+    private void EnsureEndingRoomTeleporter()
+    {
+        if (teleporterPrefab == null || endingRoom == null || !endingRoom.isCleared)
+        {
+            return;
+        }
+
+        if (HasTeleporterInRoom(endingRoom))
+        {
+            return;
+        }
+
+        Vector2 spawnPos = endingRoom.subCells.Count > 0
+            ? endingRoom.subCells[Random.Range(0, endingRoom.subCells.Count)].center
+            : endingRoom.GetRoomCenter();
+
+        Instantiate(teleporterPrefab, spawnPos, Quaternion.identity);
+        Debugger.LogWarning("Teleporter fallback spawned in ending room.", type: DebugType.World);
+    }
+
+    private bool HasTeleporterInRoom(Room room)
+    {
+        Teleporter[] teleporters = FindObjectsByType<Teleporter>(FindObjectsSortMode.None);
+        for (int i = 0; i < teleporters.Length; i++)
+        {
+            Teleporter teleporter = teleporters[i];
+            if (teleporter == null)
+            {
+                continue;
+            }
+
+            Vector2Int teleporterPos = Vector2Int.FloorToInt(teleporter.transform.position);
+            if (room.area.Contains(teleporterPos))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void CreateChest(Room room)

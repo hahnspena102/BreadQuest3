@@ -25,13 +25,23 @@ MonoBehaviour:
     spawnChance: 0
   - enemyData: {fileID: 11400000, guid: 8812912c7e4ad0f4a8ad66ecec17496f, type: 2}
     spawnChance: 0
-  - enemyData: {fileID: 11400000, guid: 4961b14f413b7a34cad3c08eace63838, type: 2}
+  - enemyData: {fileID: 11400000, guid: 651987aa7cd0d834b92deba27cf0c701, type: 2}
     spawnChance: 1
+  - enemyData: {fileID: 11400000, guid: 4961b14f413b7a34cad3c08eace63838, type: 2}
+    spawnChance: 2
   - enemyData: {fileID: 11400000, guid: d5d9f6860e74b794cad7a1423dfa437b, type: 2}
     spawnChance: 1
   - enemyData: {fileID: 11400000, guid: 438b3ab25438f354b96bafd4a21632f2, type: 2}
-    spawnChance: 1
-  - enemyData: {fileID: 11400000, guid: 438b3ab25438f354b96bafd4a21632f2, type: 2}
-    spawnChance: 1
+    spawnChance: 2
   - enemyData: {fileID: 11400000, guid: d149a486eaa654344aff76369709e928, type: 2}
-    spawnChance: 1
+    spawnChance: 2
+  - enemyData: {fileID: 11400000, guid: 37a025781c7fbce4aac77812ad7ad631, type: 2}
+    spawnChance: 2
+  - enemyData: {fileID: 11400000, guid: c51e6255f4b07894a8dabaaba6475ea2, type: 2}
+    spawnChance: 2
+  - enemyData: {fileID: 11400000, guid: 0366f17b789b3894b99c4028f1dfeade, type: 2}
+    spawnChance: 2
+  - enemyData: {fileID: 11400000, guid: bed54acef3ede7f4d82ca7625c6ce55a, type: 2}
+    spawnChance: 2
+  - enemyData: {fileID: 11400000, guid: bed54acef3ede7f4d82ca7625c6ce55a, type: 2}
+    spawnChance: 2

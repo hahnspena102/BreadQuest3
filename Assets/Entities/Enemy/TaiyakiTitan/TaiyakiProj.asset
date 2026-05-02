@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: TaiyakiProj
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   speed: 3
-  damage: 10
-  lifetime: 6
+  lifetime: 12
   projectileSprite: {fileID: -6091231491983230200, guid: a6b0ec30dad04be44baf2f865412e853, type: 3}
+  movingAnimation: {fileID: 0}
   rotationSpeed: 0
+  rotateTowardsMovementDirection: 0
+  maxBounces: 5
+  isTrigger: 0

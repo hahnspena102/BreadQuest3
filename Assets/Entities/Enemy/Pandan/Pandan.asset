@@ -20,6 +20,7 @@ MonoBehaviour:
     BANG!
   flavor: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}
   contactDamage: 10
+  baseDamage: 15
   experienceDropped: 100
   projectileData: {fileID: 11400000, guid: f3c5948684a83ce48857addbf0942fc7, type: 2}
   projectileOffset: {x: 0.2, y: 0}
@@ -43,8 +44,10 @@ MonoBehaviour:
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0
+  isDynamic: 0
   healthScalar: 0.1
   damageScalar: 0.1
+  ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
   animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: 962db1ff07ce2ca40a7b035e82b22148, type: 2}

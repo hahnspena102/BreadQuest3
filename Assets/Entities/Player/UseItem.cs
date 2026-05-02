@@ -7,6 +7,12 @@ public class UseItem : MonoBehaviour
     private Item equippedItem;
     private ItemAnimator itemAnimator;
     [SerializeField] private GameObject itemSpriteHolder;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float healCooldownDuration = 30f;
+    [SerializeField] private float glucoseCooldownDuration = 10f;
+
+    public float HealCooldownDuration => healCooldownDuration;
+    public float GlucoseCooldownDuration => glucoseCooldownDuration;
     
     void Start()
     {
@@ -44,10 +50,13 @@ public class UseItem : MonoBehaviour
             if (equippedItemData is MeleeData meleeData)
             {
                 MeleeWeapon(meleeData.MeleeScale, meleeData.MeleeSpeed);
-            } else if (equippedItemData is MagicData)
+            } else if (equippedItemData is MagicData magicData)
             {
-                MagicWeapon();
-            } else if (equippedItemData is PotionData potionData)
+                MagicWeapon(magicData.ProjectileData, magicData);
+            } else if (equippedItemData is RangedData rangedData)
+            {
+                RangedWeapon(rangedData);
+            } else if (equippedItemData is PotionData potionData) 
             {
                 UsePotion(potionData);
             }
@@ -66,10 +75,10 @@ public class UseItem : MonoBehaviour
             player.IsAttacking = true;
 
             // ANIMATION
-            Debug.Log("Playing melee animation with scale: " + scale + " and speed: " + speed);
             itemAnimator.SetSpeed(speed);
             player.Animator.speed = speed;
             itemAnimator.transform.localScale = new Vector3(scale, scale, 1f);
+            itemAnimator.transform.localRotation = Quaternion.identity;
             float horizontalXOffset = -(scale - 1f) * 0.75f;
             float horizontalYOffset = (scale - 1f) * 0.1f;
             float verticalXOffset = (scale - 1f) * 0.15f;
@@ -77,6 +86,8 @@ public class UseItem : MonoBehaviour
 
 
             string animationDirection = GetAxisDirection(direction);
+            
+
             if (animationDirection == "Up")
             {
                 itemAnimator.transform.localPosition = new Vector2(verticalXOffset, -verticalYOffset);
@@ -91,22 +102,122 @@ public class UseItem : MonoBehaviour
             PlayAnimation(direction, "meleeAttack");
      
 
-            Debug.Log("Melee Attack");
+
         }
     }
 
-    public void MagicWeapon()
+    public void MagicWeapon(ProjectileData projectileData, MagicData magicData)
     {
        if (Input.GetMouseButtonDown(0))
         {    
+            if (player.IsAttacking) return;
+            if (magicData.GlucoseCost > player.PlayerData.CurrentGlucose) return;
+
+            SoundManager.instance.PlaySoundFXClip(magicData.GetCastSound(), player.transform);
+            player.PlayerData.CurrentGlucose -= magicData.GlucoseCost;
+            
             Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
             string animationDirection = GetAxisDirection(direction);
             player.Animator.SetTrigger("magicAttack" + animationDirection);
+            if (direction == Vector2.zero) return;
+
+            for (int i = 0; i < magicData.ProjectileCount; i++)
+            {
+                float angleOffset = (i - (magicData.ProjectileCount - 1) / 2f) * magicData.SpreadAngle;
+                Vector2 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction.normalized;
+
+                GameObject projectileObj = Instantiate(projectilePrefab, player.transform.position, Quaternion.identity);
+                Projectile projectile = projectileObj.GetComponent<Projectile>();
+                projectile.InitializePlayerProjectile(rotatedDirection, projectileData, player);
+            }
+
+            
         }
     }
 
+    private float timeCharging = 0f;
+    public void RangedWeapon(RangedData rangedData)
+    {
+        bool isMouseHeld = Input.GetMouseButton(0);
+        bool isMouseReleased = Input.GetMouseButtonUp(0);
+         Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
+        
+        
+        if (isMouseHeld)
+        {    
+            
+            player.IsCharging = true;
+            if (itemAnimator != null)
+            {
+                itemAnimator.transform.localScale = new Vector3(1f, 1f, 1f);
+                itemAnimator.transform.localPosition = Vector2.zero;
+                itemAnimator.BeginRangedCharge(rangedData);
+            }
+            // rotate sprite based on direction
+            if (direction.x < 0)
+            {
+                player.transform.localScale = new Vector3(-1f, 1f, 1f);
+              //  itemAnimator.transform.localScale = new Vector3(-1f, -1f, 1f);
+                
+             
+            }
+            else if (direction.x > 0)
+            {
+                player.transform.localScale = new Vector3(1f, 1f, 1f);
+                itemAnimator.transform.localScale = new Vector3(1f, 1f, 1f);
+               
+            }
+            
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            if (angle > 90f || angle < -90f)
+            {
+                angle = 180f - angle;
+            }
+            itemAnimator.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
+            
 
+            player.Animator.SetBool("rangedAttack", true);
+            itemAnimator.Animator.SetBool("isCharging", true);
+            timeCharging += Time.deltaTime;
+            if (timeCharging < rangedData.ChargeTime)
+            {
+                return;
+            }
+            
+        }
+        else if (isMouseReleased)
+        {
+            player.IsCharging = false;
+            player.Animator.SetBool("rangedAttack", false);
+            itemAnimator.Animator.SetBool("isCharging", false);
+            if (itemAnimator != null)
+            {
+                itemAnimator.EndRangedCharge();
+            }
+            if (timeCharging >= rangedData.ChargeTime)
+            {
+                timeCharging = 0f;
+            } else
+            {
+                return;
+            }
+            
+           
+            string animationDirection = GetAxisDirection(direction);
+            if (direction == Vector2.zero) return;
 
+            for (int i = 0; i < rangedData.ProjectileCount; i++)
+            {
+                float angleOffset = (i - (rangedData.ProjectileCount - 1) / 2f) * rangedData.SpreadAngle;
+                Vector2 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction.normalized;
+
+                GameObject projectileObj = Instantiate(projectilePrefab, player.transform.position, Quaternion.identity);
+                Projectile projectile = projectileObj.GetComponent<Projectile>();
+                projectile.InitializePlayerProjectile(rotatedDirection, rangedData.ProjectileData, player);
+            }
+
+        }
+    }
 
     public string GetAxisDirection(Vector2 direction)
     {
@@ -176,16 +287,33 @@ public class UseItem : MonoBehaviour
             }
 
             Debug.Log("Using potion with " + potionData.potionEffects.Length + " effects.");
-            
+            bool appliedEffect = false;
             foreach (PotionEntry entry in potionData.potionEffects)
             {
+                
                 Debug.Log("Applying effect: " + entry.effect + " with magnitude: " + entry.magnitude + " for duration: " + entry.duration);
                 PotionEffect effect = entry.effect;
                 switch (effect)
                 {
                     case PotionEffect.Heal:
-
+                        if (player.PlayerData.HealCooldown > 0f)
+                        {
+                            Debug.Log("Heal effect is on cooldown for " + player.PlayerData.HealCooldown + " more seconds.");
+                            break;
+                        }
                         player.Heal(entry.magnitude);
+                        player.PlayerData.HealCooldown = healCooldownDuration;
+                        appliedEffect = true;
+                        break;
+                    case PotionEffect.Glucose:
+                        if (player.PlayerData.GlucoseCooldown > 0f)
+                        {
+                            Debug.Log("Glucose effect is on cooldown for " + player.PlayerData.GlucoseCooldown + " more seconds.");
+                            break;
+                        }
+                        player.PlayerData.CurrentGlucose = Mathf.Min(player.PlayerData.MaxGlucose, player.PlayerData.CurrentGlucose + entry.magnitude);
+                        player.PlayerData.GlucoseCooldown = glucoseCooldownDuration;
+                        appliedEffect = true;
                         break;
 
 
@@ -193,7 +321,12 @@ public class UseItem : MonoBehaviour
                 }
             
             }
-
+            
+            if (!appliedEffect)
+            {
+                Debug.Log("No effects were applied due to cooldowns. Potion will not be consumed.");
+                return;
+            }
             // remove item
             equippedItem.Count = Mathf.Max(0, equippedItem.Count - 1);
             if (equippedItem.Count == 0)

@@ -24,23 +24,24 @@ public class MeleeAttack : EnemyBehavior
         Vector2 targetPosition = FindTargetPosition(enemy);
         Vector2 directionToTarget = (targetPosition - (Vector2)enemy.transform.position).normalized;
 
-        // Set animation
         if (animator != null)
         {
             animator.SetBool("attackB", directionToTarget.y > 0f);
             animator.SetBool("attackF", directionToTarget.y <= 0f);
         }
 
-        // Wait for animation event
+
         while (!enemy.IsAttackReady)
             yield return null;
 
         enemy.IsAttackReady = false;
 
-        // 🔥 Perform melee hit here
+        AudioClip audioClip = enemy.EnemyData.GetAttackSound();
+        SoundManager.instance.PlaySoundFXClip(audioClip, enemy.transform);
+
         PerformMeleeHit(enemy, directionToTarget);
 
-        // Reset animation
+
         if (animator != null)
         {
             animator.SetBool("attackB", false);
@@ -52,7 +53,6 @@ public class MeleeAttack : EnemyBehavior
     {
         Vector2 origin = enemy.transform.position;
 
-        // Get all colliders in range
         Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range);
 
         foreach (Collider2D hit in hits)
@@ -66,7 +66,6 @@ public class MeleeAttack : EnemyBehavior
 
             if (angle <= coneAngle * 0.5f)
             {
-                // ✅ Target is inside cone → apply damage
                 Player player = hit.GetComponentInParent<Player>();
                 if (player != null)
                 {
