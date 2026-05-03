@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
+  m_Name: TestEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  maxHealth: 20
+  speed: 5
+  enemyName: blah blah
+  enemySprite: {fileID: 5125201553696344367, guid: dc16130cbe8d6b04a89e362dfb52275b, type: 3}
+  description: 
+  flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
+  contactDamage: 0
+  baseDamage: 0
+  experienceDropped: 100
+  projectileData: {fileID: 11400000, guid: a1b66d7c23b1d844eb0d014c66b3b559, type: 2}
+  projectileOffset: {x: 0, y: 0}
+  projectileCooldown: 0
+  onSpawnBehaviors: []
+  behaviors:
+  - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: c9c59a7f906e6d64cafb35f7dd43d6b6, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 1
+    TimesToRepeat: 2
+  disableAgent: 0
+  isBouncy: 0
+  isDynamic: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  ignoreEnemyCollision: 0
+  performBehaviorsInOrder: 1
+  animatorOverride: {fileID: 0}
+  idleAnimationF: {fileID: 0}
+  idleAnimationB: {fileID: 0}
+  moveAnimationF: {fileID: 0}
+  moveAnimationB: {fileID: 0}
+  attackAnimationF: {fileID: 7400000, guid: f99a2f63a1ac9436a90028cc73c58075, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: f99a2f63a1ac9436a90028cc73c58075, type: 2}
+  shadowOffset: {x: 0, y: 0}
+  shadowScale: {x: 1, y: 1}
+  attackSounds: []
+  hurtSounds: []
+  deathSounds: []

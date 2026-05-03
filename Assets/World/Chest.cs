@@ -28,7 +28,6 @@ public class Chest : MonoBehaviour
 
         if (useAction != null && useAction.action.WasPressedThisFrame())
         {
-            Debug.Log("Player used the chest!");
             StartCoroutine(OpenChest());
         }
     }
@@ -39,7 +38,6 @@ public class Chest : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player is in the chest range.");
             statusCanvas.enabled = true;
             Player player = other.gameObject.GetComponent<Player>();
             if (player == null) return;
@@ -54,7 +52,6 @@ public class Chest : MonoBehaviour
         
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player has left the chest range.");
             statusCanvas.enabled = false;
             playerInRange = false;
         }

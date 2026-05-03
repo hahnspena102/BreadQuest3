@@ -17,6 +17,7 @@ MonoBehaviour:
   itemSprite: {fileID: -3107414209028425074, guid: 418dec90a20c3b448b2fadc4d3671af5, type: 3}
   tier: 1
   maxStackSize: 1
+  isConsumed: 0
   damage: 16
   flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
   projectileData: {fileID: 11400000, guid: a1b66d7c23b1d844eb0d014c66b3b559, type: 2}
@@ -24,5 +25,6 @@ MonoBehaviour:
   projectileCount: 1
   spreadAngle: 15
   projectileDelay: 0.1
+  cooldownDuration: 1
   castSounds:
   - {fileID: 8300000, guid: 0674f6ffc2a33d1498edae13b486c086, type: 3}

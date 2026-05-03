@@ -12,36 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 643998672d8b0d7469c783fb9da17c2f, type: 3}
   m_Name: EnemySpawns
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawns
-  enemySpawnEntries:
-  - enemyData: {fileID: 11400000, guid: 89142234893e240459b0d64ab40d6293, type: 2}
-    spawnChance: 0
-  - enemyData: {fileID: 11400000, guid: e9ac1d6ba8b1542c3b4a352311730b67, type: 2}
-    spawnChance: 0
+  tier1Enemies:
   - enemyData: {fileID: 11400000, guid: 084720f36e6efa34cb7c4e02cf92560f, type: 2}
-    spawnChance: 0
+    spawnWeight: 1.2
   - enemyData: {fileID: 11400000, guid: 6cf69ef8284e04f4c945117b3010cf77, type: 2}
-    spawnChance: 0
-  - enemyData: {fileID: 11400000, guid: 4b8c28868a36bac4fb75d460a6b0d844, type: 2}
-    spawnChance: 0
+    spawnWeight: 1.2
   - enemyData: {fileID: 11400000, guid: 8812912c7e4ad0f4a8ad66ecec17496f, type: 2}
-    spawnChance: 0
+    spawnWeight: 1.2
+  - enemyData: {fileID: 11400000, guid: 4b8c28868a36bac4fb75d460a6b0d844, type: 2}
+    spawnWeight: 1.2
+  - enemyData: {fileID: 11400000, guid: e9ac1d6ba8b1542c3b4a352311730b67, type: 2}
+    spawnWeight: 1.2
   - enemyData: {fileID: 11400000, guid: 651987aa7cd0d834b92deba27cf0c701, type: 2}
-    spawnChance: 1
-  - enemyData: {fileID: 11400000, guid: 4961b14f413b7a34cad3c08eace63838, type: 2}
-    spawnChance: 2
+    spawnWeight: 1
+  - enemyData: {fileID: 11400000, guid: 89142234893e240459b0d64ab40d6293, type: 2}
+    spawnWeight: 1
+  tier2Enemies:
+  - enemyData: {fileID: 11400000, guid: bed54acef3ede7f4d82ca7625c6ce55a, type: 2}
+    spawnWeight: 1
+  - enemyData: {fileID: 11400000, guid: b1be2598be9f7bd40b3536943eccb2e3, type: 2}
+    spawnWeight: 1
+  tier3Enemies:
   - enemyData: {fileID: 11400000, guid: d5d9f6860e74b794cad7a1423dfa437b, type: 2}
-    spawnChance: 1
-  - enemyData: {fileID: 11400000, guid: 438b3ab25438f354b96bafd4a21632f2, type: 2}
-    spawnChance: 2
-  - enemyData: {fileID: 11400000, guid: d149a486eaa654344aff76369709e928, type: 2}
-    spawnChance: 2
+    spawnWeight: 1
+  - enemyData: {fileID: 11400000, guid: 884db671b71ab425c9c51faf2e62abb5, type: 2}
+    spawnWeight: 1
+  tier4Enemies:
   - enemyData: {fileID: 11400000, guid: 37a025781c7fbce4aac77812ad7ad631, type: 2}
-    spawnChance: 2
-  - enemyData: {fileID: 11400000, guid: c51e6255f4b07894a8dabaaba6475ea2, type: 2}
-    spawnChance: 2
-  - enemyData: {fileID: 11400000, guid: 0366f17b789b3894b99c4028f1dfeade, type: 2}
-    spawnChance: 2
-  - enemyData: {fileID: 11400000, guid: bed54acef3ede7f4d82ca7625c6ce55a, type: 2}
-    spawnChance: 2
-  - enemyData: {fileID: 11400000, guid: bed54acef3ede7f4d82ca7625c6ce55a, type: 2}
-    spawnChance: 2
+    spawnWeight: 1
+  - enemyData: {fileID: 11400000, guid: 4961b14f413b7a34cad3c08eace63838, type: 2}
+    spawnWeight: 1
+  - enemyData: {fileID: 11400000, guid: 438b3ab25438f354b96bafd4a21632f2, type: 2}
+    spawnWeight: 1
+  tier5Enemies:
+  - enemyData: {fileID: 11400000, guid: d149a486eaa654344aff76369709e928, type: 2}
+    spawnWeight: 1
+  - enemyData: {fileID: 0}
+    spawnWeight: 0
+  tier6Enemies: []

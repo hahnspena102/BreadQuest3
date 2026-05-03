@@ -17,7 +17,9 @@ MonoBehaviour:
   itemSprite: {fileID: 5223370693312396623, guid: e363850c1e99fb948b3d124660456616, type: 3}
   tier: 1
   maxStackSize: 99
+  isConsumed: 1
+  cooldownDuration: 0
   potionEffects:
   - effect: 1
-    magnitude: 50
+    magnitude: 20
     duration: 0

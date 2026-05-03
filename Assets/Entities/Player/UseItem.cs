@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class UseItem : MonoBehaviour
 {
@@ -100,6 +101,11 @@ public class UseItem : MonoBehaviour
             }
 
             PlayAnimation(direction, "meleeAttack");
+
+             if (equippedItem.ItemData.IsConsumed)
+            {
+                DecrementItemCount();
+            }
      
 
 
@@ -108,40 +114,102 @@ public class UseItem : MonoBehaviour
 
     public void MagicWeapon(ProjectileData projectileData, MagicData magicData)
     {
+        
        if (Input.GetMouseButtonDown(0))
         {    
             if (player.IsAttacking) return;
             if (magicData.GlucoseCost > player.PlayerData.CurrentGlucose) return;
 
-            SoundManager.instance.PlaySoundFXClip(magicData.GetCastSound(), player.transform);
+            player.IsAttacking = true;
             player.PlayerData.CurrentGlucose -= magicData.GlucoseCost;
-            
+   
+
+            SoundManager.instance.PlaySoundFXClip(magicData.GetCastSound(), player.transform);
+  
+
             Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
             string animationDirection = GetAxisDirection(direction);
             player.Animator.SetTrigger("magicAttack" + animationDirection);
             if (direction == Vector2.zero) return;
 
-            for (int i = 0; i < magicData.ProjectileCount; i++)
-            {
-                float angleOffset = (i - (magicData.ProjectileCount - 1) / 2f) * magicData.SpreadAngle;
-                Vector2 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction.normalized;
-
-                GameObject projectileObj = Instantiate(projectilePrefab, player.transform.position, Quaternion.identity);
-                Projectile projectile = projectileObj.GetComponent<Projectile>();
-                projectile.InitializePlayerProjectile(rotatedDirection, projectileData, player);
-            }
+            StartCoroutine(MagicAttackCoroutine(magicData, direction, magicData.ProjectileDelay));
 
             
         }
+
+        if (equippedItem.ItemData.IsConsumed)
+        {
+            DecrementItemCount();
+        }
+    }
+
+    IEnumerator MagicAttackCoroutine(MagicData magicData, Vector2 direction, float projectileDelay)
+    {
+        for (int i = 0; i < magicData.ProjectileCount; i++)
+        {
+            float angleOffset = (i - (magicData.ProjectileCount - 1) / 2f) * magicData.SpreadAngle;
+            Vector2 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction.normalized;
+
+            GameObject projectileObj = Instantiate(projectilePrefab, player.transform.position, Quaternion.identity);
+            Projectile projectile = projectileObj.GetComponent<Projectile>();
+            projectile.InitializePlayerProjectile(rotatedDirection, magicData.ProjectileData, player);
+
+            yield return new WaitForSeconds(projectileDelay);
+        }
+
+        yield return new WaitForSeconds(magicData.CooldownDuration); 
+
+        player.IsAttacking = false;
+
     }
 
     private float timeCharging = 0f;
     public void RangedWeapon(RangedData rangedData)
     {
+        Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
+        
+        // Instant cast for zero charge time
+        if (rangedData.ChargeTime <= 0f)
+        {
+            if (Input.GetMouseButtonDown(0)) {
+
+            
+                if (direction == Vector2.zero) return;
+                
+                string animationDirection = GetAxisDirection(direction);
+                //player.Animator.SetTrigger("rangedAttack" + animationDirection);
+                
+                // Handle horizontal flip
+                if (direction.x < 0)
+                {
+                    player.transform.localScale = new Vector3(-1f, 1f, 1f);
+                }
+                else
+                {
+                    player.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+
+                for (int i = 0; i < rangedData.ProjectileCount; i++)
+                {
+                    float angleOffset = (i - (rangedData.ProjectileCount - 1) / 2f) * rangedData.SpreadAngle;
+                    Vector2 rotatedDirection = Quaternion.Euler(0, 0, angleOffset) * direction.normalized;
+
+                    GameObject projectileObj = Instantiate(projectilePrefab, player.transform.position, Quaternion.identity);
+                    Projectile projectile = projectileObj.GetComponent<Projectile>();
+                    projectile.InitializePlayerProjectile(rotatedDirection, rangedData.ProjectileData, player);
+                }
+
+                //check if consumable
+                if (equippedItem.ItemData.IsConsumed)
+                {
+                    DecrementItemCount();
+                }
+            }
+            return;
+        }
+        
         bool isMouseHeld = Input.GetMouseButton(0);
         bool isMouseReleased = Input.GetMouseButtonUp(0);
-         Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
-        
         
         if (isMouseHeld)
         {    
@@ -214,6 +282,11 @@ public class UseItem : MonoBehaviour
                 GameObject projectileObj = Instantiate(projectilePrefab, player.transform.position, Quaternion.identity);
                 Projectile projectile = projectileObj.GetComponent<Projectile>();
                 projectile.InitializePlayerProjectile(rotatedDirection, rangedData.ProjectileData, player);
+            }
+
+            if (equippedItem.ItemData.IsConsumed)
+            {
+                DecrementItemCount();
             }
 
         }
@@ -328,11 +401,24 @@ public class UseItem : MonoBehaviour
                 return;
             }
             // remove item
-            equippedItem.Count = Mathf.Max(0, equippedItem.Count - 1);
-            if (equippedItem.Count == 0)
+            if (equippedItem.ItemData.IsConsumed)
             {
-                inventory.SetItemAtIndex(inventory.CurrentItemIndex, null);
-            }
+                DecrementItemCount();
+            } 
+        }
+    }
+
+    public void DecrementItemCount()
+    {
+        if (equippedItem == null)
+        {
+            return;
+        }
+
+        equippedItem.Count = Mathf.Max(0, equippedItem.Count - 1);
+        if (equippedItem.Count == 0)
+        {
+            inventory.SetItemAtIndex(inventory.CurrentItemIndex, null);
         }
     }
 

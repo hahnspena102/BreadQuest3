@@ -133,8 +133,7 @@ public class ItemSlotUI : MonoBehaviour
                 cooldownSlider.minValue = 0f;
                 cooldownSlider.maxValue = 1f;
                 cooldownSlider.value = cooldownProgress;
-                Debug.Log($"Updating cooldown slider: remainingCooldown={remainingCooldown}, cooldownDuration={cooldownDuration}, cooldownProgress={cooldownProgress}");
-                Debug.Log($"slider min={cooldownSlider.minValue}, max={cooldownSlider.maxValue}, value={cooldownSlider.value}");
+             
             }
 
             if (cooldownText != null)

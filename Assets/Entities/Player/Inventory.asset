@@ -16,17 +16,17 @@ MonoBehaviour:
   items:
   - itemData: {fileID: 11400000, guid: 3b6b7d5c17869400494489f7881a353f, type: 2}
     count: 1
-  - itemData: {fileID: 11400000, guid: 481f4d77a4155dc45bfdfa8e48505ea6, type: 2}
-    count: 1
-  - itemData: {fileID: 11400000, guid: be4a67c95d150453b8dd65185c786afc, type: 2}
-    count: 1
   - itemData: {fileID: 0}
     count: 1
   - itemData: {fileID: 0}
     count: 1
   - itemData: {fileID: 0}
     count: 1
-  currentItemIndex: 2
+  - itemData: {fileID: 0}
+    count: 1
+  - itemData: {fileID: 0}
+    count: 1
+  currentItemIndex: 0
   equippedItem:
-    itemData: {fileID: 11400000, guid: be4a67c95d150453b8dd65185c786afc, type: 2}
+    itemData: {fileID: 11400000, guid: 3b6b7d5c17869400494489f7881a353f, type: 2}
     count: 1

@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashSpeed = 18f;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 2f;
+    [SerializeField] private float dashDampenTime = 0.15f;
+    [SerializeField] private float dashDampenStrength = 8f;
+    private bool isDampening = false;
+    private float dampenTimer = 0f;
+    private Vector2 dampenVelocity;
     private int flashCount = 3;
     private string directionFacing = "Down";
     private int previousLevel;
@@ -148,6 +153,14 @@ public class Player : MonoBehaviour
             if (dashTimer <= 0f)
             {
                 isDashing = false;
+
+                // Start dampening from current velocity
+                if (rb != null)
+                {
+                    dampenVelocity = rb.linearVelocity;
+                    isDampening = true;
+                    dampenTimer = dashDampenTime;
+                }
             }
         }
 
@@ -256,20 +269,37 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            float totalSpeed = playerData.Speed;
-            if (isAttacking)
+            if (isDampening)
             {
-                totalSpeed *= 0.8f;
+                dampenTimer -= Time.fixedDeltaTime;
+
+                dampenVelocity = Vector2.Lerp(
+                    dampenVelocity,
+                    Vector2.zero,
+                    dashDampenStrength * Time.fixedDeltaTime
+                );
+
+                rb.linearVelocity = dampenVelocity;
+
+                if (dampenTimer <= 0f)
+                {
+                    isDampening = false;
+                    rb.linearVelocity = Vector2.zero;
+                }
+
+                return;
             }
 
+            float totalSpeed = playerData.Speed;
+
+            if (isAttacking)
+                totalSpeed *= 0.8f;
+
             if (isCharging)
-            {
                 totalSpeed *= 0.25f;
-            }
+
             rb.linearVelocity = _moveDirection * totalSpeed;
         }
-        
-        
     }
 
     

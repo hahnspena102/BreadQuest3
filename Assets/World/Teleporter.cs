@@ -24,8 +24,7 @@ public class Teleporter : MonoBehaviour
 
         if (useAction != null && useAction.action.WasPressedThisFrame())
         {
-            Debug.Log("Player used the teleporter!");
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("MainScene");
             player.PlayerData.CurrentFloor += 1;
         }
     }

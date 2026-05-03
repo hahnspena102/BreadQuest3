@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
   m_Name: DangOh
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHealth: 30
+  maxHealth: 20
   speed: 0
   enemyName: DangOh
   enemySprite: {fileID: -6050473969829582647, guid: bb206b2f72949437dbc021dadfe3468f, type: 3}

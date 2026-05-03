@@ -12,6 +12,9 @@ public class Charge : EnemyBehavior
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private float obstacleCheckRadius = 0.2f;
     [SerializeField] private float arrivalThreshold = 0.5f;
+    [SerializeField] private float chargeWindup = 1f;
+    [SerializeField] private float carryOverTime = 0.2f;
+    [SerializeField] private float carryOverDamping = 5f;
 
     public override float PerformBehavior(Enemy enemy, float behaviorDuration)
     {
@@ -35,9 +38,11 @@ public class Charge : EnemyBehavior
 
 
         animator.SetBool("attackF", true);
-        yield return new WaitForSeconds(1.0f); 
+        yield return new WaitForSeconds(chargeWindup); 
+
+        SoundManager.instance.PlaySoundFXClip(enemy.EnemyData.GetAttackSound(), enemy.transform);
         float timer = 0f;
-        animator.SetBool("attackF", false);
+  
 
         Vector2 targetPos = target.transform.position;
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
@@ -75,12 +80,28 @@ public class Charge : EnemyBehavior
             timer += Time.deltaTime;
             yield return null;
         }
+        animator.SetBool("attackF", false);
 
         // stop movement
         Rigidbody2D finalRb = enemy.GetComponent<Rigidbody2D>();
-        if (finalRb != null)
-            finalRb.linearVelocity = Vector2.zero;
 
+        if (finalRb != null)
+        {
+            Vector2 velocity = finalRb.linearVelocity;
+            float t = 0f;
+
+            while (t < carryOverTime)
+            {
+                // Gradually reduce velocity
+                velocity = Vector2.Lerp(velocity, Vector2.zero, carryOverDamping * Time.deltaTime);
+                finalRb.linearVelocity = velocity;
+
+                t += Time.deltaTime;
+                yield return null;
+            }
+
+            finalRb.linearVelocity = Vector2.zero;
+        }
         yield break;
     }
 }

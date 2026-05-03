@@ -9,7 +9,6 @@ public class MeleeAttack : EnemyBehavior
     [Header("Melee Settings")]
     [SerializeField] private float range = 2f;
     [SerializeField] private float coneAngle = 60f;
-    [SerializeField] private float damage = 10f;
 
     public override float PerformBehavior(Enemy enemy, float behaviorDuration)
     {
@@ -69,7 +68,7 @@ public class MeleeAttack : EnemyBehavior
                 Player player = hit.GetComponentInParent<Player>();
                 if (player != null)
                 {
-                    player.TakeDamage(damage);
+                    player.TakeDamage(enemy.AttackDamage);
                 }
             }
         }

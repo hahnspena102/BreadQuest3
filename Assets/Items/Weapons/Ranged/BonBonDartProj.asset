@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c370366e05adc154e99f791deacab6a6, type: 3}
+  m_Name: BonBonDartProj
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
+  speed: 8
+  lifetime: 5
+  projectileSprite: {fileID: -5564838290287242859, guid: 8f9f29aaed2d00545a47e2e0200ff2bc, type: 3}
+  movingAnimation: {fileID: 0}
+  rotationSpeed: 0
+  rotateTowardsMovementDirection: 1
+  maxBounces: 0
+  isTrigger: 0

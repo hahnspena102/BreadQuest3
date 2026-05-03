@@ -4,10 +4,8 @@ using UnityEngine;
 public enum DropChance
 {
     Common,
-    Uncommon,
     Rare,
     Epic,
-    Legendary
 }
 
 [System.Serializable]
@@ -15,15 +13,14 @@ public class ItemDropEntry
 {
     public ItemData item;
     public DropChance dropChance;
+    public int count = 1;
     public float GetDropChanceValue()
     {
         switch (dropChance)
         {
-            case DropChance.Common: return 0.5f;
-            case DropChance.Uncommon: return 0.3f;
-            case DropChance.Rare: return 0.15f;
-            case DropChance.Epic: return 0.04f;
-            case DropChance.Legendary: return 0.01f;
+            case DropChance.Common: return 1f;
+            case DropChance.Rare: return 0.5f;
+            case DropChance.Epic: return 0.25f;
             default: return 0f;
         }
     }
@@ -32,21 +29,34 @@ public class ItemDropEntry
 [CreateAssetMenu(fileName = "ItemDrops", menuName = "Scriptable Objects/ItemDrops")]
 public class ItemDrops : ScriptableObject
 {
-    [SerializeField] private ItemDropEntry[] dropEntries;
+    [SerializeField] private ItemDropEntry[] tier1Drops;
+    [SerializeField] private ItemDropEntry[] tier2Drops;
+    [SerializeField] private ItemDropEntry[] tier3Drops;
+    [SerializeField] private ItemDropEntry[] tier4Drops;
+    [SerializeField] private ItemDropEntry[] tier5Drops;
+    [SerializeField] private ItemDropEntry[] tier6Drops;
+  
 
-    public ItemDropEntry[] DropEntries { get => dropEntries; set => dropEntries = value; }
-
-    public ItemData GetRandomDrop()
+    public ItemDropEntry GetRandomDrop(int tier)
     {
-        if (dropEntries == null || dropEntries.Length == 0)
+        var allEntries = new System.Collections.Generic.List<ItemDropEntry>();
+        
+        if (tier >= 1 && tier1Drops != null) allEntries.AddRange(tier1Drops);
+        if (tier >= 2 && tier2Drops != null) allEntries.AddRange(tier2Drops);
+        if (tier >= 3 && tier3Drops != null) allEntries.AddRange(tier3Drops);
+        if (tier >= 4 && tier4Drops != null) allEntries.AddRange(tier4Drops);
+        if (tier >= 5 && tier5Drops != null) allEntries.AddRange(tier5Drops);
+        if (tier >= 6 && tier6Drops != null) allEntries.AddRange(tier6Drops);
+        
+        if (allEntries.Count == 0)
         {
-            Debugger.LogWarning("No drop entries defined in ItemDrops.", type: DebugType.Items);
+            Debugger.LogWarning("No item drop entries defined for tier " + tier + ".", type: DebugType.Items);
             return null;
         }
 
         // Calculate total weight based on drop chances
         float totalWeight = 0f;
-        foreach (var entry in dropEntries)
+        foreach (var entry in allEntries)
         {
             totalWeight += entry.GetDropChanceValue();
         }
@@ -56,16 +66,16 @@ public class ItemDrops : ScriptableObject
         float cumulativeWeight = 0f;
 
         // Determine which item to drop based on the random value
-        foreach (var entry in dropEntries)
+        foreach (var entry in allEntries)
         {
             cumulativeWeight += entry.GetDropChanceValue();
             if (randomValue <= cumulativeWeight)
             {
-                return entry.item;
+                return entry;
             }
         }
 
         // Fallback in case of rounding errors
-        return dropEntries[dropEntries.Length - 1].item;
+        return allEntries[allEntries.Count - 1];
     }
 }

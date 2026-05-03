@@ -49,6 +49,7 @@ MonoBehaviour:
   shadowOffset: {x: 0, y: -0.3}
   shadowScale: {x: 0.5, y: 0.5}
   attackSounds: []
-  hurtSounds: []
+  hurtSounds:
+  - {fileID: 8300000, guid: 798fc212d526d694c988250e07d3066f, type: 3}
   deathSounds:
-  - {fileID: 8300000, guid: df6380e361db20b45a9c874e6d9338a8, type: 3}
+  - {fileID: 8300000, guid: 26f3a158b8f09e54aa357bf98312f323, type: 3}

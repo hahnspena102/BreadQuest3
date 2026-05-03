@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
         playerData.ResetToStarter(starterPlayerData);
         inventory.ResetToStarter(starterInventory);
 
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     

@@ -17,12 +17,14 @@ MonoBehaviour:
   itemSprite: {fileID: 7680053381261851907, guid: 3a3dc87c3ae91f349a5d6c76bb994cb7, type: 3}
   tier: 1
   maxStackSize: 1
+  isConsumed: 0
   damage: 3
   flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   projectileData: {fileID: 11400000, guid: a3699c8368131d64082345161227c814, type: 2}
   glucoseCost: 7
   projectileCount: 3
   spreadAngle: 15
-  projectileDelay: 0.1
+  projectileDelay: 0
+  cooldownDuration: 0.5
   castSounds:
   - {fileID: 8300000, guid: b41a04af0bc86584b81b15c4704be1ea, type: 3}

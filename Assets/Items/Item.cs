@@ -8,4 +8,5 @@ public class Item
 
     public ItemData ItemData { get => itemData; set => itemData = value; }
     public int Count { get => count; set => count = value; }
+
 }

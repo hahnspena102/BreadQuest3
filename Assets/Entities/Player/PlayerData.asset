@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   maxHealth: 100
   speed: 5
-  currentHealth: -8
+  currentHealth: 52
   maxGlucose: 50
-  currentGlucose: 11
+  currentGlucose: 50
   gold: 0
-  experience: 2000
+  experience: 0
   level: 1
   critRate: 0
   critBonus: 0
-  currentFloor: 2
-  healCooldown: -0.0024009119
-  glucoseCooldown: -0.0016381764
+  currentFloor: 1
+  healCooldown: 0
+  glucoseCooldown: 0

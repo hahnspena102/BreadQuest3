@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]private ProjectileType projectileType;
     [SerializeField]private int bouncesRemaining = 3;
     [SerializeField]private Animator animator;
-    private float spawnGracePeriod = 0.01f; // seconds to ignore environment collisions after spawn
+    private float spawnGracePeriod = 0.02f; // seconds to ignore environment collisions after spawn
     private float spawnTime;
     private Collider2D projectileCollider;
     private bool originalColliderIsTrigger;
@@ -51,8 +51,7 @@ public class Projectile : MonoBehaviour
         InitializeProjectile(direction, projectileData);
 
         float floor = enemy.Player != null ? enemy.Player.PlayerData.CurrentFloor : 0f;
-        float baseDamage = enemy.EnemyData.BaseDamage;
-        projectileDamage = baseDamage + (baseDamage * enemy.EnemyData.DamageScalar) * floor;
+        projectileDamage = enemy.AttackDamage;
         
     }
 

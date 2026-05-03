@@ -34,6 +34,7 @@ MonoBehaviour:
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0
+  isDynamic: 0
   healthScalar: 0.1
   damageScalar: 0.1
   ignoreEnemyCollision: 0
@@ -47,3 +48,9 @@ MonoBehaviour:
   attackAnimationB: {fileID: 7400000, guid: 018c2bb4f60e31545862cc6f917c92a1, type: 2}
   shadowOffset: {x: 0, y: -0.5}
   shadowScale: {x: 0.5, y: 0.5}
+  attackSounds:
+  - {fileID: 8300000, guid: 4429393d570bdb94fb38f7ff2f06b71c, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 500fbe1f575a9724a8a8c150b66f6ffd, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 500fbe1f575a9724a8a8c150b66f6ffd, type: 3}

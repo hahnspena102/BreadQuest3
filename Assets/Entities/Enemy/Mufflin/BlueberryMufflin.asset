@@ -17,32 +17,49 @@ MonoBehaviour:
   enemyName: Blueberry Mufflin
   enemySprite: {fileID: -3552530474948280094, guid: 247c565b8516c8144a0964a1d4176aef, type: 3}
   description: 
-  flavor: {fileID: 0}
-  contactDamage: 0
-  baseDamage: 0
+  flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
+  contactDamage: 12
+  baseDamage: 12
   experienceDropped: 100
   projectileData: {fileID: 0}
   projectileOffset: {x: 0, y: 0}
   projectileCooldown: 0
   onSpawnBehaviors: []
   behaviors:
+  - Behavior: {fileID: 11400000, guid: f786ef53bf5e75b408be104a562066f7, type: 2}
+    behaviorDuration:
+      min: 1
+      max: 2
+    TimesToRepeat: 1
   - Behavior: {fileID: 11400000, guid: 0a6aca49187534eeca0014560c577f3f, type: 2}
     behaviorDuration:
       min: 1
       max: 2
     TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 71547f28fe22d774e8c3cce7e8271760, type: 2}
+    behaviorDuration:
+      min: 2
+      max: 2
+    TimesToRepeat: 3
   disableAgent: 0
   isBouncy: 0
+  isDynamic: 0
   healthScalar: 0.1
   damageScalar: 0.1
   ignoreEnemyCollision: 0
-  performBehaviorsInOrder: 0
+  performBehaviorsInOrder: 1
   animatorOverride: {fileID: 0}
-  idleAnimationF: {fileID: 0}
-  idleAnimationB: {fileID: 0}
-  moveAnimationF: {fileID: 0}
-  moveAnimationB: {fileID: 0}
-  attackAnimationF: {fileID: 0}
-  attackAnimationB: {fileID: 0}
+  idleAnimationF: {fileID: 7400000, guid: f8d2f3fc62ed27d42b48d2a15854a012, type: 2}
+  idleAnimationB: {fileID: 7400000, guid: f8d2f3fc62ed27d42b48d2a15854a012, type: 2}
+  moveAnimationF: {fileID: 7400000, guid: 08edbe3312ae44547a09ca5139d481dd, type: 2}
+  moveAnimationB: {fileID: 7400000, guid: 08edbe3312ae44547a09ca5139d481dd, type: 2}
+  attackAnimationF: {fileID: 7400000, guid: 8849f9e7b1dc6ec4ea72358d4bb1b70a, type: 2}
+  attackAnimationB: {fileID: 7400000, guid: 8849f9e7b1dc6ec4ea72358d4bb1b70a, type: 2}
   shadowOffset: {x: 0, y: -0.4}
   shadowScale: {x: 0.5, y: 0.5}
+  attackSounds:
+  - {fileID: 8300000, guid: a51f2b9024e2dfe40bd33fb939b49ee8, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: f4900454f799d784593dc78f9469b1bd, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: e8c2669311681734498e48de030de91d, type: 3}

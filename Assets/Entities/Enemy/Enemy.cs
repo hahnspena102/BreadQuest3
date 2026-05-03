@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public Room AssignedRoom { get; set; }
     [SerializeField] private float currentHealth, maxHealth;
     [SerializeField] private float contactDamage;
+    private float attackDamage;
     
     [SerializeField] private Transform shadowTransform;
     [SerializeField]private PhysicsMaterial2D bouncyMaterial;
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour
     public Enemy LinkedEnemy { get => linkedEnemy; set => linkedEnemy = value; }
     public Player Player { get => player; set => player = value; }
     public global::System.Single ContactDamage { get => contactDamage; set => contactDamage = value; }
+    public global::System.Single AttackDamage { get => attackDamage; set => attackDamage = value; }
 
     void Awake()
     {
@@ -60,9 +62,11 @@ public class Enemy : MonoBehaviour
         //agent.enabled = true;
         behaviorCoroutine = StartCoroutine(BehaviorLoop());
         float floor = player != null ? player.PlayerData.CurrentFloor : 0f;
-        currentHealth = enemyData.MaxHealth + (enemyData.MaxHealth * enemyData.HealthScalar) * floor;
+        Debugger.Log("Base health: " + enemyData.MaxHealth + ", scaled health: " + GameManager.CalculateValueByFloor(enemyData.MaxHealth, enemyData.HealthScalar, (int)floor)            + ", base damage: " + enemyData.ContactDamage + ", scaled damage: " + GameManager.CalculateValueByFloor(enemyData.ContactDamage, enemyData.DamageScalar, (int)floor) , context: this, type: DebugType.Enemies);
+        currentHealth = GameManager.CalculateValueByFloor(enemyData.MaxHealth, enemyData.HealthScalar, (int)floor);
         maxHealth = currentHealth;
-        contactDamage = enemyData.ContactDamage + (enemyData.ContactDamage * enemyData.DamageScalar) * floor;
+        contactDamage = GameManager.CalculateValueByFloor(enemyData.ContactDamage, enemyData.DamageScalar, (int)floor);
+        attackDamage = GameManager.CalculateValueByFloor(enemyData.BaseDamage, enemyData.DamageScalar, (int)floor);
         if (enemyData.IgnoreEnemyCollision)
         {
             //ignore other enemies
@@ -142,7 +146,7 @@ public class Enemy : MonoBehaviour
 
         for (int i = 0; i < behaviorEntry.TimesToRepeat; i++)
         {
-            Debugger.Log($"Enemy {gameObject.name} performing behavior {behavior.name} (iteration {i + 1}/{behaviorEntry.TimesToRepeat})", context: this, type: DebugType.World);
+            Debugger.Log($"Enemy {gameObject.name} performing behavior {behavior.name} (iteration {i + 1}/{behaviorEntry.TimesToRepeat})", context: this, type: DebugType.Enemies);
             float timeToWait = behavior.PerformBehavior(
                 this,
                 behaviorEntry.BehaviorDuration
@@ -212,10 +216,10 @@ public class Enemy : MonoBehaviour
         if (AssignedWave != null)
         {
             AssignedWave.enemiesLeft--;
-            Debugger.Log("Remaining enemies in wave: " + AssignedWave.enemiesLeft, context: this, type: DebugType.World);
+            Debugger.Log("Remaining enemies in wave: " + AssignedWave.enemiesLeft, context: this, type: DebugType.Enemies);
         } else
         {
-            Debugger.LogWarning("Enemy " + gameObject.name + " has no assigned wave to remove itself from.", context: this, type: DebugType.World);
+            Debugger.LogWarning("Enemy " + gameObject.name + " has no assigned wave to remove itself from.", context: this, type: DebugType.Enemies);
         }
 
         if (linkedEnemy != null)

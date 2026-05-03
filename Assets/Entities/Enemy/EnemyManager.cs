@@ -7,11 +7,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject enemyBasePrefab;
     [SerializeField] private EnemySpawns enemySpawns;
     private float minSpawnDistanceFromPlayer = 3f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    
-    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -20,7 +17,8 @@ public class EnemyManager : MonoBehaviour
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 spawnPosition = new Vector3(mousePosition.x, mousePosition.y, 0f);
-            EnemyData enemyData = enemySpawns.GetRandomEnemy();
+            int tier = GameManager.FloorToTier(FindFirstObjectByType<Player>().PlayerData.CurrentFloor);
+            EnemyData enemyData = enemySpawns.GetRandomEnemy(tier);
             SpawnEnemy(enemyData, spawnPosition, null);
         }
     }
@@ -86,12 +84,14 @@ public class EnemyManager : MonoBehaviour
     public void PopulateWave(Wave wave)
     {
         Room room = wave.associatedRoom;
+        Player player = FindFirstObjectByType<Player>();
         
         
         foreach (var subCell in room.subCells)
         {
-            EnemyData enemyData = enemySpawns.GetRandomEnemy();
-            Debugger.Log("Spawning enemy: " + enemyData.EnemyName, type: DebugType.Enemies);
+            int tier = GameManager.FloorToTier(player.PlayerData.CurrentFloor);
+            EnemyData enemyData = enemySpawns.GetRandomEnemy(tier);
+            //Debugger.Log("Spawning enemy: " + enemyData.EnemyName, type: DebugType.Enemies);
             Vector3 spawnPosition = new Vector3(subCell.center.x, subCell.center.y, 0f);
             wave.enemyDataInWave.Add((enemyData, spawnPosition));
             wave.enemiesLeft++;

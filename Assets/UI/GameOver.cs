@@ -21,7 +21,7 @@ public class GameOver : MonoBehaviour
         inventory.ResetToStarter(starterInventory);
         yield return null;
 
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
