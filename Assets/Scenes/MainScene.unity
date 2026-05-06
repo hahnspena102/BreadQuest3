@@ -1677,6 +1677,7 @@ MonoBehaviour:
   maxRoomHeight: 16
   teleporterPrefab: {fileID: 8952454158959800989, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
   chestPrefab: {fileID: 8952454158959800989, guid: 4a8c48a037c0a7f40899c5054577725f, type: 3}
+  isBossFloor: 1
   floorTilemap: {fileID: 1182057069}
   wallTilemap: {fileID: 1542022377}
   barrierTilemap: {fileID: 710882320}
@@ -1684,6 +1685,7 @@ MonoBehaviour:
   wallTile: {fileID: 11400000, guid: 69bc9bc1a3d8ae24fbc2609d7a84390a, type: 2}
   wallTopTile: {fileID: 11400000, guid: c883d45362140984b90e823c03a7e238, type: 2}
   barrierTile: {fileID: 11400000, guid: 4df58bc25e3b9b24bbe624271a7c31dd, type: 2}
+  timeBeforeUpdatingRoomStates: 0.5
 --- !u!114 &1137186796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2017,6 +2019,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3844dd7189a672144bb454ea5f5b0173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  allToppings:
+  - {fileID: 11400000, guid: f0977bf620d1e7f44b024f84a1f930f6, type: 2}
+  - {fileID: 11400000, guid: 58a4bf3885e4ece4ba283d52ae1577b6, type: 2}
+  - {fileID: 11400000, guid: 0e80fa5d0ece616498c1294e093dc6e4, type: 2}
+  - {fileID: 11400000, guid: 859e6693531c23845aa7f80daad7972b, type: 2}
+  - {fileID: 11400000, guid: 9fd3f2ed230cb30438f4f071d0dc4735, type: 2}
+  - {fileID: 11400000, guid: ba2e3c50e5b037b4f92d008b3add88ac, type: 2}
 --- !u!1 &1252809385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5529412}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

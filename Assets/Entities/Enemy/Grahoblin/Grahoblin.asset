@@ -31,11 +31,6 @@ MonoBehaviour:
       min: 1.5094339
       max: 5.0943394
     TimesToRepeat: 1
-  - Behavior: {fileID: 11400000, guid: 10d7b0f24a9edf040aeb510cdef239f7, type: 2}
-    behaviorDuration:
-      min: 0.6722689
-      max: 0.6722689
-    TimesToRepeat: 1
   - Behavior: {fileID: 11400000, guid: 33d70fb56c750df4e90da459f50390ad, type: 2}
     behaviorDuration:
       min: 1.3207545
@@ -45,6 +40,11 @@ MonoBehaviour:
     behaviorDuration:
       min: 1.8867924
       max: 4.1509433
+    TimesToRepeat: 1
+  - Behavior: {fileID: 11400000, guid: 10d7b0f24a9edf040aeb510cdef239f7, type: 2}
+    behaviorDuration:
+      min: 0.6722689
+      max: 0.6722689
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0

@@ -100,9 +100,20 @@ public class Player : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1f);
+            playerData.CalculateToppingBonuses();
             if (playerData.CurrentGlucose < playerData.MaxGlucose)
             {
-                playerData.CurrentGlucose += 1f;
+                float glucoseRegenAmount = 1f + playerData.GlucoseRegenBonus;
+                playerData.CurrentGlucose += glucoseRegenAmount;
+                if (playerData.CurrentGlucose > playerData.MaxGlucose)
+                {
+                    playerData.CurrentGlucose = playerData.MaxGlucose;
+                }
+            }
+            if (playerData.CurrentHealth < playerData.MaxHealth)
+            {
+                float healthRegenAmount = playerData.HealthRegenBonus;
+                Heal(healthRegenAmount);
             }
 
         }

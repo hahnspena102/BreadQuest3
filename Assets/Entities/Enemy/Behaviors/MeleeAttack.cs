@@ -9,9 +9,11 @@ public class MeleeAttack : EnemyBehavior
     [Header("Melee Settings")]
     [SerializeField] private float range = 2f;
     [SerializeField] private float coneAngle = 60f;
+    private Enemy enemy;
 
     public override float PerformBehavior(Enemy enemy, float behaviorDuration)
     {
+        this.enemy = enemy;
         enemy.StartCoroutine(MeleeRoutine(enemy));
         return behaviorDuration;
     }
@@ -52,7 +54,7 @@ public class MeleeAttack : EnemyBehavior
     {
         Vector2 origin = enemy.transform.position;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, range * enemy.ScaleFactor);
 
         foreach (Collider2D hit in hits)
         {
@@ -88,7 +90,7 @@ public class MeleeAttack : EnemyBehavior
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(Vector3.zero, range);
+        Gizmos.DrawWireSphere(Vector3.zero, range * enemy.ScaleFactor);
     }
 #endif
 }

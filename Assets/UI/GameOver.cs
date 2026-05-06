@@ -37,9 +37,23 @@ public class GameOver : MonoBehaviour
            StartCoroutine(NewGame());
 
         }
+
+        if (Input.GetKeyDown(KeyCode.C)) {
+
+            StartCoroutine(ContinueGame());
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape)) {
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    IEnumerator ContinueGame() {
+        playerData.CurrentHealth = playerData.MaxHealth;
+        playerData.CurrentGlucose = playerData.MaxGlucose;
+        yield return null;
+        SceneManager.LoadScene("MainScene");
+        
     }
     
 

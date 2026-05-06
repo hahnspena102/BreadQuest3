@@ -50,7 +50,7 @@ public class Charge : EnemyBehavior
         while (timer < duration)
         {
             animator.SetFloat("speed", chargeSpeed);
-            enemy.transform.localScale = new Vector3(Mathf.Sign(targetPos.x - enemy.transform.position.x), 1f, 1f);
+            enemy.transform.localScale = new Vector3(Mathf.Sign(targetPos.x - enemy.transform.position.x), 1f, 1f) * enemy.ScaleFactor;
             Vector2 enemyPos = enemy.transform.position;
             if (!useFixedTargetPosition)
                 targetPos = target.transform.position;

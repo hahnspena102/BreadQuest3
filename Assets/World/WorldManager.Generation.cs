@@ -15,21 +15,160 @@ public partial class WorldManager
 
 
         /* Get world area */ 
-        RectInt worldArea = new RectInt(
+        RectInt worldArea = GetWorldArea();
+
+
+        /* Generate BSP tree and rooms */
+        if (isBossFloor)
+        {
+            worldArea = new RectInt(
+                -(worldWidth * 3 / 4) + 10,
+                -(worldHeight * 3 / 4) + 10,
+                (worldWidth * 3 / 2) - 20,
+                (worldHeight * 3 / 2) - 20
+            );
+            GenerateBossFloor(worldArea);
+        }
+        else
+        {
+            BSPNode root = new BSPNode(worldArea);
+            root.GenerateBSP(minPartitionSize);
+
+            CreateRooms(root);
+        }
+
+        ConnectRooms();
+        CreateWalls();
+    }
+
+    private RectInt GetWorldArea()
+    {
+        if (isBossFloor)
+        {
+            return new RectInt(
+                -(worldWidth * 3 / 4) + 10,
+                -(worldHeight * 3 / 4) + 10,
+                (worldWidth * 3 / 2) - 20,
+                (worldHeight * 3 / 2) - 20
+            );
+        }
+
+        return new RectInt(
             -worldWidth / 2,
             -worldHeight / 2,
             worldWidth,
             worldHeight
         );
+    }
 
+    private void GenerateBossFloor(RectInt worldArea)
+    {
+        int roomInset = 0;
+        int corridorGap = Random.Range(4, 7);
 
-        /* Generate BSP tree and rooms */
-        BSPNode root = new BSPNode(worldArea);
-        root.GenerateBSP(minPartitionSize);
+        if (worldArea.width < minRoomWidth * 2 + corridorGap + roomInset * 2 || worldArea.height < minRoomHeight + roomInset * 2)
+        {
+            BSPNode root = new BSPNode(worldArea);
+            root.GenerateBSP(minPartitionSize);
+            CreateRooms(root);
+            return;
+        }
 
-        CreateRooms(root);
-        ConnectRooms();
-        CreateWalls();
+        int layoutRoll = Random.Range(0, 4);
+
+        int smallRoomWidth = Mathf.Clamp(
+            minRoomWidth + Mathf.Max(1, worldArea.width / 36),
+            minRoomWidth,
+            Mathf.Max(minRoomWidth + 1, worldArea.width / 4)
+        );
+        int smallRoomHeight = Mathf.Clamp(
+            minRoomHeight + Mathf.Max(1, worldArea.height / 36),
+            minRoomHeight,
+            Mathf.Max(minRoomHeight + 1, worldArea.height / 4)
+        );
+        int bossRoomWidth = Mathf.Clamp(worldArea.width / 3 - 2, smallRoomWidth + 4, Mathf.Max(smallRoomWidth + 4, worldArea.width - smallRoomWidth - corridorGap - roomInset * 2));
+        int bossRoomHeight = Mathf.Clamp(worldArea.height / 3 - 2, smallRoomHeight + 4, Mathf.Max(smallRoomHeight + 4, worldArea.height - smallRoomHeight - corridorGap - roomInset * 2));
+        int bossRoomCellCount = Mathf.CeilToInt((bossRoomWidth * bossRoomHeight) / 200f);
+        switch (layoutRoll)
+        {
+            case 0:
+            {
+                int roomY = Random.Range(worldArea.yMin + roomInset, worldArea.yMax - roomInset - smallRoomHeight + 1);
+                RectInt smallRoomArea = new RectInt(worldArea.xMin + roomInset, roomY, smallRoomWidth, smallRoomHeight);
+                RectInt bossRoomArea = new RectInt(
+                    smallRoomArea.xMax + corridorGap,
+                    roomY,
+                    bossRoomWidth,
+                    bossRoomHeight
+                );
+
+                Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
+                Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
+                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                break;
+            }
+            case 1:
+            {
+                int roomY = Random.Range(worldArea.yMin + roomInset, worldArea.yMax - roomInset - smallRoomHeight + 1);
+                RectInt bossRoomArea = new RectInt(worldArea.xMin + roomInset, roomY, bossRoomWidth, bossRoomHeight);
+                RectInt smallRoomArea = new RectInt(
+                    bossRoomArea.xMax + corridorGap,
+                    roomY,
+                    smallRoomWidth,
+                    smallRoomHeight
+                );
+
+                Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
+                Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
+                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                break;
+            }
+            case 2:
+            {
+                int roomX = Random.Range(worldArea.xMin + roomInset, worldArea.xMax - roomInset - smallRoomWidth + 1);
+                RectInt smallRoomArea = new RectInt(roomX, worldArea.yMin + roomInset, smallRoomWidth, smallRoomHeight);
+                RectInt bossRoomArea = new RectInt(
+                    roomX,
+                    smallRoomArea.yMax + corridorGap,
+                    bossRoomWidth,
+                    bossRoomHeight
+                );
+
+                Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
+                Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
+                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                break;
+            }
+            default:
+            {
+                int roomX = Random.Range(worldArea.xMin + roomInset, worldArea.xMax - roomInset - smallRoomWidth + 1);
+                RectInt bossRoomArea = new RectInt(roomX, worldArea.yMin + roomInset, bossRoomWidth, bossRoomHeight);
+                RectInt smallRoomArea = new RectInt(
+                    roomX,
+                    bossRoomArea.yMax + corridorGap,
+                    smallRoomWidth,
+                    smallRoomHeight
+                );
+
+                Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
+                Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
+                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                break;
+            }
+        }
+    }
+
+    private Room CreateRoom(RectInt roomArea, RoomShape roomShape, int subCellCount)
+    {
+        Room newRoom = new Room(roomArea, rooms.Count);
+        newRoom.GenerateRoomShape(roomShape);
+
+        DrawRoom(newRoom);
+        newRoom.GenerateVoronoiInRoom(subCellCount);
+        Debug.Log($"Created room with sub-cells: {newRoom.subCells.Count}");
+
+        rooms.Add(newRoom);
+        return newRoom;
     }
 
     /* Recursively create rooms in the leaf nodes of the BSP tree. */
@@ -79,30 +218,21 @@ public partial class WorldManager
         );
 
         RectInt roomArea = new RectInt(roomX, roomY, roomWidth, roomHeight);
-        Room newRoom = new Room(roomArea, rooms.Count);
+        Room newRoom;
 
         /* Randomly choose a shape for the room and generate its floor tiles. */
         float shapeRoll = Random.value;
         if (shapeRoll < 0.45f)
-            newRoom.GenerateRoomShape(RoomShape.Rectangle);
+            newRoom = CreateRoom(roomArea, RoomShape.Rectangle, Random.Range(2, 5));
         else if (shapeRoll < 0.65f)
-            newRoom.GenerateRoomShape(RoomShape.LShape);
+            newRoom = CreateRoom(roomArea, RoomShape.LShape, Random.Range(2, 5));
         else if (shapeRoll < 0.80f)
-            newRoom.GenerateRoomShape(RoomShape.TShape);
+            newRoom = CreateRoom(roomArea, RoomShape.TShape, Random.Range(2, 5));
         else
-            newRoom.GenerateRoomShape(RoomShape.Rectangle);
-            //newRoom.GenerateRoomShape(RoomShape.Organic);
+            newRoom = CreateRoom(roomArea, RoomShape.Rectangle, Random.Range(2, 5));
+            //newRoom = CreateRoom(roomArea, RoomShape.Organic, Random.Range(2, 5));
 
-        /* Place the tiles of the room */
-        DrawRoom(newRoom);
-
-
-        /* Generate sub-cells within the room for more varied enemy spawn points. */
-        int subCellCount = Random.Range(2, 5);
-        newRoom.GenerateVoronoiInRoom(subCellCount);
-
-        /* Add the new room to the list of rooms and assign it to the BSP node. */
-        rooms.Add(newRoom);
+        /* Assign the new room to the BSP node. */
         node.room = newRoom;
     }
 
@@ -214,10 +344,10 @@ public partial class WorldManager
     private void CreateWalls()
     {
         BoundsInt bounds = floorTilemap.cellBounds;
-        bounds.yMax += 6;
-        bounds.xMin -= 1;
-        bounds.xMax += 1;
-        bounds.yMin -= 1;
+        bounds.yMax += 12;
+        bounds.xMin -= 4;
+        bounds.xMax += 4;
+        bounds.yMin -= 4;
 
         foreach (var pos in bounds.allPositionsWithin)
         {
@@ -272,12 +402,11 @@ public partial class WorldManager
     /* Helper function to fill any empty space with walls. */
     private void FillEmptyWithWalls()
     {
-        RectInt worldArea = new RectInt(
-            -worldWidth / 2,
-            -worldHeight / 2,
-            worldWidth,
-            worldHeight
-        );
+        RectInt worldArea = GetWorldArea();
+        worldArea.xMin -= 10;
+        worldArea.xMax += 10;
+        worldArea.yMin -= 10;
+        worldArea.yMax += 10;
 
         for (int x = worldArea.xMin; x < worldArea.xMax; x++)
         {

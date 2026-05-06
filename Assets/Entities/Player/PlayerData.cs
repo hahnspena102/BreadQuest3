@@ -14,6 +14,11 @@ public class PlayerData : EntityData
     [SerializeField] private int currentFloor = 1;
     [SerializeField] private float healCooldown = 0f;
     [SerializeField] private float glucoseCooldown = 0f;
+
+    [Header("Toppings")]
+    [SerializeField] private ToppingData[] toppings;
+    [SerializeField] private float healthRegenBonus;
+    [SerializeField] private float glucoseRegenBonus;
     
 
     public global::System.Single Gold { get => gold; set => gold = value; }
@@ -27,6 +32,9 @@ public class PlayerData : EntityData
     public global::System.Int32 CurrentFloor { get => currentFloor; set => currentFloor = value; }
     public global::System.Single HealCooldown { get => healCooldown; set => healCooldown = value; }
     public global::System.Single GlucoseCooldown { get => glucoseCooldown; set => glucoseCooldown = value; }
+    public global::System.Single HealthRegenBonus { get => healthRegenBonus; set => healthRegenBonus = value; }
+    public global::System.Single GlucoseRegenBonus { get => glucoseRegenBonus; set => glucoseRegenBonus = value; }
+    public ToppingData[] Toppings { get => toppings; set => toppings = value; }
 
     private float thresholdMultiplier = 5000;
     private float thresholdPower = 1.4f;
@@ -57,6 +65,46 @@ public class PlayerData : EntityData
         this.currentFloor = starterData.CurrentFloor;
         this.healCooldown = starterData.healCooldown;
         this.glucoseCooldown = starterData.glucoseCooldown;
+    }
+
+
+    public void CalculateToppingBonuses()
+    {
+        float healthRegenBonus = 0f;
+        float glucoseRegenBonus = 0f;
+
+        if (toppings != null)
+        {
+            foreach (var topping in toppings)
+            {
+                healthRegenBonus += topping.HealthRegenBonus;
+                glucoseRegenBonus += topping.GlucoseRegenBonus;
+            }
+        }
+
+        this.HealthRegenBonus = healthRegenBonus;
+        this.GlucoseRegenBonus = glucoseRegenBonus;
+    }
+
+    public void AddTopping(ToppingData newTopping)
+    {
+        if (toppings == null)
+        {
+            toppings = new ToppingData[0];
+        }
+
+
+        // Add the new topping to the array
+        int newSize = toppings.Length + 1;
+        ToppingData[] newToppingsArray = new ToppingData[newSize];
+        for (int i = 0; i < toppings.Length; i++)
+        {
+            newToppingsArray[i] = toppings[i];
+        }
+        newToppingsArray[newSize - 1] = newTopping;
+        toppings = newToppingsArray;
+
+        CalculateToppingBonuses();
     }
 
 

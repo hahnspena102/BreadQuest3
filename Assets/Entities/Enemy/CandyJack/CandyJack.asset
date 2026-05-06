@@ -41,6 +41,7 @@ MonoBehaviour:
   isDynamic: 0
   healthScalar: 0.1
   damageScalar: 0.1
+  canBeMiniBoss: 1
   ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
   animatorOverride: {fileID: 9100000, guid: 7435e06c7c46c44768e745be9c8b061b, type: 2}

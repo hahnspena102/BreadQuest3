@@ -19,6 +19,7 @@ public partial class WorldManager : MonoBehaviour
     private Player player;
     [SerializeField]private GameObject teleporterPrefab;
     [SerializeField] private GameObject chestPrefab;    
+    [SerializeField]private bool isBossFloor = true;
 
     public Tilemap floorTilemap;
     public Tilemap wallTilemap;
@@ -41,7 +42,16 @@ public partial class WorldManager : MonoBehaviour
         
         int tier = GameManager.FloorToTier(player.PlayerData.CurrentFloor);
         Debugger.Log("Player is on floor " + player.PlayerData.CurrentFloor + ", tier " + tier + ".", type: DebugType.World);
-            
+        
+        // every 5th floor is a boss floor, starting with floor 5
+        if (player.PlayerData.CurrentFloor > 0 && player.PlayerData.CurrentFloor % 5 == 0)
+        {
+            isBossFloor = true;
+        } else
+        {
+            isBossFloor = false;
+          
+        }
         StartCoroutine(BuildWorld());
     }
 

@@ -47,6 +47,8 @@ MonoBehaviour:
   tier5Enemies:
   - enemyData: {fileID: 11400000, guid: d149a486eaa654344aff76369709e928, type: 2}
     spawnWeight: 1
-  - enemyData: {fileID: 0}
-    spawnWeight: 0
+  - enemyData: {fileID: 11400000, guid: c51e6255f4b07894a8dabaaba6475ea2, type: 2}
+    spawnWeight: 1
+  - enemyData: {fileID: 11400000, guid: 0366f17b789b3894b99c4028f1dfeade, type: 2}
+    spawnWeight: 1
   tier6Enemies: []

@@ -3598,7 +3598,15 @@ PrefabInstance:
       objectReference: {fileID: 2095817462}
     - target: {fileID: 2767976121527430670, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_Name
-      value: Blueberry Mufflin
+      value: Grahoblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075775767173102739, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075775767173102739, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6075775767173102739, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3640,25 +3648,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6488219433678046976, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488219433678046976, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488364561652074606, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
+      propertyPath: isBoss
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7488364561652074606, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: b1be2598be9f7bd40b3536943eccb2e3, type: 2}
+      objectReference: {fileID: 11400000, guid: 0366f17b789b3894b99c4028f1dfeade, type: 2}
     - target: {fileID: 7667810397641370904, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7667810397641370904, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7667810397641370904, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7667810397641370904, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667810397641370904, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: -0.92
       objectReference: {fileID: 0}
     - target: {fileID: 8744477676003927718, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_Size.x
@@ -3671,7 +3695,7 @@ PrefabInstance:
     - target: {fileID: 8744477676003927718, guid: 6062407cc39612c49ba4505aeefd367d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3552530474948280094, guid: 247c565b8516c8144a0964a1d4176aef, type: 3}
+      objectReference: {fileID: 3691718313985784316, guid: 2597fbf9ee3ccc745bc1cb80a6df3b5e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3773,6 +3797,7 @@ MonoBehaviour:
   maxRoomHeight: 16
   teleporterPrefab: {fileID: 8952454158959800989, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
   chestPrefab: {fileID: 8952454158959800989, guid: 4a8c48a037c0a7f40899c5054577725f, type: 3}
+  isBossFloor: 1
   floorTilemap: {fileID: 2007731686}
   wallTilemap: {fileID: 35469256}
   barrierTilemap: {fileID: 0}
@@ -4154,7 +4179,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 00816a9ce89436f4bbd64a9892178a39, type: 3}
+  m_Resource: {fileID: 8300000, guid: 1580f88d224440d4c9828d92c8cf1cdc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.217
   m_Pitch: 1
@@ -5002,6 +5027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3844dd7189a672144bb454ea5f5b0173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  allToppings: []
 --- !u!4 &1952289780
 Transform:
   m_ObjectHideFlags: 0
@@ -7499,17 +7525,17 @@ AnimatorOverrideController:
   m_Controller: {fileID: 9100000, guid: d27c839d7fd334e78838c5244e648d30, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: f1b0b268676c54f62ac8800674be7fa7, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: f8d2f3fc62ed27d42b48d2a15854a012, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 39e75f4efa54f8d4e92886ca521a76bd, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: c53b6c7f876154e6aa16089568c78a29, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: f8d2f3fc62ed27d42b48d2a15854a012, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 39e75f4efa54f8d4e92886ca521a76bd, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: bb54f3c14a6ed8e498a80ed28687570c, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 08edbe3312ae44547a09ca5139d481dd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d61a5370d904ed2458471e6a02996728, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 22a8d48380fdb994aa42af5679adf153, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 08edbe3312ae44547a09ca5139d481dd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d61a5370d904ed2458471e6a02996728, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: b1665f8ed108f4540be84a17fce4773f, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 8849f9e7b1dc6ec4ea72358d4bb1b70a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c2cdbe6caaa8c5f449fa74e7945968d0, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 7cca8b896995a454490832d4028cef82, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 8849f9e7b1dc6ec4ea72358d4bb1b70a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c2cdbe6caaa8c5f449fa74e7945968d0, type: 2}
 --- !u!1 &282414024061347004
 GameObject:
   m_ObjectHideFlags: 0
@@ -8360,7 +8386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5529412}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78039217}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

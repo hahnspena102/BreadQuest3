@@ -7,6 +7,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject enemyBasePrefab;
     [SerializeField] private EnemySpawns enemySpawns;
     private float minSpawnDistanceFromPlayer = 3f;
+    private Enemy bossEnemy;
+
+    public EnemySpawns EnemySpawns { get => enemySpawns; set => enemySpawns = value; }
+    public Enemy BossEnemy { get => bossEnemy; set => bossEnemy = value; }
 
 
 
@@ -36,6 +40,10 @@ public class EnemyManager : MonoBehaviour
             enemyComponent.AssignedWave = assignedWave;
             enemyComponent.AssignedRoom = assignedWave != null ? assignedWave.associatedRoom : null;
             enemyComponent.ApplyEnemyData();
+        }
+        if (assignedWave != null)
+        {
+            assignedWave.enemiesLeft++;
         }
 
         return newEnemy;
@@ -77,7 +85,18 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (var (enemyData, spawnPosition) in wave.enemyDataInWave)
         {
-            SpawnEnemy(enemyData, spawnPosition, wave);
+            GameObject enemy = SpawnEnemy(enemyData, spawnPosition, wave);
+            if (wave.bossIndex >= 0 && wave.enemyDataInWave.IndexOf((enemyData, spawnPosition)) == wave.bossIndex)
+            {
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+                if (enemyComponent != null)
+                {
+                    enemyComponent.IsBoss = true;
+                    Debugger.Log("Spawned boss: " + enemyComponent.EnemyData.EnemyName, type: DebugType.Enemies);
+                }
+             
+                enemy.transform.position = new Vector3(wave.associatedRoom.GetRoomCenter().x, wave.associatedRoom.GetRoomCenter().y, enemy.transform.position.z);
+            }
         }
     }
 
@@ -94,9 +113,23 @@ public class EnemyManager : MonoBehaviour
             //Debugger.Log("Spawning enemy: " + enemyData.EnemyName, type: DebugType.Enemies);
             Vector3 spawnPosition = new Vector3(subCell.center.x, subCell.center.y, 0f);
             wave.enemyDataInWave.Add((enemyData, spawnPosition));
-            wave.enemiesLeft++;
         }
         
     }
-    
+
+    public Enemy GetBoss()
+    {
+        Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        foreach (Enemy enemy in enemies)
+        {
+            if (enemy.IsBoss)
+            {
+                bossEnemy = enemy;
+                return enemy;
+            }
+        }
+        bossEnemy = null;
+        return null;
+        }
+        
 }

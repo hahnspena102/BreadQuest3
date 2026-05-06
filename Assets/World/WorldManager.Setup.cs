@@ -41,7 +41,7 @@ public partial class WorldManager
                 continue;
             }
 
-            int numWaves = Random.Range(1, 4);
+            int numWaves = isBossFloor && room == endingRoom ? 1 : Random.Range(1, 4);
             room.waves.Clear();
             for (int i = 0; i < numWaves; i++)
             {
@@ -49,9 +49,30 @@ public partial class WorldManager
                 room.waves[i].associatedRoom = room;
             }
 
+
             foreach (var wave in room.waves)
             {
                 enemyManager.PopulateWave(wave);
+            }
+
+            if (isBossFloor) {
+                if (room == endingRoom)
+                {
+                    /* pick random enemy from wave and make it a boss */
+                    Wave lastWave = room.waves[room.waves.Count - 1];
+                    lastWave.AddBoss(enemyManager.EnemySpawns.GetBossForTier(GameManager.FloorToTier(player.PlayerData.CurrentFloor)));
+                    lastWave.bossIndex = lastWave.enemyDataInWave.Count - 1;
+
+                    int additionalWaves = Random.Range(1, 3);
+                    for (int i = 0; i < additionalWaves; i++)
+                    {
+                        Wave extraWave = new Wave();
+                        extraWave.associatedRoom = room;
+                        enemyManager.PopulateWave(extraWave);
+                        room.waves.Add(extraWave);
+                    }
+                    
+                }
             }
 
             string waveInfo = "";
@@ -94,11 +115,57 @@ public partial class WorldManager
             return null;
         }
 
+        if (isBossFloor)
+        {
+            Room smallestRoom = validRooms[0];
+            int smallestArea = smallestRoom.area.width * smallestRoom.area.height;
+
+            for (int i = 1; i < validRooms.Count; i++)
+            {
+                Room room = validRooms[i];
+                int roomArea = room.area.width * room.area.height;
+
+                if (roomArea < smallestArea)
+                {
+                    smallestArea = roomArea;
+                    smallestRoom = room;
+                }
+            }
+
+            return smallestRoom;
+        }
+
         return validRooms[Random.Range(0, validRooms.Count)];
     }
 
     private Room ChooseEndingRoom(Room startRoom)
     {
+        if (isBossFloor)
+        {
+            Room largestRoom = null;
+            int largestArea = 0;
+
+            foreach (Room room in rooms)
+            {
+                if (room == startRoom)
+                {
+                    continue;
+                }
+
+                int roomArea = room.area.width * room.area.height;
+                if (roomArea > largestArea)
+                {
+                    largestArea = roomArea;
+                    largestRoom = room;
+                }
+            }
+
+            if (largestRoom != null)
+            {
+                return largestRoom;
+            }
+        }
+
         Room bestRoom = null;
         float maxDistance = 0f;
 

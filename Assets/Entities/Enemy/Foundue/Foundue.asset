@@ -19,6 +19,7 @@ MonoBehaviour:
   description: 
   flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
   contactDamage: 0
+  baseDamage: 0
   experienceDropped: 100
   projectileData: {fileID: 0}
   projectileOffset: {x: 0, y: 0}
@@ -37,6 +38,11 @@ MonoBehaviour:
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0
+  isDynamic: 0
+  healthScalar: 0.1
+  damageScalar: 0.1
+  canBeMiniBoss: 0
+  ignoreEnemyCollision: 0
   performBehaviorsInOrder: 0
   animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: a0e8f6dd70e403a489562ec032dd100a, type: 2}
@@ -47,3 +53,6 @@ MonoBehaviour:
   attackAnimationB: {fileID: 7400000, guid: a0e8f6dd70e403a489562ec032dd100a, type: 2}
   shadowOffset: {x: 0, y: -0.8}
   shadowScale: {x: 0.5, y: 0.5}
+  attackSounds: []
+  hurtSounds: []
+  deathSounds: []

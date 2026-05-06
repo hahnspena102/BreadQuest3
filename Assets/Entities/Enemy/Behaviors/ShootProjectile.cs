@@ -73,12 +73,12 @@ public class ShootProjectile : EnemyBehavior
         if (directionToTarget.x > 0.01f)
         {
             spawnPosition += enemy.EnemyData.ProjectileOffset;
-            enemy.transform.localScale = Vector3.one;
+            enemy.transform.localScale = Vector3.one * enemy.ScaleFactor;
         }
             else if (directionToTarget.x < -0.01f)
         {
             spawnPosition += new Vector2(-enemy.EnemyData.ProjectileOffset.x, enemy.EnemyData.ProjectileOffset.y);
-            enemy.transform.localScale = new Vector3(-1, 1, 1);
+            enemy.transform.localScale = new Vector3(-1, 1, 1) * enemy.ScaleFactor;
         }
             
 
@@ -119,6 +119,8 @@ public class ShootProjectile : EnemyBehavior
                     sr.color = projectileColors[i % projectileColors.Length];
                 }
             }
+
+            projectileInstance.transform.localScale *= enemy.ScaleFactor;
 
            
 

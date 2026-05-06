@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Serialization;
+using System.Collections.Generic;
 
 
 
@@ -61,5 +63,28 @@ public class EnemySpawns : ScriptableObject
 
         // Fallback in case of rounding errors
         return allEntries[allEntries.Count - 1].enemyData;
+    }
+
+    public List<EnemyData> GetBossForTier(int tier)
+    {
+        var possibleMinibosses = new List<EnemyData>();
+        var allEntries = new System.Collections.Generic.List<EnemySpawnEntry>();
+        
+        if (tier >= 1 && tier1Enemies != null) allEntries.AddRange(tier1Enemies);
+        if (tier >= 2 && tier2Enemies != null) allEntries.AddRange(tier2Enemies);
+        if (tier >= 3 && tier3Enemies != null) allEntries.AddRange(tier3Enemies);
+        if (tier >= 4 && tier4Enemies != null) allEntries.AddRange(tier4Enemies);
+        if (tier >= 5 && tier5Enemies != null) allEntries.AddRange(tier5Enemies);
+        if (tier >= 6 && tier6Enemies != null) allEntries.AddRange(tier6Enemies);
+
+        foreach (var entry in allEntries)
+        {
+            if (entry.enemyData.CanBeMiniBoss)
+            {
+                possibleMinibosses.Add(entry.enemyData);
+            }
+        }
+
+        return possibleMinibosses;
     }
 }

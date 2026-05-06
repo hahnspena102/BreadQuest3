@@ -48,8 +48,10 @@ MonoBehaviour:
     TimesToRepeat: 1
   disableAgent: 0
   isBouncy: 0
+  isDynamic: 0
   healthScalar: 0.1
   damageScalar: 0.1
+  canBeMiniBoss: 1
   ignoreEnemyCollision: 0
   performBehaviorsInOrder: 1
   animatorOverride: {fileID: 9100000, guid: 70d1e405f64181b418b15e1ef0afad97, type: 2}
@@ -61,3 +63,6 @@ MonoBehaviour:
   attackAnimationB: {fileID: 0}
   shadowOffset: {x: 0, y: -0.7}
   shadowScale: {x: 1, y: 1}
+  attackSounds: []
+  hurtSounds: []
+  deathSounds: []

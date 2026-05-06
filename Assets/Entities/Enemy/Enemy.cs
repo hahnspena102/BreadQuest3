@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     [ReadOnly][SerializeField] private PopupManager popupManager;
 
     [SerializeField] private Enemy linkedEnemy;
+    [SerializeField] private bool isBoss = false;
+    [SerializeField] private float scaleFactor = 1f;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
     private Coroutine behaviorCoroutine;
     private Player player;
     private readonly Dictionary<int, float> lastHitTimesBySource = new Dictionary<int, float>();
+    
 
 
 
@@ -45,6 +48,8 @@ public class Enemy : MonoBehaviour
     public Player Player { get => player; set => player = value; }
     public global::System.Single ContactDamage { get => contactDamage; set => contactDamage = value; }
     public global::System.Single AttackDamage { get => attackDamage; set => attackDamage = value; }
+    public global::System.Single ScaleFactor { get => scaleFactor; set => scaleFactor = value; }
+    public global::System.Boolean IsBoss { get => isBoss; set => isBoss = value; }
 
     void Awake()
     {
@@ -79,6 +84,17 @@ public class Enemy : MonoBehaviour
                 rb.bodyType = RigidbodyType2D.Dynamic;
             }
         }
+
+        if (isBoss)
+        {
+            currentHealth *= 2f;
+            maxHealth = currentHealth;
+            contactDamage *= 1.5f;
+            attackDamage *= 1.5f;
+            scaleFactor = 2f;
+            transform.localScale = Vector3.one * scaleFactor;
+             Debugger.Log("Boss enemy stats - health: " + currentHealth + ", contact damage: " + contactDamage + ", attack damage: " + attackDamage, context: this, type: DebugType.Enemies);
+        }
     }
 
     void OnDisable()
@@ -93,9 +109,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (agent.velocity.x > 0.01f)
-            transform.localScale = Vector3.one;
+            transform.localScale = Vector3.one * scaleFactor;
         else if (agent.velocity.x < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1) * scaleFactor;
 
         if (animator != null)
         {
@@ -146,7 +162,7 @@ public class Enemy : MonoBehaviour
 
         for (int i = 0; i < behaviorEntry.TimesToRepeat; i++)
         {
-            Debugger.Log($"Enemy {gameObject.name} performing behavior {behavior.name} (iteration {i + 1}/{behaviorEntry.TimesToRepeat})", context: this, type: DebugType.Enemies);
+            Debugger.Log($"Enemy {gameObject.name} performing behavior {behavior.name} (iteration {i + 1}/{behaviorEntry.TimesToRepeat})", context: this, type: DebugType.AI);
             float timeToWait = behavior.PerformBehavior(
                 this,
                 behaviorEntry.BehaviorDuration
@@ -158,6 +174,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage, Flavor flavor = null)
     {
+        if (currentHealth <= 0)
+            return;
         float totalDamage = damage;
         Flavor effectiveAgainst = flavor?.EffectiveAgainst;
         bool isEffective = effectiveAgainst != null && enemyData.Flavor != null && effectiveAgainst == enemyData.Flavor;
@@ -216,10 +234,6 @@ public class Enemy : MonoBehaviour
         if (AssignedWave != null)
         {
             AssignedWave.enemiesLeft--;
-            Debugger.Log("Remaining enemies in wave: " + AssignedWave.enemiesLeft, context: this, type: DebugType.Enemies);
-        } else
-        {
-            Debugger.LogWarning("Enemy " + gameObject.name + " has no assigned wave to remove itself from.", context: this, type: DebugType.Enemies);
         }
 
         if (linkedEnemy != null)
@@ -358,5 +372,10 @@ public class Enemy : MonoBehaviour
 
         lastHitTimesBySource[sourceId] = Time.time;
         return true;
+    }
+
+    public float GetHealthPercentage()
+    {
+        return currentHealth / maxHealth;
     }
 }

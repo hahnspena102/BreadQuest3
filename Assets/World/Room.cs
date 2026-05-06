@@ -29,6 +29,7 @@ public class Room
     public List<Vector3Int> barrierPositions = new List<Vector3Int>();
     public List<Wave> waves = new List<Wave>();
     ///public List<GameObject> enemiesInRoom = new List<GameObject>();
+    public int nextBossWaveToSpawnIndex = 1;
     
     public bool isSealed = false;
     public bool isCleared = false;
@@ -42,6 +43,7 @@ public class Room
         this.subCells = new List<RoomSubCell>();
         this.waves = new List<Wave>();
         this.floorTiles = new List<Vector2Int>();
+        this.nextBossWaveToSpawnIndex = 1;
     }
 
 

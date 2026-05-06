@@ -21,6 +21,7 @@ public class EnemyData : EntityData
     [SerializeField]private bool isDynamic = false;
     [SerializeField]private float healthScalar = 0.1f;
     [SerializeField]private float damageScalar = 0.1f;
+    [SerializeField]private bool canBeMiniBoss = true;
     [SerializeField]private bool ignoreEnemyCollision = false;
     public float HealthScalar { get => healthScalar; set => healthScalar = value; }
     public float DamageScalar { get => damageScalar; set => damageScalar = value; }
@@ -66,6 +67,7 @@ public class EnemyData : EntityData
     public global::System.Boolean IgnoreEnemyCollision { get => ignoreEnemyCollision; set => ignoreEnemyCollision = value; }
     public global::System.Int32 BaseDamage { get => baseDamage; set => baseDamage = value; }
     public global::System.Boolean IsDynamic { get => isDynamic; set => isDynamic = value; }
+    public global::System.Boolean CanBeMiniBoss { get => canBeMiniBoss; set => canBeMiniBoss = value; }
 
     public AudioClip GetAttackSound()
     {
