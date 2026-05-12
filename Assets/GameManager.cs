@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Player player;
     void Awake() {
         int countLoaded = SceneManager.sceneCount;
         Scene[] loadedScenes = new Scene[countLoaded];
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     void Start() {
         //RandomizeToppings();
+        player = FindFirstObjectByType<Player>();
     }
 
     void Update () {
@@ -60,21 +63,21 @@ public class GameManager : MonoBehaviour
         return baseValue * (1 + scale * (floor - 1));
     }
 
-    [SerializeField]private ToppingData[] allToppings;
+    [SerializeField]private ToppingDrops toppingsDrops;
 
     public void RandomizeToppings() {
         int numToppings = 3;
-        ToppingData[] selectedToppings = new ToppingData[numToppings];
-        for (int i = 0; i < numToppings; i++) {
-            int randomIndex = Random.Range(0, allToppings.Length);
-            ToppingData randomTopping = allToppings[randomIndex];
-            selectedToppings[i] = randomTopping;
-            Debug.Log("Selected Topping: " + randomTopping.name);
+        List<ToppingData> selectedToppings = new List<ToppingData>();
+        ToppingDropEntry[] selectedToppingsEntry = toppingsDrops.GetRandomDrops(FloorToTier(player.PlayerData.CurrentFloor), numToppings);
+        foreach (var selectedTopping in selectedToppingsEntry)
+        {
+            Debug.Log($"Selected Topping: {selectedTopping.item.ToppingName} (Group: {selectedTopping.item.ToppingGroup})");
+            selectedToppings.Add(selectedTopping.item);
         }
 
         ToppingsPanel toppingsPanel = FindFirstObjectByType<ToppingsPanel>();
         if (toppingsPanel != null) {
-            toppingsPanel.DisplayToppings(selectedToppings);
+            toppingsPanel.DisplayToppings(selectedToppings.ToArray());
         }
     }
 

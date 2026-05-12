@@ -18,12 +18,12 @@ MonoBehaviour:
   tier: 1
   maxStackSize: 1
   isConsumed: 0
-  damage: 16
+  damage: 12
   flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
   projectileData: {fileID: 11400000, guid: a1b66d7c23b1d844eb0d014c66b3b559, type: 2}
   glucoseCost: 10
-  projectileCount: 1
-  spreadAngle: 15
+  projectileCount: 3
+  spreadAngle: 0
   projectileDelay: 0.1
   cooldownDuration: 1
   castSounds:

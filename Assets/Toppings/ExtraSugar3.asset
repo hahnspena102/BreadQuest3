@@ -17,3 +17,4 @@ MonoBehaviour:
   icon: {fileID: 3225410273081615498, guid: a0351033c8307764aa89e8d4b2398bb8, type: 3}
   healthRegenBonus: 0
   glucoseRegenBonus: 3
+  toppingGroup: ExtraSugar

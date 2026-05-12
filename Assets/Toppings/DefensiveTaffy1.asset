@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df9b0b9a0dc962a49b016d61b160b057, type: 3}
-  m_Name: HealthAndWhole1
+  m_Name: DefensiveTaffy1
   m_EditorClassIdentifier: Assembly-CSharp::ToppingData
-  toppingName: Hearthy and Whole I
-  description: 'Slightly increases health regeneration. (1 hp/sec) '
-  icon: {fileID: -6813600172230540647, guid: 5ceb016ab3ddf3c418caa2cd704299a9, type: 3}
-  healthRegenBonus: 1
+  toppingName: Defensive Taffy I
+  description: 'Slightly increases defense. (+ 5% defense) '
+  icon: {fileID: 8012602747710438857, guid: b0608d1227684f141ad27bc0e84e4db0, type: 3}
+  healthRegenBonus: 0
   glucoseRegenBonus: 0
+  defenseBonus: 5
+  toppingGroup: DefensiveTaffy

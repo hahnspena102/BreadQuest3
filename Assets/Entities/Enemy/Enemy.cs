@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     [Header("Combat")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private bool isAttackReady = false;
-    private float repeatedHitCooldown = 0.5f;
+    private float repeatedHitCooldown = 0.2f;
 
     [ReadOnly][SerializeField] private PopupManager popupManager;
 
@@ -172,18 +172,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage, Flavor flavor = null)
+    public void TakeDamage(float damage, Flavor flavor = null, bool isTrueDamage = false)
     {
         if (currentHealth <= 0)
             return;
         float totalDamage = damage;
         Flavor effectiveAgainst = flavor?.EffectiveAgainst;
         bool isEffective = effectiveAgainst != null && enemyData.Flavor != null && effectiveAgainst == enemyData.Flavor;
-      
+
+        if (!isTrueDamage)
+        {
+            totalDamage *= 1f - enemyData.Defense;
+        }
+
         if (effectiveAgainst == enemyData.Flavor)
         {
         
-            totalDamage = damage * 1.5f;
+            totalDamage = totalDamage * 1.5f;
         }
      
         currentHealth -= totalDamage;
@@ -239,7 +244,7 @@ public class Enemy : MonoBehaviour
         if (linkedEnemy != null)
         {
             linkedEnemy.LinkedEnemy = null;
-            linkedEnemy.TakeDamage(linkedEnemy.currentHealth);
+            linkedEnemy.TakeDamage(linkedEnemy.currentHealth, null, true);
             linkedEnemy.SetLinkedEnemy(null);
         }
 

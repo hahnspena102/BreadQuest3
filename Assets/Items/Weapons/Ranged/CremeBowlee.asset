@@ -17,12 +17,13 @@ MonoBehaviour:
   itemSprite: {fileID: -3035390412557001596, guid: 09da902ecd6666643a0b2142631147ff, type: 3}
   tier: 1
   maxStackSize: 1
-  damage: 8
+  isConsumed: 0
+  damage: 12
   flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   projectileData: {fileID: 11400000, guid: e8ed1e10e58d0f64e86fee864ee92ac2, type: 2}
   projectileCount: 1
   spreadAngle: 15
   projectileDelay: 0.1
-  chargeTime: 1
-  chargeAnimationClip: {fileID: 7400000, guid: 9474439cdc635134eb885021c6d29da7, type: 2}
-  releaseAnimationClip: {fileID: 7400000, guid: cc69604eb7108bf43acd41b88a0cadb8, type: 2}
+  chargeTime: 0.5
+  chargeAnimationClip: {fileID: 7400000, guid: 95e6073c260b02f40af07088e856da25, type: 2}
+  releaseAnimationClip: {fileID: 7400000, guid: 0cdf1b465fecb9e43a72e27d129d4e53, type: 2}

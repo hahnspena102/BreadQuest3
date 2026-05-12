@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public partial class WorldManager
 {
@@ -29,6 +30,28 @@ public partial class WorldManager
 
     private void InitializeRooms()
     {
+        int numFlavors = Random.Range(2, 4);
+        // if tier 1, all flavors
+        if (GameManager.FloorToTier(player.PlayerData.CurrentFloor) <= 2)
+        {
+            numFlavors = possibleFlavors.Length;
+        }
+        Flavor[] flavors = new Flavor[numFlavors];
+        // dont allow duplicates
+        for (int i = 0; i < numFlavors; i++)
+        {
+            Flavor flavor;
+            do
+            {
+                flavor = possibleFlavors[Random.Range(0, possibleFlavors.Length)];
+            }
+            while (System.Array.IndexOf(flavors, flavor) != -1);
+            flavors[i] = flavor;
+        }
+
+        Debugger.Log("Assigned floor flavors: " + string.Join(", ", (object[])flavors), type: DebugType.World);
+
+
         foreach (var room in rooms)
         {
             room.isEntered = false;
@@ -49,10 +72,10 @@ public partial class WorldManager
                 room.waves[i].associatedRoom = room;
             }
 
-
+           
             foreach (var wave in room.waves)
             {
-                enemyManager.PopulateWave(wave);
+                enemyManager.PopulateWave(wave, flavors);
             }
 
             if (isBossFloor) {
@@ -68,7 +91,7 @@ public partial class WorldManager
                     {
                         Wave extraWave = new Wave();
                         extraWave.associatedRoom = room;
-                        enemyManager.PopulateWave(extraWave);
+                        enemyManager.PopulateWave(extraWave, flavors);
                         room.waves.Add(extraWave);
                     }
                     
@@ -258,40 +281,77 @@ public partial class WorldManager
         {
             return;
         }
-
-        RectInt area = room.area;
         HashSet<Vector2Int> roomTiles = room.floorTiles.Count > 0
             ? new HashSet<Vector2Int>(room.floorTiles)
-            : GetRectangleTiles(area);
+            : GetRectangleTiles(room.area);
 
-        foreach (Vector2Int tile in roomTiles)
+        // Collect immediate outside candidates: tiles adjacent to the room that are floor
+        HashSet<Vector2Int> outsideCandidates = new HashSet<Vector2Int>();
+        Vector2Int[] dirs = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+
+        foreach (var inside in roomTiles)
         {
-            Vector3Int pos = new Vector3Int(tile.x, tile.y, 0);
-
-            Vector3Int[] directions =
+            foreach (var d in dirs)
             {
-                Vector3Int.up,
-                Vector3Int.down,
-                Vector3Int.left,
-                Vector3Int.right
-            };
+                Vector2Int outside = inside + d;
+                if (roomTiles.Contains(outside))
+                    continue;
 
-            foreach (var dir in directions)
-            {
-                Vector3Int outside = pos + dir;
-                Vector2Int outsidePos = new Vector2Int(outside.x, outside.y);
-
-                if (floorTilemap.GetTile(outside) != null && !room.IsPointInRoom(outsidePos))
+                Vector3Int outside3 = new Vector3Int(outside.x, outside.y, 0);
+                if (floorTilemap.GetTile(outside3) != null)
                 {
-                    barrierTilemap.SetTile(outside, barrierTile);
-                    room.barrierPositions.Add(outside);
+                    outsideCandidates.Add(outside);
+                }
+            }
+        }
+
+        // Cluster outside candidates into contiguous components and place barriers on each tile in a component
+        HashSet<Vector3Int> placedBarriers = new HashSet<Vector3Int>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+
+        foreach (var start in outsideCandidates)
+        {
+            if (visited.Contains(start))
+                continue;
+
+            // BFS to collect component
+            List<Vector2Int> component = new List<Vector2Int>();
+            Queue<Vector2Int> q = new Queue<Vector2Int>();
+            q.Enqueue(start);
+            visited.Add(start);
+
+            while (q.Count > 0)
+            {
+                Vector2Int cur = q.Dequeue();
+                component.Add(cur);
+
+                foreach (var d in dirs)
+                {
+                    Vector2Int n = cur + d;
+                    if (visited.Contains(n) || !outsideCandidates.Contains(n))
+                        continue;
+
+                    visited.Add(n);
+                    q.Enqueue(n);
+                }
+            }
+
+            // Place barriers for the component (cover the entire entrance footprint)
+            foreach (var outside in component)
+            {
+                Vector3Int barrierPos = new Vector3Int(outside.x, outside.y, 0);
+                if (placedBarriers.Add(barrierPos))
+                {
+                    barrierTilemap.SetTile(barrierPos, barrierTile);
+                    room.barrierPositions.Add(barrierPos);
+                    CreateBarrierObstacleAt(barrierPos);
                 }
             }
         }
 
         room.isSealed = true;
     }
-
+    
     private HashSet<Vector2Int> GetRectangleTiles(RectInt area)
     {
         HashSet<Vector2Int> tiles = new HashSet<Vector2Int>();
@@ -311,10 +371,47 @@ public partial class WorldManager
         foreach (var pos in room.barrierPositions)
         {
             barrierTilemap.SetTile(pos, null);
+            DestroyBarrierObstacleAt(pos);
         }
 
         room.barrierPositions.Clear();
         room.isSealed = false;
+    }
+
+    private void CreateBarrierObstacleAt(Vector3Int cellPos)
+    {
+        if (barrierTilemap == null) return;
+
+        string name = $"BarrierObstacle_{cellPos.x}_{cellPos.y}";
+        if (transform.Find(name) != null) return;
+
+        Vector3 worldPos = barrierTilemap.GetCellCenterWorld(cellPos);
+
+        GameObject go = new GameObject(name);
+        go.transform.SetParent(transform);
+        go.transform.position = new Vector3(worldPos.x, worldPos.y, 0f);
+
+        // 2D physical blocker
+        var box = go.AddComponent<BoxCollider2D>();
+        box.size = Vector2.one;
+        var rb = go.AddComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Static;
+
+        // NavMesh obstacle for agent carving
+        var obstacle = go.AddComponent<NavMeshObstacle>();
+        obstacle.carving = true;
+        obstacle.shape = NavMeshObstacleShape.Box;
+        obstacle.size = new Vector3(1f, 1f, 1f);
+    }
+
+    private void DestroyBarrierObstacleAt(Vector3Int cellPos)
+    {
+        string name = $"BarrierObstacle_{cellPos.x}_{cellPos.y}";
+        Transform t = transform.Find(name);
+        if (t != null)
+        {
+            DestroyImmediate(t.gameObject);
+        }
     }
 
     private List<Room> GetInteriorRooms()

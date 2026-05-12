@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be348a2a168bc3443971681613879822, type: 3}
+  m_Name: ToppingDrops
+  m_EditorClassIdentifier: Assembly-CSharp::ToppingDrops
+  tier1Drops:
+  - item: {fileID: 11400000, guid: 3f18f8063b93fc94c93ccd1690b0fcf0, type: 2}
+    dropWeight: 1
+  - item: {fileID: 11400000, guid: 859e6693531c23845aa7f80daad7972b, type: 2}
+    dropWeight: 1
+  - item: {fileID: 11400000, guid: ea5ba15dadcea8e48960d6146c71d0ae, type: 2}
+    dropWeight: 1
+  tier2Drops:
+  - item: {fileID: 11400000, guid: f0977bf620d1e7f44b024f84a1f930f6, type: 2}
+    dropWeight: 1
+  tier3Drops:
+  - item: {fileID: 11400000, guid: 9fd3f2ed230cb30438f4f071d0dc4735, type: 2}
+    dropWeight: 1
+  - item: {fileID: 11400000, guid: 58a4bf3885e4ece4ba283d52ae1577b6, type: 2}
+    dropWeight: 1
+  tier4Drops: []
+  tier5Drops:
+  - item: {fileID: 11400000, guid: ba2e3c50e5b037b4f92d008b3add88ac, type: 2}
+    dropWeight: 1
+  - item: {fileID: 11400000, guid: 0e80fa5d0ece616498c1294e093dc6e4, type: 2}
+    dropWeight: 1
+  tier6Drops: []

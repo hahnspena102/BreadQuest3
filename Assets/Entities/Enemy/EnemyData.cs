@@ -23,6 +23,7 @@ public class EnemyData : EntityData
     [SerializeField]private float damageScalar = 0.1f;
     [SerializeField]private bool canBeMiniBoss = true;
     [SerializeField]private bool ignoreEnemyCollision = false;
+    [SerializeField]private float defense = 0f;
     public float HealthScalar { get => healthScalar; set => healthScalar = value; }
     public float DamageScalar { get => damageScalar; set => damageScalar = value; }
 
@@ -68,6 +69,7 @@ public class EnemyData : EntityData
     public global::System.Int32 BaseDamage { get => baseDamage; set => baseDamage = value; }
     public global::System.Boolean IsDynamic { get => isDynamic; set => isDynamic = value; }
     public global::System.Boolean CanBeMiniBoss { get => canBeMiniBoss; set => canBeMiniBoss = value; }
+    public global::System.Single Defense { get => defense; set => defense = value; }
 
     public AudioClip GetAttackSound()
     {
@@ -85,5 +87,15 @@ public class EnemyData : EntityData
     {
         if (deathSounds == null || deathSounds.Length == 0) return null;
         return deathSounds[Random.Range(0, deathSounds.Length)];
+    }
+
+    public bool MatchesFlavors(Flavor[] flavors)
+    {
+        if (flavors == null || flavors.Length == 0) return true;
+        foreach (var f in flavors)
+        {
+            if (Flavor == f) return true;
+        }
+        return false;
     }
 }

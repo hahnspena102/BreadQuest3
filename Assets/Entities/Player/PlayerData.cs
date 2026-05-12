@@ -19,7 +19,8 @@ public class PlayerData : EntityData
     [SerializeField] private ToppingData[] toppings;
     [SerializeField] private float healthRegenBonus;
     [SerializeField] private float glucoseRegenBonus;
-    
+    [SerializeField] private float defenseBonus;
+    [SerializeField] private float speedBonus;
 
     public global::System.Single Gold { get => gold; set => gold = value; }
     public global::System.Single Experience { get => experience; set => experience = value; }
@@ -34,9 +35,11 @@ public class PlayerData : EntityData
     public global::System.Single GlucoseCooldown { get => glucoseCooldown; set => glucoseCooldown = value; }
     public global::System.Single HealthRegenBonus { get => healthRegenBonus; set => healthRegenBonus = value; }
     public global::System.Single GlucoseRegenBonus { get => glucoseRegenBonus; set => glucoseRegenBonus = value; }
+    public global::System.Single DefenseBonus { get => defenseBonus; set => defenseBonus = value; }
     public ToppingData[] Toppings { get => toppings; set => toppings = value; }
+    public global::System.Single SpeedBonus { get => speedBonus; set => speedBonus = value; }
 
-    private float thresholdMultiplier = 5000;
+    private float thresholdMultiplier = 2000;
     private float thresholdPower = 1.4f;
     public void UpdateLevel()
     {
@@ -65,6 +68,8 @@ public class PlayerData : EntityData
         this.currentFloor = starterData.CurrentFloor;
         this.healCooldown = starterData.healCooldown;
         this.glucoseCooldown = starterData.glucoseCooldown;
+        this.toppings = starterData.toppings;
+        CalculateToppingBonuses();
     }
 
 
@@ -72,6 +77,17 @@ public class PlayerData : EntityData
     {
         float healthRegenBonus = 0f;
         float glucoseRegenBonus = 0f;
+        float defenseBonus = 0f;
+        float speedBonus = 0f;
+
+         if (toppings == null)
+        {
+            this.HealthRegenBonus = 0f;
+            this.GlucoseRegenBonus = 0f;
+            this.DefenseBonus = 0f;
+            this.SpeedBonus = 0f;
+            return;
+        }
 
         if (toppings != null)
         {
@@ -79,12 +95,17 @@ public class PlayerData : EntityData
             {
                 healthRegenBonus += topping.HealthRegenBonus;
                 glucoseRegenBonus += topping.GlucoseRegenBonus;
+                defenseBonus += topping.DefenseBonus;
+                speedBonus += topping.SpeedBonus;
             }
         }
 
         this.HealthRegenBonus = healthRegenBonus;
         this.GlucoseRegenBonus = glucoseRegenBonus;
+        this.DefenseBonus = defenseBonus;
+        this.SpeedBonus = speedBonus;
     }
+
 
     public void AddTopping(ToppingData newTopping)
     {

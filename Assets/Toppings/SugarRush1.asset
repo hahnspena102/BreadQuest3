@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df9b0b9a0dc962a49b016d61b160b057, type: 3}
-  m_Name: HealthAndWhole3
+  m_Name: SugarRush1
   m_EditorClassIdentifier: Assembly-CSharp::ToppingData
-  toppingName: Hearthy and Whole III
-  description: 'Slightly increases health regeneration. (3 hp/sec) '
-  icon: {fileID: -4126216225859848128, guid: 5ceb016ab3ddf3c418caa2cd704299a9, type: 3}
-  healthRegenBonus: 3
+  toppingName: Sugar Rush I
+  description: 'Slightly increases move speed. '
+  icon: {fileID: -5616795035812484249, guid: 0b6e782896cc69242ba1a73522cf17c8, type: 3}
+  healthRegenBonus: 0
   glucoseRegenBonus: 0
+  defenseBonus: 0
+  speedBonus: 0.15
+  toppingGroup: SugarRush

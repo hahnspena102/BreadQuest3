@@ -4,6 +4,7 @@ using UnityEngine;
 public class ProjectileData : ScriptableObject
 {
     [SerializeField] private float speed;
+    [SerializeField] private float acceleration;
     [SerializeField] private float lifetime;
     [SerializeField] private Sprite projectileSprite;
     [SerializeField]private AnimationClip movingAnimation;
@@ -11,8 +12,10 @@ public class ProjectileData : ScriptableObject
     [SerializeField] private bool rotateTowardsMovementDirection;
     [SerializeField] private int maxBounces;
     [SerializeField]private bool isTrigger;
-
+    [SerializeField] private float scale = 1f;
+    [SerializeField] private bool isPiercing = false;
     public global::System.Single Speed { get => speed; set => speed = value; }
+    public global::System.Single Acceleration { get => acceleration; set => acceleration = value; }
     public global::System.Single Lifetime { get => lifetime; set => lifetime = value; }
     public Sprite ProjectileSprite { get => projectileSprite; set => projectileSprite = value; }
     public global::System.Single RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
@@ -20,4 +23,6 @@ public class ProjectileData : ScriptableObject
     public global::System.Int32 MaxBounces { get => maxBounces; set => maxBounces = value; }
     public AnimationClip MovingAnimation { get => movingAnimation; set => movingAnimation = value; }
     public global::System.Boolean IsTrigger { get => isTrigger; set => isTrigger = value; }
+    public global::System.Single Scale { get => scale; set => scale = value; }
+    public global::System.Boolean IsPiercing { get => isPiercing; set => isPiercing = value; }
 }

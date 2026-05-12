@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 spawnPosition = new Vector3(mousePosition.x, mousePosition.y, 0f);
             int tier = GameManager.FloorToTier(FindFirstObjectByType<Player>().PlayerData.CurrentFloor);
-            EnemyData enemyData = enemySpawns.GetRandomEnemy(tier);
+            EnemyData enemyData = enemySpawns.GetRandomEnemy(tier, null);
             SpawnEnemy(enemyData, spawnPosition, null);
         }
     }
@@ -100,7 +100,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void PopulateWave(Wave wave)
+    public void PopulateWave(Wave wave, Flavor[] flavors)
     {
         Room room = wave.associatedRoom;
         Player player = FindFirstObjectByType<Player>();
@@ -109,7 +109,7 @@ public class EnemyManager : MonoBehaviour
         foreach (var subCell in room.subCells)
         {
             int tier = GameManager.FloorToTier(player.PlayerData.CurrentFloor);
-            EnemyData enemyData = enemySpawns.GetRandomEnemy(tier);
+            EnemyData enemyData = enemySpawns.GetRandomEnemy(tier, flavors);
             //Debugger.Log("Spawning enemy: " + enemyData.EnemyName, type: DebugType.Enemies);
             Vector3 spawnPosition = new Vector3(subCell.center.x, subCell.center.y, 0f);
             wave.enemyDataInWave.Add((enemyData, spawnPosition));

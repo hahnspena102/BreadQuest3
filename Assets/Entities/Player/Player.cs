@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private bool isAttacking = false;
     private bool isCharging = false;
     private bool isDashing = false;
+    private bool isMenuing = false;
     private float invulnerabilityTimer = 0f;
     
     private float invulnerabilityDuration = 1f;
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
     public global::System.Single DashDuration { get => dashDuration; set => dashDuration = value; }
     public global::System.Single DashCooldown { get => dashCooldown; set => dashCooldown = value; }
     public global::System.Single DashCooldownTimer { get => dashCooldownTimer; set => dashCooldownTimer = value; }
+    public global::System.Boolean IsMenuing { get => isMenuing; set => isMenuing = value; }
 
 
 
@@ -100,7 +102,7 @@ public class Player : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            playerData.CalculateToppingBonuses();
+            
             if (playerData.CurrentGlucose < playerData.MaxGlucose)
             {
                 float glucoseRegenAmount = 1f + playerData.GlucoseRegenBonus;
@@ -135,6 +137,7 @@ public class Player : MonoBehaviour
             previousLevel = playerData.Level;
         }
 
+        playerData.CalculateToppingBonuses();
 
         if (playerData.CurrentHealth <= 0 && debugInvulnerability == false)
         {
@@ -180,25 +183,9 @@ public class Player : MonoBehaviour
         bool dashPressed = (dashAction != null && dashAction.action != null && dashAction.action.WasPressedThisFrame())
             || (Keyboard.current != null && (Keyboard.current.leftShiftKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame));
 
-        if (!isDashing && !isAttacking&& dashPressed && dashCooldownTimer <= 0f)
+        if (!isDashing && !isAttacking && dashPressed && dashCooldownTimer <= 0f && _moveDirection.sqrMagnitude > 0.001f)
         {
-            Vector2 requestedDashDirection = _moveDirection;
-            if (requestedDashDirection.sqrMagnitude > 0.001f)
-            {
-                requestedDashDirection = requestedDashDirection.normalized;
-            }
-            else
-            {
-                requestedDashDirection = directionFacing switch
-                {
-                    "Left" => Vector2.left,
-                    "Right" => Vector2.right,
-                    "Up" => Vector2.up,
-                    _ => Vector2.down
-                };
-            }
-
-            dashDirection = requestedDashDirection;
+            dashDirection = _moveDirection.normalized;
             isDashing = true;
             dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;
@@ -207,7 +194,7 @@ public class Player : MonoBehaviour
         if (rb)
         {
             
-            if (!isAttacking && !isCharging && !isDashing)
+            if (!isAttacking && !isCharging && !isDashing && !isMenuing)
             {    
                 if (_moveDirection.y != 0 && _moveDirection.x == 0) {
                     transform.localScale = new Vector3(1f, 1f, 1f);
@@ -229,10 +216,12 @@ public class Player : MonoBehaviour
             }
             
             
-
-            animator.SetFloat("speed", _moveDirection.magnitude);
-            animator.SetFloat("horizontalSpeed", Mathf.Abs(_moveDirection.x));
-            animator.SetFloat("vertical", _moveDirection.y);
+            if (!isMenuing)
+            {
+                animator.SetFloat("speed", _moveDirection.magnitude);
+                animator.SetFloat("horizontalSpeed", Mathf.Abs(_moveDirection.x));
+                animator.SetFloat("vertical", _moveDirection.y);
+            }
         }
 
 
@@ -276,7 +265,8 @@ public class Player : MonoBehaviour
         {
             if (isDashing)
             {
-                rb.linearVelocity = dashDirection * dashSpeed;
+                float totalDashSpeed = dashSpeed * (isCharging ? 0.5f : 1f);
+                rb.linearVelocity = dashDirection * totalDashSpeed;
                 return;
             }
 
@@ -301,7 +291,7 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            float totalSpeed = playerData.Speed;
+            float totalSpeed = playerData.Speed * (1f + playerData.SpeedBonus);
 
             if (isAttacking)
                 totalSpeed *= 0.8f;
@@ -309,7 +299,17 @@ public class Player : MonoBehaviour
             if (isCharging)
                 totalSpeed *= 0.25f;
 
+            if (isMenuing)
+            {
+                _moveDirection = Vector2.zero;
+            } 
+            
             rb.linearVelocity = _moveDirection * totalSpeed;
+            
+          
+            
+            
+            
         }
     }
 
@@ -322,8 +322,10 @@ public class Player : MonoBehaviour
         animator.SetTrigger("hurt");
         itemSpriteHolder.sprite = null;
         invulnerabilityTimer = invulnerabilityDuration; 
+        //  Damage Taken=Raw Damage×(ConstantConstant+Defense)Damage Taken equals Raw Damage cross open paren the fraction with numerator Constant and denominator Constant plus Defense end-fraction close parenDamage Taken=Raw Damage×ConstantConstant+Defense
+        float totalDamage = damage * (100f / (100f + playerData.DefenseBonus));
         
-        popupManager.ShowDamagePopup(transform.position, (int)damage, false, true);
+        popupManager.ShowDamagePopup(transform.position, (int)totalDamage, false, true);
 
         StartCoroutine(DamageFlash());
         

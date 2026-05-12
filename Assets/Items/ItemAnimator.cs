@@ -89,6 +89,7 @@ public class ItemAnimator : MonoBehaviour
         animator.runtimeAnimatorController = overrideController;
         animator.Rebind();
         animator.Update(0f);
+        animator.speed = 1f / rangedData.ChargeTime;
         currentRangedChargeClip = rangedData.ChargeAnimationClip;
         isRangedCharging = true;
     }

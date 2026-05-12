@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: OBProj
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   speed: 0.001
+  acceleration: 0
   lifetime: 1
   projectileSprite: {fileID: -1391859619573250259, guid: d4acbd2e059f2004a883f371b78e5b6c, type: 3}
   movingAnimation: {fileID: 7400000, guid: 86c447d9334da1c409c0175aa549e953, type: 2}
@@ -20,3 +21,5 @@ MonoBehaviour:
   rotateTowardsMovementDirection: 1
   maxBounces: 0
   isTrigger: 1
+  scale: 1
+  isPiercing: 1

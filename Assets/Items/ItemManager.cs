@@ -5,6 +5,9 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private ItemDrops itemDrops;
     [SerializeField] private GameObject itemPrefab;
     private Player player;
+
+    public ItemDrops ItemDrops { get => itemDrops; set => itemDrops = value; }
+
     public void Start() {
         player = FindFirstObjectByType<Player>();
     }
@@ -37,7 +40,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void SpawnRandomDrop(Vector3 position)
+    public void SpawnRandomDrop(Vector3 position, ItemDropEntry dropEntry)
     {
         if (itemDrops == null)
         {
@@ -45,8 +48,8 @@ public class ItemManager : MonoBehaviour
             return;
         }
 
-        int tier = GameManager.FloorToTier(player.PlayerData.CurrentFloor);
-        ItemDropEntry randomItem = itemDrops.GetRandomDrop(tier);
+   
+        ItemDropEntry randomItem = dropEntry != null ? dropEntry : itemDrops.GetRandomDrop(GameManager.FloorToTier(player.PlayerData.CurrentFloor));
         if (randomItem != null)
         {
             Item item = ItemFactory.CreateFromData(randomItem.item);

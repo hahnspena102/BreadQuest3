@@ -14,6 +14,7 @@ public class ItemDropEntry
     public ItemData item;
     public DropChance dropChance;
     public int count = 1;
+    public bool isGuaranteed = false;
     public float GetDropChanceValue()
     {
         switch (dropChance)
@@ -35,6 +36,54 @@ public class ItemDrops : ScriptableObject
     [SerializeField] private ItemDropEntry[] tier4Drops;
     [SerializeField] private ItemDropEntry[] tier5Drops;
     [SerializeField] private ItemDropEntry[] tier6Drops;
+
+    public ItemDropEntry[] GetRandomDrops(int tier, int count)
+    {
+        var drops = new ItemDropEntry[count];
+        for (int i = 0; i < count; i++)
+        {
+            drops[i] = GetRandomDrop(tier);
+        }
+
+        // ensure at least one guaranteed drop if any entries are marked as guaranteed
+        bool hasGuaranteed = false;
+        if (tier >= 1 && tier1Drops != null) hasGuaranteed |= System.Array.Exists(tier1Drops, entry => entry.isGuaranteed);
+        if (tier >= 2 && tier2Drops != null) hasGuaranteed |= System.Array.Exists(tier2Drops, entry => entry.isGuaranteed);
+        if (tier >= 3 && tier3Drops != null) hasGuaranteed |= System.Array.Exists(tier3Drops, entry => entry.isGuaranteed);
+        if (tier >= 4 && tier4Drops != null) hasGuaranteed |= System.Array.Exists(tier4Drops, entry => entry.isGuaranteed);
+        if (tier >= 5 && tier5Drops != null) hasGuaranteed |= System.Array.Exists(tier5Drops, entry => entry.isGuaranteed);
+        if (tier >= 6 && tier6Drops != null) hasGuaranteed |= System.Array.Exists(tier6Drops, entry => entry.isGuaranteed);
+
+        if (hasGuaranteed && !System.Array.Exists(drops, entry => entry != null && entry.isGuaranteed))
+        {
+            int replaceIndex = Random.Range(0, drops.Length);
+            drops[replaceIndex] = GetRandomGuaranteedDrop(tier);
+        }
+
+        return drops;
+        
+    }
+
+    public ItemDropEntry GetRandomGuaranteedDrop(int tier)
+    {
+        var guaranteedEntries = new System.Collections.Generic.List<ItemDropEntry>();
+        
+        if (tier >= 1 && tier1Drops != null) guaranteedEntries.AddRange(System.Array.FindAll(tier1Drops, entry => entry.isGuaranteed));
+        if (tier >= 2 && tier2Drops != null) guaranteedEntries.AddRange(System.Array.FindAll(tier2Drops, entry => entry.isGuaranteed));
+        if (tier >= 3 && tier3Drops != null) guaranteedEntries.AddRange(System.Array.FindAll(tier3Drops, entry => entry.isGuaranteed));
+        if (tier >= 4 && tier4Drops != null) guaranteedEntries.AddRange(System.Array.FindAll(tier4Drops, entry => entry.isGuaranteed));
+        if (tier >= 5 && tier5Drops != null) guaranteedEntries.AddRange(System.Array.FindAll(tier5Drops, entry => entry.isGuaranteed));
+        if (tier >= 6 && tier6Drops != null) guaranteedEntries.AddRange(System.Array.FindAll(tier6Drops, entry => entry.isGuaranteed));
+        
+        if (guaranteedEntries.Count == 0)
+        {
+            Debugger.LogWarning("No guaranteed item drop entries defined for tier " + tier + ".", type: DebugType.Items);
+            return null;
+        }
+
+        int randomIndex = Random.Range(0, guaranteedEntries.Count);
+        return guaranteedEntries[randomIndex];
+    }
   
 
     public ItemDropEntry GetRandomDrop(int tier)

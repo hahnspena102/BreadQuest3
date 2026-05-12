@@ -20,12 +20,14 @@ public partial class WorldManager : MonoBehaviour
     [SerializeField]private GameObject teleporterPrefab;
     [SerializeField] private GameObject chestPrefab;    
     [SerializeField]private bool isBossFloor = true;
+    [SerializeField] private Flavor[] possibleFlavors;
 
     public Tilemap floorTilemap;
     public Tilemap wallTilemap;
     public Tilemap barrierTilemap;
     public TileBase floorTile;
     public TileBase wallTile;
+    public TileBase smallWallTile;
     public TileBase wallTopTile;
     public TileBase barrierTile;
 

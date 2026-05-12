@@ -121,6 +121,8 @@ MonoBehaviour:
   isAttackReady: 0
   popupManager: {fileID: 0}
   linkedEnemy: {fileID: 0}
+  isBoss: 0
+  scaleFactor: 1
 --- !u!114 &6995008896430759957
 MonoBehaviour:
   m_ObjectHideFlags: 0

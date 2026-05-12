@@ -317,6 +317,9 @@ MonoBehaviour:
   - {fileID: 465204995}
   - {fileID: 1533183210}
   playerData: {fileID: 11400000, guid: ef445100a68f3b947adc92711f4984c5, type: 2}
+  fadeDuration: 0.5
+  cardDelay: 0.1
+  cardPopDuration: 0.3
 --- !u!1 &31046718
 GameObject:
   m_ObjectHideFlags: 0
@@ -4470,8 +4473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72e5c34a19ef2347953d75caf194cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossGroup
-  enemyManager: {fileID: 0}
-  canvasGroup: {fileID: 1775512800}
 --- !u!1 &1787192169
 GameObject:
   m_ObjectHideFlags: 0

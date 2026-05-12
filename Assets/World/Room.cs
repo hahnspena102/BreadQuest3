@@ -10,6 +10,20 @@ public class RoomSubCell
     public List<Vector2Int> tiles = new List<Vector2Int>();
 }
 
+public struct RoomOpening
+{
+    public Vector2Int inside;
+    public Vector2Int outside;
+    public Vector2Int direction;
+
+    public RoomOpening(Vector2Int inside, Vector2Int outside, Vector2Int direction)
+    {
+        this.inside = inside;
+        this.outside = outside;
+        this.direction = direction;
+    }
+}
+
 public enum RoomShape
 {
     Rectangle,      // Classic rectangle
@@ -24,6 +38,7 @@ public class Room
     public RectInt area;
     public RoomShape roomShape = RoomShape.Rectangle;
     public List<Vector2Int> floorTiles = new List<Vector2Int>(); // All valid floor tiles in this room
+    public List<RoomOpening> openings = new List<RoomOpening>();
     public List<RoomSubCell> subCells = new List<RoomSubCell>();
 
     public List<Vector3Int> barrierPositions = new List<Vector3Int>();
@@ -43,6 +58,7 @@ public class Room
         this.subCells = new List<RoomSubCell>();
         this.waves = new List<Wave>();
         this.floorTiles = new List<Vector2Int>();
+        this.openings = new List<RoomOpening>();
         this.nextBossWaveToSpawnIndex = 1;
     }
 
@@ -133,6 +149,7 @@ public class Room
     {
         roomShape = shape;
         floorTiles.Clear();
+        openings.Clear();
 
         switch (shape)
         {

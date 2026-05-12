@@ -17,7 +17,8 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 59cae2bbd9e2c42378daf99b594b2956, type: 3}
   tier: 1
   maxStackSize: 1
-  damage: 12
+  isConsumed: 0
+  damage: 15
   flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
   meleeScale: 1.7
   meleeSpeed: 0.5

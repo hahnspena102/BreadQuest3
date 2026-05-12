@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c370366e05adc154e99f791deacab6a6, type: 3}
   m_Name: CarrotDragonSpectreProj
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  speed: 12
+  speed: 0.001
+  acceleration: 32
   lifetime: 10
   projectileSprite: {fileID: 8919187332575458430, guid: 23d04d301bd0b9b4faf4f2bade43d210, type: 3}
   movingAnimation: {fileID: 7400000, guid: 724fde1a311b2934890a2e3b9b82fdf4, type: 2}
@@ -20,3 +21,5 @@ MonoBehaviour:
   rotateTowardsMovementDirection: 1
   maxBounces: 0
   isTrigger: 1
+  scale: 2
+  isPiercing: 0

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87eab4e101f8940dcbe1ce186a357e7f, type: 3}
   m_Name: Foundue
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHealth: 999
+  maxHealth: 1
   speed: 3
   enemyName: Foundue
   enemySprite: {fileID: -2090444825, guid: 096f038790da3ef43b6ad45d6678ad1c, type: 3}
   description: 
   flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
-  contactDamage: 0
-  baseDamage: 0
+  contactDamage: 25
+  baseDamage: 25
   experienceDropped: 100
   projectileData: {fileID: 0}
   projectileOffset: {x: 0, y: 0}
@@ -43,6 +43,7 @@ MonoBehaviour:
   damageScalar: 0.1
   canBeMiniBoss: 0
   ignoreEnemyCollision: 0
+  defense: 1
   performBehaviorsInOrder: 0
   animatorOverride: {fileID: 0}
   idleAnimationF: {fileID: 7400000, guid: a0e8f6dd70e403a489562ec032dd100a, type: 2}

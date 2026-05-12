@@ -11,20 +11,37 @@ public class HurtBox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        TryDamageFromCollider(other);
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        TryDamageFromCollider(other);
+    }
+
+    private void TryDamageFromCollider(Collider2D other)
+    {
+        if (player == null)
+        {
+            return;
+        }
+
         if (other.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
-
+            {
                 player.TakeDamage(enemy.ContactDamage);
+            }
         }
+
         if (other.CompareTag("EnemyProjectile"))
         {
             Projectile projectile = other.GetComponent<Projectile>();
             if (projectile != null)
-
+            {
                 player.TakeDamage(projectile.ProjectileDamage);
-
+            }
         }
     }
 }

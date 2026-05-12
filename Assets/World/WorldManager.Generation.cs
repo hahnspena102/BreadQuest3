@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -104,7 +105,7 @@ public partial class WorldManager
 
                 Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
                 Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
-                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                ConnectRoomsThroughOpenings(smallRoom, bossRoom);
                 break;
             }
             case 1:
@@ -120,7 +121,7 @@ public partial class WorldManager
 
                 Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
                 Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
-                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                ConnectRoomsThroughOpenings(smallRoom, bossRoom);
                 break;
             }
             case 2:
@@ -136,7 +137,7 @@ public partial class WorldManager
 
                 Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
                 Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
-                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                ConnectRoomsThroughOpenings(smallRoom, bossRoom);
                 break;
             }
             default:
@@ -152,7 +153,7 @@ public partial class WorldManager
 
                 Room smallRoom = CreateRoom(smallRoomArea, RoomShape.Rectangle, 2);
                 Room bossRoom = CreateRoom(bossRoomArea, RoomShape.Rectangle, bossRoomCellCount);
-                CreateCorridor(smallRoom.GetRoomCenter(), bossRoom.GetRoomCenter());
+                ConnectRoomsThroughOpenings(smallRoom, bossRoom);
                 break;
             }
         }
@@ -221,13 +222,18 @@ public partial class WorldManager
         Room newRoom;
 
         /* Randomly choose a shape for the room and generate its floor tiles. */
+        int minDimensionForT = 5;
+        bool allowTShape = roomWidth >= minDimensionForT && roomHeight >= minDimensionForT;
+
         float shapeRoll = Random.value;
         if (shapeRoll < 0.45f)
             newRoom = CreateRoom(roomArea, RoomShape.Rectangle, Random.Range(2, 5));
         else if (shapeRoll < 0.65f)
             newRoom = CreateRoom(roomArea, RoomShape.LShape, Random.Range(2, 5));
         else if (shapeRoll < 0.80f)
-            newRoom = CreateRoom(roomArea, RoomShape.TShape, Random.Range(2, 5));
+            newRoom = allowTShape
+                ? CreateRoom(roomArea, RoomShape.TShape, Random.Range(2, 5))
+                : CreateRoom(roomArea, RoomShape.Rectangle, Random.Range(2, 5));
         else
             newRoom = CreateRoom(roomArea, RoomShape.Rectangle, Random.Range(2, 5));
             //newRoom = CreateRoom(roomArea, RoomShape.Organic, Random.Range(2, 5));
@@ -247,11 +253,219 @@ public partial class WorldManager
 
         for (int i = 0; i < rooms.Count - 1; i++)
         {
-            Vector2Int pointA = rooms[i].GetRoomCenter();
-            Vector2Int pointB = rooms[i + 1].GetRoomCenter();
-
-            CreateCorridor(pointA, pointB);
+            ConnectRoomsThroughOpenings(rooms[i], rooms[i + 1]);
         }
+    }
+
+    private void ConnectRoomsThroughOpenings(Room roomA, Room roomB)
+    {
+        if (roomA == null || roomB == null)
+        {
+            return;
+        }
+
+        RoomOpening openingA = CreateOpeningTowards(roomA, roomB.GetRoomCenter());
+        RoomOpening openingB = CreateOpeningTowards(roomB, roomA.GetRoomCenter());
+        CreateCorridor(openingA.outside, openingB.outside);
+    }
+
+    private RoomOpening CreateOpeningTowards(Room room, Vector2Int target)
+    {
+        HashSet<Vector2Int> roomTiles = room.floorTiles.Count > 0
+            ? new HashSet<Vector2Int>(room.floorTiles)
+            : GetRectangleTiles(room.area);
+
+        if (roomTiles.Count == 0)
+        {
+            Vector2Int center = room.GetRoomCenter();
+            return new RoomOpening(center, center, Vector2Int.zero);
+        }
+
+        Vector2Int roomCenter = room.GetRoomCenter();
+        Vector2Int toTarget = target - roomCenter;
+        Vector2Int preferredDir = Mathf.Abs(toTarget.x) >= Mathf.Abs(toTarget.y)
+            ? new Vector2Int(toTarget.x >= 0 ? 1 : -1, 0)
+            : new Vector2Int(0, toTarget.y >= 0 ? 1 : -1);
+
+        List<Vector2Int> boundaryCandidates = new List<Vector2Int>();
+        foreach (Vector2Int tile in roomTiles)
+        {
+            if (IsBoundaryTile(tile, roomTiles) && IsExposedInDirection(tile, preferredDir, roomTiles))
+            {
+                boundaryCandidates.Add(tile);
+            }
+        }
+
+        if (boundaryCandidates.Count == 0)
+        {
+            foreach (Vector2Int tile in roomTiles)
+            {
+                if (IsBoundaryTile(tile, roomTiles))
+                {
+                    boundaryCandidates.Add(tile);
+                }
+            }
+        }
+
+        Vector2Int opening = ChooseOpeningCandidate(boundaryCandidates, room.area, roomCenter, target, preferredDir);
+        Vector2Int openingDirection = ResolveOpeningDirection(opening, preferredDir, roomTiles, target);
+        Vector2Int outside = opening + openingDirection;
+
+        if (roomTiles.Contains(outside))
+        {
+            outside = opening;
+        }
+
+        if (!room.floorTiles.Contains(opening))
+        {
+            room.floorTiles.Add(opening);
+        }
+
+        RoomOpening roomOpening = new RoomOpening(opening, outside, openingDirection);
+        if (!HasMatchingOpening(room, roomOpening))
+        {
+            room.openings.Add(roomOpening);
+        }
+
+        DrawTile(opening.x, opening.y);
+        DrawTile(outside.x, outside.y);
+        return roomOpening;
+    }
+
+    private bool HasMatchingOpening(Room room, RoomOpening opening)
+    {
+        for (int i = 0; i < room.openings.Count; i++)
+        {
+            if (room.openings[i].inside == opening.inside && room.openings[i].outside == opening.outside)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private Vector2Int ResolveOpeningDirection(Vector2Int opening, Vector2Int preferredDir, HashSet<Vector2Int> roomTiles, Vector2Int target)
+    {
+        Vector2Int[] dirs =
+        {
+            preferredDir,
+            new Vector2Int(1, 0),
+            new Vector2Int(-1, 0),
+            new Vector2Int(0, 1),
+            new Vector2Int(0, -1)
+        };
+
+        Vector2Int bestDir = preferredDir;
+        int bestScore = int.MinValue;
+
+        for (int i = 0; i < dirs.Length; i++)
+        {
+            Vector2Int dir = dirs[i];
+            if (dir == Vector2Int.zero)
+            {
+                continue;
+            }
+
+            Vector2Int outside = opening + dir;
+            if (roomTiles.Contains(outside))
+            {
+                continue;
+            }
+
+            int score = -Mathf.Abs(outside.x - target.x) - Mathf.Abs(outside.y - target.y);
+            if (dir == preferredDir)
+            {
+                score += 200;
+            }
+
+            if (score > bestScore)
+            {
+                bestScore = score;
+                bestDir = dir;
+            }
+        }
+
+        return bestDir;
+    }
+
+    private bool IsBoundaryTile(Vector2Int tile, HashSet<Vector2Int> roomTiles)
+    {
+        Vector2Int[] dirs =
+        {
+            Vector2Int.up,
+            Vector2Int.down,
+            Vector2Int.left,
+            Vector2Int.right
+        };
+
+        for (int i = 0; i < dirs.Length; i++)
+        {
+            if (!roomTiles.Contains(tile + dirs[i]))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool IsExposedInDirection(Vector2Int tile, Vector2Int direction, HashSet<Vector2Int> roomTiles)
+    {
+        return !roomTiles.Contains(tile + direction);
+    }
+
+    private Vector2Int ChooseOpeningCandidate(List<Vector2Int> candidates, RectInt roomArea, Vector2Int roomCenter, Vector2Int target, Vector2Int preferredDir)
+    {
+        if (candidates == null || candidates.Count == 0)
+        {
+            return roomCenter;
+        }
+
+        Vector2Int best = candidates[0];
+        int bestScore = int.MinValue;
+
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            Vector2Int candidate = candidates[i];
+            int score = 0;
+
+            if (preferredDir.x > 0 && candidate.x == roomArea.xMax - 1)
+            {
+                score += 5000;
+            }
+            else if (preferredDir.x < 0 && candidate.x == roomArea.xMin)
+            {
+                score += 5000;
+            }
+            else if (preferredDir.y > 0 && candidate.y == roomArea.yMax - 1)
+            {
+                score += 5000;
+            }
+            else if (preferredDir.y < 0 && candidate.y == roomArea.yMin)
+            {
+                score += 5000;
+            }
+
+            score -= Mathf.Abs(candidate.x - target.x) + Mathf.Abs(candidate.y - target.y);
+
+            if (preferredDir.x != 0)
+            {
+                score -= Mathf.Abs(candidate.y - roomCenter.y);
+            }
+            else
+            {
+                score -= Mathf.Abs(candidate.x - roomCenter.x);
+            }
+
+            if (score > bestScore)
+            {
+                bestScore = score;
+                best = candidate;
+            }
+        }
+
+        return best;
     }
 
 
@@ -376,7 +590,8 @@ public partial class WorldManager
                 }
                 else
                 {
-                    wallTilemap.SetTile(pos, wallTile);
+                    // If there is space above, a wall top will be painted there; keep the base as a normal wall.
+                    wallTilemap.SetTile(pos, canPlaceOne ? wallTile : smallWallTile);
                     startHeight = 1;
                 }
 
@@ -435,8 +650,8 @@ public partial class WorldManager
         {
             foreach (var cell in room.subCells)
             {
-                Random.InitState(cell.center.GetHashCode());
-                Color baseColor = Color.HSVToRGB(Random.value, 0.6f, 1f);
+                var rnd = new System.Random(cell.center.GetHashCode());
+                Color baseColor = Color.HSVToRGB((float)rnd.NextDouble(), 0.6f, 1f);
                 baseColor.a = 0.5f;
                 Gizmos.color = baseColor;
 

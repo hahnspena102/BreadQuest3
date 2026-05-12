@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [ReadOnly, SerializeField]private ProjectileData projectileData;
     [ReadOnly, SerializeField]private float projectileDamage;
     [ReadOnly, SerializeField]private Flavor flavor;
+    private Rigidbody2D rb;
     [SerializeField]private ProjectileType projectileType;
     [SerializeField]private int bouncesRemaining = 3;
     [SerializeField]private Animator animator;
@@ -29,8 +30,9 @@ public class Projectile : MonoBehaviour
         projectileType = ProjectileType.Enemy;
         gameObject.tag = "EnemyProjectile";
         //gameObject.layer = LayerMask.NameToLayer("Enemy");
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.excludeLayers = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Projectile");
+        rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.excludeLayers = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Projectile");
 
         
 
@@ -60,8 +62,9 @@ public class Projectile : MonoBehaviour
         projectileType = ProjectileType.Player;
         gameObject.tag = "PlayerProjectile";
         //gameObject.layer = LayerMask.NameToLayer("Player");
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.excludeLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Projectile");
+        rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.excludeLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Projectile");
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null && data.IsTrigger)
         {
@@ -87,7 +90,7 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         if (rb != null && projectileData != null)
         {
             rb.linearVelocity = direction.normalized * projectileData.Speed;
@@ -125,6 +128,12 @@ public class Projectile : MonoBehaviour
                 projectileCollider.isTrigger = true;
                 StartCoroutine(RestoreColliderAfterGrace(spawnGracePeriod));
             }
+        }
+
+        // Apply scale from projectile data
+        if (projectileData.Scale != 1f)
+        {
+            transform.localScale = Vector3.one * projectileData.Scale;
         }
         
     }
@@ -190,9 +199,18 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (projectileType == ProjectileType.Enemy && other.CompareTag("Player"))
+        if (!projectileData.IsPiercing)
         {
-           Destroy(gameObject);
+            if (projectileType == ProjectileType.Enemy && other.CompareTag("Player"))
+            {
+                Destroy(gameObject);
+            }
+    
+
+          if (projectileType == ProjectileType.Player && other.CompareTag("Enemy"))
+            {
+            Destroy(gameObject);
+            }
         }
     }
 
@@ -215,6 +233,12 @@ public class Projectile : MonoBehaviour
 
         if (projectileType == ProjectileType.Player && !collision.gameObject.CompareTag("Player"))
         {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             if (projectileData.MaxBounces > 0)
             {
                 bouncesRemaining--;
@@ -301,5 +325,36 @@ public class Projectile : MonoBehaviour
             || obj.GetComponent<Projectile>() != null;
     }
 
-    
+    void FixedUpdate()
+    {
+        if (projectileData == null) return;
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (rb == null) return;
+
+        float accel = projectileData.Acceleration;
+        if (Mathf.Approximately(accel, 0f)) return;
+
+        Vector2 vel = rb.linearVelocity;
+        float speed = vel.magnitude;
+        if (speed <= 0f) return;
+
+        Vector2 dir = vel / speed;
+        float newSpeed = speed + accel * Time.fixedDeltaTime;
+        newSpeed = Mathf.Max(0f, newSpeed);
+
+        if (newSpeed <= 0f)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            rb.linearVelocity = dir * newSpeed;
+
+            if (projectileData.RotateTowardsMovementDirection && newSpeed > 0.0001f)
+            {
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
+        }
+    }
 }

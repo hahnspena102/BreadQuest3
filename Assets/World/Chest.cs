@@ -67,17 +67,18 @@ public class Chest : MonoBehaviour
         SoundManager.instance.PlaySoundFXClip(chestOpenSound, transform);
         yield return new WaitForSeconds(1f); // Wait for the animation to finish
 
+        ItemDropEntry[] drops = null;
+
         float dropRoll = Random.value;
-        int numDrops;
-        if (dropRoll < 0.65f)
-            numDrops = 1;
-        else if (dropRoll < 0.95f)
-            numDrops = 2;
+        if (dropRoll < 0.6f)
+            drops = itemManager.ItemDrops.GetRandomDrops(GameManager.FloorToTier(player.PlayerData.CurrentFloor), 1);
+        else if (dropRoll < 0.9f)
+            drops = itemManager.ItemDrops.GetRandomDrops(GameManager.FloorToTier(player.PlayerData.CurrentFloor), 2);
         else
-            numDrops = 3;
-        for (int i = 0; i < numDrops; i++) {
+            drops = itemManager.ItemDrops.GetRandomDrops(GameManager.FloorToTier(player.PlayerData.CurrentFloor), 3);
+        for (int i = 0; i < drops.Length; i++) {
             yield return new WaitForSeconds(0.5f); 
-            itemManager.SpawnRandomDrop(transform.position);
+            itemManager.SpawnRandomDrop(transform.position, drops[i]);
         }
         
         Destroy(gameObject); // Remove the chest after opening

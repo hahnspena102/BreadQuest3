@@ -69,7 +69,7 @@ public class UseItem : MonoBehaviour
         {    
             Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
 
-            if (player.IsAttacking) return;
+            if (player.IsAttacking || player.IsMenuing) return;
             if (direction == Vector2.zero) return;
             
 
@@ -117,7 +117,7 @@ public class UseItem : MonoBehaviour
         
        if (Input.GetMouseButtonDown(0))
         {    
-            if (player.IsAttacking) return;
+            if (player.IsAttacking || player.IsMenuing) return;
             if (magicData.GlucoseCost > player.PlayerData.CurrentGlucose) return;
 
             player.IsAttacking = true;
@@ -354,6 +354,7 @@ public class UseItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (player.IsAttacking || player.IsMenuing) return;
             if (potionData == null)
             {
                 return;

@@ -23,7 +23,7 @@ public class EnemySpawns : ScriptableObject
     [SerializeField] private EnemySpawnEntry[] tier6Enemies;
 
 
-    public EnemyData GetRandomEnemy(int tier)
+    public EnemyData GetRandomEnemy(int tier, Flavor[] flavors=null)
     {
         // Collect all enemy entries for tiers up to the specified tier
         var allEntries = new System.Collections.Generic.List<EnemySpawnEntry>();
@@ -40,6 +40,8 @@ public class EnemySpawns : ScriptableObject
             Debugger.LogWarning("No enemy entries defined for tier " + tier + ".", type: DebugType.Items);
             return null;
         }
+
+        if (flavors != null && flavors.Length > 0) allEntries.RemoveAll(entry => !entry.enemyData.MatchesFlavors(flavors));
 
         // Calculate total weight
         float totalWeight = 0f;
