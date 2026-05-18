@@ -12,24 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b776020167e434f8fd6cc08196e71f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxHealth: 140
+  maxHealth: 100
   speed: 5
-  currentHealth: 140
-  maxGlucose: 70
-  currentGlucose: 70
+  currentHealth: -7.500005
+  maxGlucose: 50
+  currentGlucose: 50
   gold: 0
-  experience: 5500
-  level: 3
+  experience: 400
+  level: 1
   critRate: 0
   critBonus: 0
   currentFloor: 5
-  healCooldown: 0
+  healCooldown: -0.0016878727
   glucoseCooldown: 0
-  toppings:
-  - {fileID: 11400000, guid: ea5ba15dadcea8e48960d6146c71d0ae, type: 2}
-  - {fileID: 11400000, guid: ea5ba15dadcea8e48960d6146c71d0ae, type: 2}
-  - {fileID: 11400000, guid: 859e6693531c23845aa7f80daad7972b, type: 2}
-  healthRegenBonus: 1
+  toppings: []
+  healthRegenBonus: 0
   glucoseRegenBonus: 0
   defenseBonus: 0
-  speedBonus: 0.3
+  speedBonus: 0

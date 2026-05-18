@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public Room AssignedRoom { get; set; }
     [SerializeField] private float currentHealth, maxHealth;
     [SerializeField] private float contactDamage;
+    [SerializeField] private float currentDefense;
     private float attackDamage;
     
     [SerializeField] private Transform shadowTransform;
@@ -50,6 +51,7 @@ public class Enemy : MonoBehaviour
     public global::System.Single AttackDamage { get => attackDamage; set => attackDamage = value; }
     public global::System.Single ScaleFactor { get => scaleFactor; set => scaleFactor = value; }
     public global::System.Boolean IsBoss { get => isBoss; set => isBoss = value; }
+    public global::System.Single CurrentDefense { get => currentDefense; set => currentDefense = value; }
 
     void Awake()
     {
@@ -70,6 +72,7 @@ public class Enemy : MonoBehaviour
         Debugger.Log("Base health: " + enemyData.MaxHealth + ", scaled health: " + GameManager.CalculateValueByFloor(enemyData.MaxHealth, enemyData.HealthScalar, (int)floor)            + ", base damage: " + enemyData.ContactDamage + ", scaled damage: " + GameManager.CalculateValueByFloor(enemyData.ContactDamage, enemyData.DamageScalar, (int)floor) , context: this, type: DebugType.Enemies);
         currentHealth = GameManager.CalculateValueByFloor(enemyData.MaxHealth, enemyData.HealthScalar, (int)floor);
         maxHealth = currentHealth;
+        currentDefense = enemyData.Defense;
         contactDamage = GameManager.CalculateValueByFloor(enemyData.ContactDamage, enemyData.DamageScalar, (int)floor);
         attackDamage = GameManager.CalculateValueByFloor(enemyData.BaseDamage, enemyData.DamageScalar, (int)floor);
         if (enemyData.IgnoreEnemyCollision)
@@ -87,7 +90,7 @@ public class Enemy : MonoBehaviour
 
         if (isBoss)
         {
-            currentHealth *= 2f;
+            currentHealth *= 5f;
             maxHealth = currentHealth;
             contactDamage *= 1.5f;
             attackDamage *= 1.5f;
@@ -182,7 +185,7 @@ public class Enemy : MonoBehaviour
 
         if (!isTrueDamage)
         {
-            totalDamage *= 1f - enemyData.Defense;
+            totalDamage *= 1f - currentDefense;
         }
 
         if (effectiveAgainst == enemyData.Flavor)
@@ -190,6 +193,8 @@ public class Enemy : MonoBehaviour
         
             totalDamage = totalDamage * 1.5f;
         }
+
+        totalDamage = totalDamage * (100f / (100f + enemyData.Defense));
      
         currentHealth -= totalDamage;
 

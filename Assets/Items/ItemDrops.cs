@@ -20,8 +20,8 @@ public class ItemDropEntry
         switch (dropChance)
         {
             case DropChance.Common: return 1f;
-            case DropChance.Rare: return 0.5f;
-            case DropChance.Epic: return 0.25f;
+            case DropChance.Rare: return 0.7f;
+            case DropChance.Epic: return 0.5f;
             default: return 0f;
         }
     }

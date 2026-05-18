@@ -8,6 +8,7 @@ public class EnemyData : EntityData
     [SerializeField]private Sprite enemySprite;
     [SerializeField]private string description;
     [SerializeField]private Flavor flavor;
+    [SerializeField]private float defense = 0f;
     [SerializeField]private int contactDamage;
     [SerializeField]private int baseDamage;
     [SerializeField]private float experienceDropped = 100f;
@@ -23,7 +24,6 @@ public class EnemyData : EntityData
     [SerializeField]private float damageScalar = 0.1f;
     [SerializeField]private bool canBeMiniBoss = true;
     [SerializeField]private bool ignoreEnemyCollision = false;
-    [SerializeField]private float defense = 0f;
     public float HealthScalar { get => healthScalar; set => healthScalar = value; }
     public float DamageScalar { get => damageScalar; set => damageScalar = value; }
 

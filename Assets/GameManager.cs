@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void OnBossDefeated() {
         RandomizeToppings();
+        SoundManager.instance.PlaySoundtrack("default");
         BossGroup bossGroup = FindFirstObjectByType<BossGroup>();
         if (bossGroup != null) {
             bossGroup.CanvasGroup.alpha = 0f;

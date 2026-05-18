@@ -82,6 +82,7 @@ public partial class WorldManager
                 }
          
                 if (isBossFloor) {
+                    SoundManager.instance.PlaySoundtrack("miniboss");
                     if (room.currentWaveIndex == room.waves.Count - 1)
                     {
                         int totalEnemies = 0;
@@ -102,7 +103,7 @@ public partial class WorldManager
                             {
                                 gameManager.OnBossDefeated();
                             }
-                        }
+                        } 
                     } 
                     else 
                     {

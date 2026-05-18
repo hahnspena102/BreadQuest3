@@ -37,7 +37,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 933c3caefb545f34eacd51ad90c64a66, type: 2}
     dropChance: 0
     count: 1
-    isGuaranteed: 0
+    isGuaranteed: 1
   - item: {fileID: 11400000, guid: 0ecc42e6443032c448956ee2d8c5335b, type: 2}
     dropChance: 1
     count: 1
