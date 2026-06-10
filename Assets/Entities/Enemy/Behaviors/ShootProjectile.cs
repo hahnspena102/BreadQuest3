@@ -80,6 +80,8 @@ public class ShootProjectile : EnemyBehavior
             spawnPosition += new Vector2(-enemy.EnemyData.ProjectileOffset.x, enemy.EnemyData.ProjectileOffset.y);
             enemy.transform.localScale = new Vector3(-1, 1, 1) * enemy.ScaleFactor;
         }
+
+        
             
 
         
@@ -89,14 +91,18 @@ public class ShootProjectile : EnemyBehavior
 
         for (int i = 0; i < projectileCount; i++)
         {
+            
+
             float step = spreadAngle / projectileCount;
             float angleOffset = -spreadAngle / 2f + step * (i + 0.5f);
 
             Vector2 direction =
                 Quaternion.Euler(0, 0, angleOffset) * baseDirection;
 
+            Vector2 newPosition = spawnPosition + (direction * enemy.EnemyData.ProjectileOffset.x);
+
             GameObject projectileInstance =
-                Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+                Instantiate(projectilePrefab, newPosition, Quaternion.identity);
 
 
             if (rotateTowardsTarget)

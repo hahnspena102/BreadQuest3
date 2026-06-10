@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum ProjectileType
@@ -8,228 +10,223 @@ public enum ProjectileType
 
 public class Projectile : MonoBehaviour
 {
-    [ReadOnly, SerializeField]private ProjectileData projectileData;
-    [ReadOnly, SerializeField]private float projectileDamage;
-    [ReadOnly, SerializeField]private Flavor flavor;
+    [ReadOnly, SerializeField] private ProjectileData projectileData;
+    [ReadOnly, SerializeField] private float projectileDamage;
+    [ReadOnly, SerializeField] private Flavor flavor;
+
     private Rigidbody2D rb;
-    [SerializeField]private ProjectileType projectileType;
-    [SerializeField]private int bouncesRemaining = 3;
-    [SerializeField]private Animator animator;
-    private float spawnGracePeriod = 0.02f; // seconds to ignore environment collisions after spawn
+
+    [SerializeField] private ProjectileType projectileType;
+    [SerializeField] private int bouncesRemaining = 3;
+    [SerializeField] private Animator animator;
+
+    private float spawnGracePeriod = 0.02f;
     private float spawnTime;
+
     private Collider2D projectileCollider;
     private bool originalColliderIsTrigger;
-    
 
     public ProjectileData ProjectileData { get => projectileData; set => projectileData = value; }
-    public global::System.Single ProjectileDamage { get => projectileDamage; set => projectileDamage = value; }
+    public float ProjectileDamage { get => projectileDamage; set => projectileDamage = value; }
     public Flavor Flavor { get => flavor; set => flavor = value; }
 
+    // =========================
+    // INITIALIZATION (ENEMY)
+    // =========================
     public void InitializeEnemyProjectile(Vector2 direction, Enemy enemy)
     {
         projectileType = ProjectileType.Enemy;
         gameObject.tag = "EnemyProjectile";
-        //gameObject.layer = LayerMask.NameToLayer("Enemy");
+
         rb = GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.excludeLayers = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Projectile");
 
-        
-
         projectileData = enemy.EnemyData.ProjectileData;
+
         if (projectileData == null)
         {
-            Debug.LogError("ProjectileData is not assigned in EnemyData.");
+            Debug.LogError("[Projectile] Enemy ProjectileData missing!");
             return;
         }
+
         flavor = enemy.EnemyData.Flavor;
 
-        Collider2D enemyCollider = GetComponent<Collider2D>();
-        if (enemyCollider != null && projectileData.IsTrigger)
-        {
-            enemyCollider.isTrigger = true;
-        }
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null && projectileData.IsTrigger)
+            col.isTrigger = true;
 
         InitializeProjectile(direction, projectileData);
 
-        float floor = enemy.Player != null ? enemy.Player.PlayerData.CurrentFloor : 0f;
         projectileDamage = enemy.AttackDamage;
-        
     }
 
+    // =========================
+    // INITIALIZATION (PLAYER)
+    // =========================
     public void InitializePlayerProjectile(Vector2 direction, ProjectileData data, Player player)
     {
         projectileType = ProjectileType.Player;
         gameObject.tag = "PlayerProjectile";
-        //gameObject.layer = LayerMask.NameToLayer("Player");
+
         rb = GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.excludeLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Projectile");
-        Collider2D collider = GetComponent<Collider2D>();
-        if (collider != null && data.IsTrigger)
+
+        projectileData = data;
+
+        if (projectileData == null)
         {
-           collider.isTrigger = true;
+            Debug.LogError("[Projectile] Player ProjectileData missing!");
+            return;
         }
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null && projectileData.IsTrigger)
+            col.isTrigger = true;
 
         Item equippedItem = player.Inventory.GetItemAtIndex(player.Inventory.CurrentItemIndex);
         WeaponData weaponData = equippedItem != null ? equippedItem.ItemData as WeaponData : null;
-        flavor = weaponData != null ? weaponData.Flavor : null;
-        InitializeProjectile(direction, data);
-        float baseDamage = weaponData != null ? weaponData.Damage : 0f;
 
-        projectileDamage = baseDamage;
+        flavor = weaponData != null ? weaponData.Flavor : null;
+
+        InitializeProjectile(direction, data);
+
+        projectileDamage = weaponData != null ? weaponData.Damage : 0f;
     }
 
+  
     public void InitializeProjectile(Vector2 direction, ProjectileData data)
     {
-
         projectileData = data;
+
         if (projectileData == null)
         {
-            Debug.LogError("ProjectileData is not assigned.");
+            Debug.LogError("[Projectile] ProjectileData is NULL");
             return;
         }
 
         rb = GetComponent<Rigidbody2D>();
-        if (rb != null && projectileData != null)
+
+        if (rb != null)
         {
             rb.linearVelocity = direction.normalized * projectileData.Speed;
             rb.angularVelocity = projectileData.RotationSpeed;
         }
+
         Destroy(gameObject, projectileData.Lifetime);
 
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
+        // Sprite setup (optional)
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null && projectileData.ProjectileSprite != null)
         {
             sr.sprite = projectileData.ProjectileSprite;
+            Debug.Log($"[Projectile] Sprite set: {sr.sprite.name}");
         }
 
+        // Rotation
         if (projectileData.RotateTowardsMovementDirection && rb != null)
         {
             float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
+        // Animation (optional ONLY visual)
         if (animator != null && projectileData.MovingAnimation != null)
         {
             OverrideMovingAnimation(projectileData.MovingAnimation);
         }
 
-        // record spawn time for grace-period collision handling
+        // IMPORTANT: physics setup ALWAYS happens independently
+        TrySetupPhysicsShape();
+
         spawnTime = Time.time;
 
-        // Temporarily make collider a trigger to avoid physics collisions with walls immediately after spawn.
-        projectileCollider = GetComponent<Collider2D>();
-        if (projectileCollider != null)
-        {
-            originalColliderIsTrigger = projectileCollider.isTrigger;
-            if (!projectileData.IsTrigger && !projectileCollider.isTrigger)
-            {
-                projectileCollider.isTrigger = true;
-                StartCoroutine(RestoreColliderAfterGrace(spawnGracePeriod));
-            }
-        }
-
-        // Apply scale from projectile data
+        // Scale
         if (projectileData.Scale != 1f)
         {
             transform.localScale = Vector3.one * projectileData.Scale;
         }
-        
+    }
+
+
+    private void TrySetupPhysicsShape()
+    {
+        var sr = GetComponent<SpriteRenderer>();
+        var poly = GetComponent<PolygonCollider2D>();
+
+        if (!poly)
+        {
+            return;
+        }
+
+        if (!sr || sr.sprite == null)
+        {
+            return;
+        }
+
+        int shapeCount = sr.sprite.GetPhysicsShapeCount();
+
+        if (shapeCount <= 0)
+        {
+            return;
+        }
+
+        poly.enabled = false;
+        poly.pathCount = 0;
+        poly.enabled = true;
+
+        var path = new List<Vector2>();
+        poly.pathCount = shapeCount;
+
+        for (int i = 0; i < shapeCount; i++)
+        {
+            path.Clear();
+            sr.sprite.GetPhysicsShape(i, path);
+            poly.SetPath(i, path);
+
+        }
+
     }
 
     private void OverrideMovingAnimation(AnimationClip movingClip)
     {
-        if (animator == null || movingClip == null)
-        {
-            return;
-        }
-
         RuntimeAnimatorController baseController = animator.runtimeAnimatorController;
-        if (baseController == null)
-        {
-            return;
-        }
+        if (!baseController || movingClip == null) return;
 
         AnimatorOverrideController overrideController = new AnimatorOverrideController(baseController);
-        AnimationClip[] clips = baseController.animationClips;
-        if (clips == null || clips.Length == 0)
+
+        foreach (var clip in baseController.animationClips)
         {
-            return;
-        }
-        
-        for (int i = 0; i < clips.Length; i++)
-        {
-            overrideController[clips[i].name] = movingClip;
+            overrideController[clip.name] = movingClip;
         }
 
         animator.runtimeAnimatorController = overrideController;
         animator.Play(0, 0, 0f);
-        StartCoroutine(ResetPolygonColliderAfterAnimationUpdate());
     }
 
-    private System.Collections.IEnumerator ResetPolygonColliderAfterAnimationUpdate()
-    {
-        yield return null;
-
-        PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (polygonCollider == null || spriteRenderer == null || spriteRenderer.sprite == null)
-        {
-            yield break;
-        }
-
-        Sprite sprite = spriteRenderer.sprite;
-        int shapeCount = sprite.GetPhysicsShapeCount();
-        if (shapeCount <= 0)
-        {
-            polygonCollider.pathCount = 0;
-            yield break;
-        }
-
-        polygonCollider.pathCount = shapeCount;
-        var path = new System.Collections.Generic.List<Vector2>();
-        for (int i = 0; i < shapeCount; i++)
-        {
-            path.Clear();
-            sprite.GetPhysicsShape(i, path);
-            polygonCollider.SetPath(i, path);
-        }
-    }
-
+    // =========================
+    // COLLISION
+    // =========================
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (Time.time - spawnTime < spawnGracePeriod)
+            return;
+
         if (!projectileData.IsPiercing)
         {
             if (projectileType == ProjectileType.Enemy && other.CompareTag("Player"))
-            {
                 Destroy(gameObject);
-            }
-    
 
-          if (projectileType == ProjectileType.Player && other.CompareTag("Enemy"))
-            {
-            Destroy(gameObject);
-            }
+            if (projectileType == ProjectileType.Player && other.CompareTag("Enemy"))
+                Destroy(gameObject);
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // During the initial spawn grace period, ignore collisions with non-character, non-projectile objects
         if (Time.time - spawnTime < spawnGracePeriod)
-        {
-            GameObject other = collision.gameObject;
-            bool isPlayer = other.CompareTag("Player");
-            bool isEnemy = other.CompareTag("Enemy");
-            bool isProj = IsProjectileObject(other);
-
-            if (!isPlayer && !isEnemy && !isProj)
-            {
-                // treat as environment/wall collider - ignore during grace period
-                return;
-            }
-        }
+            return;
 
         if (projectileType == ProjectileType.Player && !collision.gameObject.CompareTag("Player"))
         {
@@ -239,97 +236,35 @@ public class Projectile : MonoBehaviour
                 return;
             }
 
-            if (projectileData.MaxBounces > 0)
-            {
-                bouncesRemaining--;
-                if (bouncesRemaining <= 0)
-                {
-                    Destroy(gameObject);
-                }
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            HandleBounceOrDestroy();
         }
+
         if (projectileType == ProjectileType.Enemy)
         {
-           if (projectileData.MaxBounces > 0)
-            {
-                bouncesRemaining--;
-                if (bouncesRemaining <= 0)
-                {
-                    Destroy(gameObject);
-                }
-            }
-            else
-            {
+            HandleBounceOrDestroy();
+        }
+    }
+
+    private void HandleBounceOrDestroy()
+    {
+        if (projectileData.MaxBounces > 0)
+        {
+            bouncesRemaining--;
+            if (bouncesRemaining <= 0)
                 Destroy(gameObject);
-            }
         }
-
-        
-    }
-
-    private System.Collections.IEnumerator RestoreColliderAfterGrace(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        if (projectileCollider == null)
-            yield break;
-
-        // Only restore if the projectileData doesn't require a trigger collider
-        if (projectileData != null && !projectileData.IsTrigger)
+        else
         {
-            projectileCollider.isTrigger = originalColliderIsTrigger;
-            // After restoring, check if we're overlapping an environment (wall) collider.
-            float checkRadius = 0.1f;
-            try
-            {
-                if (projectileCollider.bounds.size.magnitude > 0f)
-                {
-                    checkRadius = Mathf.Max(0.05f, projectileCollider.bounds.extents.magnitude);
-                }
-            }
-            catch {}
-
-            Collider2D[] overlaps = Physics2D.OverlapCircleAll(transform.position, checkRadius);
-            foreach (var col in overlaps)
-            {
-                if (col == null || col == projectileCollider) continue;
-                if (col.isTrigger) continue;
-                GameObject other = col.gameObject;
-                bool isPlayer = other.CompareTag("Player");
-                bool isEnemy = other.CompareTag("Enemy");
-                bool isProj = IsProjectileObject(other);
-
-                if (!isPlayer && !isEnemy && !isProj)
-                {
-                    // overlapping a wall/environment — destroy immediately to avoid bounce spam
-                    Destroy(gameObject);
-                    yield break;
-                }
-            }
+            Destroy(gameObject);
         }
     }
 
-    private bool IsProjectileObject(GameObject obj)
-    {
-        if (obj == null)
-        {
-            return false;
-        }
-
-        return obj.CompareTag("PlayerProjectile")
-            || obj.CompareTag("EnemyProjectile")
-            || obj.GetComponent<Projectile>() != null;
-    }
-
+    // =========================
+    // FIXED MOVEMENT
+    // =========================
     void FixedUpdate()
     {
-        if (projectileData == null) return;
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
-        if (rb == null) return;
+        if (!projectileData || !rb) return;
 
         float accel = projectileData.Acceleration;
         if (Mathf.Approximately(accel, 0f)) return;
@@ -339,22 +274,14 @@ public class Projectile : MonoBehaviour
         if (speed <= 0f) return;
 
         Vector2 dir = vel / speed;
-        float newSpeed = speed + accel * Time.fixedDeltaTime;
-        newSpeed = Mathf.Max(0f, newSpeed);
+        float newSpeed = Mathf.Max(0f, speed + accel * Time.fixedDeltaTime);
 
-        if (newSpeed <= 0f)
-        {
-            rb.linearVelocity = Vector2.zero;
-        }
-        else
-        {
-            rb.linearVelocity = dir * newSpeed;
+        rb.linearVelocity = dir * newSpeed;
 
-            if (projectileData.RotateTowardsMovementDirection && newSpeed > 0.0001f)
-            {
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            }
+        if (projectileData.RotateTowardsMovementDirection)
+        {
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 }

@@ -608,6 +608,20 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6349153925857546609, guid: f4f1a34e6b7b4fb44993985c84646989, type: 3}
   healCooldownDuration: 30
   glucoseCooldownDuration: 10
+--- !u!114 &298015581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Gameplay/Scroll
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: ccf45f268cde24a4bba2212da3aa1c04, type: 3}
+  m_ActionId: daade139-751c-4b76-8579-8b0b2221a507
 --- !u!114 &315345514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1858,6 +1872,7 @@ MonoBehaviour:
   moveAction: {fileID: 2006507595}
   dashAction: {fileID: 1137186796}
   numberKeyAction: {fileID: 1792395635}
+  scrollAction: {fileID: 298015581}
   equipAction: {fileID: 1046052484}
   dropAction: {fileID: 1702507461}
   useAction: {fileID: 1720313778}

@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     public InputActionReference moveAction;
     public InputActionReference dashAction;
     public InputActionReference numberKeyAction;
+    public InputActionReference scrollAction;
     public InputActionReference equipAction;
     public InputActionReference dropAction;
     public InputActionReference useAction;
@@ -76,6 +77,9 @@ public class Player : MonoBehaviour
     private Vector2 dashDirection = Vector2.down;
     private float dashTimer = 0f;
     private float dashCooldownTimer = 0f;
+
+    private float scrollCooldown = 0.08f;
+private float scrollTimer;
 
     public Vector2 WorldPointPosition { get => worldPointPosition; set => worldPointPosition = value; }
     public Inventory Inventory { get => inventory; set => inventory = value; }
@@ -274,8 +278,31 @@ public class Player : MonoBehaviour
             int _numberKey = Mathf.FloorToInt(numberKeyAction.action.ReadValue<float>());
             
             inventory.CycleTo(_numberKey - 1);
+
+            
+    
+
+            scrollTimer -= Time.deltaTime;
+
+            Vector2 scroll = scrollAction.action.ReadValue<Vector2>();
+
+            if (scrollTimer <= 0f && !isAttacking && !isCharging && !isDashing && (!isInUIScreen || isInInventory))
+            {
+                if (scroll.y > 0.01f)
+                {
+                    inventory.CycleItem(1f);
+                    scrollTimer = scrollCooldown;
+                }
+                else if (scroll.y < -0.01f)
+                {
+                    inventory.CycleItem(-1f);
+                    scrollTimer = scrollCooldown;
+                }
+            }
+
             ItemData itemData = inventory.EquippedItem != null ? inventory.EquippedItem.ItemData : null;
             itemSpriteHolder.sprite = itemData != null ? itemData.ItemSprite : null;
+            
         }
 
         if (toggleInfoAction.action.WasPressedThisFrame())

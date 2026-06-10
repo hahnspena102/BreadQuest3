@@ -249,7 +249,7 @@ public class Enemy : MonoBehaviour
         if (linkedEnemy != null)
         {
             linkedEnemy.LinkedEnemy = null;
-            linkedEnemy.TakeDamage(linkedEnemy.currentHealth, null, true);
+            linkedEnemy.Die();
             linkedEnemy.SetLinkedEnemy(null);
         }
 

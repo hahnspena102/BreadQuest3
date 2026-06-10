@@ -25,5 +25,21 @@ public class MenuUI : MonoBehaviour
             menuCanvasGroup.interactable = false;
             menuCanvasGroup.blocksRaycasts = false;
         }
+
+        if (player.IsInMenu)
+        {
+            Time.timeScale = 0f;
+        } else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
+
+    public void ContinueGame() {
+        player.IsInMenu = false;
     }
 }
