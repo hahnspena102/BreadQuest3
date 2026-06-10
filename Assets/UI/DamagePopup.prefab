@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 8956027079824343567}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.025942266, y: 0.025942266, z: 0.025942266}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -174,3 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9462ac13723a24aaaac2cc27daa650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagePopup
+  moveUpSpeed: 1.2
+  fadeDuration: 0.8
+  popScale: 1
+  popDuration: 0.2
+  sizeVariance: 0.05
+  maxRotation: 15
+  rotationWobble: 5

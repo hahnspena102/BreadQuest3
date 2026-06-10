@@ -9,7 +9,7 @@ public class DamagePopup : MonoBehaviour
     public float fadeDuration = 0.8f;
 
     [Header("Scale Punch")]
-    public float popScale = 0.6f;
+    public float popScale = 0.8f;
     public float popDuration = 0.2f;
 
     [Header("Random Size")]
