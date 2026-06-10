@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BerryCutlass
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Berry Cutlass
-  description: 
+  description: Sieze the seas with a glossy berry finish.
   itemSprite: {fileID: 21300000, guid: 9f474e5a87498486eaa5148215fb293b, type: 3}
   tier: 1
   maxStackSize: 1

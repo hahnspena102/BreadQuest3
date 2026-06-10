@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PeppermintDart
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   itemName: Peppermint Dart
-  description: 
+  description: Cast an onslaught of sharp peppermint darts.
   itemSprite: {fileID: -8068035455531306345, guid: 3a99cfd37b5d05f4a8ff390542096a75, type: 3}
   tier: 1
   maxStackSize: 1

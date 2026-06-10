@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: WintermintFloss
   m_EditorClassIdentifier: Assembly-CSharp::RangedData
   itemName: Wintermint Floss
-  description: 
+  description: A devastating bow that encapsualtes the power of winter.
   itemSprite: {fileID: -8973928724841024679, guid: a812af6ab965ee0469e36facc785f22c, type: 3}
   tier: 1
   maxStackSize: 1
+  isConsumed: 0
   damage: 12
   flavor: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}
   projectileData: {fileID: 11400000, guid: b27ab6e5459cabd46a90210e75f63e46, type: 2}

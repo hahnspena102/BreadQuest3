@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spearmint
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Spearmint
-  description: 
+  description: A long-ranged spear that provides a minty advantage.
   itemSprite: {fileID: 3732695439383397635, guid: 5e40fe38f9177554d9103006cb63fd8f, type: 3}
   tier: 1
   maxStackSize: 1

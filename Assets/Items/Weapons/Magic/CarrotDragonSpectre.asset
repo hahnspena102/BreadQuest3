@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CarrotDragonSpectre
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   itemName: Carrot Dragon Spectre
-  description: 
+  description: Forged of whole grain wheat and fresh carrots, unleash a devastating
+    carrot dragon.
   itemSprite: {fileID: -3107414209028425074, guid: 418dec90a20c3b448b2fadc4d3671af5, type: 3}
   tier: 1
   maxStackSize: 1

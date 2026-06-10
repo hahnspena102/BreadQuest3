@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Cinnastick
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Cinnastick
-  description: 
+  description: A classic sword with a cinnamon twist.
   itemSprite: {fileID: 21300000, guid: fd2e916504ca446dbbfab6c1261a954f, type: 3}
   tier: 1
+  maxStackSize: 1
+  isConsumed: 0
   damage: 3
-  attackSpeed: 1
-  range: 1
   flavor: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}
+  meleeScale: 1
+  meleeSpeed: 1

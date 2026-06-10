@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OrangeBeamsicle
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   itemName: Orange Beamsicle
-  description: 
+  description: Unleash a catastrophic orange beam of cream.
   itemSprite: {fileID: 4577311707800459560, guid: a61992f870c061941b26245ca1211be7, type: 3}
   tier: 1
   maxStackSize: 1

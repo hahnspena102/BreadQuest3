@@ -4,6 +4,13 @@ using UnityEngine.InputSystem.EnhancedTouch;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum InfoMode {
+    Minimal,
+    Flavor,
+    Detailed,
+
+}
+
 public class Player : MonoBehaviour
 {
     [Header("Components")]
@@ -23,7 +30,11 @@ public class Player : MonoBehaviour
     private bool isAttacking = false;
     private bool isCharging = false;
     private bool isDashing = false;
-    private bool isMenuing = false;
+    private bool isInUIScreen = false;
+    private bool isInInventory = false;
+    private bool isInToppings = false;
+    private bool isInMenu = false;
+    [ReadOnly] private InfoMode infoMode = InfoMode.Minimal;
     private float invulnerabilityTimer = 0f;
     
     private float invulnerabilityDuration = 1f;
@@ -46,6 +57,9 @@ public class Player : MonoBehaviour
     public InputActionReference equipAction;
     public InputActionReference dropAction;
     public InputActionReference useAction;
+    public InputActionReference inventoryAction;
+    public InputActionReference menuAction;
+    public InputActionReference toggleInfoAction;
 
     [Header("Managers")]
     [ReadOnly] public ItemManager itemManager;
@@ -75,7 +89,11 @@ public class Player : MonoBehaviour
     public global::System.Single DashDuration { get => dashDuration; set => dashDuration = value; }
     public global::System.Single DashCooldown { get => dashCooldown; set => dashCooldown = value; }
     public global::System.Single DashCooldownTimer { get => dashCooldownTimer; set => dashCooldownTimer = value; }
-    public global::System.Boolean IsMenuing { get => isMenuing; set => isMenuing = value; }
+    public global::System.Boolean IsInUIScreen { get => isInUIScreen; set => isInUIScreen = value; }
+    public global::System.Boolean IsInInventory { get => isInInventory; set => isInInventory = value; }
+    public global::System.Boolean IsInMenu { get => isInMenu; set => isInMenu = value; }
+    public global::System.Boolean IsInToppings { get => isInToppings; set => isInToppings = value; }
+    public InfoMode InfoMode { get => infoMode; set => infoMode = value; }
 
 
 
@@ -182,6 +200,10 @@ public class Player : MonoBehaviour
 
         bool dashPressed = (dashAction != null && dashAction.action != null && dashAction.action.WasPressedThisFrame())
             || (Keyboard.current != null && (Keyboard.current.leftShiftKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame));
+        if (isInUIScreen)
+        {
+            dashPressed = false;
+        }
 
         if (!isDashing && !isAttacking && dashPressed && dashCooldownTimer <= 0f && _moveDirection.sqrMagnitude > 0.001f)
         {
@@ -194,7 +216,7 @@ public class Player : MonoBehaviour
         if (rb)
         {
             
-            if (!isAttacking && !isCharging && !isDashing && !isMenuing)
+            if (!isAttacking && !isCharging && !isDashing && !isInUIScreen)
             {    
                 if (_moveDirection.y != 0 && _moveDirection.x == 0) {
                     transform.localScale = new Vector3(1f, 1f, 1f);
@@ -216,7 +238,7 @@ public class Player : MonoBehaviour
             }
             
             
-            if (!isMenuing)
+            if (!isInUIScreen)
             {
                 animator.SetFloat("speed", _moveDirection.magnitude);
                 animator.SetFloat("horizontalSpeed", Mathf.Abs(_moveDirection.x));
@@ -230,7 +252,7 @@ public class Player : MonoBehaviour
 
         worldPointPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        if (!isAttacking && !isCharging && !isDashing)
+        if (!isAttacking && !isCharging && !isDashing && (!isInUIScreen || isInInventory))
         { 
             if (equipAction.action.WasPressedThisFrame())
             {
@@ -250,10 +272,57 @@ public class Player : MonoBehaviour
             }
 
             int _numberKey = Mathf.FloorToInt(numberKeyAction.action.ReadValue<float>());
+            
             inventory.CycleTo(_numberKey - 1);
             ItemData itemData = inventory.EquippedItem != null ? inventory.EquippedItem.ItemData : null;
             itemSpriteHolder.sprite = itemData != null ? itemData.ItemSprite : null;
         }
+
+        if (toggleInfoAction.action.WasPressedThisFrame())
+        {
+            infoMode = (InfoMode)(((int)infoMode + 1) % System.Enum.GetValues(typeof(InfoMode)).Length);
+            //Debug.Log("Toggled Info Mode to: " + infoMode);
+        }
+
+        if (menuAction.action.WasPressedThisFrame())
+        {
+            if (isInMenu)
+            {
+                isInMenu = false;
+                Debug.Log("Closing menu.");
+            }
+            else if (isInInventory)
+            {
+                isInMenu = false;
+                isInInventory = false;
+                Debug.Log("Closing inventory.");
+            } else
+            {
+                isInInventory = false;
+                isInMenu = true;
+                Debug.Log("Opening menu.");
+            }
+        }
+
+        if (inventoryAction.action.WasPressedThisFrame())
+        {
+            if (isInInventory)
+            {
+                isInInventory = false;
+                Debug.Log("Closing inventory.");
+            }
+            else if (isInMenu)
+            {
+                Debug.Log("Not opening inventory because menu is open.");
+            } else
+            {
+                isInMenu = false;
+                isInInventory = true;
+                Debug.Log("Opening inventory.");
+            }
+        }
+
+        isInUIScreen = isInMenu || isInInventory || isInToppings;
         
 
     }
@@ -299,7 +368,7 @@ public class Player : MonoBehaviour
             if (isCharging)
                 totalSpeed *= 0.25f;
 
-            if (isMenuing)
+            if (isInUIScreen)
             {
                 _moveDirection = Vector2.zero;
             } 

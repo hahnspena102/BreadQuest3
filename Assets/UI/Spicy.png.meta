@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1ff29212b9d2b98458ee7331be6bbbc0
+guid: 7635d41bc87e04908946533afd8525e7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1399725893816511699
-    second: Fill_0
+      213: -4446742000628067849
+    second: Spicy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fill_0
+      name: Spicy_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3dc69dbc843dc6310800000000000000
-      internalID: 1399725893816511699
+      spriteID: 7f111c4d5bff942c0800000000000000
+      internalID: -4446742000628067849
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b8325760b0245b746bfd7f8c3f621a5a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fill_0: 1399725893816511699
+      Spicy_0: -4446742000628067849
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

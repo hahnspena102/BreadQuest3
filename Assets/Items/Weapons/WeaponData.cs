@@ -8,4 +8,9 @@ public class WeaponData : ItemData
 
     public global::System.Single Damage { get => damage; set => damage = value; }
     public Flavor Flavor { get => flavor; set => flavor = value; }
+    
+    public override string GetFullDescription()
+    {
+        return $"{base.GetFullDescription()}\n\n{Damage} dmg - {Flavor.FlavorName}";
+    }
 }

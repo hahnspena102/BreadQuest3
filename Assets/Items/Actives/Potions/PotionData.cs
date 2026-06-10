@@ -19,4 +19,22 @@ public class PotionData : ActiveData
 {
     public PotionEntry[] potionEffects;
 
+    public override string GetFullDescription()
+    {
+        string effectsDescription = "";
+        foreach (var entry in potionEffects)
+        {
+            if (entry.duration <= 0)
+            {
+                effectsDescription += $"\n{entry.effect} - {entry.magnitude}";
+            }
+            else
+            {
+                effectsDescription += $"\n{entry.effect} - {entry.magnitude} for {entry.duration} sec";
+            }
+            
+        }
+        return $"{base.GetFullDescription()}\n{effectsDescription}";
+    }
+
 }

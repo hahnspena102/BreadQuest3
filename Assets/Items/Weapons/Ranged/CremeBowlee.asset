@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b803cf80106f2545bfeb0e3a8af0d12, type: 3}
   m_Name: CremeBowlee
   m_EditorClassIdentifier: Assembly-CSharp::RangedData
-  itemName: Creme Bowlee
-  description: 
+  itemName: "Cr\xE8me Bowl\xE9e"
+  description: A rich, creamy custard bow topped with caramelized sugar.
   itemSprite: {fileID: -3035390412557001596, guid: 09da902ecd6666643a0b2142631147ff, type: 3}
   tier: 1
   maxStackSize: 1

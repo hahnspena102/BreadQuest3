@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flavor
   flavorName: Cacao
   description: 
-  flavorIcon: {fileID: 0}
+  flavorSprite: {fileID: -1556887146101208298, guid: 8c58c759956ca4129a67c39e32977aa3, type: 3}
   flavorColor: {r: 0.4056604, g: 0.24370936, b: 0.12437701, a: 1}
   effectiveAgainst: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}

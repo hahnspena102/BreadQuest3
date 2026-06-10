@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flavor
   flavorName: Vanilla
   description: 
-  flavorIcon: {fileID: 0}
+  flavorSprite: {fileID: 4720508320812741768, guid: 880fbd7e6fbab44568dd512bb3d31d06, type: 3}
   flavorColor: {r: 0.8490566, g: 0.7734309, b: 0.53266287, a: 1}
   effectiveAgainst: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: TheBaguette
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: The Baguette
-  description: 
+  description: Freshly baked baguette of devastation.
   itemSprite: {fileID: -5560997628221282433, guid: 58eace0afaf014f27a64f5e5561d61db, type: 3}
   tier: 1
+  maxStackSize: 1
+  isConsumed: 0
   damage: 5
-  attackSpeed: 1
-  range: 1
   flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
+  meleeScale: 1
+  meleeSpeed: 1

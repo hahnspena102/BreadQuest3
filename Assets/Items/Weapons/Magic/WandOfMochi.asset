@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WandOfMochi
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   itemName: Wand of Mochi
-  description: 
+  description: Unleash bouncing projectiles.
   itemSprite: {fileID: 5125201553696344367, guid: dc16130cbe8d6b04a89e362dfb52275b, type: 3}
   tier: 1
   maxStackSize: 1

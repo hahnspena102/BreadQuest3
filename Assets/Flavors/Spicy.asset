@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flavor
   flavorName: Spicy
   description: 
-  flavorIcon: {fileID: 0}
+  flavorSprite: {fileID: -4446742000628067849, guid: 7635d41bc87e04908946533afd8525e7, type: 3}
   flavorColor: {r: 0.9339623, g: 0.22641438, b: 0.15419187, a: 1}
   effectiveAgainst: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}

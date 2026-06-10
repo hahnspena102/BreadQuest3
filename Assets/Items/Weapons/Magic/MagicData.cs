@@ -25,4 +25,27 @@ public class MagicData : WeaponData
             return null;
         return castSounds[Random.Range(0, castSounds.Length)];
     }
+
+    public override string GetFullDescription()
+    {
+        string isMultishot = ProjectileCount > 1 ? $"{ProjectileCount} projectiles - {SpreadAngle}° spread" : "";
+        return $"{base.GetFullDescription()}\nMagic - {GlucoseCost} glucose - {GetSpeedDescription()}\n" + isMultishot;
+    }
+
+    private string GetSpeedDescription()
+    {
+        if (ProjectileDelay < 0.75f)
+        {
+            return "fast";
+        }
+        else if (ProjectileDelay < 1.25f)
+        {
+            return "moderate";
+        }
+        else
+        {
+            return "slow";
+        }
+    }
+
 }

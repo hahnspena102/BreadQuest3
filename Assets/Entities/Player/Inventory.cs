@@ -262,5 +262,16 @@ public class Inventory : ScriptableObject
         equippedItem = items.Length > 0 ? items[0] : null;
     }
 
+    public Item GetSelectedItem()
+    {
+        if (items == null || items.Length == 0 || currentItemIndex < 0 || currentItemIndex >= items.Length)
+        {
+            return null;
+        }
+
+        Item selectedItem = items[currentItemIndex];
+        return IsSlotEmpty(selectedItem) ? null : selectedItem;
+    }
+
 
 }

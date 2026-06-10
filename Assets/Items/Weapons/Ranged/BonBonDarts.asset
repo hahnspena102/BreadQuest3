@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BonBonDarts
   m_EditorClassIdentifier: Assembly-CSharp::RangedData
   itemName: Bon Bon Darts
-  description: 
+  description: Lightweight chocolate darts, weak but effective.
   itemSprite: {fileID: -6209807519175324666, guid: 1f659ce938d5d0d4f8cecff5c0a16c1b, type: 3}
   tier: 1
   maxStackSize: 99

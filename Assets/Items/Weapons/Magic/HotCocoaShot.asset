@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HotCocoaShot
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   itemName: Hot Cocoa Shot
-  description: 
+  description: Manifest perfectly hot splashes of hot cocoa.
   itemSprite: {fileID: -1381539162234565720, guid: 9ef5d7701ffe9a646be33fe270ebec28, type: 3}
   tier: 1
   maxStackSize: 1

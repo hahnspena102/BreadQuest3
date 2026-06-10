@@ -614,7 +614,6 @@ public partial class WorldManager
         FillEmptyWithWalls();
     }
 
-    /* Helper function to fill any empty space with walls. */
     private void FillEmptyWithWalls()
     {
         RectInt worldArea = GetWorldArea();
@@ -623,6 +622,7 @@ public partial class WorldManager
         worldArea.yMin -= 10;
         worldArea.yMax += 10;
 
+        // Fill walls first
         for (int x = worldArea.xMin; x < worldArea.xMax; x++)
         {
             for (int y = worldArea.yMin; y < worldArea.yMax; y++)
@@ -636,6 +636,73 @@ public partial class WorldManager
                 }
             }
         }
+
+        // Place decor afterward
+        List<Vector2Int> placedDecor = new();
+
+        int decorCount = Mathf.Max(
+            10,
+            (worldArea.width * worldArea.height) / 10
+        );
+
+        int minSpacing = 6;
+        int maxAttempts = decorCount * 20;
+
+        for (int attempt = 0;
+            attempt < maxAttempts && placedDecor.Count < decorCount;
+            attempt++)
+        {
+            int x = Random.Range(worldArea.xMin, worldArea.xMax);
+            int y = Random.Range(worldArea.yMin, worldArea.yMax);
+
+            Vector3Int pos = new Vector3Int(x, y, 0);
+
+            // Don't place inside dungeon
+            if (NearFloor(pos))
+            {
+                continue;
+            }
+
+            Vector2Int candidate = new Vector2Int(x, y);
+
+            bool tooClose = false;
+
+            foreach (Vector2Int existing in placedDecor)
+            {
+                if ((existing - candidate).sqrMagnitude <
+                    minSpacing * minSpacing)
+                {
+                    tooClose = true;
+                    break;
+                }
+            }
+
+            if (tooClose)
+                continue;
+
+            placedDecor.Add(candidate);
+
+            decorTilemap.SetTile(
+                pos,
+                natureDecorTiles[
+                    Random.Range(0, natureDecorTiles.Length)
+                ]
+            );
+        }
+    }
+
+    bool NearFloor(Vector3Int pos)
+    {
+        for (int dx = -2; dx <= 2; dx++)
+        {
+            for (int dy = -2; dy <= 2; dy++)
+            {
+                if (floorTilemap.GetTile(pos + new Vector3Int(dx, dy, 0)) != null)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     /* Debug function to visualize rooms and their sub-cells in the editor. */

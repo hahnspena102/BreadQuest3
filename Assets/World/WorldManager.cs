@@ -21,19 +21,25 @@ public partial class WorldManager : MonoBehaviour
     [SerializeField] private GameObject chestPrefab;    
     [SerializeField]private bool isBossFloor = true;
     [SerializeField] private Flavor[] possibleFlavors;
+    [SerializeField][ReadOnly] private Flavor[] currentFlavors;
 
     public Tilemap floorTilemap;
     public Tilemap wallTilemap;
     public Tilemap barrierTilemap;
+    public Tilemap decorTilemap;
     public TileBase floorTile;
     public TileBase wallTile;
     public TileBase smallWallTile;
     public TileBase wallTopTile;
     public TileBase barrierTile;
+    public TileBase[] natureDecorTiles; 
 
     public Room startingRoom;
     public Room endingRoom;
     private EnemyManager enemyManager;
+
+    public Flavor[] CurrentFlavors { get => currentFlavors; set => currentFlavors = value; }
+
     void Start()
     {
         enemyManager = FindFirstObjectByType<EnemyManager>();
@@ -54,6 +60,31 @@ public partial class WorldManager : MonoBehaviour
             isBossFloor = false;
           
         }
+        
+         int numFlavors = Random.Range(2, 4);
+        // if tier 1, all flavors
+        if (GameManager.FloorToTier(player.PlayerData.CurrentFloor) <= 2)
+        {
+            numFlavors = possibleFlavors.Length;
+        }
+    
+        currentFlavors = new Flavor[numFlavors];
+        // dont allow duplicates
+        for (int i = 0; i < numFlavors; i++)
+        {
+            Flavor flavor;
+            do
+            {
+                flavor = possibleFlavors[Random.Range(0, possibleFlavors.Length)];
+            }
+            while (System.Array.IndexOf(currentFlavors, flavor) != -1);
+            
+            currentFlavors[i] = flavor;
+        }
+
+        Debugger.Log("Assigned floor flavors: " + string.Join(", ", (object[])currentFlavors), type: DebugType.World);
+
+
         StartCoroutine(BuildWorld());
     }
 

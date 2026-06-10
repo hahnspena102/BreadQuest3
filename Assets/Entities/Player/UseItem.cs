@@ -69,7 +69,7 @@ public class UseItem : MonoBehaviour
         {    
             Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
 
-            if (player.IsAttacking || player.IsMenuing) return;
+            if (player.IsAttacking || player.IsInUIScreen) return;
             if (direction == Vector2.zero) return;
             
 
@@ -117,7 +117,7 @@ public class UseItem : MonoBehaviour
         
        if (Input.GetMouseButtonDown(0))
         {    
-            if (player.IsAttacking || player.IsMenuing) return;
+            if (player.IsAttacking || player.IsInUIScreen) return;
             if (magicData.GlucoseCost > player.PlayerData.CurrentGlucose) return;
 
             player.IsAttacking = true;
@@ -166,6 +166,8 @@ public class UseItem : MonoBehaviour
     private float timeCharging = 0f;
     public void RangedWeapon(RangedData rangedData)
     {
+        if (player.IsInUIScreen) return;
+
         Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
         
         // Instant cast for zero charge time
@@ -354,7 +356,7 @@ public class UseItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (player.IsAttacking || player.IsMenuing) return;
+            if (player.IsAttacking || player.IsInUIScreen) return;
             if (potionData == null)
             {
                 return;

@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: ButterKnife
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Butter Knife
-  description: 
+  description: A classic kitchen knife with a side of butter.
   itemSprite: {fileID: 21300000, guid: 3a1292de9bc394dc6ad9f831421780f8, type: 3}
   tier: 1
+  maxStackSize: 1
+  isConsumed: 0
   damage: 8
-  attackSpeed: 1
   flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
   meleeScale: 1
   meleeSpeed: 2

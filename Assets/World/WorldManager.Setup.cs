@@ -30,27 +30,7 @@ public partial class WorldManager
 
     private void InitializeRooms()
     {
-        int numFlavors = Random.Range(2, 4);
-        // if tier 1, all flavors
-        if (GameManager.FloorToTier(player.PlayerData.CurrentFloor) <= 2)
-        {
-            numFlavors = possibleFlavors.Length;
-        }
-        Flavor[] flavors = new Flavor[numFlavors];
-        // dont allow duplicates
-        for (int i = 0; i < numFlavors; i++)
-        {
-            Flavor flavor;
-            do
-            {
-                flavor = possibleFlavors[Random.Range(0, possibleFlavors.Length)];
-            }
-            while (System.Array.IndexOf(flavors, flavor) != -1);
-            flavors[i] = flavor;
-        }
-
-        Debugger.Log("Assigned floor flavors: " + string.Join(", ", (object[])flavors), type: DebugType.World);
-
+    
 
         foreach (var room in rooms)
         {
@@ -75,7 +55,7 @@ public partial class WorldManager
            
             foreach (var wave in room.waves)
             {
-                enemyManager.PopulateWave(wave, flavors);
+                enemyManager.PopulateWave(wave, currentFlavors);
             }
 
             if (isBossFloor) {
@@ -91,7 +71,7 @@ public partial class WorldManager
                     {
                         Wave extraWave = new Wave();
                         extraWave.associatedRoom = room;
-                        enemyManager.PopulateWave(extraWave, flavors);
+                        enemyManager.PopulateWave(extraWave, currentFlavors);
                         room.waves.Add(extraWave);
                     }
                     

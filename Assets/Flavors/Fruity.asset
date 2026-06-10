@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flavor
   flavorName: Fruity
   description: 
-  flavorIcon: {fileID: 0}
+  flavorSprite: {fileID: 4449520347427112255, guid: e9b6f98525f8f4d018f9c8794bbe6eda, type: 3}
   flavorColor: {r: 0.3254717, g: 0.5353686, b: 1, a: 1}
   effectiveAgainst: {fileID: 11400000, guid: 3c1a116703afa4c89a9a12743d7feda9, type: 2}

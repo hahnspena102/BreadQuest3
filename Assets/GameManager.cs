@@ -32,11 +32,8 @@ public class GameManager : MonoBehaviour
     }
 
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            Application.Quit();
-        }
-
-        if (Input.GetKeyDown(KeyCode.U)) {
+        // press 0 to load main scene for testing
+        if (Input.GetKeyDown(KeyCode.Alpha0)) {
             SceneManager.LoadScene("MainScene");
         }
     }

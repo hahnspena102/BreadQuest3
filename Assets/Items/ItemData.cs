@@ -16,4 +16,10 @@ public class ItemData : ScriptableObject
     public int MaxStackSize { get => maxStackSize; set => maxStackSize = value; }
     
     public global::System.Boolean IsConsumed { get => isConsumed; set => isConsumed = value; }
+
+    public virtual string GetFullDescription()
+    {
+        return Description + (IsConsumed ? "\nConsumable" : "");
+    }
+
 }

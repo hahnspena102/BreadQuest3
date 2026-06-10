@@ -18,4 +18,10 @@ public class RangedData : WeaponData
     [SerializeField]private float chargeTime = 0f;
     [SerializeField]private AnimationClip chargeAnimationClip;
     [SerializeField]private AnimationClip releaseAnimationClip;
+
+    public override string GetFullDescription()
+    {
+        string isMultishot = ProjectileCount > 1 ? $"{ProjectileCount} projectiles - {SpreadAngle}° spread" : "";
+        return $"{base.GetFullDescription()}\nRanged - {ChargeTime} sec charge\n" + isMultishot;
+    }
 }

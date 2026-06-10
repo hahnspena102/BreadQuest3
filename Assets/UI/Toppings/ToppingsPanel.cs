@@ -24,7 +24,8 @@ public class ToppingsPanel : MonoBehaviour
     public void DisplayToppings(ToppingData[] toppings)
     {
         StopAllCoroutines();
-        player.IsMenuing = true;
+        //player.IsInUIScreen = true;
+        player.IsInToppings = true;
         StartCoroutine(DisplayRoutine(toppings));
     }
 
@@ -79,7 +80,7 @@ public class ToppingsPanel : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(HideRoutine());
 
-        player.IsMenuing = false;
+        player.IsInToppings = false;
     }
 
     private IEnumerator HideRoutine()

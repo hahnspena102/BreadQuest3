@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DarkChocoGreatsword
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Dark Choco Greatsword
-  description: 
+  description: A heavy greatsword capable of dark chocolate outcomes.
   itemSprite: {fileID: 21300000, guid: 59cae2bbd9e2c42378daf99b594b2956, type: 3}
   tier: 1
   maxStackSize: 1

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flavor
   flavorName: Grain
   description: 
-  flavorIcon: {fileID: 0}
+  flavorSprite: {fileID: -3520649881568307650, guid: 06671830cd10c4bd9940ad473dcc21f0, type: 3}
   flavorColor: {r: 1, g: 0.7880315, b: 0.033018887, a: 1}
   effectiveAgainst: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3fe9e14a9b068e940b68a2335d775785
+guid: e9b6f98525f8f4d018f9c8794bbe6eda
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8630923909508717717
-    second: Health_0
+      213: 4449520347427112255
+    second: Fruity_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +96,40 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Health_0
+      name: Fruity_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 17
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b63ae42de6cc83880800000000000000
-      internalID: -8630923909508717717
+      spriteID: f3504417e2fdfbd30800000000000000
+      internalID: 4449520347427112255
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0f3c7c57d97960d4fbcf9635d9f1890a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Health_0: -8630923909508717717
+      Fruity_0: 4449520347427112255
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

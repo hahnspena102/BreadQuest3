@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: BananaSaber
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
   itemName: Banana Saber
-  description: 
+  description: Harness the power of the banana!
   itemSprite: {fileID: 21300000, guid: f5a40b6955e7044bdbcc81df915bcc18, type: 3}
   tier: 1
+  maxStackSize: 1
+  isConsumed: 0
   damage: 4
   flavor: {fileID: 11400000, guid: 2937beb45c49b41ab8c8286c1b541b7f, type: 2}
   meleeScale: 1

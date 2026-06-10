@@ -54,7 +54,8 @@ public class ItemDrops : ScriptableObject
         if (tier >= 5 && tier5Drops != null) hasGuaranteed |= System.Array.Exists(tier5Drops, entry => entry.isGuaranteed);
         if (tier >= 6 && tier6Drops != null) hasGuaranteed |= System.Array.Exists(tier6Drops, entry => entry.isGuaranteed);
 
-        if (hasGuaranteed && !System.Array.Exists(drops, entry => entry != null && entry.isGuaranteed))
+        if (hasGuaranteed && Random.value < 0.5f &&
+            !System.Array.Exists(drops, entry => entry != null && entry.isGuaranteed))
         {
             int replaceIndex = Random.Range(0, drops.Length);
             drops[replaceIndex] = GetRandomGuaranteedDrop(tier);
