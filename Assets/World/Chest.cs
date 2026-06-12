@@ -9,6 +9,7 @@ public class Chest : MonoBehaviour
     private Player player;
     private ItemManager itemManager;
     private bool playerInRange = false;
+    private bool isOpening = false;
     private Canvas statusCanvas;
     [SerializeField] private AudioClip chestOpenSound;
 
@@ -30,13 +31,18 @@ public class Chest : MonoBehaviour
         {
             StartCoroutine(OpenChest());
         }
+
+        if (isOpening)
+        {
+            statusCanvas.enabled = false;   
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !isOpening)
         {
             statusCanvas.enabled = true;
             Player player = other.gameObject.GetComponent<Player>();
@@ -59,6 +65,9 @@ public class Chest : MonoBehaviour
 
     IEnumerator OpenChest()
     {
+        if (isOpening) yield break; // Prevent multiple openings
+        isOpening = true;
+        
         Animator animator = GetComponent<Animator>();
         if (animator != null)
         {

@@ -4072,7 +4072,7 @@ Transform:
   m_GameObject: {fileID: 830554841}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3795, y: -0.53477, z: -10}
+  m_LocalPosition: {x: 4.18, y: -5.97, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4745,6 +4745,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: ccf45f268cde24a4bba2212da3aa1c04, type: 3}
   m_ActionId: daade139-751c-4b76-8579-8b0b2221a507
+--- !u!1001 &1585212448
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884295096580734407, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615535068207728506, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 47417
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615535068207728506, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952454158959800989, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
+      propertyPath: m_Name
+      value: Teleporter (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3fc10da4598104b9d9f8bac1f1b77337, type: 3}
 --- !u!1 &1676140116
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,7 +5062,7 @@ Transform:
   m_GameObject: {fileID: 1795012414}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3795, y: -0.53477, z: -10}
+  m_LocalPosition: {x: 4.18, y: -5.97, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8109,7 +8174,7 @@ Transform:
   m_GameObject: {fileID: 7033468484925388717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3795, y: -0.53477, z: 0}
+  m_LocalPosition: {x: 4.18, y: -5.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8772,3 +8837,4 @@ SceneRoots:
   - {fileID: 878617652}
   - {fileID: 460127132}
   - {fileID: 1981814991}
+  - {fileID: 1585212448}

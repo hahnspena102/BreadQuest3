@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3614f2b5620214756b6424d422b67eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Teleporter
+  warpSound: {fileID: 8300000, guid: 210923ccce26fe14cb1e9d50bbf0aee5, type: 3}
 --- !u!198 &5615535068207728506
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -16,17 +16,17 @@ MonoBehaviour:
   items:
   - itemData: {fileID: 11400000, guid: 3b6b7d5c17869400494489f7881a353f, type: 2}
     count: 1
-  - itemData: {fileID: 11400000, guid: 0ecc42e6443032c448956ee2d8c5335b, type: 2}
+  - itemData: {fileID: 11400000, guid: 1668e68623dbbf34396d467f6611ff88, type: 2}
     count: 1
-  - itemData: {fileID: 11400000, guid: 481f4d77a4155dc45bfdfa8e48505ea6, type: 2}
+  - itemData: {fileID: 11400000, guid: dd3047b8f332e97419ed1db8802fc221, type: 2}
     count: 1
-  - itemData: {fileID: 11400000, guid: 933c3caefb545f34eacd51ad90c64a66, type: 2}
-    count: 8
+  - itemData: {fileID: 11400000, guid: 16d30de1a5587c84894c2bb11a603746, type: 2}
+    count: 1
+  - itemData: {fileID: 11400000, guid: f806bc7a619124e7a8d52c39b4f964e5, type: 2}
+    count: 1
   - itemData: {fileID: 11400000, guid: 957e115a573b42a45bd24c7099e11a7e, type: 2}
-    count: 2
-  - itemData: {fileID: 0}
-    count: 1
-  currentItemIndex: 2
+    count: 4
+  currentItemIndex: 1
   equippedItem:
-    itemData: {fileID: 11400000, guid: 481f4d77a4155dc45bfdfa8e48505ea6, type: 2}
+    itemData: {fileID: 11400000, guid: 1668e68623dbbf34396d467f6611ff88, type: 2}
     count: 1

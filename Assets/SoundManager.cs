@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundFXClip(AudioClip clip, Transform transform, float volume = 1f)
+    public void PlaySoundFXClip(AudioClip clip, Transform transform, float volume = 1f, float pitchVariance = 0f)
     {
         if (clip == null || soundFXObject == null)
         {
@@ -39,6 +39,10 @@ public class SoundManager : MonoBehaviour
         AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
         audioSource.clip = clip;
         audioSource.volume = volume;
+        if (pitchVariance > 0)
+        {
+            audioSource.pitch = Random.Range(1f - pitchVariance, 1f + pitchVariance);
+        }
         audioSource.Play();
         Destroy(audioSource.gameObject, clip.length);
     }

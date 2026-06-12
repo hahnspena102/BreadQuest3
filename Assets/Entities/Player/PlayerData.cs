@@ -21,6 +21,13 @@ public class PlayerData : EntityData
     [SerializeField] private float glucoseRegenBonus;
     [SerializeField] private float defenseBonus;
     [SerializeField] private float speedBonus;
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip[] meleeSounds;
+    [SerializeField] private AudioClip[] magicSounds;
+    [SerializeField] private AudioClip[] hurtSounds;
+    [SerializeField] private AudioClip[] drinkSounds;
+    [SerializeField] private AudioClip[] warpSounds;
+    [SerializeField] private AudioClip[] dashSounds;
 
     public global::System.Single Gold { get => gold; set => gold = value; }
     public global::System.Single Experience { get => experience; set => experience = value; }
@@ -126,6 +133,42 @@ public class PlayerData : EntityData
         toppings = newToppingsArray;
 
         CalculateToppingBonuses();
+    }
+
+    public AudioClip GetMeleeSound()
+    {
+        if (meleeSounds == null || meleeSounds.Length == 0) return null;
+        return meleeSounds[Random.Range(0, meleeSounds.Length)];
+    }
+
+    public AudioClip GetMagicSound()
+    {
+        if (magicSounds == null || magicSounds.Length == 0) return null;
+        return magicSounds[Random.Range(0, magicSounds.Length)];
+    }
+
+    public AudioClip GetHurtSound()
+    {
+        if (hurtSounds == null || hurtSounds.Length == 0) return null;
+        return hurtSounds[Random.Range(0, hurtSounds.Length)];
+    }
+
+    public AudioClip GetDrinkSound()
+    {
+        if (drinkSounds == null || drinkSounds.Length == 0) return null;
+        return drinkSounds[Random.Range(0, drinkSounds.Length)];
+    }
+
+    public AudioClip GetWarpSound()
+    {
+        if (warpSounds == null || warpSounds.Length == 0) return null;
+        return warpSounds[Random.Range(0, warpSounds.Length)];
+    }
+
+    public AudioClip GetDashSound()
+    {
+        if (dashSounds == null || dashSounds.Length == 0) return null;
+        return dashSounds[Random.Range(0, dashSounds.Length)];
     }
 
 

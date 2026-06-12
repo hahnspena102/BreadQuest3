@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private bool isInInventory = false;
     private bool isInToppings = false;
     private bool isInMenu = false;
+    private bool isWarping = false;
     [ReadOnly] private InfoMode infoMode = InfoMode.Minimal;
     private float invulnerabilityTimer = 0f;
     
@@ -98,6 +99,7 @@ private float scrollTimer;
     public global::System.Boolean IsInMenu { get => isInMenu; set => isInMenu = value; }
     public global::System.Boolean IsInToppings { get => isInToppings; set => isInToppings = value; }
     public InfoMode InfoMode { get => infoMode; set => infoMode = value; }
+    public global::System.Boolean IsWarping { get => isWarping; set => isWarping = value; }
 
 
 
@@ -215,6 +217,7 @@ private float scrollTimer;
             isDashing = true;
             dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;
+            SoundManager.instance.PlaySoundFXClip(playerData.GetDashSound(), transform, 0.2f, 0.1f);
         }
 
         if (rb)
@@ -416,6 +419,7 @@ private float scrollTimer;
 
         playerData.CurrentHealth -= damage;
         animator.SetTrigger("hurt");
+        SoundManager.instance.PlaySoundFXClip(playerData.GetHurtSound(), transform, 0.2f, 0.1f);
         itemSpriteHolder.sprite = null;
         invulnerabilityTimer = invulnerabilityDuration; 
         //  Damage Taken=Raw Damage×(ConstantConstant+Defense)Damage Taken equals Raw Damage cross open paren the fraction with numerator Constant and denominator Constant plus Defense end-fraction close parenDamage Taken=Raw Damage×ConstantConstant+Defense

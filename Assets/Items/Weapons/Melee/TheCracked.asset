@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fece207f0a1e04695ec6a3a5019e57, type: 3}
-  m_Name: DarkChocoGreatsword
+  m_Name: TheCracked
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
-  itemName: Dark Choco Greatsword
-  description: A heavy greatsword capable of dark chocolate outcomes.
-  itemSprite: {fileID: 21300000, guid: 59cae2bbd9e2c42378daf99b594b2956, type: 3}
+  itemName: The Cracked
+  description: Harness the cracks of grain.
+  itemSprite: {fileID: 4460346853696126292, guid: 68ee527c6e511aa4dab398c654aaf902, type: 3}
   tier: 1
   maxStackSize: 1
   isConsumed: 0
-  damage: 18
-  flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
-  meleeScale: 1.7
-  meleeSpeed: 0.5
+  damage: 17
+  flavor: {fileID: 11400000, guid: 771c8d9e1f90647edb4d133c9e804681, type: 2}
+  meleeScale: 2.2
+  meleeSpeed: 1.2

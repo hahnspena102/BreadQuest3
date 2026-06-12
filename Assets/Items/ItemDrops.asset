@@ -76,6 +76,10 @@ MonoBehaviour:
     dropChance: 1
     count: 1
     isGuaranteed: 0
+  - item: {fileID: 11400000, guid: a57d8b78983ad5844b263f527d7aaf35, type: 2}
+    dropChance: 1
+    count: 1
+    isGuaranteed: 0
   tier5Drops:
   - item: {fileID: 11400000, guid: 16d30de1a5587c84894c2bb11a603746, type: 2}
     dropChance: 2
@@ -86,6 +90,10 @@ MonoBehaviour:
     count: 1
     isGuaranteed: 0
   - item: {fileID: 11400000, guid: 481f4d77a4155dc45bfdfa8e48505ea6, type: 2}
+    dropChance: 2
+    count: 1
+    isGuaranteed: 0
+  - item: {fileID: 11400000, guid: dd3047b8f332e97419ed1db8802fc221, type: 2}
     dropChance: 2
     count: 1
     isGuaranteed: 0

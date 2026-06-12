@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   maxHealth: 100
   speed: 5
-  currentHealth: 100
+  currentHealth: 25
   maxGlucose: 50
-  currentGlucose: 50
+  currentGlucose: 30
   gold: 0
-  experience: 200
+  experience: 600
   level: 1
   critRate: 0
   critBonus: 0
-  currentFloor: 1
+  currentFloor: 16
   healCooldown: 0
   glucoseCooldown: 0
   toppings: []
@@ -30,3 +30,31 @@ MonoBehaviour:
   glucoseRegenBonus: 0
   defenseBonus: 0
   speedBonus: 0
+  meleeSounds:
+  - {fileID: 8300000, guid: a5e87bb0e3bb8c545971fc86697f61f1, type: 3}
+  - {fileID: 8300000, guid: 1c5496fa7d2d9194f94c7d0879e040a4, type: 3}
+  - {fileID: 8300000, guid: c1b2c507e16a55748ac6789c30451041, type: 3}
+  - {fileID: 8300000, guid: 371bac78b23624048ba978011c0ebc1a, type: 3}
+  - {fileID: 8300000, guid: 7f6773349c4bbf6408499496221deddb, type: 3}
+  magicSounds:
+  - {fileID: 8300000, guid: 0aa46e640eae9d04484816430ba7b365, type: 3}
+  - {fileID: 8300000, guid: 3ceed3514d8f02a4bbac32517262aa73, type: 3}
+  - {fileID: 8300000, guid: 906868b9f7d312f48b5ad6404ced3c26, type: 3}
+  - {fileID: 8300000, guid: 1c4feaf137056834487b78c41ac1000a, type: 3}
+  - {fileID: 8300000, guid: 319ec551e033488479b257a048e3107d, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: deb758554b3febe40acbc33063ebd077, type: 3}
+  - {fileID: 8300000, guid: 645e7f9c7bb47724b808226c5674fd9e, type: 3}
+  - {fileID: 8300000, guid: 33cf549b81041ba4abe9b74ff53af544, type: 3}
+  - {fileID: 8300000, guid: 6cae2d6476433b24da509ee2408d3313, type: 3}
+  - {fileID: 8300000, guid: 450a1f3afe96c6a439f3458487ee5bf0, type: 3}
+  drinkSounds:
+  - {fileID: 8300000, guid: 5d90e97a48ec0fb47b91558da0cec907, type: 3}
+  - {fileID: 8300000, guid: 007281cad9a4f7548847e7b658ab818b, type: 3}
+  - {fileID: 8300000, guid: e504209e5c1216f49a9cd34e6f9e3c41, type: 3}
+  warpSounds:
+  - {fileID: 8300000, guid: 30a6d99baa7ac014294b4bc8de076045, type: 3}
+  - {fileID: 8300000, guid: a2227fc22f60d7c4eac219cd7535ba5d, type: 3}
+  - {fileID: 8300000, guid: f5a26323b2fc6ec4b98c8d67684fe319, type: 3}
+  dashSounds:
+  - {fileID: 8300000, guid: db9192418c0daaa44af32505489ea7dc, type: 3}

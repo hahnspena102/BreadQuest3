@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5fece207f0a1e04695ec6a3a5019e57, type: 3}
-  m_Name: DarkChocoGreatsword
+  m_Name: RoastNToast
   m_EditorClassIdentifier: Assembly-CSharp::MeleeData
-  itemName: Dark Choco Greatsword
-  description: A heavy greatsword capable of dark chocolate outcomes.
-  itemSprite: {fileID: 21300000, guid: 59cae2bbd9e2c42378daf99b594b2956, type: 3}
+  itemName: Roast n' Toast
+  description: Gooey marshmallows turned into an offensive weapon.
+  itemSprite: {fileID: 6889918586758412261, guid: de2dccdebd9f43d4eb1ab0df21341b7a, type: 3}
   tier: 1
   maxStackSize: 1
   isConsumed: 0
-  damage: 18
-  flavor: {fileID: 11400000, guid: 74a27ef8765364b6988f660ef8f2e461, type: 2}
-  meleeScale: 1.7
-  meleeSpeed: 0.5
+  damage: 12
+  flavor: {fileID: 11400000, guid: 82439844d2a1e4ca9af7dc7cd3217b52, type: 2}
+  meleeScale: 1.8
+  meleeSpeed: 1.1

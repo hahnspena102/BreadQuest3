@@ -101,6 +101,7 @@ public class UseItem : MonoBehaviour
             }
 
             PlayAnimation(direction, "meleeAttack");
+            SoundManager.instance.PlaySoundFXClip(player.PlayerData.GetMeleeSound(), player.transform, 0.2f, 0.1f);
 
              if (equippedItem.ItemData.IsConsumed)
             {
@@ -125,7 +126,7 @@ public class UseItem : MonoBehaviour
    
 
             SoundManager.instance.PlaySoundFXClip(magicData.GetCastSound(), player.transform);
-  
+            SoundManager.instance.PlaySoundFXClip(player.PlayerData.GetMagicSound(), player.transform, 0.2f, 0.1f);
 
             Vector2 direction = player.WorldPointPosition - (Vector2)player.transform.position;
             string animationDirection = GetAxisDirection(direction);
@@ -361,6 +362,8 @@ public class UseItem : MonoBehaviour
             {
                 return;
             }
+
+            SoundManager.instance.PlaySoundFXClip(player.PlayerData.GetDrinkSound(), player.transform, 0.2f, 0.1f);
 
             Debug.Log("Using potion with " + potionData.potionEffects.Length + " effects.");
             bool appliedEffect = false;
